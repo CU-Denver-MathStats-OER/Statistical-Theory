@@ -37,3 +37,15 @@ vignettes/*.pdf
 
 # R Environment Variables
 .Renviron
+
+# Tex files
+*.aux
+*.log
+*.tex~
+*.pdf
+
+# Mac files
+*.DS_Store
+
+# Python files
+**/.ipynb_checkpoints/**

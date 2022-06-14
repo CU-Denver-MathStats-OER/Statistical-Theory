@@ -1,0 +1,102 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+# Bootstrap Distributions Part 3
+### March 24, 2021
+
+**Load required packages first**
+```{r, message=FALSE}
+library(resampledata)
+```
+
+## Section 5.6: Bias
+
+* An estimator $\hat{\theta}$ is **biased** if on average it tends to be too high or too low relative to the true value of $\theta$. The bias of an estimator is
+
+$$ 
+\mbox{Bias}\lbrack \hat{\theta} \rbrack = \mbox{E} \lbrack \hat{\theta} \rbrack - \theta. 
+$$
+
+* The bootstrap estimate of bias is
+ 
+$$
+\mbox{Bias}_{\rm{boot}} \lbrack \hat{\theta}^{\ast} \rbrack =  \mbox{E} \lbrack \hat{\theta}^{\ast} \rbrack - \hat{\theta}.
+$$
+
++ $\mbox{E} \lbrack \hat{\theta}^{\ast} \rbrack$ denotes the center of the bootstrap distribution.
+
++ $\hat{\theta}$ denotes the sample statistic.
+
+* An estimator is **unbiased if the bias is zero**.
+
+### Question 2
+
+2. Calculate the bootstrap estimate of bias in the previous Verizon example.
+
+```{r}
+Time.ILEC <- subset(Verizon, select = Time, Group == "ILEC", drop =T)
+Time.CLEC <- subset(Verizon, select = Time, Group == "CLEC", drop =T)
+original.ratio <- mean(Time.ILEC)/mean(Time.CLEC)
+
+N <- 10^4
+time.ratio.mean <- numeric(N)
+for (i in 1:N)
+{
+  ILEC.sample <- sample(Time.ILEC, 1664, replace = TRUE)
+  CLEC.sample <- sample(Time.CLEC, 23, replace = TRUE)
+  time.ratio.mean[i] <- mean(ILEC.sample)/mean(CLEC.sample)
+}
+```
+
+We have $\mbox{E} \lbrack \hat{\theta}^{\ast} \rbrack =$ `r `
+
+We have $\hat{\theta} =$ `r `
+
+The bias is therefore $\mbox{Bias}_{\rm boot} \lbrack \hat{\theta}^{\ast} \rbrack =$ `r `
+
+### Rule of Thumb for Bias
+
+* We can measure how extreme is the bias of an estimator using the ratio
+
+$$
+\frac{\mbox{Bias}}{\mbox{SE}} \approx  \frac{\mbox{Bootstrap Bias}}{\mbox{Bootstrap SE}}.
+$$
+* **Rule of Thumb:** If the ratio bias/SE exceeds $\pm 0.02$, then the bias is large enough to have a substantial effect on the accuracy of the estimate.
+
+### Question 3 
+
+In the arsenic example  we used a bootstrap distribution to estimate the mean arsenic level (in ppb) present in groundwater in Bangladesh. The mean of the original sample is $\bar{x} = 125.320$. A mean of a bootstrap distribution is $125.229$. Then the bootstrap standard error is 17.9. **Which bias is more extreme, the bias in the arsenic or Verizon example?**
+
+* For the arsenic example we have Bias/SE is 
+
+
+* For the Verizon example we have Bias/SE is 
+
+
+## Sections 5.7-5.9: Implementation and Accuracy
+
+4. If we had a sample {10,  20 , 18}, how many possible bootstrap samples are there?
+
+10, 10, 10  
+10, 20, 20  
+10, 18, 18  
+10, 20, 18  
+20, 20, 20  
+20, 10, 10  
+20, 18, 18  
+18, 18, 18  
+18, 10, 10  
+18, 20, 20  
+
+```{r}
+choose(1,1)
+```
+
+In the Verizon example, there are at most $1664^{1664} \cdot 23^{23}$ different bootstrap samples, If there are duplicate values in the sample(s), then it gets even more tricky to avoid repeats.
+
+* We have not been ensuring we generate all possible bootstrap samples while avoiding repeats.  
+* We have used \textbf{Monte Carlo sampling} which gives an estimate of the theoretical bootstrap distribution.  
+* The larger the number of bootstrap samples, the better the estimate. As a rule, $N=10^4$ bootstrap samples or more is sufficient.  
+

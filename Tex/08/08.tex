@@ -1,0 +1,208 @@
+\pagestyle{fancy}
+\renewcommand{\theUnit}{4}
+\ifthenelse{\isundefined{\UnitPageNumbers}}{}{\setcounter{page}{1}}
+\rhead{Carlton and Devore Chapter \theUnit: Joint and Marginal Distributions}
+\lhead{Math 3382: Statistical Theory}
+%\lhead{\includegraphics[width=1.25cm]{CUDenver-Logo.png}}
+\rfoot{\mypage}
+\cfoot{\includegraphics[width=2.25cm]{CUDenver-Logo-coverpage.png}}
+\lfoot{Adam Spiegler}
+\fancypagestyle{firstfooter}{\footskip = 50pt}
+\renewcommand{\footrulewidth}{.4pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace*{-20pt} \thispagestyle{firstfooter}
+
+
+%\begin{tasks}[counter-format = {(tsk[a])},label-offset = {0.8em},label-format = {\color{black}\bfseries}](2)
+
+\pagebegin{Joint and Marginal Probability Distributions}
+%From section 4.1 of Prob with Applications to Engineering etc
+
+There are many situations in which we more than one random variable will be of interest.
+
+\bb
+\ii A large insurance agency services a number of customers who have purchased both a homeowner’s policy and an automobile policy from the agency. For each type of policy, a deductible amount must be specified. For an automobile policy, the choices are $\$100$ and $\$250$, whereas for a homeowner’s policy, the choices are $\$0$, $\$100$, and $\$200$.\label{insurance}
+
+
+\begin{multicols}{2}
+Suppose an individual with both types of policy is selected at random from the agency’s files. Let $A$ be  the deductible amount on the auto policy and $H$ the deductible amount on the homeowner’s policy. The \alert{joint probability mass  function} $p(a,h)=P(A=a \mbox{ and } H=h)$ is given in the table to the right.
+
+\columnbreak
+
+\begin{center}
+\begin{tabular}{|c||c|c|c||c|}
+\hline
+  & \multicolumn{3}{c||}{$H$} & \\
+  \hline
+   $p(a,h)$ & $0$ & $100$ & $200$ & Total \\
+  \hline 
+  \hline
+  $a=100$ & $0.20$ & $0.10$ & $0.20$ & \\
+\hline
+  $a=250$ & $0.05$ & $0.15$ & $0.30$ & \\
+\hline
+  \hline
+  Total  & & & &  \\
+\hline
+\end{tabular}
+\end{center}
+
+\end{multicols}
+
+\bb
+\ii Interpret the meaning of the value $p(100,0)=0.2$ in this context. \vfill
+\ii Compute $P(A=250)$ and interpret the meaning in this context. \vfill
+\ii Compute $P(H=100)$ and interpret the meaning in this context. \vfill
+\ee
+\ee
+
+\bbox
+\bi
+\ii The \alert{marginal probability mass function} of $X$ is given by
+\[ p_X(x) = P(X=x) = \sum_y p(x,y). \]
+\ii The \alert{marginal probability mass function} of $Y$ is given by
+\[ p_Y(y) = P(Y=y) = \sum_x p(x,y). \]
+\ei
+\ebox
+
+\bb[resume]
+\ii Using the pmf from the insurance example \ref{insurance}, write a piecewise formula for $p_A(a)$ and $p_H(h)$. \vfill
+\ee
+
+\clearpage
+
+\pagebegin{Two Continuous Random Variables}
+%From section 4.1 of Prob with Applications to Engineering etc
+
+\bbox
+Let $X$ and $Y$ be continuous random variables with \alert{joint probability density function} \newline $f(x,y)$.
+\bi
+\ii The \alert{marginal probability density function} of $X$ is given by
+\[ f_X(x) = \int_{-\infty}^{\infty} f(x,y) \, dy. \]
+\ii The \alert{marginal probability density function} of $Y$ is given by
+\[ f_Y(y) = \int_{-\infty}^{\infty} f(x,y) \, dx. \]
+\ei
+\ebox
+
+
+\bb[resume]
+\ii A pharmacy operates both a drive-up facility and a walk-up window. On a randomly selected day, let
+$X$ be the proportion of time that the drive-up window is in use,
+and let $Y$ be the proportion of time that the walk-up window is in use.
+Then the set of possible values for the pair $(X, Y)$ is the rectangle $A= \left\{ (x, y): 0 \leq x \leq 1, 0 \leq y \leq 1 \right\}$ in
+$\mathbb{R}^2$. Suppose the joint pdf of $(X,Y)$ is given by\label{pharm}
+
+\[ f(x,y) = \left\{ \begin{array}{ll}
+\frac{6}{5}(x+y^2) \ \ \ \ , & 0 \leq x \leq 1, 0 \leq y \leq 1\\
+0 , & \mbox{otherwise}
+\end{array} \right. \]
+
+\bb
+\ii Give a formula for $f_X(x)$ (using integrals). \vfill
+\ii Use the formula in the previous part to calculate and interpret $P( 0 \leq X \leq \frac{1}{4})$. \vfill
+\ii Give a formula for $f_Y(y)$.  \vfill
+\ii Set up (but do not evaluate) a double integral to represent $\dsty P \left( 0 \leq X \leq \frac{1}{4} , \ 0 \leq Y \leq \frac{1}{2} \right)$. \vspace{0.5in}
+\ee
+\ee
+
+\clearpage
+
+\pagebegin{Marginal PDF's for Continuous Random Variables}
+
+\bbox
+Let $X$ and $Y$ be continuous random variables with joint pdf $f(x,y)$.
+Then for any two dimensional subset $A \subseteq \mathbb{R}^2$,
+\[ P\big( (X,Y) \in A \big) = \int \int_A f(x,y) \, dx dy .\]
+In particular if $A$ is a rectangular region  $A= \left\{ (x, y): a \leq x \leq b, c \leq y \leq d \right\}$, then 
+\[ P\big( a \leq X \leq b, \ c \leq Y \leq d )= \int_c^d \int_a^b f(x,y) \, dx dy .\]
+\ebox
+
+\pagebegin{Independent Random Variables}
+
+\bbox
+Two random variables $X$ and $Y$ are said to be \alert{independent} if for every part of $x$ and $y$ values,
+\[ \alert{f(x,y) = f_X(x) \cdot f_Y(y)}  \ \ \mbox{when $X$ and $Y$ are continuous, or}\]
+\[ \alert{p(x,y) = p_X(x) \cdot p_Y(y)}  \ \ \mbox{when $X$ and $Y$ are discrete.}\]
+Notice this definition applies when $A$ and $B$ are independent events, then $P(A \cap B) = P(A)P(B)$. 
+\ebox
+
+\bb[resume]
+\ii In the insurance example \ref{insurance}, are random variables $X$ and $Y$ independent? Explain how you determined your answer, and then interpret the practical significance of your answer.
+
+\vfill
+
+\ii In the pharmacy example \ref{pharm}, are random variables $X$ and $Y$ independent? Explain how you determined your answer, and then interpret the practical significance of your answer.
+
+\ee
+
+\vfill
+
+\clearpage
+
+\pagebegin{Expected Values: Section 4.2}
+%Prob with Applications section 4.2
+
+\bbox
+%We have previous seen that if $X$ is a random variable with pdf $f_X(x)$, and if we define $Y=g(X)$, then
+%\[ E(Y) = E(g(X)) = \int_{-\infty}^{\infty} g(x) \cdot f_X(x) \ dx .\]
+ %A similar result holds for a function of two (or more) variables. \medskip
+
+Let $X$ and $Y$ be two random variables with joint pdf $f(x,y)$. If $Z=h(X,Y)$, then
+\[ E(Z) = E(h(X,Y)) = \left\{ \begin{array}{ll}
+\dsty \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} h(x,y)\cdot f(x,y) \, dx dy , \ \ \ \ \ \ & \mbox{if $X$ and $Y$ are continuous} \\
+ & \\
+\dsty \sum_y \sum_x h(x,y)\cdot f(x,y) , &  \mbox{if $X$ and $Y$ are discrete} \end{array} \right. .\]
+This is often referred to as the \alert{\textit{Law of the Unconscious Statistician}} since we do not need to know $f_Z(z)$
+in order to compute $E(Z)$.
+\ebox
+
+\bb[resume]
+\ii Let $X$ and $Y$ be the values ($1, 2, \ldots ,6$) rolled by each of two die. Assume that $X$ and $Y$ are independent,
+and define the random variable $Z=h(x,y)=xy$ which is the product of the two rolls. Calculate $E(Z)$,
+the expected value of $Z$, the product of the two rolls.\label{pair-die}
+\ee
+
+\vfill
+
+\clearpage
+
+\pagebegin{Expected Value and Variance of Linear Combinations and Products}
+
+\bbox
+Let $X$ and $Y$ be two random variables and consider a linear combination $aX+bY$ for $a$ and $b$ two constants.
+\bi
+\ii Expected value: \alert{$E(aX+bY)=aE(X)+bE(Y)$}
+\ii This propery is true regardless of whether $X$ and $Y$ are independent or dependent.
+\ei
+\ebox
+
+\bb[resume]
+\ii Prove that expected value and property above. \vfill
+\ee
+
+
+
+\bbox
+\textbf{A special case for products:} Let $X$ and $Y$ be two \alert{independent} random variables. Then additionally we have the following properties.
+\bi
+\ii Expected value: \alert{$E(XY) = E(X) \cdot E(Y)$}.
+\ii Variance: \alert{$\Var(aX+bY)=a^2\Var(X)+b^2\Var(Y)$}
+\ii Variance: \alert{$\Var(XY) = E(X^2Y^2) - \big( E(X)E(Y) \big)^2$}.
+\ii \colorr{In general these properties do NOT hold if $X$ and $Y$ are dependent.}
+\ei
+\ebox
+
+
+
+%\bb[resume]
+%\ii Suppose that the lifetimes of two components are independent of each other and that the first lifetime, $X$, has an exponential distribution with average lifetime of 1000 hours. The second component, $Y$, has an exponential distribution with parameter $\lambda_2 = 1200$ hours. Then the joint pdf is
+
+%\[ f(x,y) = \left\{ \begin{array}{ll}
+%f_{X}(x)f_Y(y) = \frac{1}{1,\!200,\!000}e^{-\frac{x}{1000}-\frac{y}{1200}} \ \ \ , & x>0 , \ y>0 \\
+%0 & \mbox{otherwise} \end{array} \right. . \]
+
+%\bb
+%\ii Set an integral that represents the probability that the sum of their lifetimes is at most 3000 hours.
+%\ii Evaluate the integral in the previous part. %0.7564
+%\ee
+%\ee
