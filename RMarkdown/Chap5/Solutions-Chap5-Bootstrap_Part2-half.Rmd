@@ -1,0 +1,171 @@
+---
+title: "Bootstrap Distributions Part 2"
+output: 
+  pdf_document: 
+    fig_height: 3
+    fig_width: 4
+---
+
+# Bootstrap Distributions Part 2
+
+**Load required packages first**
+```{r, message=FALSE}
+library(resampledata)
+```
+
+## Solution Last Class: Bangladesh Arsenic Case Study
+
+Arsenic is a naturally occurring element in the groundwater in Bangladesh. Much of this water is used for drinking in rural areas,
+so arsenic poisoning is a serious health issue. The dataset **Bangladesh** contains measurements on arsenic, chlorine, and cobalt levels (in parts per billion, ppb) present in each of 271 groundwater samples. 
+
+
+a. Calculate the mean and standard deviation and size of the arsenic level of the sample.
+
+```{r}
+# Load and summarize the sample
+arsenic <- Bangladesh$Arsenic
+samp.mean <- mean(arsenic)
+samp.mean
+samp.sd <- sd(arsenic)
+samp.sd
+n.arsenic <- length(arsenic) # how many observations in arsenic
+n.arsenic
+```
+
+b. Create a histogram to show the shape of the distribution of the sample data. How would you describe the shape?
+
+```{r}
+hist(arsenic)
+# Optional code below creates a cool thing we have yet to encounter.
+# We'll see how to interpret this plot shortly.
+qqnorm(arsenic)
+qqline(arsenic)
+```
+
+c. What are the center and spread (standard error) of the bootstrap resample?
+
+```{r}
+N <- 10^5 # Number of bootstrap samples
+boot.dist <- numeric(N) #create vector to store bootstrap means
+
+# Set up a for loop!
+
+for (i in 1:N)
+{
+  x <- sample(arsenic, n.arsenic, replace = TRUE)
+  boot.dist[i] <- mean(x)
+}
+
+mean(boot.dist) #Calculate center of bootstrap dist
+sd(boot.dist) #Calculate bootstrap standard error
+
+# Show bootstrap distribution
+hist(boot.dist,  xlab = "xbar",
+     main = "Bootstrap Distribution")
+
+# Add a red line at the observed sample mean
+abline(v = samp.mean, col = "red", lwd = 2, lty = 2)
+
+# Add a blue line at the center of bootstrap dist s
+abline(v = mean(boot.dist), col = "blue", lwd = 2, lty = 2)
+
+# Compare bootstrap dist to normal dist
+# Again, we'll get to these.
+qqnorm(boot.dist)
+qqline(boot.dist)
+```
+
+## Interval Estimates for Mean Arsenic Level
+
+a. Compute a 95% bootstrap percentile confidence interval for the mean arsenic level in groundwater in Bangladesh.
+
+```{r}
+# Find cutoffs for 95% bootstrap CI
+lower <- quantile(boot.dist, probs = 0.025)
+upper <- quantile(boot.dist, probs = 0.975)
+lower
+upper
+```
+
+b. Interpret the practical meaning of the interval estimate.
+
+```{r}
+hist(boot.dist,  xlab = "xbar",
+     main = "Bootstrap Distribution")
+
+# Add a red line at the observed sample mean
+abline(v = samp.mean, col = "red", lwd = 2, lty = 2)
+
+# Add blue lines at the 2.5 and 97.5 percentiles
+abline(v = lower, col = "blue", lwd = 2, lty = 2)
+abline(v = upper, col = "blue", lwd = 2, lty = 2)
+```
+
+This interval is giving a range of plausible values for the mean arsenic level of all groundwater in Bangladesh. We are 95% confident that the interval from `r lower` ppb to `r upper` ppb contains the true mean arsenic level.
+
+
+c. Sometimes it is nice to describe the interval as some value plus or minus some margin of error. Recall with normal distributions, approximately 95% of the data is within 2 standard deviations of center of the distribution.  Construct a symmetric 95% bootstrap confidence interval for the mean arsenic level.
+
+```{r}
+samp.mean - 2*sd(boot.dist) #going 2 SE's below the point est
+samp.mean + 2*sd(boot.dist) #going 2 SE's below the point est
+```
+
+A 95% bootstrap confidence interval is `r samp.mean` plus or minus `r 2*sd(boot.dist)`.
+
+
+## North Carolina Birth Weights Revisited
+
+a. Give a 95\% bootstrap percentile confidence interval for the mean weight of babies born in North Carolina in 2004. 
+
+```{r}
+mean.weight <- mean(NCBirths2004$Weight)
+sd.weight <- sd(NCBirths2004$Weight)
+n.weight <- length(NCBirths2004$Weight)
+
+N <- 10^5 # Number of bootstrap samples
+boot.weight <- numeric(N) #create vector to store bootstrap means
+
+for (i in 1:N)
+{
+  y <- sample(NCBirths2004$Weight, n.weight, replace = TRUE)
+  boot.weight[i] <- mean(y)
+}
+
+# Find cutoffs for 95% bootstrap CI
+lower <- quantile(boot.weight, probs = 0.025)
+upper <- quantile(boot.weight, probs = 0.975)
+lower
+upper
+
+hist(boot.weight,  xlab = "xbar",
+     main = "Bootstrap Distribution")
+
+# Add a red line at the observed sample mean
+abline(v = mean.weight, col = "red", lwd = 2, lty = 2)
+
+# Add blue lines at the 2.5 and 97.5 percentiles
+abline(v = lower, col = "blue", lwd = 2, lty = 2)
+abline(v = upper, col = "blue", lwd = 2, lty = 2)
+```
+
+Note when we compare the interval estimate above for n=1009 it is much more narrow than the 95% confidence interval we initially constructed when n=10. **As n increases, the variability decreases, the interval gets more narrow, and the estimate is more specific.**
+
+b. Give a 90% bootstrap confidence interval to estimate the mean weight of all babies born in North Carolina in 2004.
+
+```{r}
+# Find cutoffs for 90% bootstrap CI
+lower.cl90 <- quantile(boot.weight, probs = 0.05)
+upper.cl90 <- quantile(boot.weight, probs = 0.95)
+lower.cl90
+upper.cl90
+```
+
+c. Interpret the practical meaning of your 90% bootstrap percentile confidence interval.
+
+We are 90% confident that the interval from `r lower.cl90` grams to `r upper.cl90` grams contains the actual mean value for all births in North Carolina in 2004.
+
+
+d. When we decreased the confidence level, what happened to the confidence interval estimate?
+
+When we decrease the confidence level, our interval estimate becomes more specific (less wide). This makes sense since the more narrow our interval is, the less likely it is to contain the population parameter.

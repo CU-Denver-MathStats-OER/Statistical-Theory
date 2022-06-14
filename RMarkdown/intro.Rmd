@@ -1,0 +1,41 @@
+# Sample Homework
+## Adam Spiegler
+
+**Load required packages first**
+```{r, message=FALSE}
+library(resampledata)
+```
+
+1. How many flights in the dataset FlightDelays were operated by each airline?
++ Here is a table displaying the counts:
+```{r}
+airline <- table(FlightDelays$Carrier)
+airline
+```
++ Here is a barplot of the results.
+```{r}
+barplot(airline)
+```
+
+2. Compare the distributions of flight lengths for both airlines.
++ Below is the distribution for American Airlines.
+```{r}
+AA <- subset(FlightDelays, Carrier == "AA")
+hist(AA$FlightLength)
+```
+
++ Below is the distribution for United Airlines.
+```{r}
+UA <- subset(FlightDelays, Carrier == "UA")
+hist(UA$FlightLength)
+```
+
++ The mean flight length of AA is `r mean(AA$FlightLength)`.
++ The mean flight length of UA is **`r mean(UA$FlightLength)`**.
+
+# Useful References
+* **R Markdown Cheatsheet:** (https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
+* **R Markdown The Definitive Guide:** (https://bookdown.org/yihui/rmarkdown/)
+* **Chunk Code Options:** (https://yihui.org/knitr/options/)
+
+# The End

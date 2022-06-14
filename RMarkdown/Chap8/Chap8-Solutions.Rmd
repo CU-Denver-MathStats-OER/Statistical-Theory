@@ -1,0 +1,132 @@
+---
+output:
+  html_document: default
+---
+# Chapter 8 Practice
+
+**Load required packages first**
+```{r, message=FALSE}
+library(resampledata)
+```
+
+## Worksheet 17 Question 7
+
+(a) Is the gestation period for mothers that give birth to male different compared to mothers that give birth to females?
+
+H~0~: There is no difference in the gestation periods. $\mu_{m} - \mu_{f}= 0$  
+H~a~: There is a difference in the gestation periods. $\mu_{m} - \mu_{f} \ne 0$
+
+```{r}
+t.test(Gestation ~ Gender, data = NCBirths2004, alt = "two.sided")
+```
+Since the P-value = 0.6149 > 0.05, we do not reject H~0~. The test is inconclusive, and we cannot claim anything as far as whether or not the gestation periods are different.
+
+(b) Are mothers that smoke less likely to give birth to a male compared to mothers that do not smoke?
+
+H~0~: There is no difference in the proportion of newborns that are male. $p_{s} - p_{n}= 0$  
+H~a~: Mothers that smoke are less likely to give birth to a male compared to mothers that do not smoke. $p_{s} - p_{n} < 0$
+
+
+```{r}
+smokers <- subset(NCBirths2004, select = Gender, Tobacco == "Yes", drop = T )
+non <- subset(NCBirths2004, select = Gender, Tobacco == "No", drop = T )
+
+x.smoke <- sum(smokers == "Male")
+x.non <- sum(non == "Male")
+
+n.smoke <- length(smokers)
+n.non <- length(non)
+
+prop.test(c(x.smoke, x.non), c(n.smoke, n.non), alt = "less")
+```
+Since the P-value = 0.1065 > 0.05, we do not reject H~0~. The test is inconclusive, and we cannot claim anything about the difference proportion of newborns assigned male at birth of smokers compared to non-smokers.
+
+(c) Is the mean weight of newborns in different from 3500 grams?
+
+H~0~: The mean birth weight of newborns in North Carolina is equal to 3500 grams. $\mu = 3500$  
+H~a~: The mean birth weight of newborns in North Carolina is different from 3500 grams. $\mu \ne 3500$
+
+```{r}
+weight <- NCBirths2004$Weight
+t.test(weight, mu = 3500)
+```
+
+Since P-value = 0.000781 $\leq 0.05$, we can reject H~0~ and we have evidence that the mean birth weight in NC is not 3500 grams.
+
+(d) Is the proportion of newborns assigned female at birth greater than 50%?
+
+H~0~: The proportion of newborns assigned female at birth is equal to 0.5. $p = 0.5$   
+H~a~: The proportion of newborns assigned female at birth is greater than 0.5. $p > 0.5$ 
+
+
+```{r}
+x <- sum(NCBirths2004$Gender == "Female")
+n <- length(NCBirths2004$Gender)
+prop.test(x,n, alt = "greater")
+```
+Since the P-value = 0.1569 > 0.05, we do not reject H~0~. The test is inconclusive, and we cannot claim anything as far as whether or not the proportion of newborns assigned female at birth is equal or greater than 50%.
+
+## Worksheet 17 Question 8
+
+H~0~: The wetsuit makes no difference. $\mu_d = 0$.
+H~a~: The wetsuit does makes a difference. $\mu_d \ne 0$.
+
+$\bar{x}_d =$ mean(diff)
+
+```{r}
+wetsuit <- c(1.57, 1.47, 1.42, 1.35, 1.22, 1.75, 1.64, 1.57, 1.56, 1.53, 1.49, 1.51)
+none <- c(1.49, 1.37, 1.35, 1.27, 1.12, 1.64, 1.59, 1.52, 1.50, 1.45, 1.44, 1.41)
+diff <- wetsuit - none # do a test on a single mean using diff.
+
+n <- length(wetsuit)
+x.bar <- mean(diff)
+s <- sd(diff)
+se <- s/sqrt(n)
+
+test.stat <- (x.bar - 0)/se
+p.value <- 2*(1 - pt(test.stat, n - 1))
+p.value
+```
+
+Or we can use:
+
+```{r}
+t.test(diff, alt = "two.sided", mu = 0)
+```
+Notice both methods result in the same P-value, namely P-value $=8.885 \times 10^{-8} = 0.0000000885$ which is well below a 5% significance level. Thus we can reject the null hypothesis. We have evidence to support the claim that wetsuit does affect a swimmer's velocity.
+
+## Worksheet 18 Question 4
+
+(a)
+
+```{r}
+1 - pnorm(225, 180, 20)
+```
+
+(b)
+```{r}
+pnorm(225, 300, 30)
+```
+
+
+## Worksheet 18 Question 5
+
+(a) 
+H~0~: The die is fair. $p = 0.5$   
+H~a~: The die is not fair. $p \ne 0.5$ 
+
+(b)
+Lets assume you roll a 10-sided die 20 times, and 7 out of the 20 rolls landed on an even number. Then we have:
+
+```{r}
+pbinom(7, 20, 0.5)
+```
+
+(c)
+
+```{r}
+p.value <- 2*pbinom(7, 20, 0.5)
+p.value
+```
+
+Since the P-value = 0.2632 > 0.05, we fail to reject H~0~, and the test is inconclusive. We cannot claim that the die is fair or biased.
