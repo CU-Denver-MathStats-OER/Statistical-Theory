@@ -1,0 +1,489 @@
+"Notes"	"ICD Chapter"	"ICD Chapter Code"	"Month"	"Month Code"	Deaths	Population	Crude Rate
+	"Certain infectious and parasitic diseases"	"A00-B99"	"Jan., 2019"	"2019/01"	6129	Not Applicable	Not Applicable
+	"Certain infectious and parasitic diseases"	"A00-B99"	"Feb., 2019"	"2019/02"	5551	Not Applicable	Not Applicable
+	"Certain infectious and parasitic diseases"	"A00-B99"	"Mar., 2019"	"2019/03"	5974	Not Applicable	Not Applicable
+	"Certain infectious and parasitic diseases"	"A00-B99"	"Apr., 2019"	"2019/04"	5470	Not Applicable	Not Applicable
+	"Certain infectious and parasitic diseases"	"A00-B99"	"May, 2019"	"2019/05"	5235	Not Applicable	Not Applicable
+	"Certain infectious and parasitic diseases"	"A00-B99"	"Jun., 2019"	"2019/06"	4957	Not Applicable	Not Applicable
+	"Certain infectious and parasitic diseases"	"A00-B99"	"Jul., 2019"	"2019/07"	5113	Not Applicable	Not Applicable
+	"Certain infectious and parasitic diseases"	"A00-B99"	"Aug., 2019"	"2019/08"	4889	Not Applicable	Not Applicable
+	"Certain infectious and parasitic diseases"	"A00-B99"	"Sep., 2019"	"2019/09"	4956	Not Applicable	Not Applicable
+	"Certain infectious and parasitic diseases"	"A00-B99"	"Oct., 2019"	"2019/10"	5209	Not Applicable	Not Applicable
+	"Certain infectious and parasitic diseases"	"A00-B99"	"Nov., 2019"	"2019/11"	5308	Not Applicable	Not Applicable
+	"Certain infectious and parasitic diseases"	"A00-B99"	"Dec., 2019"	"2019/12"	5915	Not Applicable	Not Applicable
+	"Certain infectious and parasitic diseases"	"A00-B99"	"Jan., 2020 "	"2020/01"	6244	Not Applicable	Not Applicable
+	"Certain infectious and parasitic diseases"	"A00-B99"	"Feb., 2020 "	"2020/02"	5609	Not Applicable	Not Applicable
+	"Certain infectious and parasitic diseases"	"A00-B99"	"Mar., 2020 "	"2020/03"	6503	Not Applicable	Not Applicable
+	"Certain infectious and parasitic diseases"	"A00-B99"	"Apr., 2020 "	"2020/04"	6474	Not Applicable	Not Applicable
+	"Certain infectious and parasitic diseases"	"A00-B99"	"May, 2020 "	"2020/05"	5272	Not Applicable	Not Applicable
+	"Certain infectious and parasitic diseases"	"A00-B99"	"Jun., 2020 "	"2020/06"	5052	Not Applicable	Not Applicable
+	"Certain infectious and parasitic diseases"	"A00-B99"	"Jul., 2020 "	"2020/07"	5283	Not Applicable	Not Applicable
+	"Certain infectious and parasitic diseases"	"A00-B99"	"Aug., 2020 "	"2020/08"	5396	Not Applicable	Not Applicable
+	"Certain infectious and parasitic diseases"	"A00-B99"	"Sep., 2020 "	"2020/09"	5186	Not Applicable	Not Applicable
+	"Certain infectious and parasitic diseases"	"A00-B99"	"Oct., 2020 "	"2020/10"	5461	Not Applicable	Not Applicable
+	"Certain infectious and parasitic diseases"	"A00-B99"	"Nov., 2020 "	"2020/11"	5616	Not Applicable	Not Applicable
+	"Certain infectious and parasitic diseases"	"A00-B99"	"Dec., 2020 "	"2020/12"	6220	Not Applicable	Not Applicable
+"Total"	"Certain infectious and parasitic diseases"	"A00-B99"			133022	Not Applicable	Not Applicable
+	"Neoplasms"	"C00-D48"	"Jan., 2019"	"2019/01"	53493	Not Applicable	Not Applicable
+	"Neoplasms"	"C00-D48"	"Feb., 2019"	"2019/02"	47957	Not Applicable	Not Applicable
+	"Neoplasms"	"C00-D48"	"Mar., 2019"	"2019/03"	52737	Not Applicable	Not Applicable
+	"Neoplasms"	"C00-D48"	"Apr., 2019"	"2019/04"	49722	Not Applicable	Not Applicable
+	"Neoplasms"	"C00-D48"	"May, 2019"	"2019/05"	51906	Not Applicable	Not Applicable
+	"Neoplasms"	"C00-D48"	"Jun., 2019"	"2019/06"	49822	Not Applicable	Not Applicable
+	"Neoplasms"	"C00-D48"	"Jul., 2019"	"2019/07"	51342	Not Applicable	Not Applicable
+	"Neoplasms"	"C00-D48"	"Aug., 2019"	"2019/08"	51795	Not Applicable	Not Applicable
+	"Neoplasms"	"C00-D48"	"Sep., 2019"	"2019/09"	50214	Not Applicable	Not Applicable
+	"Neoplasms"	"C00-D48"	"Oct., 2019"	"2019/10"	52910	Not Applicable	Not Applicable
+	"Neoplasms"	"C00-D48"	"Nov., 2019"	"2019/11"	51093	Not Applicable	Not Applicable
+	"Neoplasms"	"C00-D48"	"Dec., 2019"	"2019/12"	52200	Not Applicable	Not Applicable
+	"Neoplasms"	"C00-D48"	"Jan., 2020 "	"2020/01"	53957	Not Applicable	Not Applicable
+	"Neoplasms"	"C00-D48"	"Feb., 2020 "	"2020/02"	50092	Not Applicable	Not Applicable
+	"Neoplasms"	"C00-D48"	"Mar., 2020 "	"2020/03"	52940	Not Applicable	Not Applicable
+	"Neoplasms"	"C00-D48"	"Apr., 2020 "	"2020/04"	50035	Not Applicable	Not Applicable
+	"Neoplasms"	"C00-D48"	"May, 2020 "	"2020/05"	50282	Not Applicable	Not Applicable
+	"Neoplasms"	"C00-D48"	"Jun., 2020 "	"2020/06"	49173	Not Applicable	Not Applicable
+	"Neoplasms"	"C00-D48"	"Jul., 2020 "	"2020/07"	51920	Not Applicable	Not Applicable
+	"Neoplasms"	"C00-D48"	"Aug., 2020 "	"2020/08"	52511	Not Applicable	Not Applicable
+	"Neoplasms"	"C00-D48"	"Sep., 2020 "	"2020/09"	50962	Not Applicable	Not Applicable
+	"Neoplasms"	"C00-D48"	"Oct., 2020 "	"2020/10"	52528	Not Applicable	Not Applicable
+	"Neoplasms"	"C00-D48"	"Nov., 2020 "	"2020/11"	50917	Not Applicable	Not Applicable
+	"Neoplasms"	"C00-D48"	"Dec., 2020 "	"2020/12"	53262	Not Applicable	Not Applicable
+"Total"	"Neoplasms"	"C00-D48"			1233770	Not Applicable	Not Applicable
+	"Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism"	"D50-D89"	"Jan., 2019"	"2019/01"	1014	Not Applicable	Not Applicable
+	"Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism"	"D50-D89"	"Feb., 2019"	"2019/02"	877	Not Applicable	Not Applicable
+	"Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism"	"D50-D89"	"Mar., 2019"	"2019/03"	945	Not Applicable	Not Applicable
+	"Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism"	"D50-D89"	"Apr., 2019"	"2019/04"	904	Not Applicable	Not Applicable
+	"Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism"	"D50-D89"	"May, 2019"	"2019/05"	954	Not Applicable	Not Applicable
+	"Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism"	"D50-D89"	"Jun., 2019"	"2019/06"	827	Not Applicable	Not Applicable
+	"Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism"	"D50-D89"	"Jul., 2019"	"2019/07"	842	Not Applicable	Not Applicable
+	"Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism"	"D50-D89"	"Aug., 2019"	"2019/08"	837	Not Applicable	Not Applicable
+	"Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism"	"D50-D89"	"Sep., 2019"	"2019/09"	857	Not Applicable	Not Applicable
+	"Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism"	"D50-D89"	"Oct., 2019"	"2019/10"	832	Not Applicable	Not Applicable
+	"Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism"	"D50-D89"	"Nov., 2019"	"2019/11"	904	Not Applicable	Not Applicable
+	"Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism"	"D50-D89"	"Dec., 2019"	"2019/12"	1022	Not Applicable	Not Applicable
+	"Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism"	"D50-D89"	"Jan., 2020 "	"2020/01"	1059	Not Applicable	Not Applicable
+	"Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism"	"D50-D89"	"Feb., 2020 "	"2020/02"	877	Not Applicable	Not Applicable
+	"Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism"	"D50-D89"	"Mar., 2020 "	"2020/03"	964	Not Applicable	Not Applicable
+	"Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism"	"D50-D89"	"Apr., 2020 "	"2020/04"	975	Not Applicable	Not Applicable
+	"Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism"	"D50-D89"	"May, 2020 "	"2020/05"	910	Not Applicable	Not Applicable
+	"Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism"	"D50-D89"	"Jun., 2020 "	"2020/06"	850	Not Applicable	Not Applicable
+	"Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism"	"D50-D89"	"Jul., 2020 "	"2020/07"	925	Not Applicable	Not Applicable
+	"Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism"	"D50-D89"	"Aug., 2020 "	"2020/08"	983	Not Applicable	Not Applicable
+	"Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism"	"D50-D89"	"Sep., 2020 "	"2020/09"	911	Not Applicable	Not Applicable
+	"Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism"	"D50-D89"	"Oct., 2020 "	"2020/10"	978	Not Applicable	Not Applicable
+	"Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism"	"D50-D89"	"Nov., 2020 "	"2020/11"	970	Not Applicable	Not Applicable
+	"Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism"	"D50-D89"	"Dec., 2020 "	"2020/12"	1064	Not Applicable	Not Applicable
+"Total"	"Diseases of the blood and blood-forming organs and certain disorders involving the immune mechanism"	"D50-D89"			22281	Not Applicable	Not Applicable
+	"Endocrine, nutritional and metabolic diseases"	"E00-E88"	"Jan., 2019"	"2019/01"	12973	Not Applicable	Not Applicable
+	"Endocrine, nutritional and metabolic diseases"	"E00-E88"	"Feb., 2019"	"2019/02"	11610	Not Applicable	Not Applicable
+	"Endocrine, nutritional and metabolic diseases"	"E00-E88"	"Mar., 2019"	"2019/03"	12518	Not Applicable	Not Applicable
+	"Endocrine, nutritional and metabolic diseases"	"E00-E88"	"Apr., 2019"	"2019/04"	11711	Not Applicable	Not Applicable
+	"Endocrine, nutritional and metabolic diseases"	"E00-E88"	"May, 2019"	"2019/05"	11431	Not Applicable	Not Applicable
+	"Endocrine, nutritional and metabolic diseases"	"E00-E88"	"Jun., 2019"	"2019/06"	10819	Not Applicable	Not Applicable
+	"Endocrine, nutritional and metabolic diseases"	"E00-E88"	"Jul., 2019"	"2019/07"	11025	Not Applicable	Not Applicable
+	"Endocrine, nutritional and metabolic diseases"	"E00-E88"	"Aug., 2019"	"2019/08"	10776	Not Applicable	Not Applicable
+	"Endocrine, nutritional and metabolic diseases"	"E00-E88"	"Sep., 2019"	"2019/09"	10694	Not Applicable	Not Applicable
+	"Endocrine, nutritional and metabolic diseases"	"E00-E88"	"Oct., 2019"	"2019/10"	11461	Not Applicable	Not Applicable
+	"Endocrine, nutritional and metabolic diseases"	"E00-E88"	"Nov., 2019"	"2019/11"	11834	Not Applicable	Not Applicable
+	"Endocrine, nutritional and metabolic diseases"	"E00-E88"	"Dec., 2019"	"2019/12"	13255	Not Applicable	Not Applicable
+	"Endocrine, nutritional and metabolic diseases"	"E00-E88"	"Jan., 2020 "	"2020/01"	13291	Not Applicable	Not Applicable
+	"Endocrine, nutritional and metabolic diseases"	"E00-E88"	"Feb., 2020 "	"2020/02"	12505	Not Applicable	Not Applicable
+	"Endocrine, nutritional and metabolic diseases"	"E00-E88"	"Mar., 2020 "	"2020/03"	13487	Not Applicable	Not Applicable
+	"Endocrine, nutritional and metabolic diseases"	"E00-E88"	"Apr., 2020 "	"2020/04"	14474	Not Applicable	Not Applicable
+	"Endocrine, nutritional and metabolic diseases"	"E00-E88"	"May, 2020 "	"2020/05"	13197	Not Applicable	Not Applicable
+	"Endocrine, nutritional and metabolic diseases"	"E00-E88"	"Jun., 2020 "	"2020/06"	12367	Not Applicable	Not Applicable
+	"Endocrine, nutritional and metabolic diseases"	"E00-E88"	"Jul., 2020 "	"2020/07"	13710	Not Applicable	Not Applicable
+	"Endocrine, nutritional and metabolic diseases"	"E00-E88"	"Aug., 2020 "	"2020/08"	13602	Not Applicable	Not Applicable
+	"Endocrine, nutritional and metabolic diseases"	"E00-E88"	"Sep., 2020 "	"2020/09"	12982	Not Applicable	Not Applicable
+	"Endocrine, nutritional and metabolic diseases"	"E00-E88"	"Oct., 2020 "	"2020/10"	13651	Not Applicable	Not Applicable
+	"Endocrine, nutritional and metabolic diseases"	"E00-E88"	"Nov., 2020 "	"2020/11"	14425	Not Applicable	Not Applicable
+	"Endocrine, nutritional and metabolic diseases"	"E00-E88"	"Dec., 2020 "	"2020/12"	16437	Not Applicable	Not Applicable
+"Total"	"Endocrine, nutritional and metabolic diseases"	"E00-E88"			304235	Not Applicable	Not Applicable
+	"Mental and behavioural disorders"	"F01-F99"	"Jan., 2019"	"2019/01"	12448	Not Applicable	Not Applicable
+	"Mental and behavioural disorders"	"F01-F99"	"Feb., 2019"	"2019/02"	11178	Not Applicable	Not Applicable
+	"Mental and behavioural disorders"	"F01-F99"	"Mar., 2019"	"2019/03"	12198	Not Applicable	Not Applicable
+	"Mental and behavioural disorders"	"F01-F99"	"Apr., 2019"	"2019/04"	10943	Not Applicable	Not Applicable
+	"Mental and behavioural disorders"	"F01-F99"	"May, 2019"	"2019/05"	10661	Not Applicable	Not Applicable
+	"Mental and behavioural disorders"	"F01-F99"	"Jun., 2019"	"2019/06"	10249	Not Applicable	Not Applicable
+	"Mental and behavioural disorders"	"F01-F99"	"Jul., 2019"	"2019/07"	10331	Not Applicable	Not Applicable
+	"Mental and behavioural disorders"	"F01-F99"	"Aug., 2019"	"2019/08"	10202	Not Applicable	Not Applicable
+	"Mental and behavioural disorders"	"F01-F99"	"Sep., 2019"	"2019/09"	10271	Not Applicable	Not Applicable
+	"Mental and behavioural disorders"	"F01-F99"	"Oct., 2019"	"2019/10"	11460	Not Applicable	Not Applicable
+	"Mental and behavioural disorders"	"F01-F99"	"Nov., 2019"	"2019/11"	11672	Not Applicable	Not Applicable
+	"Mental and behavioural disorders"	"F01-F99"	"Dec., 2019"	"2019/12"	12346	Not Applicable	Not Applicable
+	"Mental and behavioural disorders"	"F01-F99"	"Jan., 2020 "	"2020/01"	12593	Not Applicable	Not Applicable
+	"Mental and behavioural disorders"	"F01-F99"	"Feb., 2020 "	"2020/02"	11496	Not Applicable	Not Applicable
+	"Mental and behavioural disorders"	"F01-F99"	"Mar., 2020 "	"2020/03"	12521	Not Applicable	Not Applicable
+	"Mental and behavioural disorders"	"F01-F99"	"Apr., 2020 "	"2020/04"	14360	Not Applicable	Not Applicable
+	"Mental and behavioural disorders"	"F01-F99"	"May, 2020 "	"2020/05"	12243	Not Applicable	Not Applicable
+	"Mental and behavioural disorders"	"F01-F99"	"Jun., 2020 "	"2020/06"	10861	Not Applicable	Not Applicable
+	"Mental and behavioural disorders"	"F01-F99"	"Jul., 2020 "	"2020/07"	11984	Not Applicable	Not Applicable
+	"Mental and behavioural disorders"	"F01-F99"	"Aug., 2020 "	"2020/08"	11822	Not Applicable	Not Applicable
+	"Mental and behavioural disorders"	"F01-F99"	"Sep., 2020 "	"2020/09"	11445	Not Applicable	Not Applicable
+	"Mental and behavioural disorders"	"F01-F99"	"Oct., 2020 "	"2020/10"	12179	Not Applicable	Not Applicable
+	"Mental and behavioural disorders"	"F01-F99"	"Nov., 2020 "	"2020/11"	12865	Not Applicable	Not Applicable
+	"Mental and behavioural disorders"	"F01-F99"	"Dec., 2020 "	"2020/12"	14063	Not Applicable	Not Applicable
+"Total"	"Mental and behavioural disorders"	"F01-F99"			282391	Not Applicable	Not Applicable
+	"Diseases of the nervous system"	"G00-G98"	"Jan., 2019"	"2019/01"	20897	Not Applicable	Not Applicable
+	"Diseases of the nervous system"	"G00-G98"	"Feb., 2019"	"2019/02"	18963	Not Applicable	Not Applicable
+	"Diseases of the nervous system"	"G00-G98"	"Mar., 2019"	"2019/03"	20487	Not Applicable	Not Applicable
+	"Diseases of the nervous system"	"G00-G98"	"Apr., 2019"	"2019/04"	18892	Not Applicable	Not Applicable
+	"Diseases of the nervous system"	"G00-G98"	"May, 2019"	"2019/05"	18739	Not Applicable	Not Applicable
+	"Diseases of the nervous system"	"G00-G98"	"Jun., 2019"	"2019/06"	17960	Not Applicable	Not Applicable
+	"Diseases of the nervous system"	"G00-G98"	"Jul., 2019"	"2019/07"	18267	Not Applicable	Not Applicable
+	"Diseases of the nervous system"	"G00-G98"	"Aug., 2019"	"2019/08"	18454	Not Applicable	Not Applicable
+	"Diseases of the nervous system"	"G00-G98"	"Sep., 2019"	"2019/09"	18265	Not Applicable	Not Applicable
+	"Diseases of the nervous system"	"G00-G98"	"Oct., 2019"	"2019/10"	20120	Not Applicable	Not Applicable
+	"Diseases of the nervous system"	"G00-G98"	"Nov., 2019"	"2019/11"	20593	Not Applicable	Not Applicable
+	"Diseases of the nervous system"	"G00-G98"	"Dec., 2019"	"2019/12"	22078	Not Applicable	Not Applicable
+	"Diseases of the nervous system"	"G00-G98"	"Jan., 2020 "	"2020/01"	21755	Not Applicable	Not Applicable
+	"Diseases of the nervous system"	"G00-G98"	"Feb., 2020 "	"2020/02"	20320	Not Applicable	Not Applicable
+	"Diseases of the nervous system"	"G00-G98"	"Mar., 2020 "	"2020/03"	21966	Not Applicable	Not Applicable
+	"Diseases of the nervous system"	"G00-G98"	"Apr., 2020 "	"2020/04"	22831	Not Applicable	Not Applicable
+	"Diseases of the nervous system"	"G00-G98"	"May, 2020 "	"2020/05"	20702	Not Applicable	Not Applicable
+	"Diseases of the nervous system"	"G00-G98"	"Jun., 2020 "	"2020/06"	19614	Not Applicable	Not Applicable
+	"Diseases of the nervous system"	"G00-G98"	"Jul., 2020 "	"2020/07"	21442	Not Applicable	Not Applicable
+	"Diseases of the nervous system"	"G00-G98"	"Aug., 2020 "	"2020/08"	21666	Not Applicable	Not Applicable
+	"Diseases of the nervous system"	"G00-G98"	"Sep., 2020 "	"2020/09"	20923	Not Applicable	Not Applicable
+	"Diseases of the nervous system"	"G00-G98"	"Oct., 2020 "	"2020/10"	22326	Not Applicable	Not Applicable
+	"Diseases of the nervous system"	"G00-G98"	"Nov., 2020 "	"2020/11"	23032	Not Applicable	Not Applicable
+	"Diseases of the nervous system"	"G00-G98"	"Dec., 2020 "	"2020/12"	25767	Not Applicable	Not Applicable
+"Total"	"Diseases of the nervous system"	"G00-G98"			496059	Not Applicable	Not Applicable
+	"Diseases of the eye and adnexa"	"H00-H57"	"Jul., 2019"	"2019/07"	12	Not Applicable	Not Applicable
+"Total"	"Diseases of the eye and adnexa"	"H00-H57"			108	Not Applicable	Not Applicable
+	"Diseases of the ear and mastoid process"	"H60-H93"	"Dec., 2019"	"2019/12"	11	Not Applicable	Not Applicable
+	"Diseases of the ear and mastoid process"	"H60-H93"	"Jan., 2020 "	"2020/01"	10	Not Applicable	Not Applicable
+	"Diseases of the ear and mastoid process"	"H60-H93"	"Feb., 2020 "	"2020/02"	10	Not Applicable	Not Applicable
+	"Diseases of the ear and mastoid process"	"H60-H93"	"Apr., 2020 "	"2020/04"	13	Not Applicable	Not Applicable
+	"Diseases of the ear and mastoid process"	"H60-H93"	"Nov., 2020 "	"2020/11"	10	Not Applicable	Not Applicable
+"Total"	"Diseases of the ear and mastoid process"	"H60-H93"			176	Not Applicable	Not Applicable
+	"Diseases of the circulatory system"	"I00-I99"	"Jan., 2019"	"2019/01"	80196	Not Applicable	Not Applicable
+	"Diseases of the circulatory system"	"I00-I99"	"Feb., 2019"	"2019/02"	72391	Not Applicable	Not Applicable
+	"Diseases of the circulatory system"	"I00-I99"	"Mar., 2019"	"2019/03"	79033	Not Applicable	Not Applicable
+	"Diseases of the circulatory system"	"I00-I99"	"Apr., 2019"	"2019/04"	72627	Not Applicable	Not Applicable
+	"Diseases of the circulatory system"	"I00-I99"	"May, 2019"	"2019/05"	72731	Not Applicable	Not Applicable
+	"Diseases of the circulatory system"	"I00-I99"	"Jun., 2019"	"2019/06"	68381	Not Applicable	Not Applicable
+	"Diseases of the circulatory system"	"I00-I99"	"Jul., 2019"	"2019/07"	69406	Not Applicable	Not Applicable
+	"Diseases of the circulatory system"	"I00-I99"	"Aug., 2019"	"2019/08"	68304	Not Applicable	Not Applicable
+	"Diseases of the circulatory system"	"I00-I99"	"Sep., 2019"	"2019/09"	66931	Not Applicable	Not Applicable
+	"Diseases of the circulatory system"	"I00-I99"	"Oct., 2019"	"2019/10"	71902	Not Applicable	Not Applicable
+	"Diseases of the circulatory system"	"I00-I99"	"Nov., 2019"	"2019/11"	73464	Not Applicable	Not Applicable
+	"Diseases of the circulatory system"	"I00-I99"	"Dec., 2019"	"2019/12"	79247	Not Applicable	Not Applicable
+	"Diseases of the circulatory system"	"I00-I99"	"Jan., 2020 "	"2020/01"	81030	Not Applicable	Not Applicable
+	"Diseases of the circulatory system"	"I00-I99"	"Feb., 2020 "	"2020/02"	75127	Not Applicable	Not Applicable
+	"Diseases of the circulatory system"	"I00-I99"	"Mar., 2020 "	"2020/03"	79696	Not Applicable	Not Applicable
+	"Diseases of the circulatory system"	"I00-I99"	"Apr., 2020 "	"2020/04"	82035	Not Applicable	Not Applicable
+	"Diseases of the circulatory system"	"I00-I99"	"May, 2020 "	"2020/05"	74941	Not Applicable	Not Applicable
+	"Diseases of the circulatory system"	"I00-I99"	"Jun., 2020 "	"2020/06"	71180	Not Applicable	Not Applicable
+	"Diseases of the circulatory system"	"I00-I99"	"Jul., 2020 "	"2020/07"	75879	Not Applicable	Not Applicable
+	"Diseases of the circulatory system"	"I00-I99"	"Aug., 2020 "	"2020/08"	75044	Not Applicable	Not Applicable
+	"Diseases of the circulatory system"	"I00-I99"	"Sep., 2020 "	"2020/09"	72164	Not Applicable	Not Applicable
+	"Diseases of the circulatory system"	"I00-I99"	"Oct., 2020 "	"2020/10"	76303	Not Applicable	Not Applicable
+	"Diseases of the circulatory system"	"I00-I99"	"Nov., 2020 "	"2020/11"	78008	Not Applicable	Not Applicable
+	"Diseases of the circulatory system"	"I00-I99"	"Dec., 2020 "	"2020/12"	87334	Not Applicable	Not Applicable
+"Total"	"Diseases of the circulatory system"	"I00-I99"			1803354	Not Applicable	Not Applicable
+	"Diseases of the respiratory system"	"J00-J98"	"Jan., 2019"	"2019/01"	27089	Not Applicable	Not Applicable
+	"Diseases of the respiratory system"	"J00-J98"	"Feb., 2019"	"2019/02"	24886	Not Applicable	Not Applicable
+	"Diseases of the respiratory system"	"J00-J98"	"Mar., 2019"	"2019/03"	27481	Not Applicable	Not Applicable
+	"Diseases of the respiratory system"	"J00-J98"	"Apr., 2019"	"2019/04"	23704	Not Applicable	Not Applicable
+	"Diseases of the respiratory system"	"J00-J98"	"May, 2019"	"2019/05"	22519	Not Applicable	Not Applicable
+	"Diseases of the respiratory system"	"J00-J98"	"Jun., 2019"	"2019/06"	20644	Not Applicable	Not Applicable
+	"Diseases of the respiratory system"	"J00-J98"	"Jul., 2019"	"2019/07"	19908	Not Applicable	Not Applicable
+	"Diseases of the respiratory system"	"J00-J98"	"Aug., 2019"	"2019/08"	19216	Not Applicable	Not Applicable
+	"Diseases of the respiratory system"	"J00-J98"	"Sep., 2019"	"2019/09"	18951	Not Applicable	Not Applicable
+	"Diseases of the respiratory system"	"J00-J98"	"Oct., 2019"	"2019/10"	20545	Not Applicable	Not Applicable
+	"Diseases of the respiratory system"	"J00-J98"	"Nov., 2019"	"2019/11"	21106	Not Applicable	Not Applicable
+	"Diseases of the respiratory system"	"J00-J98"	"Dec., 2019"	"2019/12"	24977	Not Applicable	Not Applicable
+	"Diseases of the respiratory system"	"J00-J98"	"Jan., 2020 "	"2020/01"	28542	Not Applicable	Not Applicable
+	"Diseases of the respiratory system"	"J00-J98"	"Feb., 2020 "	"2020/02"	26127	Not Applicable	Not Applicable
+	"Diseases of the respiratory system"	"J00-J98"	"Mar., 2020 "	"2020/03"	29257	Not Applicable	Not Applicable
+	"Diseases of the respiratory system"	"J00-J98"	"Apr., 2020 "	"2020/04"	25174	Not Applicable	Not Applicable
+	"Diseases of the respiratory system"	"J00-J98"	"May, 2020 "	"2020/05"	20564	Not Applicable	Not Applicable
+	"Diseases of the respiratory system"	"J00-J98"	"Jun., 2020 "	"2020/06"	18639	Not Applicable	Not Applicable
+	"Diseases of the respiratory system"	"J00-J98"	"Jul., 2020 "	"2020/07"	19728	Not Applicable	Not Applicable
+	"Diseases of the respiratory system"	"J00-J98"	"Aug., 2020 "	"2020/08"	19538	Not Applicable	Not Applicable
+	"Diseases of the respiratory system"	"J00-J98"	"Sep., 2020 "	"2020/09"	18941	Not Applicable	Not Applicable
+	"Diseases of the respiratory system"	"J00-J98"	"Oct., 2020 "	"2020/10"	20049	Not Applicable	Not Applicable
+	"Diseases of the respiratory system"	"J00-J98"	"Nov., 2020 "	"2020/11"	20774	Not Applicable	Not Applicable
+	"Diseases of the respiratory system"	"J00-J98"	"Dec., 2020 "	"2020/12"	23173	Not Applicable	Not Applicable
+"Total"	"Diseases of the respiratory system"	"J00-J98"			541532	Not Applicable	Not Applicable
+	"Diseases of the digestive system"	"K00-K92"	"Jan., 2019"	"2019/01"	9929	Not Applicable	Not Applicable
+	"Diseases of the digestive system"	"K00-K92"	"Feb., 2019"	"2019/02"	8801	Not Applicable	Not Applicable
+	"Diseases of the digestive system"	"K00-K92"	"Mar., 2019"	"2019/03"	9835	Not Applicable	Not Applicable
+	"Diseases of the digestive system"	"K00-K92"	"Apr., 2019"	"2019/04"	9359	Not Applicable	Not Applicable
+	"Diseases of the digestive system"	"K00-K92"	"May, 2019"	"2019/05"	9463	Not Applicable	Not Applicable
+	"Diseases of the digestive system"	"K00-K92"	"Jun., 2019"	"2019/06"	8983	Not Applicable	Not Applicable
+	"Diseases of the digestive system"	"K00-K92"	"Jul., 2019"	"2019/07"	9170	Not Applicable	Not Applicable
+	"Diseases of the digestive system"	"K00-K92"	"Aug., 2019"	"2019/08"	9116	Not Applicable	Not Applicable
+	"Diseases of the digestive system"	"K00-K92"	"Sep., 2019"	"2019/09"	9118	Not Applicable	Not Applicable
+	"Diseases of the digestive system"	"K00-K92"	"Oct., 2019"	"2019/10"	9472	Not Applicable	Not Applicable
+	"Diseases of the digestive system"	"K00-K92"	"Nov., 2019"	"2019/11"	9673	Not Applicable	Not Applicable
+	"Diseases of the digestive system"	"K00-K92"	"Dec., 2019"	"2019/12"	9975	Not Applicable	Not Applicable
+	"Diseases of the digestive system"	"K00-K92"	"Jan., 2020 "	"2020/01"	10442	Not Applicable	Not Applicable
+	"Diseases of the digestive system"	"K00-K92"	"Feb., 2020 "	"2020/02"	9360	Not Applicable	Not Applicable
+	"Diseases of the digestive system"	"K00-K92"	"Mar., 2020 "	"2020/03"	9917	Not Applicable	Not Applicable
+	"Diseases of the digestive system"	"K00-K92"	"Apr., 2020 "	"2020/04"	9488	Not Applicable	Not Applicable
+	"Diseases of the digestive system"	"K00-K92"	"May, 2020 "	"2020/05"	9789	Not Applicable	Not Applicable
+	"Diseases of the digestive system"	"K00-K92"	"Jun., 2020 "	"2020/06"	9866	Not Applicable	Not Applicable
+	"Diseases of the digestive system"	"K00-K92"	"Jul., 2020 "	"2020/07"	10486	Not Applicable	Not Applicable
+	"Diseases of the digestive system"	"K00-K92"	"Aug., 2020 "	"2020/08"	10743	Not Applicable	Not Applicable
+	"Diseases of the digestive system"	"K00-K92"	"Sep., 2020 "	"2020/09"	10349	Not Applicable	Not Applicable
+	"Diseases of the digestive system"	"K00-K92"	"Oct., 2020 "	"2020/10"	11075	Not Applicable	Not Applicable
+	"Diseases of the digestive system"	"K00-K92"	"Nov., 2020 "	"2020/11"	11028	Not Applicable	Not Applicable
+	"Diseases of the digestive system"	"K00-K92"	"Dec., 2020 "	"2020/12"	11397	Not Applicable	Not Applicable
+"Total"	"Diseases of the digestive system"	"K00-K92"			236834	Not Applicable	Not Applicable
+	"Diseases of the skin and subcutaneous tissue"	"L00-L98"	"Jan., 2019"	"2019/01"	493	Not Applicable	Not Applicable
+	"Diseases of the skin and subcutaneous tissue"	"L00-L98"	"Feb., 2019"	"2019/02"	443	Not Applicable	Not Applicable
+	"Diseases of the skin and subcutaneous tissue"	"L00-L98"	"Mar., 2019"	"2019/03"	491	Not Applicable	Not Applicable
+	"Diseases of the skin and subcutaneous tissue"	"L00-L98"	"Apr., 2019"	"2019/04"	400	Not Applicable	Not Applicable
+	"Diseases of the skin and subcutaneous tissue"	"L00-L98"	"May, 2019"	"2019/05"	441	Not Applicable	Not Applicable
+	"Diseases of the skin and subcutaneous tissue"	"L00-L98"	"Jun., 2019"	"2019/06"	383	Not Applicable	Not Applicable
+	"Diseases of the skin and subcutaneous tissue"	"L00-L98"	"Jul., 2019"	"2019/07"	416	Not Applicable	Not Applicable
+	"Diseases of the skin and subcutaneous tissue"	"L00-L98"	"Aug., 2019"	"2019/08"	417	Not Applicable	Not Applicable
+	"Diseases of the skin and subcutaneous tissue"	"L00-L98"	"Sep., 2019"	"2019/09"	384	Not Applicable	Not Applicable
+	"Diseases of the skin and subcutaneous tissue"	"L00-L98"	"Oct., 2019"	"2019/10"	468	Not Applicable	Not Applicable
+	"Diseases of the skin and subcutaneous tissue"	"L00-L98"	"Nov., 2019"	"2019/11"	448	Not Applicable	Not Applicable
+	"Diseases of the skin and subcutaneous tissue"	"L00-L98"	"Dec., 2019"	"2019/12"	445	Not Applicable	Not Applicable
+	"Diseases of the skin and subcutaneous tissue"	"L00-L98"	"Jan., 2020 "	"2020/01"	493	Not Applicable	Not Applicable
+	"Diseases of the skin and subcutaneous tissue"	"L00-L98"	"Feb., 2020 "	"2020/02"	471	Not Applicable	Not Applicable
+	"Diseases of the skin and subcutaneous tissue"	"L00-L98"	"Mar., 2020 "	"2020/03"	517	Not Applicable	Not Applicable
+	"Diseases of the skin and subcutaneous tissue"	"L00-L98"	"Apr., 2020 "	"2020/04"	446	Not Applicable	Not Applicable
+	"Diseases of the skin and subcutaneous tissue"	"L00-L98"	"May, 2020 "	"2020/05"	413	Not Applicable	Not Applicable
+	"Diseases of the skin and subcutaneous tissue"	"L00-L98"	"Jun., 2020 "	"2020/06"	430	Not Applicable	Not Applicable
+	"Diseases of the skin and subcutaneous tissue"	"L00-L98"	"Jul., 2020 "	"2020/07"	477	Not Applicable	Not Applicable
+	"Diseases of the skin and subcutaneous tissue"	"L00-L98"	"Aug., 2020 "	"2020/08"	487	Not Applicable	Not Applicable
+	"Diseases of the skin and subcutaneous tissue"	"L00-L98"	"Sep., 2020 "	"2020/09"	458	Not Applicable	Not Applicable
+	"Diseases of the skin and subcutaneous tissue"	"L00-L98"	"Oct., 2020 "	"2020/10"	515	Not Applicable	Not Applicable
+	"Diseases of the skin and subcutaneous tissue"	"L00-L98"	"Nov., 2020 "	"2020/11"	484	Not Applicable	Not Applicable
+	"Diseases of the skin and subcutaneous tissue"	"L00-L98"	"Dec., 2020 "	"2020/12"	498	Not Applicable	Not Applicable
+"Total"	"Diseases of the skin and subcutaneous tissue"	"L00-L98"			10918	Not Applicable	Not Applicable
+	"Diseases of the musculoskeletal system and connective tissue"	"M00-M99"	"Jan., 2019"	"2019/01"	1284	Not Applicable	Not Applicable
+	"Diseases of the musculoskeletal system and connective tissue"	"M00-M99"	"Feb., 2019"	"2019/02"	1194	Not Applicable	Not Applicable
+	"Diseases of the musculoskeletal system and connective tissue"	"M00-M99"	"Mar., 2019"	"2019/03"	1313	Not Applicable	Not Applicable
+	"Diseases of the musculoskeletal system and connective tissue"	"M00-M99"	"Apr., 2019"	"2019/04"	1198	Not Applicable	Not Applicable
+	"Diseases of the musculoskeletal system and connective tissue"	"M00-M99"	"May, 2019"	"2019/05"	1238	Not Applicable	Not Applicable
+	"Diseases of the musculoskeletal system and connective tissue"	"M00-M99"	"Jun., 2019"	"2019/06"	1179	Not Applicable	Not Applicable
+	"Diseases of the musculoskeletal system and connective tissue"	"M00-M99"	"Jul., 2019"	"2019/07"	1168	Not Applicable	Not Applicable
+	"Diseases of the musculoskeletal system and connective tissue"	"M00-M99"	"Aug., 2019"	"2019/08"	1178	Not Applicable	Not Applicable
+	"Diseases of the musculoskeletal system and connective tissue"	"M00-M99"	"Sep., 2019"	"2019/09"	1100	Not Applicable	Not Applicable
+	"Diseases of the musculoskeletal system and connective tissue"	"M00-M99"	"Oct., 2019"	"2019/10"	1201	Not Applicable	Not Applicable
+	"Diseases of the musculoskeletal system and connective tissue"	"M00-M99"	"Nov., 2019"	"2019/11"	1215	Not Applicable	Not Applicable
+	"Diseases of the musculoskeletal system and connective tissue"	"M00-M99"	"Dec., 2019"	"2019/12"	1285	Not Applicable	Not Applicable
+	"Diseases of the musculoskeletal system and connective tissue"	"M00-M99"	"Jan., 2020 "	"2020/01"	1416	Not Applicable	Not Applicable
+	"Diseases of the musculoskeletal system and connective tissue"	"M00-M99"	"Feb., 2020 "	"2020/02"	1249	Not Applicable	Not Applicable
+	"Diseases of the musculoskeletal system and connective tissue"	"M00-M99"	"Mar., 2020 "	"2020/03"	1308	Not Applicable	Not Applicable
+	"Diseases of the musculoskeletal system and connective tissue"	"M00-M99"	"Apr., 2020 "	"2020/04"	1242	Not Applicable	Not Applicable
+	"Diseases of the musculoskeletal system and connective tissue"	"M00-M99"	"May, 2020 "	"2020/05"	1188	Not Applicable	Not Applicable
+	"Diseases of the musculoskeletal system and connective tissue"	"M00-M99"	"Jun., 2020 "	"2020/06"	1210	Not Applicable	Not Applicable
+	"Diseases of the musculoskeletal system and connective tissue"	"M00-M99"	"Jul., 2020 "	"2020/07"	1209	Not Applicable	Not Applicable
+	"Diseases of the musculoskeletal system and connective tissue"	"M00-M99"	"Aug., 2020 "	"2020/08"	1301	Not Applicable	Not Applicable
+	"Diseases of the musculoskeletal system and connective tissue"	"M00-M99"	"Sep., 2020 "	"2020/09"	1258	Not Applicable	Not Applicable
+	"Diseases of the musculoskeletal system and connective tissue"	"M00-M99"	"Oct., 2020 "	"2020/10"	1284	Not Applicable	Not Applicable
+	"Diseases of the musculoskeletal system and connective tissue"	"M00-M99"	"Nov., 2020 "	"2020/11"	1370	Not Applicable	Not Applicable
+	"Diseases of the musculoskeletal system and connective tissue"	"M00-M99"	"Dec., 2020 "	"2020/12"	1386	Not Applicable	Not Applicable
+"Total"	"Diseases of the musculoskeletal system and connective tissue"	"M00-M99"			29974	Not Applicable	Not Applicable
+	"Diseases of the genitourinary system"	"N00-N98"	"Jan., 2019"	"2019/01"	6736	Not Applicable	Not Applicable
+	"Diseases of the genitourinary system"	"N00-N98"	"Feb., 2019"	"2019/02"	6071	Not Applicable	Not Applicable
+	"Diseases of the genitourinary system"	"N00-N98"	"Mar., 2019"	"2019/03"	6465	Not Applicable	Not Applicable
+	"Diseases of the genitourinary system"	"N00-N98"	"Apr., 2019"	"2019/04"	6031	Not Applicable	Not Applicable
+	"Diseases of the genitourinary system"	"N00-N98"	"May, 2019"	"2019/05"	5966	Not Applicable	Not Applicable
+	"Diseases of the genitourinary system"	"N00-N98"	"Jun., 2019"	"2019/06"	5759	Not Applicable	Not Applicable
+	"Diseases of the genitourinary system"	"N00-N98"	"Jul., 2019"	"2019/07"	5701	Not Applicable	Not Applicable
+	"Diseases of the genitourinary system"	"N00-N98"	"Aug., 2019"	"2019/08"	5561	Not Applicable	Not Applicable
+	"Diseases of the genitourinary system"	"N00-N98"	"Sep., 2019"	"2019/09"	5630	Not Applicable	Not Applicable
+	"Diseases of the genitourinary system"	"N00-N98"	"Oct., 2019"	"2019/10"	6093	Not Applicable	Not Applicable
+	"Diseases of the genitourinary system"	"N00-N98"	"Nov., 2019"	"2019/11"	6204	Not Applicable	Not Applicable
+	"Diseases of the genitourinary system"	"N00-N98"	"Dec., 2019"	"2019/12"	6654	Not Applicable	Not Applicable
+	"Diseases of the genitourinary system"	"N00-N98"	"Jan., 2020 "	"2020/01"	6957	Not Applicable	Not Applicable
+	"Diseases of the genitourinary system"	"N00-N98"	"Feb., 2020 "	"2020/02"	6319	Not Applicable	Not Applicable
+	"Diseases of the genitourinary system"	"N00-N98"	"Mar., 2020 "	"2020/03"	6792	Not Applicable	Not Applicable
+	"Diseases of the genitourinary system"	"N00-N98"	"Apr., 2020 "	"2020/04"	6469	Not Applicable	Not Applicable
+	"Diseases of the genitourinary system"	"N00-N98"	"May, 2020 "	"2020/05"	6147	Not Applicable	Not Applicable
+	"Diseases of the genitourinary system"	"N00-N98"	"Jun., 2020 "	"2020/06"	5863	Not Applicable	Not Applicable
+	"Diseases of the genitourinary system"	"N00-N98"	"Jul., 2020 "	"2020/07"	6249	Not Applicable	Not Applicable
+	"Diseases of the genitourinary system"	"N00-N98"	"Aug., 2020 "	"2020/08"	6174	Not Applicable	Not Applicable
+	"Diseases of the genitourinary system"	"N00-N98"	"Sep., 2020 "	"2020/09"	5873	Not Applicable	Not Applicable
+	"Diseases of the genitourinary system"	"N00-N98"	"Oct., 2020 "	"2020/10"	6270	Not Applicable	Not Applicable
+	"Diseases of the genitourinary system"	"N00-N98"	"Nov., 2020 "	"2020/11"	6475	Not Applicable	Not Applicable
+	"Diseases of the genitourinary system"	"N00-N98"	"Dec., 2020 "	"2020/12"	7184	Not Applicable	Not Applicable
+"Total"	"Diseases of the genitourinary system"	"N00-N98"			149643	Not Applicable	Not Applicable
+	"Pregnancy, childbirth and the puerperium"	"O00-O99"	"Jan., 2019"	"2019/01"	106	Not Applicable	Not Applicable
+	"Pregnancy, childbirth and the puerperium"	"O00-O99"	"Feb., 2019"	"2019/02"	83	Not Applicable	Not Applicable
+	"Pregnancy, childbirth and the puerperium"	"O00-O99"	"Mar., 2019"	"2019/03"	88	Not Applicable	Not Applicable
+	"Pregnancy, childbirth and the puerperium"	"O00-O99"	"Apr., 2019"	"2019/04"	88	Not Applicable	Not Applicable
+	"Pregnancy, childbirth and the puerperium"	"O00-O99"	"May, 2019"	"2019/05"	107	Not Applicable	Not Applicable
+	"Pregnancy, childbirth and the puerperium"	"O00-O99"	"Jun., 2019"	"2019/06"	90	Not Applicable	Not Applicable
+	"Pregnancy, childbirth and the puerperium"	"O00-O99"	"Jul., 2019"	"2019/07"	89	Not Applicable	Not Applicable
+	"Pregnancy, childbirth and the puerperium"	"O00-O99"	"Aug., 2019"	"2019/08"	105	Not Applicable	Not Applicable
+	"Pregnancy, childbirth and the puerperium"	"O00-O99"	"Sep., 2019"	"2019/09"	76	Not Applicable	Not Applicable
+	"Pregnancy, childbirth and the puerperium"	"O00-O99"	"Oct., 2019"	"2019/10"	88	Not Applicable	Not Applicable
+	"Pregnancy, childbirth and the puerperium"	"O00-O99"	"Nov., 2019"	"2019/11"	105	Not Applicable	Not Applicable
+	"Pregnancy, childbirth and the puerperium"	"O00-O99"	"Dec., 2019"	"2019/12"	78	Not Applicable	Not Applicable
+	"Pregnancy, childbirth and the puerperium"	"O00-O99"	"Jan., 2020 "	"2020/01"	71	Not Applicable	Not Applicable
+	"Pregnancy, childbirth and the puerperium"	"O00-O99"	"Feb., 2020 "	"2020/02"	80	Not Applicable	Not Applicable
+	"Pregnancy, childbirth and the puerperium"	"O00-O99"	"Mar., 2020 "	"2020/03"	120	Not Applicable	Not Applicable
+	"Pregnancy, childbirth and the puerperium"	"O00-O99"	"Apr., 2020 "	"2020/04"	115	Not Applicable	Not Applicable
+	"Pregnancy, childbirth and the puerperium"	"O00-O99"	"May, 2020 "	"2020/05"	123	Not Applicable	Not Applicable
+	"Pregnancy, childbirth and the puerperium"	"O00-O99"	"Jun., 2020 "	"2020/06"	113	Not Applicable	Not Applicable
+	"Pregnancy, childbirth and the puerperium"	"O00-O99"	"Jul., 2020 "	"2020/07"	114	Not Applicable	Not Applicable
+	"Pregnancy, childbirth and the puerperium"	"O00-O99"	"Aug., 2020 "	"2020/08"	121	Not Applicable	Not Applicable
+	"Pregnancy, childbirth and the puerperium"	"O00-O99"	"Sep., 2020 "	"2020/09"	115	Not Applicable	Not Applicable
+	"Pregnancy, childbirth and the puerperium"	"O00-O99"	"Oct., 2020 "	"2020/10"	99	Not Applicable	Not Applicable
+	"Pregnancy, childbirth and the puerperium"	"O00-O99"	"Nov., 2020 "	"2020/11"	103	Not Applicable	Not Applicable
+	"Pregnancy, childbirth and the puerperium"	"O00-O99"	"Dec., 2020 "	"2020/12"	114	Not Applicable	Not Applicable
+"Total"	"Pregnancy, childbirth and the puerperium"	"O00-O99"			2391	Not Applicable	Not Applicable
+	"Certain conditions originating in the perinatal period"	"P00-P96"	"Jan., 2019"	"2019/01"	827	Not Applicable	Not Applicable
+	"Certain conditions originating in the perinatal period"	"P00-P96"	"Feb., 2019"	"2019/02"	821	Not Applicable	Not Applicable
+	"Certain conditions originating in the perinatal period"	"P00-P96"	"Mar., 2019"	"2019/03"	912	Not Applicable	Not Applicable
+	"Certain conditions originating in the perinatal period"	"P00-P96"	"Apr., 2019"	"2019/04"	907	Not Applicable	Not Applicable
+	"Certain conditions originating in the perinatal period"	"P00-P96"	"May, 2019"	"2019/05"	931	Not Applicable	Not Applicable
+	"Certain conditions originating in the perinatal period"	"P00-P96"	"Jun., 2019"	"2019/06"	874	Not Applicable	Not Applicable
+	"Certain conditions originating in the perinatal period"	"P00-P96"	"Jul., 2019"	"2019/07"	900	Not Applicable	Not Applicable
+	"Certain conditions originating in the perinatal period"	"P00-P96"	"Aug., 2019"	"2019/08"	874	Not Applicable	Not Applicable
+	"Certain conditions originating in the perinatal period"	"P00-P96"	"Sep., 2019"	"2019/09"	878	Not Applicable	Not Applicable
+	"Certain conditions originating in the perinatal period"	"P00-P96"	"Oct., 2019"	"2019/10"	852	Not Applicable	Not Applicable
+	"Certain conditions originating in the perinatal period"	"P00-P96"	"Nov., 2019"	"2019/11"	812	Not Applicable	Not Applicable
+	"Certain conditions originating in the perinatal period"	"P00-P96"	"Dec., 2019"	"2019/12"	824	Not Applicable	Not Applicable
+	"Certain conditions originating in the perinatal period"	"P00-P96"	"Jan., 2020 "	"2020/01"	884	Not Applicable	Not Applicable
+	"Certain conditions originating in the perinatal period"	"P00-P96"	"Feb., 2020 "	"2020/02"	820	Not Applicable	Not Applicable
+	"Certain conditions originating in the perinatal period"	"P00-P96"	"Mar., 2020 "	"2020/03"	806	Not Applicable	Not Applicable
+	"Certain conditions originating in the perinatal period"	"P00-P96"	"Apr., 2020 "	"2020/04"	804	Not Applicable	Not Applicable
+	"Certain conditions originating in the perinatal period"	"P00-P96"	"May, 2020 "	"2020/05"	883	Not Applicable	Not Applicable
+	"Certain conditions originating in the perinatal period"	"P00-P96"	"Jun., 2020 "	"2020/06"	871	Not Applicable	Not Applicable
+	"Certain conditions originating in the perinatal period"	"P00-P96"	"Jul., 2020 "	"2020/07"	827	Not Applicable	Not Applicable
+	"Certain conditions originating in the perinatal period"	"P00-P96"	"Aug., 2020 "	"2020/08"	764	Not Applicable	Not Applicable
+	"Certain conditions originating in the perinatal period"	"P00-P96"	"Sep., 2020 "	"2020/09"	763	Not Applicable	Not Applicable
+	"Certain conditions originating in the perinatal period"	"P00-P96"	"Oct., 2020 "	"2020/10"	765	Not Applicable	Not Applicable
+	"Certain conditions originating in the perinatal period"	"P00-P96"	"Nov., 2020 "	"2020/11"	734	Not Applicable	Not Applicable
+	"Certain conditions originating in the perinatal period"	"P00-P96"	"Dec., 2020 "	"2020/12"	751	Not Applicable	Not Applicable
+"Total"	"Certain conditions originating in the perinatal period"	"P00-P96"			20084	Not Applicable	Not Applicable
+	"Congenital malformations, deformations and chromosomal abnormalities"	"Q00-Q99"	"Jan., 2019"	"2019/01"	856	Not Applicable	Not Applicable
+	"Congenital malformations, deformations and chromosomal abnormalities"	"Q00-Q99"	"Feb., 2019"	"2019/02"	785	Not Applicable	Not Applicable
+	"Congenital malformations, deformations and chromosomal abnormalities"	"Q00-Q99"	"Mar., 2019"	"2019/03"	867	Not Applicable	Not Applicable
+	"Congenital malformations, deformations and chromosomal abnormalities"	"Q00-Q99"	"Apr., 2019"	"2019/04"	813	Not Applicable	Not Applicable
+	"Congenital malformations, deformations and chromosomal abnormalities"	"Q00-Q99"	"May, 2019"	"2019/05"	819	Not Applicable	Not Applicable
+	"Congenital malformations, deformations and chromosomal abnormalities"	"Q00-Q99"	"Jun., 2019"	"2019/06"	765	Not Applicable	Not Applicable
+	"Congenital malformations, deformations and chromosomal abnormalities"	"Q00-Q99"	"Jul., 2019"	"2019/07"	743	Not Applicable	Not Applicable
+	"Congenital malformations, deformations and chromosomal abnormalities"	"Q00-Q99"	"Aug., 2019"	"2019/08"	815	Not Applicable	Not Applicable
+	"Congenital malformations, deformations and chromosomal abnormalities"	"Q00-Q99"	"Sep., 2019"	"2019/09"	742	Not Applicable	Not Applicable
+	"Congenital malformations, deformations and chromosomal abnormalities"	"Q00-Q99"	"Oct., 2019"	"2019/10"	832	Not Applicable	Not Applicable
+	"Congenital malformations, deformations and chromosomal abnormalities"	"Q00-Q99"	"Nov., 2019"	"2019/11"	830	Not Applicable	Not Applicable
+	"Congenital malformations, deformations and chromosomal abnormalities"	"Q00-Q99"	"Dec., 2019"	"2019/12"	846	Not Applicable	Not Applicable
+	"Congenital malformations, deformations and chromosomal abnormalities"	"Q00-Q99"	"Jan., 2020 "	"2020/01"	910	Not Applicable	Not Applicable
+	"Congenital malformations, deformations and chromosomal abnormalities"	"Q00-Q99"	"Feb., 2020 "	"2020/02"	837	Not Applicable	Not Applicable
+	"Congenital malformations, deformations and chromosomal abnormalities"	"Q00-Q99"	"Mar., 2020 "	"2020/03"	822	Not Applicable	Not Applicable
+	"Congenital malformations, deformations and chromosomal abnormalities"	"Q00-Q99"	"Apr., 2020 "	"2020/04"	753	Not Applicable	Not Applicable
+	"Congenital malformations, deformations and chromosomal abnormalities"	"Q00-Q99"	"May, 2020 "	"2020/05"	791	Not Applicable	Not Applicable
+	"Congenital malformations, deformations and chromosomal abnormalities"	"Q00-Q99"	"Jun., 2020 "	"2020/06"	770	Not Applicable	Not Applicable
+	"Congenital malformations, deformations and chromosomal abnormalities"	"Q00-Q99"	"Jul., 2020 "	"2020/07"	773	Not Applicable	Not Applicable
+	"Congenital malformations, deformations and chromosomal abnormalities"	"Q00-Q99"	"Aug., 2020 "	"2020/08"	799	Not Applicable	Not Applicable
+	"Congenital malformations, deformations and chromosomal abnormalities"	"Q00-Q99"	"Sep., 2020 "	"2020/09"	762	Not Applicable	Not Applicable
+	"Congenital malformations, deformations and chromosomal abnormalities"	"Q00-Q99"	"Oct., 2020 "	"2020/10"	776	Not Applicable	Not Applicable
+	"Congenital malformations, deformations and chromosomal abnormalities"	"Q00-Q99"	"Nov., 2020 "	"2020/11"	764	Not Applicable	Not Applicable
+	"Congenital malformations, deformations and chromosomal abnormalities"	"Q00-Q99"	"Dec., 2020 "	"2020/12"	816	Not Applicable	Not Applicable
+"Total"	"Congenital malformations, deformations and chromosomal abnormalities"	"Q00-Q99"			19286	Not Applicable	Not Applicable
+	"Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified"	"R00-R99"	"Jan., 2019"	"2019/01"	2738	Not Applicable	Not Applicable
+	"Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified"	"R00-R99"	"Feb., 2019"	"2019/02"	2451	Not Applicable	Not Applicable
+	"Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified"	"R00-R99"	"Mar., 2019"	"2019/03"	2718	Not Applicable	Not Applicable
+	"Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified"	"R00-R99"	"Apr., 2019"	"2019/04"	2557	Not Applicable	Not Applicable
+	"Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified"	"R00-R99"	"May, 2019"	"2019/05"	2575	Not Applicable	Not Applicable
+	"Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified"	"R00-R99"	"Jun., 2019"	"2019/06"	2513	Not Applicable	Not Applicable
+	"Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified"	"R00-R99"	"Jul., 2019"	"2019/07"	2622	Not Applicable	Not Applicable
+	"Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified"	"R00-R99"	"Aug., 2019"	"2019/08"	2668	Not Applicable	Not Applicable
+	"Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified"	"R00-R99"	"Sep., 2019"	"2019/09"	2591	Not Applicable	Not Applicable
+	"Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified"	"R00-R99"	"Oct., 2019"	"2019/10"	2817	Not Applicable	Not Applicable
+	"Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified"	"R00-R99"	"Nov., 2019"	"2019/11"	2885	Not Applicable	Not Applicable
+	"Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified"	"R00-R99"	"Dec., 2019"	"2019/12"	3273	Not Applicable	Not Applicable
+	"Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified"	"R00-R99"	"Jan., 2020 "	"2020/01"	2755	Not Applicable	Not Applicable
+	"Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified"	"R00-R99"	"Feb., 2020 "	"2020/02"	2611	Not Applicable	Not Applicable
+	"Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified"	"R00-R99"	"Mar., 2020 "	"2020/03"	2821	Not Applicable	Not Applicable
+	"Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified"	"R00-R99"	"Apr., 2020 "	"2020/04"	2837	Not Applicable	Not Applicable
+	"Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified"	"R00-R99"	"May, 2020 "	"2020/05"	2580	Not Applicable	Not Applicable
+	"Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified"	"R00-R99"	"Jun., 2020 "	"2020/06"	2527	Not Applicable	Not Applicable
+	"Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified"	"R00-R99"	"Jul., 2020 "	"2020/07"	2941	Not Applicable	Not Applicable
+	"Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified"	"R00-R99"	"Aug., 2020 "	"2020/08"	2910	Not Applicable	Not Applicable
+	"Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified"	"R00-R99"	"Sep., 2020 "	"2020/09"	2715	Not Applicable	Not Applicable
+	"Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified"	"R00-R99"	"Oct., 2020 "	"2020/10"	2860	Not Applicable	Not Applicable
+	"Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified"	"R00-R99"	"Nov., 2020 "	"2020/11"	3032	Not Applicable	Not Applicable
+	"Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified"	"R00-R99"	"Dec., 2020 "	"2020/12"	3509	Not Applicable	Not Applicable
+"Total"	"Symptoms, signs and abnormal clinical and laboratory findings, not elsewhere classified"	"R00-R99"			66506	Not Applicable	Not Applicable
+	"Codes for special purposes"	"U00-U99"	"Aug., 2019"	"2019/08"	17	Not Applicable	Not Applicable
+	"Codes for special purposes"	"U00-U99"	"Feb., 2020 "	"2020/02"	18	Not Applicable	Not Applicable
+	"Codes for special purposes"	"U00-U99"	"Mar., 2020 "	"2020/03"	6759	Not Applicable	Not Applicable
+	"Codes for special purposes"	"U00-U99"	"Apr., 2020 "	"2020/04"	61843	Not Applicable	Not Applicable
+	"Codes for special purposes"	"U00-U99"	"May, 2020 "	"2020/05"	35195	Not Applicable	Not Applicable
+	"Codes for special purposes"	"U00-U99"	"Jun., 2020 "	"2020/06"	15774	Not Applicable	Not Applicable
+	"Codes for special purposes"	"U00-U99"	"Jul., 2020 "	"2020/07"	28179	Not Applicable	Not Applicable
+	"Codes for special purposes"	"U00-U99"	"Aug., 2020 "	"2020/08"	26942	Not Applicable	Not Applicable
+	"Codes for special purposes"	"U00-U99"	"Sep., 2020 "	"2020/09"	16812	Not Applicable	Not Applicable
+	"Codes for special purposes"	"U00-U99"	"Oct., 2020 "	"2020/10"	22036	Not Applicable	Not Applicable
+	"Codes for special purposes"	"U00-U99"	"Nov., 2020 "	"2020/11"	47948	Not Applicable	Not Applicable
+	"Codes for special purposes"	"U00-U99"	"Dec., 2020 "	"2020/12"	89408	Not Applicable	Not Applicable
+"Total"	"Codes for special purposes"	"U00-U99"			350948	Not Applicable	Not Applicable
+	"External causes of morbidity and mortality"	"V01-Y89"	"Jan., 2019"	"2019/01"	20430	Not Applicable	Not Applicable
+	"External causes of morbidity and mortality"	"V01-Y89"	"Feb., 2019"	"2019/02"	18747	Not Applicable	Not Applicable
+	"External causes of morbidity and mortality"	"V01-Y89"	"Mar., 2019"	"2019/03"	20855	Not Applicable	Not Applicable
+	"External causes of morbidity and mortality"	"V01-Y89"	"Apr., 2019"	"2019/04"	19918	Not Applicable	Not Applicable
+	"External causes of morbidity and mortality"	"V01-Y89"	"May, 2019"	"2019/05"	21167	Not Applicable	Not Applicable
+	"External causes of morbidity and mortality"	"V01-Y89"	"Jun., 2019"	"2019/06"	21204	Not Applicable	Not Applicable
+	"External causes of morbidity and mortality"	"V01-Y89"	"Jul., 2019"	"2019/07"	22149	Not Applicable	Not Applicable
+	"External causes of morbidity and mortality"	"V01-Y89"	"Aug., 2019"	"2019/08"	22043	Not Applicable	Not Applicable
+	"External causes of morbidity and mortality"	"V01-Y89"	"Sep., 2019"	"2019/09"	21050	Not Applicable	Not Applicable
+	"External causes of morbidity and mortality"	"V01-Y89"	"Oct., 2019"	"2019/10"	21383	Not Applicable	Not Applicable
+	"External causes of morbidity and mortality"	"V01-Y89"	"Nov., 2019"	"2019/11"	20870	Not Applicable	Not Applicable
+	"External causes of morbidity and mortality"	"V01-Y89"	"Dec., 2019"	"2019/12"	21534	Not Applicable	Not Applicable
+	"External causes of morbidity and mortality"	"V01-Y89"	"Jan., 2020 "	"2020/01"	21642	Not Applicable	Not Applicable
+	"External causes of morbidity and mortality"	"V01-Y89"	"Feb., 2020 "	"2020/02"	20497	Not Applicable	Not Applicable
+	"External causes of morbidity and mortality"	"V01-Y89"	"Mar., 2020 "	"2020/03"	22035	Not Applicable	Not Applicable
+	"External causes of morbidity and mortality"	"V01-Y89"	"Apr., 2020 "	"2020/04"	21506	Not Applicable	Not Applicable
+	"External causes of morbidity and mortality"	"V01-Y89"	"May, 2020 "	"2020/05"	24922	Not Applicable	Not Applicable
+	"External causes of morbidity and mortality"	"V01-Y89"	"Jun., 2020 "	"2020/06"	24820	Not Applicable	Not Applicable
+	"External causes of morbidity and mortality"	"V01-Y89"	"Jul., 2020 "	"2020/07"	26272	Not Applicable	Not Applicable
+	"External causes of morbidity and mortality"	"V01-Y89"	"Aug., 2020 "	"2020/08"	25915	Not Applicable	Not Applicable
+	"External causes of morbidity and mortality"	"V01-Y89"	"Sep., 2020 "	"2020/09"	24103	Not Applicable	Not Applicable
+	"External causes of morbidity and mortality"	"V01-Y89"	"Oct., 2020 "	"2020/10"	24282	Not Applicable	Not Applicable
+	"External causes of morbidity and mortality"	"V01-Y89"	"Nov., 2020 "	"2020/11"	23532	Not Applicable	Not Applicable
+	"External causes of morbidity and mortality"	"V01-Y89"	"Dec., 2020 "	"2020/12"	24179	Not Applicable	Not Applicable
+"Total"	"External causes of morbidity and mortality"	"V01-Y89"			535055	Not Applicable	Not Applicable
+"Total"					6238567	Not Applicable	Not Applicable
+"---"
+"Dataset: Underlying Cause of Death, 1999-2020"
+"Query Parameters:"
+"Year/Month: 2019; 2020"
+"Group By: ICD Chapter; Month"
+"Show Totals: True"
+"Show Zero Values: False"
+"Show Suppressed: False"
+"Calculate Rates Per: 100,000"
+"Rate Options: Default intercensal populations for years 2001-2009 (except Infant Age Groups)"
+"---"
+"Help: See http://wonder.cdc.gov/wonder/help/ucd.html for more information."
+"---"
+"Query Date: Nov 28, 2022 5:10:32 PM"
+"---"
+"Suggested Citation: Centers for Disease Control and Prevention, National Center for Health Statistics. National Vital Statistics"
+"System, Mortality 1999-2020 on CDC WONDER Online Database, released in 2021. Data are from the Multiple Cause of Death Files,"
+"1999-2020, as compiled from data provided by the 57 vital statistics jurisdictions through the Vital Statistics Cooperative"
+"Program. Accessed at http://wonder.cdc.gov/ucd-icd10.html on Nov 28, 2022 5:10:32 PM"
+"---"
+Messages:
+"1. Rows with suppressed Deaths are hidden, but the Deaths and Population values in those rows are included in the totals. Use"
+"Quick Options above to show suppressed rows."
+"---"
+Caveats:
+"1. Population and rates are labeled 'Not Applicable' when Autopsy, Place of Death, Weekday or Month are grouped by or limited,"
+"due to lack of a valid population. More information: http://wonder.cdc.gov/wonder/help/ucd.html#NotApplicableRates."
+"2. Data are Suppressed when the data meet the criteria for confidentiality constraints. More information:"
+"http://wonder.cdc.gov/wonder/help/ucd.html#Assurance of Confidentiality."
+"3. Death rates are flagged as Unreliable when the rate is calculated with a numerator of 20 or less. More information:"
+"http://wonder.cdc.gov/wonder/help/ucd.html#Unreliable."
+"4. Beginning with the 2018 data, changes have been implemented that affect the counts for ICD-10 cause of death codes O00-O99"
+"compared to previous practice. In addition, data for the cause of death codes O00-O99 for 2003 through 2017 reflect differences"
+"in information available to individual states and probable errors. Caution should be used in interpreting these data. More"
+"information can be found at: https://www.cdc.gov/nchs/maternal-mortality/."
+"5. On March 11, 2021, the 2019 mortality data on CDC WONDER was updated with the 2019 mortality data updated by NCHS on March 4,"
+"2021 to include corrected information for residents of Texas affecting 5 records previously coded to cause code *U01.4,"
+"Terrorism involving firearms (homicide). The underlying and multiple cause of death codes for 5 records were corrected in the"
+"2019 data. Underlying and multiple cause of death codes for those 5 records were recoded to Assault (homicide) by other and"
+"unspecified firearm discharge, ICD-10 code X95. The corrected final death records replaces the data released on December 22,"
+"2020."
