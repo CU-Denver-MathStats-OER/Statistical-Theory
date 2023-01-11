@@ -1,0 +1,122 @@
+---
+title: "Installing R and R Studio"
+author: 'Adam Spiegler, University of Colorado Denver'
+output: html_document
+date: "`r Sys.Date()`"
+editor_options: 
+  markdown: 
+    wrap: sentence
+---
+
+# What is R and What is R Studio?
+
+------------------------------------------------------------------------
+
+[R](https://www.r-project.org/about.html) is a programming language used largely for statistical computing, data wrangling and visualization.
+
+-   R is **FREE** to download.
+-   The first stable version was released in 2000.
+-   Open source and works cross all platforms.
+-   Excellent tool for data wrangling.
+-   Generates nice graphics.
+-   Export to pdf, html, Word or PowerPoint.
+-   Large community with tons of useful packages.
+
+**RStudio** is an IDE (integrated development environment) for R.
+More simply stated, RStudio is an application that allows you to edit, run, and see results of code.
+
+-   RStudio is available in open source editions and runs on Windows, Mac, and Linux.
+-   **RStudio Desktop** is **FREE** to download locally on your device.
+-   **RStudio Server** runs on a remote server through a web browser.
+
+# Installing R and RStudio is FREE!
+
+------------------------------------------------------------------------
+
+> "RStudio is dedicated to sustainable investment in free and open-source software for data science." Source: <https://posit.co>
+
+-   Installing R and RStudio is FREE.
+-   It is a two-step process and **the order that you do the steps is important!**
+
+## Step 0: Visit <https://posit.co/download/rstudio-desktop/>
+
+## Step 1: Install R
+
+-   **Mac Users:** Download R by visiting <https://cran.r-project.org/bin/macosx/> and clicking on the most recent version. For example depending on the version number, the file name is `R-4.2.2-arm64.pkg` or `R-4.2.2.pkg` depending on what type of Mac you own.
+    -   **Note there are two versions available for Mac OS**.
+
+    -   Use the top link for `R-4.2.2-arm64.pkg` for M1 and higher Macs only.
+
+    -   Use the second link for `R-4.2.2.pkg` for Intel Macs.
+
+    -   If you are not sure which version of Mac you have, [here is a good source](https://www.howtogeek.com/706226/how-to-check-if-your-mac-is-using-an-intel-or-apple-silicon-processor/).
+-   **PC Users:** Download R by visiting <https://cran.r-project.org/bin/windows/base/> and clicking on the most recent version. For example depending on the version number, the file name is `R-4.2.2 for Windows`.
+
+## Step 2: Install RStudio
+
+-   Visit <https://posit.co/download/rstudio-desktop/>
+-   Select the **DOWNLOAD R STUDIO DESKTOP** button for the **FREE** open source edition.
+-   Do NOT choose a version that costs money.
+
+# Opening R Studio
+
+------------------------------------------------------------------------
+
+Now that you have both R and RStudio on your computer, you can begin using R by opening the RStudio program.
+Open RStudio just as you would any program, by clicking on its icon or other methods such as typing "RStudio" at the Windows Run prompt.
+
+## Downloading and Opening this File
+
+-   Clink on the link
+-   Choose to Download Raw.
+-   From RStudio, choose `File -> Open File` and select the appropriate file location.
+
+# Key Packages to Get Started
+
+------------------------------------------------------------------------
+
+## **What are packages in R?**
+
+> "Many useful R function come in packages, free libraries of code written by R's active user community." Source: [R Studio support website](https://support.rstudio.com/hc/en-us/articles/201057987-Quick-list-of-useful-R-packages)
+
+-   For a nice overview see <https://support.rstudio.com/hc/en-us/articles/201057987-Quick-list-of-useful-R-packages>.
+-   You can install a single package such as `dplyr` by running R the code cell below.
+
+```{r, include=FALSE, eval=FALSE}
+install.packages("dplyr")
+```
+
+-   Or you can install several at once, in the Console below (or running the code cell below).
+
+```{r, eval=FALSE}
+install.packages(c("ggplot2", "DataExplorer"))
+```
+
+-   **You only need to install a package once (or when updating).**
+-   **The packages above have not yet been loaded however!**
+
+# Loading Libraries of Functions in Packages
+
+------------------------------------------------------------------------
+
+-   Although we only need to intall a package once in order to access it, **we need to load package each time we start a new R session**.
+-   You can load the libraries in a package by running the code cell below.
+
+```{r, message=FALSE}
+library(dplyr)
+```
+
+```{r, message=FALSE}
+library(ggplot2)
+```
+
+# What is R Markdown?
+
+------------------------------------------------------------------------
+
+This is an R Markdown document.
+Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents.
+For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
+You can embed an R code chunk like this:
