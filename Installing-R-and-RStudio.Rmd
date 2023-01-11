@@ -1,14 +1,13 @@
 ---
-title: "Installing R and R Studio"
+title: "Installing R and RStudio"
 author: 'Adam Spiegler, University of Colorado Denver'
 output: html_document
-date: "`r Sys.Date()`"
 editor_options: 
   markdown: 
     wrap: sentence
 ---
 
-# What is R and What is R Studio?
+# What is R and What is RStudio?
 
 ------------------------------------------------------------------------
 
