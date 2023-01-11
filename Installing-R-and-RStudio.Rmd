@@ -33,11 +33,6 @@ More simply stated, RStudio is an application that allows you to edit, run, and 
 
 ------------------------------------------------------------------------
 
-> "RStudio is dedicated to sustainable investment in free and open-source software for data science." Source: <https://posit.co>
-
--   Installing R and RStudio is FREE.
--   It is a two-step process and **the order that you do the steps is important!**
-
 ## Step 0: Visit <https://posit.co/download/rstudio-desktop/>
 
 ## Step 1: Install R
@@ -67,9 +62,10 @@ Open RStudio just as you would any program, by clicking on its icon or other met
 
 ## Downloading and Opening this File
 
--   Clink on the link
--   Choose to Download Raw.
--   From RStudio, choose `File -> Open File` and select the appropriate file location.
+1.  Clink on the link <https://github.com/CU-Denver-MathStats-OER/Statistical-Theory>. Link can be found in description of this video.
+2.  Right/Secondary click on the link to the file `Installing-R-and-RStudio.Rmd` and choose `Save Link As ...`.
+3.  Choose the file location on your computer where you wish to save this file.
+4.  From RStudio, choose `File -> Open File` and select the appropriate file location.
 
 # Key Packages to Get Started
 
@@ -82,7 +78,7 @@ Open RStudio just as you would any program, by clicking on its icon or other met
 -   For a nice overview see <https://support.rstudio.com/hc/en-us/articles/201057987-Quick-list-of-useful-R-packages>.
 -   You can install a single package such as `dplyr` by running R the code cell below.
 
-```{r, include=FALSE, eval=FALSE}
+```{r, eval=FALSE}
 install.packages("dplyr")
 ```
 
@@ -102,11 +98,11 @@ install.packages(c("ggplot2", "DataExplorer"))
 -   Although we only need to intall a package once in order to access it, **we need to load package each time we start a new R session**.
 -   You can load the libraries in a package by running the code cell below.
 
-```{r, message=FALSE}
+```{r, message=FALSE, eval=FALSE}
 library(dplyr)
 ```
 
-```{r, message=FALSE}
+```{r, message=FALSE, eval=FALSE}
 library(ggplot2)
 ```
 
