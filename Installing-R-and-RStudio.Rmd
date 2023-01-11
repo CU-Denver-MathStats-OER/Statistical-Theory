@@ -49,10 +49,10 @@ More simply stated, RStudio is an application that allows you to edit, run, and 
 ## Step 2: Install RStudio
 
 -   Visit <https://posit.co/download/rstudio-desktop/>
--   Select the **DOWNLOAD R STUDIO DESKTOP** button for the **FREE** open source edition.
+-   Select the **DOWNLOAD RSTUDIO DESKTOP** button for the **FREE** open source edition.
 -   Do NOT choose a version that costs money.
 
-# Opening R Studio
+# Opening RStudio 
 
 ------------------------------------------------------------------------
 
@@ -72,7 +72,7 @@ Open RStudio just as you would any program, by clicking on its icon or other met
 
 ## **What are packages in R?**
 
-> "Many useful R function come in packages, free libraries of code written by R's active user community." Source: [R Studio support website](https://support.rstudio.com/hc/en-us/articles/201057987-Quick-list-of-useful-R-packages)
+> "Many useful R function come in packages, free libraries of code written by R's active user community." Source: [RStudio support website](https://support.rstudio.com/hc/en-us/articles/201057987-Quick-list-of-useful-R-packages)
 
 -   For a nice overview see <https://support.rstudio.com/hc/en-us/articles/201057987-Quick-list-of-useful-R-packages>.
 -   You can install a single package such as `dplyr` by running R the code cell below.
