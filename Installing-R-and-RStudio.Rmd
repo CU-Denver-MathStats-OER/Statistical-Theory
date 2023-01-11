@@ -61,10 +61,8 @@ Open RStudio just as you would any program, by clicking on its icon or other met
 
 ## Downloading and Opening this File
 
-1.  Clink on the link <https://github.com/CU-Denver-MathStats-OER/Statistical-Theory>. Link can be found in description of this video.
-2.  Right/Secondary click on the link to the file `Installing-R-and-RStudio.Rmd` and choose `Save Link As ...`.
-3.  Choose the file location on your computer where you wish to save this file.
-4.  From RStudio, choose `File -> Open File` and select the appropriate file location.
+1. [Click Here to Download R Markdown File](https://drive.google.com/uc?export=download&id=1vI0n0VCluaS48AM-fFFV-IlZNUMxNAc0)
+2.  From RStudio, choose `File -> Open File` and select the appropriate file location.
 
 # Key Packages to Get Started
 
