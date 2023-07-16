@@ -1,0 +1,1635 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Statistical Methods: Exploring the Uncertain - 4.1: Maximum Likelihood Estimation</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./14-Estimation-MOM.html" rel="next">
+<link href="./12-Sampling-Dist-Other.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./13-Estimation-MLE.html">Chapter 4: Estimation</a></li><li class="breadcrumb-item"><a href="./13-Estimation-MLE.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">4.1: Maximum Likelihood Estimation</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Statistical Methods: Exploring the Uncertain</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Chapter 1: Exploring Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-Intro-to-Inference.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1.1: Introduction to Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-EDA-Categorical.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1.2: Exploring Categorical Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-EDA-Quantitative.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1.3: Exploring Quantitative Data</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Chapter 2: Probability Essentials</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-Overview-of-Probability.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.1: An Overview of Probability</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-Intro-to-Random-Variables.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.2: Introduction to Random Variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-Expected-Value-and-Variance.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.3: Expected Value and Variance</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-Common-Discrete-RandVar.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.4: Common Discrete Distributions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-Common-Continuous-Distributions.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.5: Common Continuous Distributions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-Joint-Distributions.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.6: Joint Distributions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Chapter 3: Sampling Distributions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-Sampling-Dist-Mean.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3.1: Sampling Distribution of Means</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-Sampling-Dist-Prop.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3.2: Sampling Distributions for Proportions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-Sampling-Dist-Other.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3.3: Sampling Distributions of Other Statistics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Chapter 4: Estimation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-Estimation-MLE.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">4.1: Maximum Likelihood Estimation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-Estimation-MOM.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4.2: Method of Moments Estimates</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-Properties-Estimators.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4.3: Properties of Estimators</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Chapter 5: Interval Estimates</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-Bootstrap-Dist.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5.1: Bootstrap Distributions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-Bootstrap-Confidence-Int.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5.2: Bootstrap Confidence Intervals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./18-Bootstrap-Other-Stats.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5.3: Bootstrapping Comparitive Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./19-Parametric-CI-Means.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5.4: Parametric Confidence Intervals for Means</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./20-Parametric-CI-Proportions.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5.5: Parametric Confidence Intervals for Proportions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">Chapter 6: Hypothesis Tests</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21-Intro-Hypothesis-Tests.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6.1: Introduction to Hypothesis Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./22-Permutation-Tests.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6.2: Permutation Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./23-Hypothesis-Single-Population.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6.3: Parametric Hypothesis Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./24-Hypothesis-Comparing-Two.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6.4: Parametric Test for Two Populations</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Installing-R-and-RStudio.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Installing R and RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Intro-to-Vectors-Dataframes.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Fundamentals of Working with Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Overview-of-Plots.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">An Overview of Plotting Data in R</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#case-study-slot-machine-jackpots" id="toc-case-study-slot-machine-jackpots" class="nav-link active" data-scroll-target="#case-study-slot-machine-jackpots">Case Study: Slot Machine Jackpots</a>
+  <ul class="collapse">
+  <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a>
+  <ul class="collapse">
+  <li><a href="#solution-to-question-1" id="toc-solution-to-question-1" class="nav-link" data-scroll-target="#solution-to-question-1">Solution to Question 1</a></li>
+  </ul></li>
+  <li><a href="#collecting-data" id="toc-collecting-data" class="nav-link" data-scroll-target="#collecting-data">Collecting Data</a></li>
+  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a>
+  <ul class="collapse">
+  <li><a href="#solution-to-question-2" id="toc-solution-to-question-2" class="nav-link" data-scroll-target="#solution-to-question-2">Solution to Question 2</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#what-is-the-probability-of-picking-our-random-sample" id="toc-what-is-the-probability-of-picking-our-random-sample" class="nav-link" data-scroll-target="#what-is-the-probability-of-picking-our-random-sample">What Is the Probability of Picking Our Random Sample?</a>
+  <ul class="collapse">
+  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3</a>
+  <ul class="collapse">
+  <li><a href="#solution-to-question-3" id="toc-solution-to-question-3" class="nav-link" data-scroll-target="#solution-to-question-3">Solution to Question 3</a></li>
+  <li><a href="#plotting-the-likelihood-function-for-question-3" id="toc-plotting-the-likelihood-function-for-question-3" class="nav-link" data-scroll-target="#plotting-the-likelihood-function-for-question-3">Plotting the Likelihood Function for Question 3</a></li>
+  </ul></li>
+  <li><a href="#revealing-the-actual-value-of-lambda" id="toc-revealing-the-actual-value-of-lambda" class="nav-link" data-scroll-target="#revealing-the-actual-value-of-lambda">Revealing the Actual Value of <span class="math inline">\(\lambda\)</span></a></li>
+  </ul></li>
+  <li><a href="#a-formula-for-the-likelihood-function" id="toc-a-formula-for-the-likelihood-function" class="nav-link" data-scroll-target="#a-formula-for-the-likelihood-function">A Formula for the Likelihood Function</a></li>
+  <li><a href="#defining-the-likelihood-function-in-r" id="toc-defining-the-likelihood-function-in-r" class="nav-link" data-scroll-target="#defining-the-likelihood-function-in-r">Defining the Likelihood Function in R</a>
+  <ul class="collapse">
+  <li><a href="#defining-the-likelihood-function-as-product" id="toc-defining-the-likelihood-function-as-product" class="nav-link" data-scroll-target="#defining-the-likelihood-function-as-product">Defining the Likelihood Function as Product</a></li>
+  <li><a href="#improving-the-code-for-a-likelihood-function" id="toc-improving-the-code-for-a-likelihood-function" class="nav-link" data-scroll-target="#improving-the-code-for-a-likelihood-function">Improving the Code for a Likelihood Function</a>
+  <ul class="collapse">
+  <li><a href="#sec-like-r" id="toc-sec-like-r" class="nav-link" data-scroll-target="#sec-like-r">Using Built-In Distribution Functions</a></li>
+  </ul></li>
+  <li><a href="#sec-opt-r" id="toc-sec-opt-r" class="nav-link" data-scroll-target="#sec-opt-r">Optimizing the Likelihood Function in R</a></li>
+  </ul></li>
+  <li><a href="#a-first-look-at-properties-of-mles" id="toc-a-first-look-at-properties-of-mles" class="nav-link" data-scroll-target="#a-first-look-at-properties-of-mles">A First Look at Properties of MLE’s</a>
+  <ul class="collapse">
+  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4">Question 4</a>
+  <ul class="collapse">
+  <li><a href="#solution-to-question-4" id="toc-solution-to-question-4" class="nav-link" data-scroll-target="#solution-to-question-4">Solution to Question 4</a></li>
+  </ul></li>
+  <li><a href="#picking-another-random-sample" id="toc-picking-another-random-sample" class="nav-link" data-scroll-target="#picking-another-random-sample">Picking Another Random Sample</a>
+  <ul class="collapse">
+  <li><a href="#comparing-estimates" id="toc-comparing-estimates" class="nav-link" data-scroll-target="#comparing-estimates">Comparing Estimates</a></li>
+  </ul></li>
+  <li><a href="#analyzing-a-distribution-of-mles" id="toc-analyzing-a-distribution-of-mles" class="nav-link" data-scroll-target="#analyzing-a-distribution-of-mles">Analyzing a Distribution of MLE’s</a></li>
+  <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5">Question 5</a>
+  <ul class="collapse">
+  <li><a href="#solution-to-question-5" id="toc-solution-to-question-5" class="nav-link" data-scroll-target="#solution-to-question-5">Solution to Question 5</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#practice-finding-formulas-for-ltheta" id="toc-practice-finding-formulas-for-ltheta" class="nav-link" data-scroll-target="#practice-finding-formulas-for-ltheta">Practice: Finding Formulas for <span class="math inline">\(L(\theta)\)</span></a>
+  <ul class="collapse">
+  <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6">Question 6</a>
+  <ul class="collapse">
+  <li><a href="#solution-to-question-6" id="toc-solution-to-question-6" class="nav-link" data-scroll-target="#solution-to-question-6">Solution to Question 6</a></li>
+  </ul></li>
+  <li><a href="#question-7" id="toc-question-7" class="nav-link" data-scroll-target="#question-7">Question 7</a>
+  <ul class="collapse">
+  <li><a href="#solution-to-question-7" id="toc-solution-to-question-7" class="nav-link" data-scroll-target="#solution-to-question-7">Solution to Question 7</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#practice-maximizing-the-likelihood-function" id="toc-practice-maximizing-the-likelihood-function" class="nav-link" data-scroll-target="#practice-maximizing-the-likelihood-function">Practice: Maximizing the Likelihood Function</a>
+  <ul class="collapse">
+  <li><a href="#question-8" id="toc-question-8" class="nav-link" data-scroll-target="#question-8">Question 8</a>
+  <ul class="collapse">
+  <li><a href="#solution-to-question-8" id="toc-solution-to-question-8" class="nav-link" data-scroll-target="#solution-to-question-8">Solution to Question 8</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#steps-for-finding-mle" id="toc-steps-for-finding-mle" class="nav-link" data-scroll-target="#steps-for-finding-mle">Steps for Finding MLE</a>
+  <ul class="collapse">
+  <li><a href="#plotting-the-likelihood-function-for-question-8" id="toc-plotting-the-likelihood-function-for-question-8" class="nav-link" data-scroll-target="#plotting-the-likelihood-function-for-question-8">Plotting the Likelihood Function for Question 8</a></li>
+  <li><a href="#question-9" id="toc-question-9" class="nav-link" data-scroll-target="#question-9">Question 9</a>
+  <ul class="collapse">
+  <li><a href="#solution-to-question-9" id="toc-solution-to-question-9" class="nav-link" data-scroll-target="#solution-to-question-9">Solution to Question 9</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#using-the-log-likelihood-function" id="toc-using-the-log-likelihood-function" class="nav-link" data-scroll-target="#using-the-log-likelihood-function">Using the Log-Likelihood Function</a>
+  <ul class="collapse">
+  <li><a href="#why-maximize-ylnltheta-instead-of-ltheta" id="toc-why-maximize-ylnltheta-instead-of-ltheta" class="nav-link" data-scroll-target="#why-maximize-ylnltheta-instead-of-ltheta">Why Maximize <span class="math inline">\(y=\ln{(L(\theta}))\)</span> Instead of <span class="math inline">\(L(\theta)\)</span>?</a></li>
+  <li><a href="#sec-log-prop" id="toc-sec-log-prop" class="nav-link" data-scroll-target="#sec-log-prop">Useful Properties of the Natural Log</a></li>
+  <li><a href="#question-10" id="toc-question-10" class="nav-link" data-scroll-target="#question-10">Question 10</a>
+  <ul class="collapse">
+  <li><a href="#solution-to-question-10" id="toc-solution-to-question-10" class="nav-link" data-scroll-target="#solution-to-question-10">Solution to Question 10</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#steps-for-finding-mle-using-a-log-likelihood-function" id="toc-steps-for-finding-mle-using-a-log-likelihood-function" class="nav-link" data-scroll-target="#steps-for-finding-mle-using-a-log-likelihood-function">Steps for Finding MLE Using a Log-Likelihood Function</a>
+  <ul class="collapse">
+  <li><a href="#question-11" id="toc-question-11" class="nav-link" data-scroll-target="#question-11">Question 11</a></li>
+  <li><a href="#solution-to-question-11" id="toc-solution-to-question-11" class="nav-link" data-scroll-target="#solution-to-question-11">Solution to Question 11</a></li>
+  </ul></li>
+  <li><a href="#analytic-results" id="toc-analytic-results" class="nav-link" data-scroll-target="#analytic-results">Analytic Results</a>
+  <ul class="collapse">
+  <li><a href="#question-12" id="toc-question-12" class="nav-link" data-scroll-target="#question-12">Question 12</a>
+  <ul class="collapse">
+  <li><a href="#solution-to-question-12" id="toc-solution-to-question-12" class="nav-link" data-scroll-target="#solution-to-question-12">Solution to Question 12</a></li>
+  </ul></li>
+  <li><a href="#question-13" id="toc-question-13" class="nav-link" data-scroll-target="#question-13">Question 13</a>
+  <ul class="collapse">
+  <li><a href="#solution-to-question-13" id="toc-solution-to-question-13" class="nav-link" data-scroll-target="#solution-to-question-13">Solution to Question 13</a></li>
+  </ul></li>
+  <li><a href="#question-14" id="toc-question-14" class="nav-link" data-scroll-target="#question-14">Question 14</a>
+  <ul class="collapse">
+  <li><a href="#question-14a" id="toc-question-14a" class="nav-link" data-scroll-target="#question-14a">Question 14a</a></li>
+  <li><a href="#question-14b" id="toc-question-14b" class="nav-link" data-scroll-target="#question-14b">Question 14b</a></li>
+  <li><a href="#question-14c" id="toc-question-14c" class="nav-link" data-scroll-target="#question-14c">Question 14c</a></li>
+  <li><a href="#solution-to-question-14c" id="toc-solution-to-question-14c" class="nav-link" data-scroll-target="#solution-to-question-14c">Solution to Question 14c</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#summary-of-results-from-common-distributions" id="toc-summary-of-results-from-common-distributions" class="nav-link" data-scroll-target="#summary-of-results-from-common-distributions">Summary of Results from Common Distributions</a></li>
+  <li><a href="#recap-of-maximum-likelihood-estimates" id="toc-recap-of-maximum-likelihood-estimates" class="nav-link" data-scroll-target="#recap-of-maximum-likelihood-estimates">Recap of Maximum Likelihood Estimates</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-title">4.1: Maximum Likelihood Estimation</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p><a href="https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap4/13-Estimation-MLE.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid" alt="Open In Colab"></a> <nbsp></nbsp></p>
+<p><img src="https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/60165/arrows-in-the-target-clipart-md.png" class="img-fluid" style="width:30.0%" data-fig-align="left" alt="Arrows Hitting a Target"> <nbsp></nbsp></p>
+<p>In Chapter 3, we explored properties of sample statistics picked from a population with a known distribution.</p>
+<ul>
+<li>We analyzed the <a href="./10-Sampling-Dist-Mean.html">distribution of sample means</a> picked from normal and exponential distributions.</li>
+<li>We analyzed the <a href="./11-Sampling-Dist-Prop.html">distribution of sample proportions</a> independently pick from a binomial population.</li>
+<li>Sampling distributions allowed us to predict how likely we are to pick certain sample statistics when the population is fixed and known.</li>
+</ul>
+<p>However, statistical inference is applied in situations where <span style="color:dodgerblue"><strong>properties of the populations are unknown</strong></span>. A typical workflow for statistical inference is:</p>
+<ol type="1">
+<li>Pick one (not thousands) random sample from a population with unknown characteristics.</li>
+<li>Calculate sample statistic(s) to describe the sample.</li>
+<li>Based on the characteristics of the sample, make predictions/estimates for the unknown population characteristics.</li>
+</ol>
+<p>In this chapter, we explore two powerful estimation techniques, maximum likelihood estimation and the method of moments. We will investigate how well our estimators perform using general properties of estimators such as bias, variability, and mean square error.</p>
+<section id="case-study-slot-machine-jackpots" class="level1">
+<h1>Case Study: Slot Machine Jackpots</h1>
+<hr>
+<p><img src="https://cdn.pixabay.com/photo/2018/06/22/17/54/casino-3491252_1280.jpg" class="img-fluid" style="width:50.0%" data-fig-align="left" alt="Slot Machines"> <nbsp></nbsp></p>
+<p>A strategic gambler believes they have identified a faulty slot machine which pays out significantly more money than the other slot machines. She and her friends watch the machine 24 hours a day for 7 days and observed the slot machine paid out the $<span class="math inline">\(1,\!000,\!000\)</span> jackpot prize 10 times during the week. How can she figure out whether the machine is faulty or whether the number of jackpot prizes are within reason?</p>
+<section id="question-1" class="level2">
+<h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
+<hr>
+<p>They decide to compare the performance of the suspect slot machine to other slot machines. They pick a random sample of <span class="math inline">\(n=4\)</span> other slot machines and record how many jackpot prizes each machine pays over a one week time frame. Let random variable <span class="math inline">\(X\)</span> denote the number of jackpots a randomly selected slot machine pays out in week. What distribution do you think best models <span class="math inline">\(X\)</span>? Give a corresponding formula for the probability mass function of <span class="math inline">\(X\)</span>.</p>
+<ul>
+<li><em>Hint: Should we use a discrete or continuous random variable?</em></li>
+<li><em>Hint: See either <a href="./07-Common-Discrete-RandVar.html#sec-append">appendix of common discrete random variables</a> or <a href="./08-Common-Continuous-Distributions.html#sec-append">appendix of common continuous random variables</a> for additional help.</em></li>
+</ul>
+<section id="solution-to-question-1" class="level3">
+<h3 class="anchored" data-anchor-id="solution-to-question-1">Solution to Question 1</h3>
+<hr>
+<p><br><br>
+<br><br>
+<br></p>
+</section>
+</section>
+<section id="collecting-data" class="level2">
+<h2 class="anchored" data-anchor-id="collecting-data">Collecting Data</h2>
+<hr>
+<p>We will simulate collecting a data sample.</p>
+<ul>
+<li>Run the code cell below to “secretly” generate a population mean that we store in <code>true.mean</code>.</li>
+<li>The command <code>set.seed(827)</code> will seed the randomization so we all have the same population mean.</li>
+<li>Do not print the output to screen. Keep <code>true.mean</code> secret for now!</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set randomization for seeding population mean</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">827</span>)  </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># pick a population mean that will be fixed but unknown to us</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>true.mean <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">8</span>, <span class="at">size=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Next, we generate a sample size <span class="math inline">\(n=4\)</span>.</p>
+<ul>
+<li>Run the code cell below to generate your random sample.</li>
+<li>Each observation <span class="math inline">\(x_i\)</span> in the vector <code>x</code> corresponds to the number of jackpots a randomly selected slot machine paid out in one week.</li>
+<li>The command <code>set.seed(612)</code> will seed the randomization so my sample <code>x</code> remains fixed.
+<ul>
+<li>You can delete the command <code>set.seed(612)</code> to generate a different random sample picked from the same population.</li>
+<li>Then you can compare the estimate obtained from your sample with the estimate based on the sample generated below.</li>
+</ul></li>
+<li>Inspect the values in your sample after running.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">612</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rpois</span>(<span class="dv">4</span>, true.mean)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 9 8 6 5</code></pre>
+</div>
+</div>
+<ul>
+<li>The sample generated by <code>set.seed(612)</code> is</li>
+</ul>
+<p><span class="math display">\[x_1=9 \ ,\  x_2=8\ ,\  x_3=6 \ , \ x_4=5.\]</span></p>
+</section>
+<section id="question-2" class="level2">
+<h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
+<hr>
+<p>Using the probability mass function from <a href="#question-1">Question 1</a> and your sample generated by the code cell above stored in <code>x</code>, what is the probability of picking the random sample <span class="math inline">\(x_1\)</span>, <span class="math inline">\(x_2\)</span>, <span class="math inline">\(x_3\)</span>, <span class="math inline">\(x_4\)</span> stored in <code>x</code>? Your answer will be a formula that depends on the parameter <span class="math inline">\(\lambda\)</span>.</p>
+<section id="solution-to-question-2" class="level3">
+<h3 class="anchored" data-anchor-id="solution-to-question-2">Solution to Question 2</h3>
+<hr>
+<p><br> <br> <br></p>
+</section>
+</section>
+</section>
+<section id="what-is-the-probability-of-picking-our-random-sample" class="level1">
+<h1>What Is the Probability of Picking Our Random Sample?</h1>
+<hr>
+<p>We motivate maximum likelihood estimation with the following question:</p>
+<blockquote class="blockquote">
+<p><span style="color:dodgerblue">What is the most likely value for the unknown parameter <span class="math inline">\(\theta\)</span> given we know a random sample of values <span class="math inline">\(x_1, x_2, \ldots x_n\)</span>?</span></p>
+</blockquote>
+<p>The <span style="color:dodgerblue"><strong>likelihood function</strong></span> <span class="math display">\[\color{dodgerblue}{L(\theta)= L( \theta \mid x_1, x_2, \ldots x_n)}\]</span> gives the likelihood of the parameter <span class="math inline">\(\theta\)</span> given the observed sample data. A <span style="color:dodgerblue"><strong>maximum likelihood estimate (MLE)</strong></span>, denoted <span class="math inline">\(\color{dodgerblue}{\mathbf{\hat{\theta}_{\rm MLE}}}\)</span>, is the value of <span class="math inline">\(\theta\)</span> that gives the maximum value of the likelihood function <span class="math inline">\(L(\theta)\)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In statistics, we typically <span style="color:dodgerblue"><strong>use Greek letters to denote population parameters</strong></span>, and <span style="color:dodgerblue"><strong>we use “hat” notation to indicate an estimator</strong></span> for the value of a population parameter.</p>
+<ul>
+<li>The notation <span class="math inline">\(\theta\)</span> is the generic notation typically used to represent a parameter.</li>
+<li>The notation <span class="math inline">\(\hat{\theta}\)</span> denotes an estimator for <span class="math inline">\(\theta\)</span>.</li>
+</ul>
+</div>
+</div>
+<section id="question-3" class="level2">
+<h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
+<hr>
+<p>Find the value of <span class="math inline">\(\lambda\)</span> that maximizes the likelihood function from <a href="#question-2">Question 2</a>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Recall from calculus that global maxima occur at end points or critical points where <span class="math inline">\(\frac{d L}{d \lambda} = 0\)</span> or is undefined.</p>
+</div>
+</div>
+<section id="solution-to-question-3" class="level3">
+<h3 class="anchored" data-anchor-id="solution-to-question-3">Solution to Question 3</h3>
+<hr>
+<p><br> <br> <br></p>
+</section>
+<section id="plotting-the-likelihood-function-for-question-3" class="level3">
+<h3 class="anchored" data-anchor-id="plotting-the-likelihood-function-for-question-3">Plotting the Likelihood Function for Question 3</h3>
+<hr>
+<p>Given the random sample <span class="math inline">\(x_1=9, x_2=8, x_3=6, x_4=5\)</span>, the resulting likelihood derived in <a href="#question-2">Question 2</a> is</p>
+<p><span class="math display">\[L({\color{tomato}\lambda}) = \frac{{\color{tomato}\lambda}^{28} e^{-4{\color{tomato}\lambda}}}{(9!)(8!)(6!)(5!)}.\]</span></p>
+<p>In <a href="#question-3">Question 3</a>, we find the value of <span class="math inline">\(\lambda\)</span> that maximizes the likelihood function <span class="math inline">\(L(\lambda)\)</span> using optimization methods from calculus. It is always a good idea to check our work. If we have access to technology, we can plot the likelihood function and identify the approximate value of <span class="math inline">\(\lambda\)</span> that gives the maximum value of <span class="math inline">\(L(\lambda)\)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>lam <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">3</span>, <span class="dv">11</span>, <span class="fl">0.1</span>)  <span class="co"># values of lambda on x-axis</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>like.est <span class="ot">&lt;-</span> lam<span class="sc">^</span>(<span class="fu">sum</span>(x)) <span class="sc">*</span> <span class="fu">exp</span>(<span class="sc">-</span><span class="dv">4</span><span class="sc">*</span>lam)<span class="sc">/</span><span class="fu">prod</span>(<span class="fu">factorial</span>(x))  <span class="co"># values of L(lambda)</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lam, like.est,  <span class="co"># plot lam and likelihood on x and y axes</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">"l"</span>,  <span class="co"># connect plotted points with a curve</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"L(lambda)"</span>,  <span class="co"># y-axis label</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"lambda"</span>,  <span class="co"># x-axis label</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Plot of Likelihood Function"</span>)  <span class="co"># main label</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="at">x =</span> <span class="dv">7</span>, <span class="at">y =</span> <span class="fl">0.0002515952</span>, <span class="at">cex =</span> <span class="dv">2</span>, <span class="at">pch =</span> <span class="dv">20</span>, <span class="at">col =</span> <span class="st">"tomato"</span>)  <span class="co"># point at max</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>, <span class="at">at=</span><span class="fu">c</span>(<span class="dv">7</span>), <span class="at">col.axis =</span> <span class="st">"tomato"</span>)  <span class="co"># marking MLE estimate</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="dv">7</span>, <span class="at">col =</span> <span class="st">"tomato"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">2</span>)  <span class="co"># marking MLE estimate</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="13-Estimation-MLE_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="revealing-the-actual-value-of-lambda" class="level2">
+<h2 class="anchored" data-anchor-id="revealing-the-actual-value-of-lambda">Revealing the Actual Value of <span class="math inline">\(\lambda\)</span></h2>
+<hr>
+<p>We picked a value for <span class="math inline">\(\lambda\)</span> and stored it in <code>true.mean</code>. We have not revealed what the actual value of <span class="math inline">\(\lambda\)</span> is. Run the code cell below to see that actual value of <span class="math inline">\(\lambda\)</span>, and compare your answer for <span class="math inline">\(\hat{\lambda}_{\rm{MLE}}\)</span> in <a href="#question-3">Question 3</a> with the actual value of <span class="math inline">\(\lambda\)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>true.mean</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 8</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="a-formula-for-the-likelihood-function" class="level1">
+<h1>A Formula for the Likelihood Function</h1>
+<hr>
+<p>Let <span class="math inline">\(f(x; \theta)\)</span> denote the pdf of a random variable <span class="math inline">\(X\)</span> with associated parameter <span class="math inline">\(\theta\)</span>. Suppose <span class="math inline">\(X_1, X_2, \ldots , X_n\)</span> are random samples from this distribution, and <span class="math inline">\(x_1, x_2, \ldots , x_n\)</span> are the corresponding observed values.</p>
+<p><span class="math display">\[\color{dodgerblue}{\boxed{L(\theta \mid x_1, x_2, \ldots , x_n) = f(x_1; \theta) f(x_2; \theta) \ldots f(x_n; \theta) = \prod_{i=1}^n f(x_i; \theta).}}\]</span></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In the formula for the likelihood function, the values <span class="math inline">\(x_1, x_2, \ldots x_n\)</span> are fixed values, and the parameter <span class="math inline">\(\theta\)</span> is the variable in the likelihood function. We consider what happens to the value of the <span class="math inline">\(L(\theta)\)</span> when we vary the value of <span class="math inline">\(\theta\)</span>. The MLE <span class="math inline">\(\hat{\theta}_{\rm{MLE}}\)</span> is the value of <span class="math inline">\(\theta\)</span> that gives the maximum value of <span class="math inline">\(L(\theta)\)</span>.</p>
+</div>
+</div>
+</section>
+<section id="defining-the-likelihood-function-in-r" class="level1">
+<h1>Defining the Likelihood Function in R</h1>
+<hr>
+<p>In <a href="#question-2">Question 2</a> we derived an expression for the likelihood function <span class="math inline">\(L(\lambda)\)</span> given the random sample of <span class="math inline">\(n=4\)</span> values we picked from <span class="math inline">\(X \sim \mbox{Pois}( \lambda)\)</span> and stored in the vector <code>x</code>. Recall Poisson distributions have pmf</p>
+<p><span class="math display">\[f(x; \lambda) = \frac{\lambda^x e^{-\lambda}}{x!} \qquad \mbox{for } x = 0, 1, 2, \ldots .\]</span></p>
+<p>If we pick a sample of <span class="math inline">\(n=4\)</span> values we denote <span class="math inline">\(X_1 = x_1\)</span>, <span class="math inline">\(X_2 = x_2\)</span>, <span class="math inline">\(X_3 = x_3\)</span>, and <span class="math inline">\(X_4 = x_4\)</span>, then the likelihood function is</p>
+<p><span class="math display">\[L(\lambda) = L(\theta \mid x_1, x_2, \ldots , x_n) = \left( \frac{\lambda^{x_1} e^{-\lambda}}{x_1!} \right) \left( \frac{\lambda^{x_2} e^{-\lambda}}{x_2!} \right) \left( \frac{\lambda^{x_3} e^{-\lambda}}{x_3!} \right) \left( \frac{\lambda^{x_4} e^{-\lambda}}{x_4!} \right).\]</span></p>
+<p>We will use the random sample generated by the code cell below. Note <code>x</code> is a vector consisting of values <code>x[1]</code> <span class="math inline">\(=9\)</span>, <code>x[2]</code> <span class="math inline">\(=8\)</span>, <code>x[3]</code> <span class="math inline">\(=6\)</span>, and <code>x[4]</code> <span class="math inline">\(=5\)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">612</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rpois</span>(<span class="dv">4</span>, true.mean)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 9 8 6 5</code></pre>
+</div>
+</div>
+<section id="defining-the-likelihood-function-as-product" class="level2">
+<h2 class="anchored" data-anchor-id="defining-the-likelihood-function-as-product">Defining the Likelihood Function as Product</h2>
+<hr>
+<p>In the code cell below, we input the likelihood function.</p>
+<ul>
+<li>To define a symbolic function, we use the command <code>function(lam) [expr]</code>.
+<ul>
+<li>We use <code>lam</code> to denote our variable, <span class="math inline">\(\lambda\)</span>.</li>
+<li>We enter an appropriate formula in place of <code>[expr]</code>.</li>
+</ul></li>
+<li><code>[expr]</code> is the product of the <span class="math inline">\(4\)</span> pmf’s of the Poisson distribution.</li>
+<li>We name the newly created function <code>like</code>.</li>
+<li>To evaluate the function <code>like</code> at <span class="math inline">\(\lambda = 7\)</span>, we use the command <code>like(7)</code>.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>like <span class="ot">&lt;-</span> <span class="cf">function</span>(lam) lam<span class="sc">^</span>x[<span class="dv">1</span>] <span class="sc">*</span> <span class="fu">exp</span>(<span class="sc">-</span>lam)<span class="sc">/</span><span class="fu">factorial</span>(x[<span class="dv">1</span>]) <span class="sc">*</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>                      lam<span class="sc">^</span>x[<span class="dv">2</span>] <span class="sc">*</span> <span class="fu">exp</span>(<span class="sc">-</span>lam)<span class="sc">/</span><span class="fu">factorial</span>(x[<span class="dv">2</span>]) <span class="sc">*</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                      lam<span class="sc">^</span>x[<span class="dv">3</span>] <span class="sc">*</span> <span class="fu">exp</span>(<span class="sc">-</span>lam)<span class="sc">/</span><span class="fu">factorial</span>(x[<span class="dv">3</span>]) <span class="sc">*</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                      lam<span class="sc">^</span>x[<span class="dv">4</span>] <span class="sc">*</span> <span class="fu">exp</span>(<span class="sc">-</span>lam)<span class="sc">/</span><span class="fu">factorial</span>(x[<span class="dv">4</span>])</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">like</span>(<span class="dv">7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.0002515952</code></pre>
+</div>
+</div>
+</section>
+<section id="improving-the-code-for-a-likelihood-function" class="level2">
+<h2 class="anchored" data-anchor-id="improving-the-code-for-a-likelihood-function">Improving the Code for a Likelihood Function</h2>
+<hr>
+<p>If we have a sample size <span class="math inline">\(n=100\)</span> instead of <span class="math inline">\(n=4\)</span>, we would not want to code the likelihood as we did in the previous code cell. We can streamline the process using a for loop that utilizes the structure of likelihood functions:</p>
+<ul>
+<li>Each term in the product uses the same formula for the pmf.</li>
+<li>The likelihood function is a product of all the pmf’s.</li>
+</ul>
+<p>In the slot machine example, we have <span class="math inline">\(X \sim \mbox{Pois}(\lambda)\)</span> and a sample <span class="math inline">\(x_1=9\)</span>, <span class="math inline">\(x_2=8\)</span> , <span class="math inline">\(x_3=6\)</span>, and <span class="math inline">\(x_4=5\)</span>. The vectors <code>x</code> and <code>pmf</code> are therefore</p>
+<p><span class="math display">\[ x = (9, 8, 6, 5) \quad \mbox{and} \quad \mbox{pmf} = \left( \frac{\lambda^{9} e^{-\lambda}}{9!} , \frac{\lambda^{8} e^{-\lambda}}{8!} , \frac{\lambda^{6} e^{-\lambda}}{6!} , \frac{\lambda^{5} e^{-\lambda}}{5!} \right).\]</span></p>
+<p>The likelihood function <code>like</code> is the product of the entries in the vector <code>pmf</code>. We can substitute different values for the parameter <span class="math inline">\(\lambda\)</span> into the function <code>like</code> and compute different values of the likelihood function.</p>
+<ul>
+<li>Run the code cell below to compute the likelihood that <span class="math inline">\(\lambda = 7\)</span> given the sample <code>x</code>.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>like <span class="ot">&lt;-</span> <span class="cf">function</span>(lam){</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  pmf <span class="ot">&lt;-</span> lam<span class="sc">^</span>x <span class="sc">*</span> <span class="fu">exp</span>(<span class="sc">-</span>lam)<span class="sc">/</span><span class="fu">factorial</span>(x)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prod</span>(pmf)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">like</span>(<span class="dv">7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.0002515952</code></pre>
+</div>
+</div>
+<section id="sec-like-r" class="level3">
+<h3 class="anchored" data-anchor-id="sec-like-r">Using Built-In Distribution Functions</h3>
+<hr>
+<p>For many common distributions, R has built in functions to compute the values of pmf’s for many discrete random variables and pdf’s for continuous random variables. For Poisson distributions, the function <code>dpois(x, lam)</code> calculates the value of <span class="math inline">\(f(x; \lambda) = \frac{\lambda^{x} e^{-\lambda}}{x!}\)</span>.</p>
+<ul>
+<li>Therefore, we can use <code>dpois(x, lam)</code> in place of the expression <code>lam^x * exp(-lam)/factorial(x)</code>.</li>
+<li>The code cell below makes use of the <code>dpois(x, lam)</code> function and saves us the trouble of typing the formula out ourselves!</li>
+<li>Run the code to evaluate the function at <span class="math inline">\(\lambda = 7\)</span> to make sure the result is consistent with our previous functions.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>like <span class="ot">&lt;-</span> <span class="cf">function</span>(lam){</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  pmf <span class="ot">&lt;-</span> <span class="fu">dpois</span>(x, lam)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prod</span>(pmf)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">like</span>(<span class="dv">7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.0002515952</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="sec-opt-r" class="level2">
+<h2 class="anchored" data-anchor-id="sec-opt-r">Optimizing the Likelihood Function in R</h2>
+<hr>
+<p>In <a href="#question-3">Question 3</a> we used methods from calculus to find the value of <span class="math inline">\(\theta\)</span> that maximizes the likelihood function <span class="math inline">\(L(\theta)\)</span>. We can check those results using the command <code>optimize(function, interval, maximum = TRUE)</code>.</p>
+<ul>
+<li><code>function</code> is the name of the function where we stored the likelihood function.</li>
+<li><code>interval</code> is the interval of parameter values over which we maximize the likelihood function.
+<ul>
+<li>Using <code>c(0,100)</code> means we will find the maximum of <span class="math inline">\(L(\theta)\)</span> over <span class="math inline">\(0 &lt; \lambda &lt; 100\)</span>.</li>
+<li>Based on the values in our sample, we can narrow the interval to save a little computing time.</li>
+</ul></li>
+<li><code>maximum = TRUE</code> option means <code>optimize()</code> will identify the maximum of the function.
+<ul>
+<li>Note the default for <code>optimize()</code> is to find the minimum value.</li>
+</ul></li>
+<li>Run the command below to calculate <span class="math inline">\(\hat{\lambda}_{\rm{MLE}}\)</span> for the slot machine example.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">optimize</span>(like, <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100</span>), <span class="at">maximum =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$maximum
+[1] 7.000001
+
+$objective
+[1] 0.0002515952</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="a-first-look-at-properties-of-mles" class="level1">
+<h1>A First Look at Properties of MLE’s</h1>
+<hr>
+<p>The random sample <span class="math inline">\((9,8,6,5)\)</span> picked from <span class="math inline">\(X \sim \mbox{Pois}(\lambda)\)</span> gave <span class="math inline">\(\hat{\lambda}_{\rm{MLE}} = 7\)</span>. If we pick another random sample <span class="math inline">\(n=4\)</span> from the population <span class="math inline">\(X \sim \mbox{Pois}(\lambda)\)</span>, how much will our estimate for <span class="math inline">\(\hat{\lambda}_{\rm{MLE}}\)</span> change? Some desirable properties for the distribution of <span class="math inline">\(\hat{\lambda}_{\rm{MLE}}\)</span> values from different random samples would be:</p>
+<ul>
+<li>We would like the estimates to be <span style="color:dodgerblue"><strong>unbiased</strong></span>.
+<ul>
+<li>We would like, on average, <span class="math inline">\(\hat{\lambda}_{\rm{MLE}}\)</span> to equal the actual value of <span class="math inline">\(\lambda\)</span>.</li>
+<li>In other words, we would like <span class="math inline">\(\color{dodgerblue}{E \left(\hat{\lambda}_{\rm{MLE}} \right)=\lambda}\)</span>.</li>
+</ul></li>
+<li>Hopefully the values of <span class="math inline">\(\hat{\lambda}_{\rm{MLE}}\)</span> <span style="color:dodgerblue"><strong>do not vary very</strong></span> much from sample to sample.
+<ul>
+<li>One way to measure this is to consider <span class="math inline">\(\color{dodgerblue}{\mbox{Var} \left( \hat{\lambda}_{\rm{MLE}} \right)}\)</span>.</li>
+<li>The smaller <span class="math inline">\(\mbox{Var} \left( \hat{\lambda}_{\rm{MLE}} \right)\)</span> the better.</li>
+<li>The variance, <span class="math inline">\(\mbox{Var} \left( \hat{\lambda}_{\rm{MLE}} \right)\)</span>, measures the <span style="color:dodgerblue"><strong>precision</strong></span> or <span style="color:dodgerblue"><strong>variability</strong></span> of <span class="math inline">\(\hat{\lambda}_{\rm{MLE}}\)</span></li>
+</ul></li>
+<li><span style="color:dodgerblue"><strong>We hope the estimates make practical sense</strong></span>.</li>
+</ul>
+<section id="question-4" class="level2">
+<h2 class="anchored" data-anchor-id="question-4">Question 4</h2>
+<hr>
+<p>If population <span class="math inline">\(X \sim \mbox{Pois}(\lambda)\)</span> is the number of jackpot payouts a randomly selected slot machine has in one week:</p>
+<ul>
+<li>What is the practical interpretation of the value of <span class="math inline">\(\lambda\)</span>?</li>
+<li>If we pick a random sample of 4 slot machines and find <span class="math inline">\(x_1=9\)</span>, <span class="math inline">\(x_2=8\)</span> , <span class="math inline">\(x_3=6\)</span>, and <span class="math inline">\(x_4=5\)</span>, explain why an estimate <span class="math inline">\(\hat{\lambda}_{\rm{MLE}} = 7\)</span> makes practical sense.</li>
+</ul>
+<section id="solution-to-question-4" class="level3">
+<h3 class="anchored" data-anchor-id="solution-to-question-4">Solution to Question 4</h3>
+<hr>
+<p><br><br>
+<br><br>
+<br></p>
+</section>
+</section>
+<section id="picking-another-random-sample" class="level2">
+<h2 class="anchored" data-anchor-id="picking-another-random-sample">Picking Another Random Sample</h2>
+<hr>
+<p>The random sample <span class="math inline">\((9,8,6,5)\)</span> picked from <span class="math inline">\(X \sim \mbox{Pois}(\lambda)\)</span> gave <span class="math inline">\(\hat{\lambda}_{\rm{MLE}} = 7\)</span>. The actual value of <span class="math inline">\(\lambda\)</span> we revealed the <code>true.mean</code> we used was <span class="math inline">\(\lambda = 8\)</span>. Below we simulate picking another random sample of <span class="math inline">\(n=4\)</span> values from the same population, <span class="math inline">\(X \sim \mbox{Pois}(8)\)</span>. Then we will compute <span class="math inline">\(\hat{\lambda}_{\rm{MLE}}\)</span> for this sample and see if we can start to pick up on a pattern.</p>
+<ul>
+<li>Run the code cell below to generate a new random sample stored in <code>new.x</code>.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">012</span>)  <span class="co"># fixes randomization</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>new.x <span class="ot">&lt;-</span> <span class="fu">rpois</span>(<span class="dv">4</span>, <span class="dv">8</span>)  <span class="co"># pick another random sample n=4 from Pois(8)</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>new.x  <span class="co"># print results</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  4 11 13  6</code></pre>
+</div>
+</div>
+<p>The new sample is <span class="math inline">\(x_1=4\)</span>, <span class="math inline">\(x_2=11\)</span> , <span class="math inline">\(x_3=13\)</span>, and <span class="math inline">\(x_4=6\)</span>.</p>
+<ul>
+<li>Run the code cell to compute the value of <span class="math inline">\(\hat{\lambda}_{\rm{MLE}}\)</span> for this new sample.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># be sure to first run code cell above to create new.x</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>new.like <span class="ot">&lt;-</span> <span class="cf">function</span>(lam){</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  new.pmf <span class="ot">&lt;-</span> <span class="fu">dpois</span>(new.x, lam)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prod</span>(new.pmf)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="fu">optimize</span>(new.like, <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100</span>), <span class="at">maximum =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$maximum
+[1] 8.500015
+
+$objective
+[1] 1.589466e-05</code></pre>
+</div>
+</div>
+<section id="comparing-estimates" class="level3">
+<h3 class="anchored" data-anchor-id="comparing-estimates">Comparing Estimates</h3>
+<hr>
+<p>Let’s compare the two random samples and their corresponding values for the MLE estimate.</p>
+<table class="table">
+<colgroup>
+<col style="width: 36%">
+<col style="width: 63%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Sample &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</th>
+<th>Value of MLE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\((9, 8, 6, 5)\)</span></td>
+<td><span class="math inline">\(7\)</span></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\((4, 11, 13, 6)\)</span></td>
+<td><span class="math inline">\(8.5\)</span></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Neither gives the correct value for <span class="math inline">\(\lambda\)</span> which is actually 8.
+<ul>
+<li>One estimate is too small and the other is too large.</li>
+</ul></li>
+<li>We hope if we average all such MLE estimates together, we get the actual value <span class="math inline">\(\lambda = 8\)</span>.</li>
+<li>We have some sense of the variation, but generating many (10,000) random samples and looking at the distribution of many more MLE estimates will tell us more information about the variability.</li>
+</ul>
+</section>
+</section>
+<section id="analyzing-a-distribution-of-mles" class="level2">
+<h2 class="anchored" data-anchor-id="analyzing-a-distribution-of-mles">Analyzing a Distribution of MLE’s</h2>
+<hr>
+<p>The for loop in the code cell below generates a distribution of MLE’s for <span class="math inline">\(\lambda\)</span> based on 10,000 random samples size <span class="math inline">\(n=4\)</span> picked from <span class="math inline">\(X \sim \mbox{Pois}(8)\)</span>. Inside the for loop we:</p>
+<ul>
+<li>Pick a random sample size <span class="math inline">\(n=4\)</span> stored in <code>temp.x</code>.</li>
+<li>Calculate the MLE based on <code>temp.x</code> that we store in the vector <code>pois.mle</code>.</li>
+</ul>
+<p>Then we plot a histogram to display <code>pois.mle</code>, the distribution of MLE’s from the 10,000 random samples each size <span class="math inline">\(n=4\)</span></p>
+<ul>
+<li>Run the code cell below to generate and plot a distribution of MLE’s.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>pois.mle <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">10000</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10000</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  temp.x <span class="ot">&lt;-</span> <span class="fu">rpois</span>(<span class="dv">4</span>, <span class="dv">8</span>)  <span class="co"># given random sample</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  like.pois <span class="ot">&lt;-</span> <span class="cf">function</span>(lam){  <span class="co"># define likelihood function</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    pmf.pois <span class="ot">&lt;-</span> <span class="fu">dpois</span>(temp.x, lam)  </span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">prod</span>(pmf.pois)  </span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>  pois.mle[i] <span class="ot">&lt;-</span> <span class="fu">optimize</span>(like.pois, <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100</span>), <span class="at">maximum =</span> <span class="cn">TRUE</span>)<span class="sc">$</span>maximum  <span class="co"># find max of likelihood function</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(pois.mle, </span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>     <span class="at">breaks =</span> <span class="dv">20</span>,</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"MLE"</span>,</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Dist. of MLE's for Poisson Dist"</span>)</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="dv">8</span>, <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)  <span class="co"># plot at actual value of lambda</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="13-Estimation-MLE_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="question-5" class="level2">
+<h2 class="anchored" data-anchor-id="question-5">Question 5</h2>
+<hr>
+<p>Calculate the mean and variance of the distribution of MLE’s stored in <code>mle.pois</code> and interpret the results. How would you describe the shape of the distribution? What would you expect to happen to the distribution as <span class="math inline">\(n\)</span> gets larger?</p>
+<section id="solution-to-question-5" class="level3">
+<h3 class="anchored" data-anchor-id="solution-to-question-5">Solution to Question 5</h3>
+<hr>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use code cell to answer questions above</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br><br>
+<br><br>
+<br></p>
+</section>
+</section>
+</section>
+<section id="practice-finding-formulas-for-ltheta" class="level1">
+<h1>Practice: Finding Formulas for <span class="math inline">\(L(\theta)\)</span></h1>
+<hr>
+<section id="question-6" class="level2">
+<h2 class="anchored" data-anchor-id="question-6">Question 6</h2>
+<hr>
+<p>A sample <span class="math inline">\((x_1, x_2, x_3, x_4) = (1,3,3,2)\)</span> is randomly selected from <span class="math inline">\(X \sim \mbox{Binom}(3,p)\)</span>. Give a formula the likelihood function.</p>
+<section id="solution-to-question-6" class="level3">
+<h3 class="anchored" data-anchor-id="solution-to-question-6">Solution to Question 6</h3>
+<hr>
+<p><br><br>
+<br><br>
+<br></p>
+</section>
+</section>
+<section id="question-7" class="level2">
+<h2 class="anchored" data-anchor-id="question-7">Question 7</h2>
+<hr>
+<p>Give a formula the likelihood function given the sample <span class="math inline">\(x_1, x_2, x_3, \ldots, x_n\)</span> is randomly selected from <span class="math inline">\(X \sim \mbox{Exp}(\lambda)\)</span>.</p>
+<section id="solution-to-question-7" class="level3">
+<h3 class="anchored" data-anchor-id="solution-to-question-7">Solution to Question 7</h3>
+<hr>
+<p><br><br>
+<br><br>
+<br></p>
+</section>
+</section>
+</section>
+<section id="practice-maximizing-the-likelihood-function" class="level1">
+<h1>Practice: Maximizing the Likelihood Function</h1>
+<hr>
+<section id="question-8" class="level2">
+<h2 class="anchored" data-anchor-id="question-8">Question 8</h2>
+<hr>
+<p>Using your answer from <a href="#question-6">Question 6</a>, find the MLE for <span class="math inline">\(p\)</span> when <span class="math inline">\((x_1, x_2, x_3, x_4) = (1,3,3,2)\)</span> is randomly selected from <span class="math inline">\(X \sim \mbox{Binom}(3,p)\)</span>.</p>
+<section id="solution-to-question-8" class="level3">
+<h3 class="anchored" data-anchor-id="solution-to-question-8">Solution to Question 8</h3>
+<hr>
+<p><br><br>
+<br><br>
+<br></p>
+</section>
+</section>
+</section>
+<section id="steps-for-finding-mle" class="level1">
+<h1>Steps for Finding MLE</h1>
+<hr>
+<p>Steps for finding MLE, <span class="math inline">\(\hat{\theta}_{\rm MLE}\)</span>:</p>
+<ol type="1">
+<li>Find a formula the likelihood function.</li>
+</ol>
+<p><span class="math display">\[L(\theta \mid x_1, x_2, \ldots , x_n) = f(x_1; \theta) f(x_2; \theta) \ldots f(x_n; \theta) = \prod_{i=1}^n f(x_i; \theta)\]</span></p>
+<ol start="2" type="1">
+<li>Maximize the likelihood function.
+<ol type="a">
+<li>Take the derivative of <span class="math inline">\(L\)</span> with respect to <span class="math inline">\(\theta\)</span></li>
+<li>Find critical points of <span class="math inline">\(L\)</span> where <span class="math inline">\(\frac{dL}{d\theta}=0\)</span> (or is undefined).</li>
+<li>Evaluate <span class="math inline">\(L\)</span> at each critical point and identify the MLE.</li>
+</ol></li>
+<li>Check your work!</li>
+</ol>
+<section id="plotting-the-likelihood-function-for-question-8" class="level2">
+<h2 class="anchored" data-anchor-id="plotting-the-likelihood-function-for-question-8">Plotting the Likelihood Function for Question 8</h2>
+<hr>
+<p>Running the code cell below will generate a plot of the likelihood function from <a href="#question-8">Question 8</a>. We should verify the maximum of the graph coincides with our answer to <a href="#question-8">Question 8</a>. There is nothing to edit in the code cell below.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.01</span>)  <span class="co"># values of p on x-axis</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>like.binom <span class="ot">&lt;-</span> <span class="dv">9</span> <span class="sc">*</span> p<span class="sc">^</span><span class="dv">9</span> <span class="sc">*</span> (<span class="dv">1</span><span class="sc">-</span>p)<span class="sc">^</span><span class="dv">3</span>  <span class="co"># values of L(p)</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>cv <span class="ot">&lt;-</span> <span class="dv">9</span> <span class="sc">*</span> (<span class="fl">0.75</span>)<span class="sc">^</span><span class="dv">9</span> <span class="sc">*</span> (<span class="dv">1</span><span class="fl">-0.75</span>)<span class="sc">^</span><span class="dv">3</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(p, like.binom,  <span class="co"># plot p and likelihood on x and y axes</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">"l"</span>,  <span class="co"># connect plotted points with a curve</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"L(p)"</span>,  <span class="co"># y-axis label</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"p"</span>,  <span class="co"># x-axis label</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Plot of Likelihood Function"</span>)  <span class="co"># main label</span></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="at">x =</span> <span class="fl">0.75</span>, <span class="at">y =</span> cv, <span class="at">cex =</span> <span class="dv">2</span>, <span class="at">pch =</span> <span class="dv">20</span>, <span class="at">col =</span> <span class="st">"tomato"</span>)  <span class="co"># point at max</span></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>, <span class="at">at=</span><span class="fu">c</span>(<span class="fl">0.75</span>), <span class="at">label=</span><span class="st">"theta = 0.75"</span>, <span class="at">col.axis =</span> <span class="st">"tomato"</span>, <span class="at">pos=</span><span class="fl">0.0015</span>, <span class="at">cex =</span> <span class="fl">1.5</span>)  <span class="co"># marking MLE estimate</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fl">0.75</span>, <span class="at">col =</span> <span class="st">"tomato"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">2</span>)  <span class="co"># marking MLE estimate</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="13-Estimation-MLE_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="question-9" class="level2">
+<h2 class="anchored" data-anchor-id="question-9">Question 9</h2>
+<hr>
+<p>Recall the sample from <a href="#question-6">Question 6</a>. Complete the code cell below to build a formula for the likelihood function and find the value of <span class="math inline">\(\hat{p}_{\rm{MLE}}\)</span>. Run the completed code cell to check your answer in <a href="#question-8">Question 8</a>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>See earlier code for <a href="#sec-like-r">constructing the likelihood function</a> and <a href="#sec-opt-r">finding the maximum</a>.</li>
+<li>When considering the interval option for <code>optimize()</code>, keep in mind we are estimating the value of a proportion, <span class="math inline">\(p\)</span>.</li>
+</ul>
+</div>
+</div>
+<section id="solution-to-question-9" class="level3">
+<h3 class="anchored" data-anchor-id="solution-to-question-9">Solution to Question 9</h3>
+<hr>
+<p>Replace each of the four <code>??</code> in the code cell below with appropriate code. Then run the completed code to compute the MLE estimate <span class="math inline">\(\hat{p}_{\rm{MLE}}\)</span> for the sample <code>x</code> picked from <span class="math inline">\(X \sim \mbox{Binom}(3,p)\)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">2</span>)  <span class="co"># given random sample</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>like.binom <span class="ot">&lt;-</span> <span class="cf">function</span>(p){</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  pmf.binom <span class="ot">&lt;-</span> ??  <span class="co"># replace ??</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prod</span>(??)  <span class="co"># replace ??</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="fu">optimize</span>(??, ??, <span class="at">maximum =</span> <span class="cn">TRUE</span>)  <span class="co"># replace both ??</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="using-the-log-likelihood-function" class="level1">
+<h1>Using the Log-Likelihood Function</h1>
+<hr>
+<p>Logarithmic functions such as <span class="math inline">\(y = \ln{x}\)</span> are increasing functions. The larger the input <span class="math inline">\(x\)</span>, the larger the output <span class="math inline">\(y = \ln{x}\)</span> becomes. Thus, the value of <span class="math inline">\(\theta\)</span> that gives the maximum value of <span class="math inline">\(L(\theta)\)</span> will also correspond to the value of <span class="math inline">\(\theta\)</span> that gives the maximum value of the function <span class="math inline">\(y = \ln{(L(\theta))}\)</span>, and vice versa:</p>
+<blockquote class="blockquote">
+<p><span style="color:dodgerblue">The value of <span class="math inline">\(\theta\)</span> that maximizes functions <span class="math inline">\(y=\ln{(L(\theta}))\)</span> is the value of <span class="math inline">\(\theta\)</span> that maximizes <span class="math inline">\(L(\theta)\)</span>.</span></p>
+</blockquote>
+<p>We call the the natural log of the likelihood function, <span class="math inline">\(\color{dodgerblue}{y=\ln{(L(\theta}))}\)</span>, the <span style="color:dodgerblue"><strong>log-likelihood function</strong></span>.</p>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In statistics, the term “log” usually means “natural log”. The notation <span class="math inline">\(\log{()}\)</span> is often used to denote a natural log instead of using <span class="math inline">\(\ln{()}\)</span>. This can be confusing since you may have previously learned <span class="math inline">\(\log{()}\)</span> implies “log base 10”. Similarly, in R:</p>
+<ul>
+<li>The function <code>log(x)</code> is the natural log of x.</li>
+<li>The function <code>log10(x)</code> is the log base 10 of x.</li>
+</ul>
+</div>
+</div>
+<div id="fig-charts" class="cell quarto-layout-panel">
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-charts-1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="13-Estimation-MLE_files/figure-html/fig-charts-1.png" class="img-fluid figure-img" data-ref-parent="fig-charts" width="672"></p>
+<figcaption class="figure-caption">(a) Maximum of Likelihood</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-charts-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="13-Estimation-MLE_files/figure-html/fig-charts-2.png" class="img-fluid figure-img" data-ref-parent="fig-charts" width="672"></p>
+<figcaption class="figure-caption">(b) Maximum of Log-Likelihood</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;22.1: Comparing Maxima</figcaption><p></p>
+</figure>
+</div>
+<section id="why-maximize-ylnltheta-instead-of-ltheta" class="level2">
+<h2 class="anchored" data-anchor-id="why-maximize-ylnltheta-instead-of-ltheta">Why Maximize <span class="math inline">\(y=\ln{(L(\theta}))\)</span> Instead of <span class="math inline">\(L(\theta)\)</span>?</h2>
+<hr>
+<p>Consider the likelihood function from <a href="#question-7">Question 7</a>,</p>
+<p><span class="math display">\[L({\color{tomato}\lambda}) = {\color{\tomato}\lambda}^n e^{- {\color{tomato}\lambda} \sum_i x_i}.\]</span> To find the critical values, we first need to find an expression for the derivative <span class="math inline">\(\frac{d L}{d \lambda}\)</span>.</p>
+<ul>
+<li>We need to apply the product rule.</li>
+<li>We need to apply the chain rule to compute the derivative of <span class="math inline">\(e^{- {\color{tomato}\lambda} \sum_i x_i}\)</span>.</li>
+<li>After finding an expression for the derivative, we would then need to solve a complicated equation.</li>
+<li><span style="color:dodgerblue"><strong>We can use key properties of the natural log to help make the differentiation easier!</strong></span></li>
+</ul>
+</section>
+<section id="sec-log-prop" class="level2">
+<h2 class="anchored" data-anchor-id="sec-log-prop">Useful Properties of the Natural Log</h2>
+<hr>
+<p>The four properties of natural logs listed below will be helpful to recall when working with log-likelihood functions.</p>
+<ol type="1">
+<li><p><span class="math inline">\(\ln{(A \cdot B)} = \ln{A} + \ln{B}\)</span></p></li>
+<li><p><span class="math inline">\(\ln{\left( \frac{A}{B} \right)} = \ln{A} - \ln{B}\)</span></p></li>
+<li><p><span class="math inline">\(\ln{(A^k)} = k \ln{A}\)</span></p></li>
+<li><p><span class="math inline">\(\ln{e^k} = k\)</span></p></li>
+</ol>
+<p>Likelihood functions are by definition a product of functions and often involve <span class="math inline">\(e\)</span>. Taking the natural log of the likelihood function converts a product to a sum. <span style="color:dodgerblue"><strong>It is much easier to take the derivative of sums than products!</strong></span></p>
+</section>
+<section id="question-10" class="level2">
+<h2 class="anchored" data-anchor-id="question-10">Question 10</h2>
+<hr>
+<p>Give a simplified expression for the log-likelihood function corresponding to the likelihood function from the exponential distribution in <a href="#question-7">Question 7</a>,</p>
+<p><span class="math display">\[L({\color{tomato}\lambda}) = {\color{\tomato}\lambda}^n e^{- {\color{tomato}\lambda} \sum_i x_i}.\]</span></p>
+<section id="solution-to-question-10" class="level3">
+<h3 class="anchored" data-anchor-id="solution-to-question-10">Solution to Question 10</h3>
+<hr>
+<p><br><br>
+<br><br>
+<br></p>
+</section>
+</section>
+</section>
+<section id="steps-for-finding-mle-using-a-log-likelihood-function" class="level1">
+<h1>Steps for Finding MLE Using a Log-Likelihood Function</h1>
+<hr>
+<p>Steps for finding MLE, <span class="math inline">\(\hat{\theta}_{\rm MLE}\)</span>, using a log-likelihood function:</p>
+<ol type="1">
+<li>Find a formula the likelihood function.</li>
+</ol>
+<p><span class="math display">\[L(\theta \mid x_1, x_2, \ldots , x_n) = f(x_1; \theta) f(x_2; \theta) \ldots f(x_n; \theta) = \prod_{i=1}^n f(x_i; \theta)\]</span> 2. Apply the natural log to <span class="math inline">\(L(\theta)\)</span> to derive the log-likelihood function <span class="math inline">\(y = \ln{(L(\theta))}\)</span>. Simplify using <a href="#sec-log-prop">properties of the natural log</a> before moving to the next step.</p>
+<ol start="3" type="1">
+<li>Maximize the log-likelihood function.
+<ol type="a">
+<li>Take the derivative of <span class="math inline">\(y=\ln{(L(\theta))}\)</span> with respect to <span class="math inline">\(\theta\)</span></li>
+<li>Find critical points of the log-likelihood function where <span class="math inline">\(\frac{dy}{d\theta}=0\)</span> (or is undefined).</li>
+<li>Evaluate the log-likelihood function <span class="math inline">\(y=\ln{(L(\theta))}\)</span> at each critical point and identify the MLE.</li>
+</ol></li>
+<li>Check your work!</li>
+</ol>
+<section id="question-11" class="level2">
+<h2 class="anchored" data-anchor-id="question-11">Question 11</h2>
+<hr>
+<p>Find a general formula for the MLE of <span class="math inline">\(\lambda\)</span> when <span class="math inline">\(x_1, x_2, x_3, \ldots, x_n\)</span> comes from <span class="math inline">\(X \sim \mbox{Exp}(\lambda)\)</span>. Your answer will depend on the <span class="math inline">\(x_i\)</span>’s.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Maximize the log-likelihood function from <a href="#question-10">Question 10</a>.</li>
+<li>Be sure you simplify the log-likelihood before taking the derivative.</li>
+<li>Recall <span class="math inline">\(\lambda\)</span> is the variable when differentiating, and treat each <span class="math inline">\(x_i\)</span> as a constant.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="solution-to-question-11" class="level2">
+<h2 class="anchored" data-anchor-id="solution-to-question-11">Solution to Question 11</h2>
+<hr>
+<p><br><br>
+<br><br>
+<br></p>
+</section>
+</section>
+<section id="analytic-results" class="level1">
+<h1>Analytic Results</h1>
+<hr>
+<p>In <a href="#question-11">Question 11</a>, we found a general formula for <span class="math inline">\(\hat{\lambda}_{\rm{MLE}}\)</span>, the MLE of exponential distributions in general. We cannot use R to numerically check our analytic results since our result is a formula that depends on the values of the <span class="math inline">\(x_i\)</span>’s. We can test our formula on many different random samples and check to make sure our formula gives consistent answers with numeric solutions in R. Using calculus to derive the general formula for <span class="math inline">\(\hat{\lambda}_{\rm{MLE}}\)</span> in <a href="#question-11">Question 11</a> is incredibly convenient since now we have a “shortcut” formula that we can use for finding MLE estimates for any random sample from an exponential distributions.</p>
+<section id="question-12" class="level2">
+<h2 class="anchored" data-anchor-id="question-12">Question 12</h2>
+<hr>
+<p>Find a general formula for the MLE of <span class="math inline">\(\lambda\)</span> when <span class="math inline">\(x_1, x_2, x_3, \ldots, x_n\)</span> comes from <span class="math inline">\(X \sim \mbox{Pois}(\lambda)\)</span>. Your answer will depend on the <span class="math inline">\(x_i\)</span>’s.</p>
+<section id="solution-to-question-12" class="level3">
+<h3 class="anchored" data-anchor-id="solution-to-question-12">Solution to Question 12</h3>
+<hr>
+<p><br><br>
+<br><br>
+<br></p>
+</section>
+</section>
+<section id="question-13" class="level2">
+<h2 class="anchored" data-anchor-id="question-13">Question 13</h2>
+<hr>
+<p>Suppose a random variable with <span class="math inline">\(X_1=5\)</span>, <span class="math inline">\(X_2=9\)</span>, <span class="math inline">\(X_3=9\)</span>, and <span class="math inline">\(X_4=10\)</span> is drawn from a distribution with pdf</p>
+<p><span class="math display">\[f(x; \theta) = \frac{\theta}{2\sqrt{x}}e^{-\theta \sqrt{x}}, \quad \mbox{where x $&gt;0$}.\]</span></p>
+<p>Find an MLE for <span class="math inline">\(\theta\)</span>.</p>
+<section id="solution-to-question-13" class="level3">
+<h3 class="anchored" data-anchor-id="solution-to-question-13">Solution to Question 13</h3>
+<hr>
+<p><br><br>
+<br><br>
+<br></p>
+</section>
+</section>
+<section id="question-14" class="level2">
+<h2 class="anchored" data-anchor-id="question-14">Question 14</h2>
+<hr>
+<p>Consider the random sample of <span class="math inline">\(n=40\)</span> values picked from a geometric distribution <span class="math inline">\(X \sim \mbox{Geom}(p)\)</span> that are stored in the vector <code>x.geom</code>. Note the proportion <code>true.p</code> is unknown for now.</p>
+<ul>
+<li>Run the code cell below to generate a random value for <code>true.p</code> (which is hidden) and create <code>x.geom</code> which is printed to the screen.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">117</span>)  <span class="co"># fixes randomization of true.p and x.geom</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>true.p <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">seq</span>(<span class="fl">0.1</span>, <span class="fl">0.9</span>, <span class="fl">0.1</span>), <span class="at">size=</span><span class="dv">1</span>)  <span class="co"># true.p hidden for now</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>x.geom <span class="ot">&lt;-</span> <span class="fu">rgeom</span>(<span class="dv">40</span>, true.p)  <span class="co"># generate a random sample n=40  </span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>x.geom</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  8  0  5  2  1  1  4  2 12  3  0  1  7  2  0  0  3 14  2  3  1  0  2  5  2
+[26]  6  4  3  2  1  2  5  0  3  1  4  0  1  0  0</code></pre>
+</div>
+</div>
+<section id="question-14a" class="level3">
+<h3 class="anchored" data-anchor-id="question-14a">Question 14a</h3>
+<hr>
+<p>Based on the sample stored in <code>x.geom</code> in the previous code cell, find the MLE estimate for <span class="math inline">\(\hat{p}_{\rm{MLE}}\)</span>.</p>
+<ul>
+<li>Complete and run the partially completed R code cell below.</li>
+</ul>
+<section id="solution-to-question-14a" class="level4">
+<h4 class="anchored" data-anchor-id="solution-to-question-14a">Solution to Question 14a</h4>
+<hr>
+<p>Replace each of the four <code>??</code> in the code cell below with appropriate code. Then run the completed code to compute the MLE estimate <span class="math inline">\(\hat{p}_{\rm{MLE}}\)</span> for the sample (size <span class="math inline">\(n=40)\)</span> <code>x.geom</code> randomly selected from <span class="math inline">\(X \sim \mbox{Geom}(p)\)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># be sure you first run code cell above to define x.geom</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>like.geom <span class="ot">&lt;-</span> <span class="cf">function</span>(p){</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  pmf.geom <span class="ot">&lt;-</span> ??  <span class="co"># replace ??</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">prod</span>(??)  <span class="co"># replace ??</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="fu">optimize</span>(??, ??, <span class="at">maximum =</span> <span class="cn">TRUE</span>)  <span class="co"># replace both ??</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="question-14b" class="level3">
+<h3 class="anchored" data-anchor-id="question-14b">Question 14b</h3>
+<hr>
+<p>Complete the partially completed code cell below to generate a plot of a distribution of MLE’s for <span class="math inline">\(\hat{p}_{\rm{MLE}}\)</span> based on 10,000 randomly selected samples from <span class="math inline">\(X \sim \mbox{Geom}(p)\)</span>.</p>
+<section id="solution-to-question-14b" class="level4">
+<h4 class="anchored" data-anchor-id="solution-to-question-14b">Solution to Question 14b</h4>
+<hr>
+<p>Replace each of the five <code>??</code> in the code cell below with appropriate code. Then run the completed code to create and plot a distribution of MLE’s for samples size <span class="math inline">\(n=40\)</span> from <span class="math inline">\(X \sim \mbox{Geom}(p)\)</span>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>mle.geom <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">10000</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10000</span>)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  x.temp <span class="ot">&lt;-</span> ??  <span class="co"># replace ??, pick random sample size n=40</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  geom.like <span class="ot">&lt;-</span> <span class="cf">function</span>(p){</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>    geom.pmf <span class="ot">&lt;-</span> ??  <span class="co"># replace ??</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">prod</span>(??)  <span class="co"># replace ??</span></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>  mle.geom[i] <span class="ot">&lt;-</span> <span class="fu">optimize</span>(??, ??, <span class="at">maximum =</span> <span class="cn">TRUE</span>)<span class="sc">$</span>maximum  <span class="co"># replace both ??</span></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(mle.geom, </span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>     <span class="at">breaks =</span> <span class="dv">20</span>,</span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"MLE"</span>,</span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Dist. of MLE's"</span>)</span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> true.p, <span class="at">col =</span> <span class="st">"dodgerblue"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)  <span class="co"># actual value of p</span></span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> true.p, <span class="at">col =</span> <span class="st">"tomato"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)  <span class="co"># expected value of MLE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="question-14c" class="level3">
+<h3 class="anchored" data-anchor-id="question-14c">Question 14c</h3>
+<hr>
+<p>Based on the distribution of MLE’s in <a href="#question-14b">Question 14b</a>, do you believe the estimator <span class="math inline">\(\hat{p}_{\rm{MLE}}\)</span> is unbiased or biased? Explain why or why not.</p>
+</section>
+<section id="solution-to-question-14c" class="level3">
+<h3 class="anchored" data-anchor-id="solution-to-question-14c">Solution to Question 14c</h3>
+<hr>
+<p><br><br>
+<br><br>
+<br></p>
+</section>
+</section>
+</section>
+<section id="summary-of-results-from-common-distributions" class="level1">
+<h1>Summary of Results from Common Distributions</h1>
+<hr>
+<p>So far we have observed:</p>
+<ul>
+<li><p><strong>Poisson distributions:</strong> <span class="math inline">\(X \sim \mbox{Pois}(\lambda)\)</span> have <span class="math inline">\(\displaystyle \hat{\lambda}_{\rm MLE} = \bar{x}\)</span></p></li>
+<li><p><strong>Binomial distributions:</strong> <span class="math inline">\(X \sim \mbox{Binom}(n,p)\)</span> have <span class="math inline">\(\displaystyle \hat{p}_{\rm MLE} = \hat{p}\)</span>.</p></li>
+<li><p><strong>Exponential distributions:</strong> <span class="math inline">\(X \sim \mbox{Exp}(\lambda)\)</span> have <span class="math inline">\(\displaystyle \hat{\lambda}_{\rm MLE} = \frac{1}{\bar{x}}\)</span>.</p></li>
+<li><p><strong>Geometric distributions:</strong> <span class="math inline">\(X \sim \mbox{Geom}(p)\)</span> have <span class="math inline">\(\displaystyle \hat{p}_{\rm MLE} = \frac{1}{\bar{x}}\)</span>.</p></li>
+</ul>
+<p>For <strong>normal distributions</strong> <span class="math inline">\(X \sim N(\mu, \sigma)\)</span>, the maximum likelihood estimates of <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\theta\)</span> are <span class="math display">\[\hat{\mu}_{\rm{MLE}} = \frac{1}{n} \sum_{i=1}^n x_i = \bar{x} \quad \mbox{ and } \quad \hat{\sigma}_{\rm{MLE}} = \sqrt{\frac{1}{n} \sum_{i=1}^n (x_i - \bar{x})^2}.\]</span></p>
+<ul>
+<li>See <a href="https://towardsdatascience.com/maximum-likelihood-estimation-explained-normal-distribution-6207b322e47f">this post</a> for a derivation of the MLE formulas for <span class="math inline">\(\hat{\mu}_{\rm{MLE}}\)</span> and <span class="math inline">\(\hat{\sigma}_{\rm{MLE}}\)</span>.</li>
+<li><a href="https://online.stat.psu.edu/stat415/lesson/1/1.2">These materials from Penn State</a> also explain how to derive the MLE formulas for <span class="math inline">\(\hat{\mu}_{\rm{MLE}}\)</span> and <span class="math inline">\(\hat{\sigma}_{\rm{MLE}}\)</span>.</li>
+</ul>
+</section>
+<section id="recap-of-maximum-likelihood-estimates" class="level1">
+<h1>Recap of Maximum Likelihood Estimates</h1>
+<hr>
+<ul>
+<li><span style="color:dodgerblue"><strong>MLE’s give reasonable estimates that make sense!</strong></span></li>
+<li>MLE’s are often good estimators since they satisfy several nice properties
+<ul>
+<li><span style="color:dodgerblue"><em>Consistency</em></span>: As we get more data (sample size goes to infinity), the estimator becomes more and more accurate and converges to the actual value of <span class="math inline">\(\theta\)</span>.</li>
+<li><span style="color:dodgerblue"><em>Normality</em></span>: As we get more data, the distribution of MLE’s converge to a normal distribution.</li>
+<li><span style="color:dodgerblue"><em>Variability</em></span>: They have the smallest possible variance for a consistent estimator.</li>
+</ul></li>
+<li><span style="color:tomato"><strong>The downside is finding MLE’s are not always easy (or possible).</strong></span></li>
+</ul>
+<hr>
+<p><img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" class="img-fluid" alt="Creative Commons License"> <nbsp></nbsp></p>
+<p><em>Statistical Methods: Exploring the Uncertain</em> by <a href="https://github.com/CU-Denver-MathStats-OER/Statistical-Theory">Adam Spiegler</a> is licensed under a <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./12-Sampling-Dist-Other.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">3.3: Sampling Distributions of Other Statistics</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./14-Estimation-MOM.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-title">4.2: Method of Moments Estimates</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Statistical Methods: Exploring the Uncertain by Adam Spiegler</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right"><img src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" class="img-fluid" alt="Creative Commons License"> <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-N-SA 4.0</a></div>
+  </div>
+</footer>
+
+
+
+</body></html>
