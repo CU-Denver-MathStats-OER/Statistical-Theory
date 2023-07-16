@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Statistical Methods: Exploring the Uncertain - 3.1: Sampling Distribution of Means</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./11-Sampling-Dist-Prop.html" rel="next">
+<link href="./09-Joint-Distributions.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10-Sampling-Dist-Mean.html">Chapter 3: Sampling Distributions</a></li><li class="breadcrumb-item"><a href="./10-Sampling-Dist-Mean.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">3.1: Sampling Distribution of Means</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Statistical Methods: Exploring the Uncertain</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Chapter 1: Exploring Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-Intro-to-Inference.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1.1: Introduction to Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-EDA-Categorical.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1.2: Exploring Categorical Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-EDA-Quantitative.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1.3: Exploring Quantitative Data</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Chapter 2: Probability Essentials</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-Overview-of-Probability.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.1: An Overview of Probability</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-Intro-to-Random-Variables.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.2: Introduction to Random Variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-Expected-Value-and-Variance.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.3: Expected Value and Variance</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-Common-Discrete-RandVar.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.4: Common Discrete Distributions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-Common-Continuous-Distributions.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.5: Common Continuous Distributions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-Joint-Distributions.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.6: Joint Distributions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Chapter 3: Sampling Distributions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-Sampling-Dist-Mean.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">3.1: Sampling Distribution of Means</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-Sampling-Dist-Prop.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3.2: Sampling Distributions for Proportions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-Sampling-Dist-Other.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3.3: Sampling Distributions of Other Statistics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Chapter 4: Estimation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-Estimation-MLE.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4.1: Maximum Likelihood Estimation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-Estimation-MOM.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4.2: Method of Moments Estimates</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-Properties-Estimators.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4.3: Properties of Estimators</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Chapter 5: Interval Estimates</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-Bootstrap-Dist.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5.1: Bootstrap Distributions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-Bootstrap-Confidence-Int.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5.2: Bootstrap Confidence Intervals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./18-Bootstrap-Other-Stats.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5.3: Bootstrapping Comparitive Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./19-Parametric-CI-Means.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5.4: Parametric Confidence Intervals for Means</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./20-Parametric-CI-Proportions.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5.5: Parametric Confidence Intervals for Proportions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">Chapter 6: Hypothesis Tests</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21-Intro-Hypothesis-Tests.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6.1: Introduction to Hypothesis Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./22-Permutation-Tests.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6.2: Permutation Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./23-Hypothesis-Single-Population.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6.3: Parametric Hypothesis Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./24-Hypothesis-Comparing-Two.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6.4: Parametric Test for Two Populations</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Installing-R-and-RStudio.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Installing R and RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Intro-to-Vectors-Dataframes.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Fundamentals of Working with Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Overview-of-Plots.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">An Overview of Plotting Data in R</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#question-1" id="toc-question-1" class="nav-link active" data-scroll-target="#question-1">Question 1</a>
+  <ul class="collapse">
+  <li><a href="#solution-to-question-1" id="toc-solution-to-question-1" class="nav-link" data-scroll-target="#solution-to-question-1">Solution to Question 1</a></li>
+  </ul></li>
+  <li><a href="#the-population-data-for-bmi" id="toc-the-population-data-for-bmi" class="nav-link" data-scroll-target="#the-population-data-for-bmi">The Population Data for BMI</a>
+  <ul class="collapse">
+  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a>
+  <ul class="collapse">
+  <li><a href="#solution-to-question-2" id="toc-solution-to-question-2" class="nav-link" data-scroll-target="#solution-to-question-2">Solution to Question 2</a></li>
+  </ul></li>
+  <li><a href="#picking-one-random-sample" id="toc-picking-one-random-sample" class="nav-link" data-scroll-target="#picking-one-random-sample">Picking One Random Sample</a></li>
+  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3</a>
+  <ul class="collapse">
+  <li><a href="#solution-to-question-3" id="toc-solution-to-question-3" class="nav-link" data-scroll-target="#solution-to-question-3">Solution to Question 3</a></li>
+  </ul></li>
+  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4">Question 4</a>
+  <ul class="collapse">
+  <li><a href="#solution-to-question-4" id="toc-solution-to-question-4" class="nav-link" data-scroll-target="#solution-to-question-4">Solution to Question 4</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#sampling-distribution-for-bmi-means-with-n4" id="toc-sampling-distribution-for-bmi-means-with-n4" class="nav-link" data-scroll-target="#sampling-distribution-for-bmi-means-with-n4">Sampling Distribution for BMI Means with <span class="math inline">\(n=4\)</span></a>
+  <ul class="collapse">
+  <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5">Question 5</a>
+  <ul class="collapse">
+  <li><a href="#solution-to-question-5" id="toc-solution-to-question-5" class="nav-link" data-scroll-target="#solution-to-question-5">Solution to Question 5</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#shape-of-the-sampling-distribution" id="toc-shape-of-the-sampling-distribution" class="nav-link" data-scroll-target="#shape-of-the-sampling-distribution">Shape of the Sampling Distribution</a>
+  <ul class="collapse">
+  <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6">Question 6</a>
+  <ul class="collapse">
+  <li><a href="#solution-to-question-6" id="toc-solution-to-question-6" class="nav-link" data-scroll-target="#solution-to-question-6">Solution to Question 6</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#sec-train" id="toc-sec-train" class="nav-link" data-scroll-target="#sec-train">Sampling from a Skewed Distribution</a>
+  <ul class="collapse">
+  <li><a href="#question-7" id="toc-question-7" class="nav-link" data-scroll-target="#question-7">Question 7</a>
+  <ul class="collapse">
+  <li><a href="#solution-to-question-7" id="toc-solution-to-question-7" class="nav-link" data-scroll-target="#solution-to-question-7">Solution to Question 7</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#working-with-empirical-data-earthquake-depth" id="toc-working-with-empirical-data-earthquake-depth" class="nav-link" data-scroll-target="#working-with-empirical-data-earthquake-depth">Working with Empirical Data: Earthquake Depth</a>
+  <ul class="collapse">
+  <li><a href="#numerical-summary-of-quakes-data" id="toc-numerical-summary-of-quakes-data" class="nav-link" data-scroll-target="#numerical-summary-of-quakes-data">Numerical Summary of Quakes Data</a></li>
+  <li><a href="#graphical-summary-of-depth-of-quakes" id="toc-graphical-summary-of-depth-of-quakes" class="nav-link" data-scroll-target="#graphical-summary-of-depth-of-quakes">Graphical Summary of Depth of Quakes</a></li>
+  <li><a href="#question-8" id="toc-question-8" class="nav-link" data-scroll-target="#question-8">Question 8</a>
+  <ul class="collapse">
+  <li><a href="#solution-to-question-8" id="toc-solution-to-question-8" class="nav-link" data-scroll-target="#solution-to-question-8">Solution to Question 8</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#notation-for-population-sample-and-sampling-distribution" id="toc-notation-for-population-sample-and-sampling-distribution" class="nav-link" data-scroll-target="#notation-for-population-sample-and-sampling-distribution">Notation for Population, Sample, and Sampling Distribution</a></li>
+  <li><a href="#organizing-observations-about-sampling-distributions" id="toc-organizing-observations-about-sampling-distributions" class="nav-link" data-scroll-target="#organizing-observations-about-sampling-distributions">Organizing Observations about Sampling Distributions</a>
+  <ul class="collapse">
+  <li><a href="#question-9" id="toc-question-9" class="nav-link" data-scroll-target="#question-9">Question 9</a>
+  <ul class="collapse">
+  <li><a href="#solution-to-question-9" id="toc-solution-to-question-9" class="nav-link" data-scroll-target="#solution-to-question-9">Solution to Question 9</a></li>
+  </ul></li>
+  <li><a href="#question-10" id="toc-question-10" class="nav-link" data-scroll-target="#question-10">Question 10</a>
+  <ul class="collapse">
+  <li><a href="#solution-to-question-10" id="toc-solution-to-question-10" class="nav-link" data-scroll-target="#solution-to-question-10">Solution to Question 10</a></li>
+  </ul></li>
+  <li><a href="#question-11" id="toc-question-11" class="nav-link" data-scroll-target="#question-11">Question 11</a>
+  <ul class="collapse">
+  <li><a href="#solution-to-question-11" id="toc-solution-to-question-11" class="nav-link" data-scroll-target="#solution-to-question-11">Solution to Question 11</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#sec-cltmeans" id="toc-sec-cltmeans" class="nav-link" data-scroll-target="#sec-cltmeans">Formal Statement of the Central Limit Theorem (for Sample Means)</a>
+  <ul class="collapse">
+  <li><a href="#question-12" id="toc-question-12" class="nav-link" data-scroll-target="#question-12">Question 12</a>
+  <ul class="collapse">
+  <li><a href="#solution-to-question-12" id="toc-solution-to-question-12" class="nav-link" data-scroll-target="#solution-to-question-12">Solution to Question 12</a></li>
+  </ul></li>
+  <li><a href="#question-13" id="toc-question-13" class="nav-link" data-scroll-target="#question-13">Question 13</a>
+  <ul class="collapse">
+  <li><a href="#solution-to-question-13" id="toc-solution-to-question-13" class="nav-link" data-scroll-target="#solution-to-question-13">Solution to Question 13</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-title">3.1: Sampling Distribution of Means</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p><a href="https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap3/10-Sampling-Dist-Mean.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid" alt="Open In Colab"></a> <nbsp></nbsp></p>
+<hr>
+<p>A <span style="color:dodgerblue"><strong>sampling distribution</strong></span> is the distribution of sample statistics (such as a mean, proportion, median, maximum, etc.) computed for <strong>different samples of the same size from the same population</strong>. A sampling distribution shows us how much the sample statistic varies from sample to sample. The exercises in this section compare the sampling distributions for means from different populations with differently shaped distributions.</p>
+<section id="question-1" class="level2">
+<h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
+<hr>
+<p>Consider three distributions:</p>
+<ul>
+<li>Let <span class="math inline">\(X\)</span> denote the distribution of Body Mass Index (BMI) of all adult men.</li>
+<li>Let <span class="math inline">\(Y\)</span> denote all times (in minutes) that people wait before their train arrives at a certain train station.</li>
+<li>Let <span class="math inline">\(Z\)</span> denote the depth (in km) of all earthquakes that have occurred near Fiji since 1964.</li>
+</ul>
+<p>For each population <span class="math inline">\(X\)</span>, <span class="math inline">\(Y\)</span>, and <span class="math inline">\(Z\)</span>, do you believe the distribution will be approximately symmetric, skewed left, skewed right, or whether you are not sure what to expect. For each population, explain how you determined your answer.</p>
+<section id="solution-to-question-1" class="level3">
+<h3 class="anchored" data-anchor-id="solution-to-question-1">Solution to Question 1</h3>
+<hr>
+<ul>
+<li>Shape of population <span class="math inline">\(X\)</span>:</li>
+</ul>
+<p><br>
+</p>
+<ul>
+<li>Shape of population <span class="math inline">\(Y\)</span>:</li>
+</ul>
+<p><br>
+</p>
+<ul>
+<li>Shape of population <span class="math inline">\(Z\)</span>:</li>
+</ul>
+<p><br>
+<br>
+</p>
+</section>
+</section>
+<section id="the-population-data-for-bmi" class="level1">
+<h1>The Population Data for BMI</h1>
+<hr>
+<p>Let <span class="math inline">\(X\)</span> denote the distribution of BMI of all adult men. We can approximate this distribution by <span class="math inline">\(X \sim N(26, 4)\)</span>. First, we generate a vector of 100 BMI values that we store in <code>bmi</code>. The 100 BMI values go from a minimum value that is 4 standard deviations below the mean, <span class="math inline">\(26-4 \cdot 4 = 10\)</span>, up to a maximum value that is 4 standard deviations above the mean, <span class="math inline">\(26+4 \cdot 4 = 42\)</span>. Run the code cell below to create the vector of BMI values.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>bmi <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">26</span> <span class="sc">-</span> <span class="dv">4</span><span class="sc">*</span><span class="dv">4</span>, <span class="dv">26</span> <span class="sc">+</span> <span class="dv">4</span><span class="sc">*</span><span class="dv">4</span>, <span class="at">length=</span><span class="dv">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Running the code cell will not result in any output printed to the screen. The output is stored in <code>bmi</code>.</p>
+</div>
+</div>
+<section id="question-2" class="level2">
+<h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
+<hr>
+<p>The code cell below generates a plot to display the distribution of BMI values. <span class="math inline">\(X\)</span>. Before running the code cell:</p>
+<ul>
+<li>Interpret each line of the code.</li>
+<li>Add comments to explain what each command will do.</li>
+</ul>
+<p>After adding your comments, run the code cell and check the output looks reasonable.</p>
+<section id="solution-to-question-2" class="level3">
+<h3 class="anchored" data-anchor-id="solution-to-question-2">Solution to Question 2</h3>
+<hr>
+<p>Replace each <code>??</code> in the code cell below with an appropriate comment to explain what the code is doing.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add your comment to explain the command below</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>pdf.bmi <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(bmi, <span class="dv">26</span>, <span class="dv">4</span>)  <span class="co"># ??</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(bmi,  <span class="co"># bmi values are plotted on x-axis</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>     pdf.bmi,  <span class="co"># corresponding heights plotted on y-axis</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">type=</span><span class="st">"l"</span>,  <span class="co"># plot type "l" will connect points with a line </span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">lty=</span><span class="dv">1</span>,  <span class="co"># lty=1 plots solid line</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="do">#################################################    </span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#  add comments to explain each of the remaining options</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="do">#################################################</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"Body Mass Index (BMI)"</span>,  <span class="co"># ??</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">"Density"</span>,  <span class="co"># ??</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">"Distribution of Population"</span>)  <span class="co"># ??</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="10-Sampling-Dist-Mean_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>After running the code, be sure the output looks correct.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="picking-one-random-sample" class="level2">
+<h2 class="anchored" data-anchor-id="picking-one-random-sample">Picking One Random Sample</h2>
+<hr>
+<p>We can use the command <code>rnorm(n, mean, sd)</code> to pick a random sample of size <span class="math inline">\(n\)</span> from a normal distribution <span class="math inline">\(N(\mu, \sigma)\)</span>.</p>
+</section>
+<section id="question-3" class="level2">
+<h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
+<hr>
+<p>Replace the question mark in the code cell below to randomly select 4 individual BMI’s from the population <span class="math inline">\(X \sim N(26,4)\)</span>.</p>
+<section id="solution-to-question-3" class="level3">
+<h3 class="anchored" data-anchor-id="solution-to-question-3">Solution to Question 3</h3>
+<hr>
+<p>Edit and run the code cell below.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># enter a command to randomly picks 4 values from N(26,4)</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>my.sample <span class="ot">&lt;-</span> ??</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>my.sample  <span class="co"># print your sample to the screen</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="question-4" class="level2">
+<h2 class="anchored" data-anchor-id="question-4">Question 4</h2>
+<hr>
+<p>Calculate the mean and standard deviation of your sample stored in <code>my.sample</code> using the code below. After computing the statistics to summarize your sample, consider the following questions:</p>
+<ul>
+<li>How do your sample statistics compare to the population parameters <span class="math inline">\(\mu = 26\)</span> and <span class="math inline">\(\sigma =4\)</span>?</li>
+<li>How do expect your sample statistics will compare to the statistics that others in class obtain from their own random samples?</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># enter a command to compute the mean of my.sample</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># enter a command to compute the st. dev. of my.sample</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="solution-to-question-4" class="level3">
+<h3 class="anchored" data-anchor-id="solution-to-question-4">Solution to Question 4</h3>
+<hr>
+<p>After checking the output of the code cell above, be sure to address the two questions in the bullets above.</p>
+<p><br>
+<br>
+<br>
+</p>
+</section>
+</section>
+</section>
+<section id="sampling-distribution-for-bmi-means-with-n4" class="level1">
+<h1>Sampling Distribution for BMI Means with <span class="math inline">\(n=4\)</span></h1>
+<hr>
+<p>A sample of <span class="math inline">\(n=4\)</span> adult men are randomly selected. The mean BMI of the sample is calculated using the formula for a sample mean:</p>
+<p><span class="math display">\[\bar{x} = \frac{x_1 + x_2 + x_3+x_4}{4}.\]</span></p>
+<p>Then we repeat this process many, many times:</p>
+<ol type="1">
+<li>Pick a random sample of <span class="math inline">\(n=4\)</span> adult men from the population.</li>
+<li>Calculate the sample mean of the new sample.</li>
+<li>Repeat over and over again (for example 1,000 times).</li>
+</ol>
+<p>The <span style="color:dodgerblue"><strong>sampling distribution of the means</strong></span> is the distribution of all sample means obtained by repeatedly picking random samples each of size <span class="math inline">\(n\)</span>.</p>
+<ul>
+<li>It is important to note that <strong>each sample must have the same size</strong>, <span class="math inline">\(n\)</span>.</li>
+<li>The sampling distribution for the mean is the distribution of all possible random samples.
+<ul>
+<li>It is extremely difficult and time intensive to write and run code that generates every possible random sample once, without any duplicates.</li>
+<li>In practice, we generate many (say 1,000) such random samples to approximate the sampling distribution.</li>
+</ul></li>
+</ul>
+<p>A sampling distribution for the mean BMI for <span class="math inline">\(n=4\)</span> can be constructed with the code below.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># creates an empty vector to store results</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>n4.bmi.bar <span class="ot">&lt;-</span> <span class="fu">numeric</span>(<span class="dv">1000</span>) </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># a for loop that generates 1000 random samples </span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># each size n=4, and calculates the sample mean.</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  n4.bmi.sample <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">4</span>, <span class="dv">26</span>, <span class="dv">4</span>)  <span class="co"># randomly picks 4 values from N(26,4)</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  n4.bmi.bar[i] <span class="ot">&lt;-</span> <span class="fu">mean</span>(n4.bmi.sample)  <span class="co"># calculate sample mean</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the sampling distribution as a histogram</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(n4.bmi.bar, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">14</span>, <span class="dv">38</span>), </span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Mean BMI of Sample"</span>,</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Sampling Distribution of Mean BMI for n=4"</span>,</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>     <span class="at">xaxt=</span><span class="st">'n'</span>)</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>, <span class="at">at=</span><span class="fu">seq</span>(<span class="dv">14</span>, <span class="dv">38</span>, <span class="dv">4</span>), <span class="at">pos=</span><span class="dv">0</span>)  <span class="co"># sets ticks on x-axis</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="dv">26</span>, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">2</span>)  <span class="co"># draws vertical line at mu</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="10-Sampling-Dist-Mean_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<section id="question-5" class="level2">
+<h2 class="anchored" data-anchor-id="question-5">Question 5</h2>
+<hr>
+<p>In the code cell below, enter commands to compute the center (as measured by the mean) and spread (as measured by the standard deviation) of the sampling distribution created in the previous code cell with samples each size <span class="math inline">\(n=4\)</span>. After computing the statistics to summarize your sampling distribution, comment on how these values compare to the population parameters <span class="math inline">\(\mu=26\)</span> and <span class="math inline">\(\sigma =4\)</span>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Sample means from the previous code cell are stored in the vector <code>n4.bmi.bar</code>.</p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># enter a command to compute the mean of the sampling dist</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># enter a command to compute the st. dev. of the sampling dist</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="solution-to-question-5" class="level3">
+<h3 class="anchored" data-anchor-id="solution-to-question-5">Solution to Question 5</h3>
+<hr>
+<p>After completing and running the code cell above, comment on how the output compares to the mean and standard deviation of the population <span class="math inline">\(X\)</span>.</p>
+<p><br>
+<br>
+<br>
+</p>
+</section>
+</section>
+</section>
+<section id="shape-of-the-sampling-distribution" class="level1">
+<h1>Shape of the Sampling Distribution</h1>
+<hr>
+<p>We can use a <span style="color:dodgerblue"><strong>quantile-quantile plot</strong></span> (also called a <span style="color:dodgerblue"><strong>qq-plot</strong></span>) to compare the shape of our sampling distribution to the standard normal distribution <span class="math inline">\(N(0,1)\)</span>. A qq-plot is a great tool for determining how “normal” a distribution is, and we will shortly explore how to read qq-plots plots more carefully. For now we only consider the the following:</p>
+<ul>
+<li>The closer the points are to the line, the more normal the distribution.</li>
+</ul>
+<p>Run the code cell below to generate a qq-plot for the sampling distribution for the mean.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(n4.bmi.bar)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(n4.bmi.bar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="10-Sampling-Dist-Mean_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The plot above seems mostly normal in the middle, but the tails are slightly deviating from the tails of a normal distribution.</p>
+</div>
+</div>
+<section id="question-6" class="level2">
+<h2 class="anchored" data-anchor-id="question-6">Question 6</h2>
+<hr>
+<p>Open the app <a href="https://adamspiegler.shinyapps.io/clt_bmi/" class="uri">https://adamspiegler.shinyapps.io/clt_bmi/</a> to experiment with changing the sample size <span class="math inline">\(n\)</span> used when constructing a sampling distribution for the mean BMI. In particular, explore the following properties of the sampling distribution for the mean BMI:</p>
+<ul>
+<li>What is the shape of the sampling distribution?</li>
+<li>What is the mean of the sampling distribution?</li>
+<li>What is the standard deviation of the sampling distribution?</li>
+<li>How does the population change when generating different sampling distributions?</li>
+</ul>
+<p>Fill in values that describe these properties of the sampling distribution for <span class="math inline">\(n=4\)</span>, <span class="math inline">\(n=9\)</span>, <span class="math inline">\(n=16\)</span>, and <span class="math inline">\(n=81\)</span>.</p>
+<section id="solution-to-question-6" class="level3">
+<h3 class="anchored" data-anchor-id="solution-to-question-6">Solution to Question 6</h3>
+<hr>
+<p><br>
+</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Property</th>
+<th>Population</th>
+<th><span class="math inline">\(n=4\)</span></th>
+<th><span class="math inline">\(n=9\)</span></th>
+<th><span class="math inline">\(n=16\)</span></th>
+<th><span class="math inline">\(n=81\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Shape</td>
+<td>Normal</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Mean</td>
+<td>26</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Standard Deviation</td>
+<td>4</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><br>
+<br>
+</p>
+</section>
+</section>
+</section>
+<section id="sec-train" class="level1">
+<h1>Sampling from a Skewed Distribution</h1>
+<hr>
+<p>Let <span class="math inline">\(Y\)</span> denote all times (in minutes) that people wait before their train arrives at a certain train station. If we know the average wait time between arriving trains is <span class="math inline">\(4\)</span> minutes, then we can use an exponential distribution to model the distribution of wait times between arriving trains. The <span style="color:dodgerblue"><strong>rate parameter</strong></span> is <span class="math inline">\(\color{dodgerblue}{\lambda = \frac{1}{4}}\)</span>. The distribution of wait times between successive trains is therefore <span class="math inline">\(\color{dodgerblue}{Y \sim \mbox{Exp} \left( \frac{1}{4} \right)}\)</span>.</p>
+<p>Run the code below to plot the probability density function for the train wait times, <span class="math inline">\(Y \sim \mbox{Exp} \left( \frac{1}{4} \right)\)</span>. There is nothing to edit in the code cell below, but be sure to compare the resulting plot with your answer in <a href="#question-1">Question 1</a>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>wait <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="at">length=</span><span class="dv">100</span>)  <span class="co"># wait times from 0 to 10 min plotted</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>pdf.wait <span class="ot">&lt;-</span> <span class="fu">dexp</span>(wait, <span class="dv">1</span><span class="sc">/</span><span class="dv">4</span>)  <span class="co"># height of pdf function</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(wait,  <span class="co"># wait times plotted on x-axis</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>     pdf.wait,  <span class="co"># corresponding pdf heights plotted on y-axis</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">type=</span><span class="st">"l"</span>,  <span class="co"># plot type "l" will connect points with a line </span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">lty=</span><span class="dv">1</span>,  <span class="co"># lty=1 plots solid line</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">"Wait Time (in minutes)"</span>,  <span class="co"># label on x-axis</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">"Density"</span>,  <span class="co"># label on y-axis</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">"Distribution of Population"</span>)  <span class="co"># main label</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="10-Sampling-Dist-Mean_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Recall that an exponential distribution <span class="math inline">\(Y\)</span> with rate parameter <span class="math inline">\(\lambda = \frac{1}{4}\)</span> has:</p>
+<ul>
+<li>Mean <span class="math inline">\(\mu_Y = \frac{1}{\lambda} = 4\)</span> minutes.</li>
+<li>Variance <span class="math inline">\(\sigma_Y^2 = \frac{1}{\lambda} = 4\)</span>.</li>
+<li>Standard deviation <span class="math inline">\(\sigma_Y = \sqrt{4}=2\)</span> minutes.</li>
+</ul>
+</div>
+</div>
+<section id="question-7" class="level2">
+<h2 class="anchored" data-anchor-id="question-7">Question 7</h2>
+<hr>
+<p>Open the app <a href="https://adamspiegler.shinyapps.io/clt_wait/" class="uri">https://adamspiegler.shinyapps.io/clt_wait/</a> to experiment with changing the sample size <span class="math inline">\(n\)</span> used when constructing a sampling distribution of the sample mean wait time <span class="math inline">\(\overline{Y}\)</span> between successive trains at a train station if we assume the time between successive trains is <span class="math inline">\(Y \sim \mbox{Exp} \left( \frac{1}{4} \right)\)</span>. After experimenting with the app, complete the table below to summarize your observations when sample sizes <span class="math inline">\(n=4\)</span>, <span class="math inline">\(n=9\)</span>, <span class="math inline">\(n=16\)</span>, and <span class="math inline">\(n=81\)</span> are used to construct a sampling distribution.</p>
+<section id="solution-to-question-7" class="level3">
+<h3 class="anchored" data-anchor-id="solution-to-question-7">Solution to Question 7</h3>
+<hr>
+<p><br>
+</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Property</th>
+<th>Population</th>
+<th><span class="math inline">\(n=4\)</span></th>
+<th><span class="math inline">\(n=9\)</span></th>
+<th><span class="math inline">\(n=16\)</span></th>
+<th><span class="math inline">\(n=81\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Shape</td>
+<td>Skewed Right</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Mean</td>
+<td>4</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Standard Deviation</td>
+<td>2</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><br>
+<br>
+</p>
+</section>
+</section>
+</section>
+<section id="working-with-empirical-data-earthquake-depth" class="level1">
+<h1>Working with Empirical Data: Earthquake Depth</h1>
+<hr>
+<p>The help documentation for the data set <code>quakes</code> in the <code>dplyr</code> package provides the following summary:</p>
+<blockquote class="blockquote">
+<p>“The data set give the locations of 1000 seismic events of MB <span class="math inline">\(&gt;\)</span> 4.0. The events occurred in a cube near Fiji since 1964.”</p>
+</blockquote>
+<p>The data set contains the five variables listed below.</p>
+<ul>
+<li><code>lat</code>: Latitude of event</li>
+<li><code>long</code>: Longitude</li>
+<li><code>depth</code>: Depth (km)</li>
+<li><code>mag</code>: Richter Magnitude</li>
+<li><code>stations</code>: Number of stations reporting</li>
+</ul>
+<p>Run the code cell below to load the <code>dplyr</code> data set so we can access the <code>quakes</code> data set.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="numerical-summary-of-quakes-data" class="level2">
+<h2 class="anchored" data-anchor-id="numerical-summary-of-quakes-data">Numerical Summary of Quakes Data</h2>
+<hr>
+<p>The first command will run and print the output of the <code>summary()</code> function that gives numerical summaries for all variable in the data set <code>quakes</code>. In the second and third lines of code, we use <code>mean()</code> and <code>sd()</code> functions to compute the mean and standard deviation, respectively, of the all depth values stored in <code>quakes$depth</code>. Run the code cells below and note the population mean and standard deviation of the earthquake depths.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># requires dplyr package loaded above</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(quakes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      lat              long           depth            mag      
+ Min.   :-38.59   Min.   :165.7   Min.   : 40.0   Min.   :4.00  
+ 1st Qu.:-23.47   1st Qu.:179.6   1st Qu.: 99.0   1st Qu.:4.30  
+ Median :-20.30   Median :181.4   Median :247.0   Median :4.60  
+ Mean   :-20.64   Mean   :179.5   Mean   :311.4   Mean   :4.62  
+ 3rd Qu.:-17.64   3rd Qu.:183.2   3rd Qu.:543.0   3rd Qu.:4.90  
+ Max.   :-10.72   Max.   :188.1   Max.   :680.0   Max.   :6.40  
+    stations     
+ Min.   : 10.00  
+ 1st Qu.: 18.00  
+ Median : 27.00  
+ Mean   : 33.42  
+ 3rd Qu.: 42.00  
+ Max.   :132.00  </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(quakes<span class="sc">$</span>depth)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 311.371</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(quakes<span class="sc">$</span>depth)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 215.5355</code></pre>
+</div>
+</div>
+</section>
+<section id="graphical-summary-of-depth-of-quakes" class="level2">
+<h2 class="anchored" data-anchor-id="graphical-summary-of-depth-of-quakes">Graphical Summary of Depth of Quakes</h2>
+<hr>
+<p>Before we construct a sampling distribution for the mean depth of the earthquake data in <code>quakes</code>, run the <code>plot()</code> function in the code cell below to create a density plot of the depths and get a sense of the population we will be sampling from.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">density</span>(quakes<span class="sc">$</span>depth),  <span class="co"># plot density of quake depth</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">xlab =</span> <span class="st">"Depth (in km)"</span>,  <span class="co"># x-axis label</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">main =</span> <span class="st">"Depths of All Earthquakes in Fiji Since 1964"</span>,  <span class="co"># main label</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">xaxt=</span><span class="st">'n'</span>)  <span class="co"># exclude default x-axis</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co"># set custom ticks on x-axis</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>, <span class="at">at=</span><span class="fu">seq</span>(<span class="sc">-</span><span class="dv">100</span>, <span class="dv">800</span>, <span class="dv">100</span>), <span class="at">pos=</span><span class="dv">0</span>)  </span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co"># draw vertical line at population mean</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">mean</span>(quakes<span class="sc">$</span>depth), <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">lty =</span> <span class="dv">2</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="10-Sampling-Dist-Mean_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="question-8" class="level2">
+<h2 class="anchored" data-anchor-id="question-8">Question 8</h2>
+<hr>
+<p>Open the app <a href="https://adamspiegler.shinyapps.io/clt_quake/" class="uri">https://adamspiegler.shinyapps.io/clt_quake/</a> to experiment with changing the sample size <span class="math inline">\(n\)</span> used when constructing a sampling distribution of the sample mean earthquake depth <span class="math inline">\(\overline{Z}\)</span> using the observed data in <code>quakes$depth</code>. After experimenting with the app, complete the table below to summarize your observations when sample sizes <span class="math inline">\(n=4\)</span>, <span class="math inline">\(n=9\)</span>, <span class="math inline">\(n=16\)</span>, and <span class="math inline">\(n=81\)</span> are used to construct a sampling distribution.</p>
+<section id="solution-to-question-8" class="level3">
+<h3 class="anchored" data-anchor-id="solution-to-question-8">Solution to Question 8</h3>
+<hr>
+<p><br>
+</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Property</th>
+<th>Population</th>
+<th><span class="math inline">\(n=4\)</span></th>
+<th><span class="math inline">\(n=9\)</span></th>
+<th><span class="math inline">\(n=16\)</span></th>
+<th><span class="math inline">\(n=81\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Shape</td>
+<td>Bimodal and Symmetric</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Mean</td>
+<td>311.37</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Standard Deviation</td>
+<td>215.54</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><br>
+<br>
+</p>
+</section>
+</section>
+</section>
+<section id="notation-for-population-sample-and-sampling-distribution" class="level1">
+<h1>Notation for Population, Sample, and Sampling Distribution</h1>
+<hr>
+<p>Before collecting our thoughts, it will be helpful to introduce new notation to help us communicate and share observations. For each of the three contexts (BMI, train wait times, earthquake depths), we have been considering three different distributions:</p>
+<ol type="1">
+<li>The distribution of values of the entire <span style="color:dodgerblue"><strong>population</strong></span>.</li>
+<li>The distribution of values in <span style="color:tomato"><strong>one random sample</strong></span> size <span class="math inline">\(n\)</span>.</li>
+<li>The distribution of <span style="color:mediumseagreen"><strong>sample means for all random samples of size <span class="math inline">\(n\)</span></strong></span>.</li>
+</ol>
+<p>We can avoid some confusion by carefully using different notation when expressing the mean and standard deviation depending on whether we are summarizing a population, a sample, or a sampling distribution. When describing the <strong>mean</strong> of a distribution we use the notation:</p>
+<ul>
+<li><span style="color:dodgerblue">Population mean: <span class="math inline">\(\mu_X\)</span></span></li>
+<li><span style="color:tomato">Sample mean: <span class="math inline">\(\bar{x}\)</span></span></li>
+<li><span style="color:mediumseagreen">Mean of the sampling distribution for a mean: <span class="math inline">\(\mu_{\overline{X}}\)</span></span></li>
+</ul>
+<p>When describing the <strong>standard deviation</strong> of a distribution we use the notation:</p>
+<ul>
+<li><p><span style="color:dodgerblue">Population standard deviation: <span class="math inline">\(\sigma_X\)</span></span></p></li>
+<li><p><span style="color:tomato">Sample standard deviation: <span class="math inline">\(s_X\)</span></span></p></li>
+<li><p><span style="color:mediumseagreen">Spread of the sampling distribution is called the <strong>Standard Error</strong></span>.</p></li>
+<li><p>The standard error measures the variability in sample statistics due to randomness.</p></li>
+<li><p>We use the notation <span class="math inline">\(\color{mediumseagreen}{\mbox{SE}(\overline{X}) = \sigma_{\overline{X}}}\)</span>.</p></li>
+</ul>
+</section>
+<section id="organizing-observations-about-sampling-distributions" class="level1">
+<h1>Organizing Observations about Sampling Distributions</h1>
+<hr>
+<section id="question-9" class="level2">
+<h2 class="anchored" data-anchor-id="question-9">Question 9</h2>
+<hr>
+<p>For each of the three sampling distributions we examined in <a href="#question-6">Question 6</a>, <a href="#question-7">Question 7</a>, and <a href="#question-8">Question 8</a>, summarize how the <span style="color:dodgerblue"><strong>shape</strong></span> of the sampling distribution of the sample means changed as the size of the samples, <span class="math inline">\(n\)</span>, increased.</p>
+<section id="solution-to-question-9" class="level3">
+<h3 class="anchored" data-anchor-id="solution-to-question-9">Solution to Question 9</h3>
+<hr>
+<p><br>
+<br>
+<br>
+</p>
+</section>
+</section>
+<section id="question-10" class="level2">
+<h2 class="anchored" data-anchor-id="question-10">Question 10</h2>
+<hr>
+<p>For each of the three sampling distributions we examined in <a href="#question-6">Question 6</a>, <a href="#question-7">Question 7</a>, and <a href="#question-8">Question 8</a>, summarize how the <span style="color:dodgerblue"><strong>mean</strong></span> (center) of the sampling distribution changed as the size of the samples, <span class="math inline">\(n\)</span>, increased.</p>
+<section id="solution-to-question-10" class="level3">
+<h3 class="anchored" data-anchor-id="solution-to-question-10">Solution to Question 10</h3>
+<hr>
+<p><br>
+<br>
+<br>
+</p>
+</section>
+</section>
+<section id="question-11" class="level2">
+<h2 class="anchored" data-anchor-id="question-11">Question 11</h2>
+<hr>
+<p>For each of the three sampling distributions we examined in <a href="#question-6">Question 6</a>, <a href="#question-7">Question 7</a>, and <a href="#question-8">Question 8</a>, summarize how the <span style="color:dodgerblue"><strong>standard error</strong></span> of the sampling distribution changed as the size of the samples, <span class="math inline">\(n\)</span>, increased.</p>
+<section id="solution-to-question-11" class="level3">
+<h3 class="anchored" data-anchor-id="solution-to-question-11">Solution to Question 11</h3>
+<hr>
+<p><br>
+<br>
+<br>
+</p>
+</section>
+</section>
+</section>
+<section id="sec-cltmeans" class="level1">
+<h1>Formal Statement of the Central Limit Theorem (for Sample Means)</h1>
+<hr>
+<p>Let <span class="math inline">\(X_1, X_2, \ldots , X_n\)</span> be independent, identically distributed (iid) random variables from a population with mean <span class="math inline">\(\mu_X\)</span> and standard deviation <span class="math inline">\(\sigma_X\)</span>, then as long as <span class="math inline">\(n\)</span> is large enough (informally <span class="math inline">\(\mathbf{n \geq 30}\)</span>), the sampling distribution for the mean, <span class="math inline">\(\overline{X}\)</span> will:</p>
+<ul>
+<li>Be (approximately) <span style="color:dodgerblue"><strong>normally distributed</strong></span>.</li>
+<li>Have mean equal to the mean of the population, <span class="math inline">\(\color{dodgerblue}{\mu_{\overline{X}}=\mu_X}\)</span>.<br>
+</li>
+<li>Have standard error <span class="math inline">\(\color{dodgerblue}{\mbox{SE}(\overline{X}) = \sigma_{\overline{X}} = \frac{\sigma_X}{\sqrt{n}}}\)</span>.</li>
+</ul>
+<p>The three statements above become more accurate as <span class="math inline">\(n\)</span> gets larger. We summarize the results more concisely below.</p>
+<p><span class="math display">\[{\large \color{dodgerblue}{\overline{X} \sim N \left( \mu_{\overline{X}} , \sigma_{\overline{X}} \right) = N \left( \mu_X  , \frac{\sigma_X}{\sqrt{n}} \right)}}\]</span></p>
+<section id="question-12" class="level2">
+<h2 class="anchored" data-anchor-id="question-12">Question 12</h2>
+<hr>
+<p>Using <a href="./06-Expected-Value-and-Variance.html#sec-prop-exp">properties of the expected value of linear combinations of random variables</a> prove the following:</p>
+<p><span class="math display">\[\mu_{\overline{X}} = E \left( \overline{X} \right) = E \left( \frac{X_1 + X_2 + \ldots + X_n}{n} \right) = \mu_X.\]</span></p>
+<section id="solution-to-question-12" class="level3">
+<h3 class="anchored" data-anchor-id="solution-to-question-12">Solution to Question 12</h3>
+<hr>
+<p><br>
+<br>
+<br>
+</p>
+</section>
+</section>
+<section id="question-13" class="level2">
+<h2 class="anchored" data-anchor-id="question-13">Question 13</h2>
+<hr>
+<p>Using <a href="./06-Expected-Value-and-Variance.html#sec-prop-var">properties of the variance of linear combinations of independent random variables</a> prove the following:</p>
+<p><span class="math display">\[ \sigma^2_{\overline{X}} = \mbox{Var} \left( \overline{X} \right) = \mbox{Var} \left( \frac{X_1 + X_2 + \ldots + X_n}{n} \right) = \frac{\sigma^2_X}{n}.\]</span></p>
+<section id="solution-to-question-13" class="level3">
+<h3 class="anchored" data-anchor-id="solution-to-question-13">Solution to Question 13</h3>
+<hr>
+<p><br>
+<br>
+<br>
+</p>
+<hr>
+<p><img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" class="img-fluid" alt="Creative Commons License"> <nbsp></nbsp></p>
+<p><em>Statistical Methods: Exploring the Uncertain</em> by <a href="https://github.com/CU-Denver-MathStats-OER/Statistical-Theory">Adam Spiegler</a> is licensed under a <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./09-Joint-Distributions.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">2.6: Joint Distributions</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./11-Sampling-Dist-Prop.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-title">3.2: Sampling Distributions for Proportions</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Statistical Methods: Exploring the Uncertain by Adam Spiegler</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right"><img src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" class="img-fluid" alt="Creative Commons License"> <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-N-SA 4.0</a></div>
+  </div>
+</footer>
+
+
+
+</body></html>

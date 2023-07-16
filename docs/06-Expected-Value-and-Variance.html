@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Statistical Methods: Exploring the Uncertain - 2.3: Expected Value and Variance</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./07-Common-Discrete-RandVar.html" rel="next">
+<link href="./05-Intro-to-Random-Variables.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-Overview-of-Probability.html">Chapter 2: Probability Essentials</a></li><li class="breadcrumb-item"><a href="./06-Expected-Value-and-Variance.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">2.3: Expected Value and Variance</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Statistical Methods: Exploring the Uncertain</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Chapter 1: Exploring Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-Intro-to-Inference.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1.1: Introduction to Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-EDA-Categorical.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1.2: Exploring Categorical Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-EDA-Quantitative.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1.3: Exploring Quantitative Data</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Chapter 2: Probability Essentials</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-Overview-of-Probability.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.1: An Overview of Probability</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-Intro-to-Random-Variables.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.2: Introduction to Random Variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-Expected-Value-and-Variance.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">2.3: Expected Value and Variance</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-Common-Discrete-RandVar.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.4: Common Discrete Distributions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-Common-Continuous-Distributions.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.5: Common Continuous Distributions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-Joint-Distributions.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.6: Joint Distributions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Chapter 3: Sampling Distributions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-Sampling-Dist-Mean.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3.1: Sampling Distribution of Means</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-Sampling-Dist-Prop.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3.2: Sampling Distributions for Proportions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-Sampling-Dist-Other.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3.3: Sampling Distributions of Other Statistics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Chapter 4: Estimation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-Estimation-MLE.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4.1: Maximum Likelihood Estimation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-Estimation-MOM.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4.2: Method of Moments Estimates</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-Properties-Estimators.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4.3: Properties of Estimators</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Chapter 5: Interval Estimates</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-Bootstrap-Dist.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5.1: Bootstrap Distributions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-Bootstrap-Confidence-Int.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5.2: Bootstrap Confidence Intervals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./18-Bootstrap-Other-Stats.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5.3: Bootstrapping Comparitive Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./19-Parametric-CI-Means.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5.4: Parametric Confidence Intervals for Means</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./20-Parametric-CI-Proportions.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5.5: Parametric Confidence Intervals for Proportions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">Chapter 6: Hypothesis Tests</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21-Intro-Hypothesis-Tests.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6.1: Introduction to Hypothesis Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./22-Permutation-Tests.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6.2: Permutation Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./23-Hypothesis-Single-Population.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6.3: Parametric Hypothesis Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./24-Hypothesis-Comparing-Two.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6.4: Parametric Test for Two Populations</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Installing-R-and-RStudio.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Installing R and RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Intro-to-Vectors-Dataframes.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Fundamentals of Working with Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Overview-of-Plots.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">An Overview of Plotting Data in R</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#how-much-is-the-raffle-ticket-worth" id="toc-how-much-is-the-raffle-ticket-worth" class="nav-link active" data-scroll-target="#how-much-is-the-raffle-ticket-worth">How Much is the Raffle Ticket Worth?</a>
+  <ul class="collapse">
+  <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a>
+  <ul class="collapse">
+  <li><a href="#question-1a" id="toc-question-1a" class="nav-link" data-scroll-target="#question-1a">Question 1a</a></li>
+  <li><a href="#question-1b" id="toc-question-1b" class="nav-link" data-scroll-target="#question-1b">Question 1b</a></li>
+  <li><a href="#question-1c" id="toc-question-1c" class="nav-link" data-scroll-target="#question-1c">Question 1c</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#the-expected-value-of-a-discrete-random-variable" id="toc-the-expected-value-of-a-discrete-random-variable" class="nav-link" data-scroll-target="#the-expected-value-of-a-discrete-random-variable">The Expected Value of a Discrete Random Variable</a></li>
+  <li><a href="#the-variance-of-a-discrete-random-variable" id="toc-the-variance-of-a-discrete-random-variable" class="nav-link" data-scroll-target="#the-variance-of-a-discrete-random-variable">The Variance of a Discrete Random Variable</a></li>
+  <li><a href="#the-standard-deviation-of-a-discrete-random-variable" id="toc-the-standard-deviation-of-a-discrete-random-variable" class="nav-link" data-scroll-target="#the-standard-deviation-of-a-discrete-random-variable">The Standard Deviation of a Discrete Random Variable</a>
+  <ul class="collapse">
+  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a>
+  <ul class="collapse">
+  <li><a href="#solution-to-question-2" id="toc-solution-to-question-2" class="nav-link" data-scroll-target="#solution-to-question-2">Solution to Question 2</a></li>
+  </ul></li>
+  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3</a>
+  <ul class="collapse">
+  <li><a href="#question-3a" id="toc-question-3a" class="nav-link" data-scroll-target="#question-3a">Question 3a</a></li>
+  <li><a href="#question-3b" id="toc-question-3b" class="nav-link" data-scroll-target="#question-3b">Question 3b</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#mean-median-and-variance-of-continuous-random-variables" id="toc-mean-median-and-variance-of-continuous-random-variables" class="nav-link" data-scroll-target="#mean-median-and-variance-of-continuous-random-variables">Mean, Median, and Variance of Continuous Random Variables</a>
+  <ul class="collapse">
+  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4">Question 4</a>
+  <ul class="collapse">
+  <li><a href="#question-4a" id="toc-question-4a" class="nav-link" data-scroll-target="#question-4a">Question 4a</a></li>
+  <li><a href="#question-4b" id="toc-question-4b" class="nav-link" data-scroll-target="#question-4b">Question 4b</a></li>
+  <li><a href="#question-4c" id="toc-question-4c" class="nav-link" data-scroll-target="#question-4c">Question 4c</a></li>
+  <li><a href="#question-4d" id="toc-question-4d" class="nav-link" data-scroll-target="#question-4d">Question 4d</a></li>
+  <li><a href="#question-4e" id="toc-question-4e" class="nav-link" data-scroll-target="#question-4e">Question 4e</a></li>
+  <li><a href="#question-4f" id="toc-question-4f" class="nav-link" data-scroll-target="#question-4f">Question 4f</a></li>
+  </ul></li>
+  <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5">Question 5</a>
+  <ul class="collapse">
+  <li><a href="#question-5a" id="toc-question-5a" class="nav-link" data-scroll-target="#question-5a">Question 5a</a></li>
+  <li><a href="#question-5b" id="toc-question-5b" class="nav-link" data-scroll-target="#question-5b">Question 5b</a></li>
+  <li><a href="#question-5c" id="toc-question-5c" class="nav-link" data-scroll-target="#question-5c">Question 5c</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#sec-prop-exp" id="toc-sec-prop-exp" class="nav-link" data-scroll-target="#sec-prop-exp">Properties of Expected Value</a></li>
+  <li><a href="#sec-prop-var" id="toc-sec-prop-var" class="nav-link" data-scroll-target="#sec-prop-var">Properties of Variance</a>
+  <ul class="collapse">
+  <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6">Question 6</a>
+  <ul class="collapse">
+  <li><a href="#question-6a" id="toc-question-6a" class="nav-link" data-scroll-target="#question-6a">Question 6a</a></li>
+  <li><a href="#question-6b" id="toc-question-6b" class="nav-link" data-scroll-target="#question-6b">Question 6b</a></li>
+  <li><a href="#question-6c" id="toc-question-6c" class="nav-link" data-scroll-target="#question-6c">Question 6c</a></li>
+  <li><a href="#question-6d" id="toc-question-6d" class="nav-link" data-scroll-target="#question-6d">Question 6d</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#appendix-properties-of-random-variables" id="toc-appendix-properties-of-random-variables" class="nav-link" data-scroll-target="#appendix-properties-of-random-variables">Appendix: Properties of Random Variables</a>
+  <ul class="collapse">
+  <li><a href="#properties-of-discrete-random-variables" id="toc-properties-of-discrete-random-variables" class="nav-link" data-scroll-target="#properties-of-discrete-random-variables">Properties of Discrete Random Variables</a></li>
+  <li><a href="#properties-of-continuous-random-variables" id="toc-properties-of-continuous-random-variables" class="nav-link" data-scroll-target="#properties-of-continuous-random-variables">Properties of Continuous Random Variables</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-title">2.3: Expected Value and Variance</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p><a href="https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap2/06-Expected-Value-and-Variance.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid" alt="Open In Colab"></a> <nbsp></nbsp></p>
+<p>Additional Reference: See <a href="./05-Intro-to-Random-Variables.html">Introduction to Random Variables</a> where we discovered some important properties for a random variable <span class="math inline">\(X\)</span> that are summarized in the <a href="#appendix-properties-of-random-variables">Appendix: Properties of Random Variables</a>.</p>
+<section id="how-much-is-the-raffle-ticket-worth" class="level1">
+<h1>How Much is the Raffle Ticket Worth?</h1>
+<hr>
+<div class="columns">
+<div class="column" style="width:33%;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://live.staticflickr.com/8229/8360300072_0b811f884d_w.jpg" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Image credit: Randy Heinitz via <a href="https://www.flickr.com/photos/rheinitz/">flickr</a></figcaption>
+</figure>
+</div>
+</div><div class="column" style="width:67%;">
+<p>A raffle sells 1,000 tickets with the following payouts:</p>
+<ul>
+<li>There is one winning randomly selected ticket that will win the grand prize of $5,000.</li>
+<li>Two tickets will be randomly selected to win a second prize each worth $1,000.</li>
+<li>Ten tickets will be randomly selected to win a third prize each worth $200.</li>
+<li>The remaining tickets do not win a prize.</li>
+</ul>
+</div>
+</div>
+<section id="question-1" class="level2">
+<h2 class="anchored" data-anchor-id="question-1">Question 1</h2>
+<hr>
+<p>Let random variable <span class="math inline">\(X\)</span> be the amount of money won by a randomly selected raffle ticket. We let <span class="math inline">\(p(x)\)</span> denote the corresponding probability mass function of <span class="math inline">\(X\)</span>.</p>
+<section id="question-1a" class="level3">
+<h3 class="anchored" data-anchor-id="question-1a">Question 1a</h3>
+<hr>
+<p>Fill in the values of <span class="math inline">\(x\)</span> and <span class="math inline">\(p(x)\)</span> in the table below.</p>
+<section id="solution-to-question-1a" class="level4">
+<h4 class="anchored" data-anchor-id="solution-to-question-1a">Solution to Question 1a</h4>
+<hr>
+<p><strong>Fill in the blanks to complete the table.</strong></p>
+<table class="table">
+<thead>
+<tr class="header">
+<th><span class="math inline">\(x\)</span></th>
+<th>??</th>
+<th>??</th>
+<th>??</th>
+<th>??</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(p(x)\)</span></td>
+<td>??</td>
+<td>??</td>
+<td>??</td>
+<td>??</td>
+</tr>
+</tbody>
+</table>
+<p><br>
+<br>
+</p>
+</section>
+</section>
+<section id="question-1b" class="level3">
+<h3 class="anchored" data-anchor-id="question-1b">Question 1b</h3>
+<hr>
+<p>If somebody offered to buy a raffle ticket from you, what do you think fair value is for the ticket?</p>
+<section id="solution-to-question-1b" class="level4">
+<h4 class="anchored" data-anchor-id="solution-to-question-1b">Solution to Question 1b</h4>
+<hr>
+<p><br>
+<br>
+<br>
+</p>
+</section>
+</section>
+<section id="question-1c" class="level3">
+<h3 class="anchored" data-anchor-id="question-1c">Question 1c</h3>
+<hr>
+<p>Consider another ticket raffle. There 1,000 tickets with the following payouts:</p>
+<ul>
+<li>500 randomly selected tickets will win a grand prize of $15.</li>
+<li>The other 500 tickets do not win a prize.</li>
+</ul>
+<p>Let random variable <span class="math inline">\(Y\)</span> be the amount of money won by a randomly selected raffle ticket.</p>
+<p>Somebody offers one free ticket to either raffle <span class="math inline">\(X\)</span> or raffle <span class="math inline">\(Y\)</span> (but not both!), which would you prefer and why?</p>
+<section id="solution-to-question-1c" class="level4">
+<h4 class="anchored" data-anchor-id="solution-to-question-1c">Solution to Question 1c</h4>
+<hr>
+<p><br>
+<br>
+<br>
+</p>
+</section>
+</section>
+</section>
+</section>
+<section id="the-expected-value-of-a-discrete-random-variable" class="level1">
+<h1>The Expected Value of a Discrete Random Variable</h1>
+<hr>
+<p>The <span style="color:dodgerblue"><strong>expected value</strong></span> for a discrete random variable <span class="math inline">\(X\)</span> is denoted <span class="math inline">\(\color{dodgerblue}{E(X)}\)</span>. We compute</p>
+<p><span class="math display">\[\color{dodgerblue}{E(X) = \mu_{X} =  \sum_x \left( x \cdot p(x) \right)}. \]</span></p>
+<ul>
+<li><span class="math inline">\(E(X)\)</span> is the <span style="color:dodgerblue"><strong>average</strong> or <strong>mean</strong></span> value of random variable <span class="math inline">\(X\)</span>.</li>
+<li>The expected value of <span class="math inline">\(X\)</span> is denoted <span class="math inline">\(\color{dodgerblue}{E(X)}\)</span> or <span class="math inline">\(\color{dodgerblue}{\mu_X}\)</span>.</li>
+<li>The expected value of <span class="math inline">\(X\)</span> might not be a possible value of <span class="math inline">\(X\)</span>.</li>
+</ul>
+</section>
+<section id="the-variance-of-a-discrete-random-variable" class="level1">
+<h1>The Variance of a Discrete Random Variable</h1>
+<hr>
+<p>The <span style="color:dodgerblue"><strong>variance</strong></span> for a discrete random variable <span class="math inline">\(X\)</span> is one common way to measure how spread out (in relation to the expected value) are the values of <span class="math inline">\(X\)</span>. We compute</p>
+<p><span class="math display">\[\color{dodgerblue}{\mbox{Var}(X) = \sigma_X^2 =  E\big( (x-\mu_X)^2 \big) = \sum_x \left( (x-\mu_X)^2 \cdot p(x) \right)}. \]</span></p>
+<ul>
+<li><span class="math inline">\(\mbox{Var}(X)\)</span> is the expected value of the squared distance from the mean.</li>
+<li>The variance is denoted <span class="math inline">\(\color{dodgerblue}{\mbox{Var}(X)}\)</span> or <span class="math inline">\(\color{dodgerblue}{\sigma_X^2}\)</span>.</li>
+</ul>
+</section>
+<section id="the-standard-deviation-of-a-discrete-random-variable" class="level1">
+<h1>The Standard Deviation of a Discrete Random Variable</h1>
+<hr>
+<p>The <span style="color:dodgerblue"><strong>standard deviation</strong></span> for a discrete random variable <span class="math inline">\(X\)</span> is the square root of the variance,</p>
+<p><span class="math display">\[ \mbox{SD}(X) = \sigma_X  =  \sqrt{\mbox{Var}(X)}. \]</span></p>
+<ul>
+<li>The standard deviation of random variable <span class="math inline">\(X\)</span> is denoted <span class="math inline">\(\color{dodgerblue}{\sigma_X}\)</span>.</li>
+<li>The standard deviation essentially measures the average distance of the values of <span class="math inline">\(X\)</span> from its mean <span class="math inline">\(\mu_X\)</span>.</li>
+<li>The units of <span class="math inline">\(\sigma_X\)</span> and <span class="math inline">\(X\)</span> are the same, and thus standard deviation is often a practical way to describe the spread of <span class="math inline">\(X\)</span>.</li>
+</ul>
+<section id="question-2" class="level2">
+<h2 class="anchored" data-anchor-id="question-2">Question 2</h2>
+<hr>
+<p>Using <a href="#properties-of-discrete-random-variables">Properties of Discrete Random Variables</a>, show that for any discrete random variable <span class="math inline">\(X\)</span> with pmf <span class="math inline">\(p(X)\)</span> and expected value <span class="math inline">\(E(X) = \mu\)</span>, we have</p>
+<p><span class="math display">\[\mbox{Var}(X) = E(X^2)  - \mu^2.\]</span></p>
+<section id="solution-to-question-2" class="level3">
+<h3 class="anchored" data-anchor-id="solution-to-question-2">Solution to Question 2</h3>
+<hr>
+<p><strong>Finish the proof below!</strong></p>
+<p>Let <span class="math inline">\(X\)</span> be a discrete random variable with pmf <span class="math inline">\(p(x)\)</span> and expected value <span class="math inline">\(E(X)=\mu\)</span>. Then we have</p>
+<p><span class="math display">\[\begin{array}{rcll}
+\mbox{Var}(X) &amp;=&amp;  \sum_x \left( (x-\mu)^2 \cdot p(x) \right) &amp; \mbox{(by definition)}\\
+&amp;=&amp; \sum_x \left( (x^2 -2 \mu x + \mu^2) \cdot p(x) \right) &amp; \mbox{(distributing squared term)}\\
+&amp;=&amp; \sum_x \left( x^2 \cdot p(x) -2 \mu x  \cdot p(x)  + \mu^2  \cdot p(x)  \right) &amp; \mbox{(distributing p(x))}\\
+&amp;=&amp; \sum_x \left( x^2 \cdot p(x) \right) - \sum_x \left(2 \mu x  \cdot p(x) \right)  + \sum_x \left( \mu^2  \cdot p(x)  \right) &amp; \mbox{(properties of summation)}\\
+&amp;=&amp; ?? &amp; \mbox{(??)} \\
+&amp;=&amp; ?? &amp; \mbox{(??)} \\
+&amp;=&amp; ?? &amp; \mbox{(??)} \\
+&amp;=&amp; ?? &amp; \mbox{(??)} \\
+\end{array}\]</span></p>
+<p><br>
+</p>
+<p>Therefore, we see that <span class="math inline">\(\mbox{Var}(X) = E(X^2) - \mu^2\)</span>.</p>
+<p><br>
+<br>
+</p>
+</section>
+</section>
+<section id="question-3" class="level2">
+<h2 class="anchored" data-anchor-id="question-3">Question 3</h2>
+<hr>
+<p>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> denote the raffle ticket random variables from <a href="#question-1">Question 1</a>.</p>
+<p>Calculate <span class="math inline">\(E(X)\)</span> and <span class="math inline">\(\mbox{Var}(X)\)</span>.</p>
+<section id="question-3a" class="level3">
+<h3 class="anchored" data-anchor-id="question-3a">Question 3a</h3>
+<hr>
+<p>Calculate <span class="math inline">\(E(X)\)</span> and <span class="math inline">\(\mbox{Var}(X)\)</span>.</p>
+<section id="solution-to-question-3a" class="level4">
+<h4 class="anchored" data-anchor-id="solution-to-question-3a">Solution to Question 3a</h4>
+<hr>
+<p><br>
+<br>
+<br>
+</p>
+</section>
+</section>
+<section id="question-3b" class="level3">
+<h3 class="anchored" data-anchor-id="question-3b">Question 3b</h3>
+<hr>
+<p>Calculate <span class="math inline">\(E(Y)\)</span> and <span class="math inline">\(\mbox{Var}(Y)\)</span>.</p>
+<section id="solution-to-question-3b" class="level4">
+<h4 class="anchored" data-anchor-id="solution-to-question-3b">Solution to Question 3b</h4>
+<hr>
+<p><br>
+<br>
+<br>
+</p>
+</section>
+</section>
+</section>
+</section>
+<section id="mean-median-and-variance-of-continuous-random-variables" class="level1">
+<h1>Mean, Median, and Variance of Continuous Random Variables</h1>
+<hr>
+<p>Let <span class="math inline">\(f(x)\)</span> and <span class="math inline">\(F(x)\)</span> denote the probability density function and cumulative distribution function for a continuous random variable <span class="math inline">\(X\)</span>.</p>
+<ul>
+<li>The <span style="color:dodgerblue"><strong>expected value</strong></span> or <span style="color:dodgerblue"><strong>mean</strong></span> is</li>
+</ul>
+<p><span class="math display">\[E(X) = \mu_X = \int_{-\infty}^{\infty} x \cdot f(x) \, dx.\]</span></p>
+<ul>
+<li>The <span style="color:dodgerblue"><strong>variance</strong></span> is</li>
+</ul>
+<p><span class="math display">\[\mbox{Var}(X) = E(X-\mu_X)^2 = E(X^2) - \mu_X^2.\]</span></p>
+<ul>
+<li>The <span style="color:dodgerblue"><strong>median</strong></span> is the value <span class="math inline">\(x\)</span> such that <span class="math inline">\(P(X &lt; x) = 0.5\)</span>. Thus, to find the median we solve the equations below for <span class="math inline">\(x\)</span>,</li>
+</ul>
+<p><span class="math display">\[\int_{-\infty}^x f(t) \, dt = 0.5 \qquad \mbox{or equivalently} \qquad F(x) =0.5.\]</span></p>
+<section id="question-4" class="level2">
+<h2 class="anchored" data-anchor-id="question-4">Question 4</h2>
+<hr>
+<p>Consider the random variable <span class="math inline">\(X\)</span> with pdf</p>
+<p><span class="math display">\[ f_X(x) = \left\{ \begin{array}{ll}
+\frac{x}{8}, &amp;  0 \leq x \leq 4 \\
+0, &amp;  \mbox{otherwise}
+\end{array} \right. .\]</span></p>
+<section id="question-4a" class="level3">
+<h3 class="anchored" data-anchor-id="question-4a">Question 4a</h3>
+<hr>
+<p>On a separate piece of paper, sketch a graph of the pdf, <span class="math inline">\(f_X\)</span>.</p>
+<section id="solution-to-question-4a" class="level4">
+<h4 class="anchored" data-anchor-id="solution-to-question-4a">Solution to Question 4a</h4>
+<hr>
+<p>Sketch a graph on a separate piece of paper.</p>
+<p><br>
+<br>
+</p>
+</section>
+</section>
+<section id="question-4b" class="level3">
+<h3 class="anchored" data-anchor-id="question-4b">Question 4b</h3>
+<hr>
+<p>Enter the formula for <span class="math inline">\(F_X\)</span> below. Then on a separate piece of paper sketch the graph <span class="math inline">\(F_X\)</span>.</p>
+<section id="solution-to-question-4b" class="level4">
+<h4 class="anchored" data-anchor-id="solution-to-question-4b">Solution to Question 4b</h4>
+<hr>
+<p><span class="math display">\[F_X(x) = \left\{ \begin{array}{ll}
+0 &amp; x &lt; 0\\
+?? &amp; 0 \leq x \leq 4 \\
+1 &amp; x &gt; 4
+\end{array} \right.\]</span></p>
+<p><br>
+</p>
+<p>Sketch a graph on a separate piece of paper.</p>
+<p><br>
+<br>
+</p>
+</section>
+</section>
+<section id="question-4c" class="level3">
+<h3 class="anchored" data-anchor-id="question-4c">Question 4c</h3>
+<hr>
+<p>Calculate <span class="math inline">\(P(X &lt; 1)\)</span> and illustrate this value on each of your graphs in the solutions to <a href="#question-1a">Question 1a</a> and <a href="#question-1b">Question 1b</a>.</p>
+<section id="solution-to-question-4c" class="level4">
+<h4 class="anchored" data-anchor-id="solution-to-question-4c">Solution to Question 4c</h4>
+<hr>
+<p><br>
+<br>
+<br>
+</p>
+</section>
+</section>
+<section id="question-4d" class="level3">
+<h3 class="anchored" data-anchor-id="question-4d">Question 4d</h3>
+<hr>
+<p>Calculate <span class="math inline">\(E(X)\)</span> and illustrate this on your graph in the solution to <a href="#question-1a">Question 1a</a>.</p>
+<section id="solution-to-question-4d" class="level4">
+<h4 class="anchored" data-anchor-id="solution-to-question-4d">Solution to Question 4d</h4>
+<hr>
+<p><br>
+<br>
+<br>
+</p>
+</section>
+</section>
+<section id="question-4e" class="level3">
+<h3 class="anchored" data-anchor-id="question-4e">Question 4e</h3>
+<hr>
+<p>Give the median value and illustrate this value on both of your graphs in the solutions to <a href="#question-1a">Question 1a</a> and <a href="#question-1b">Question 1b</a>.</p>
+<section id="solution-to-question-4e" class="level4">
+<h4 class="anchored" data-anchor-id="solution-to-question-4e">Solution to Question 4e</h4>
+<hr>
+<p><br>
+<br>
+<br>
+</p>
+</section>
+</section>
+<section id="question-4f" class="level3">
+<h3 class="anchored" data-anchor-id="question-4f">Question 4f</h3>
+<hr>
+<p>Compute <span class="math inline">\(\mbox{Var}(X)\)</span>.</p>
+<section id="solution-to-question-4f" class="level4">
+<h4 class="anchored" data-anchor-id="solution-to-question-4f">Solution to Question 4f</h4>
+<hr>
+<p><br>
+<br>
+<br>
+</p>
+</section>
+</section>
+</section>
+<section id="question-5" class="level2">
+<h2 class="anchored" data-anchor-id="question-5">Question 5</h2>
+<hr>
+<p>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> denote the raffle ticket random variables from <a href="#question-1">Question 1</a>.</p>
+<section id="question-5a" class="level3">
+<h3 class="anchored" data-anchor-id="question-5a">Question 5a</h3>
+<hr>
+<p>Do you believe random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent random variables? Explain why or why not.</p>
+<section id="solution-to-question-5a" class="level4">
+<h4 class="anchored" data-anchor-id="solution-to-question-5a">Solution to Question 5a</h4>
+<hr>
+<p><br>
+<br>
+<br>
+</p>
+</section>
+</section>
+<section id="question-5b" class="level3">
+<h3 class="anchored" data-anchor-id="question-5b">Question 5b</h3>
+<hr>
+<p>If you purchase 3 raffle tickets from raffle <span class="math inline">\(X\)</span> and 2 raffle tickets from raffle <span class="math inline">\(Y\)</span>, what is the expected value of your winnings?</p>
+<section id="solution-to-question-5b" class="level4">
+<h4 class="anchored" data-anchor-id="solution-to-question-5b">Solution to Question 5b</h4>
+<hr>
+<p><br>
+<br>
+<br>
+</p>
+</section>
+</section>
+<section id="question-5c" class="level3">
+<h3 class="anchored" data-anchor-id="question-5c">Question 5c</h3>
+<hr>
+<p>If you purchase 3 raffle tickets from raffle <span class="math inline">\(X\)</span> and 2 raffle tickets from raffle <span class="math inline">\(Y\)</span>, what is the variance of your winnings?</p>
+<section id="solution-to-question-5c" class="level4">
+<h4 class="anchored" data-anchor-id="solution-to-question-5c">Solution to Question 5c</h4>
+<hr>
+<p><br>
+<br>
+<br>
+</p>
+</section>
+</section>
+</section>
+</section>
+<section id="sec-prop-exp" class="level1">
+<h1>Properties of Expected Value</h1>
+<hr>
+<p>Let <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> denote a random variables, and let <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> denote constants. Then we have the following properties.</p>
+<ul>
+<li><span class="math inline">\(E(a) = a\)</span></li>
+<li><span class="math inline">\(E(aX + bY) = aE(X) + bE(Y)\)</span></li>
+</ul>
+</section>
+<section id="sec-prop-var" class="level1">
+<h1>Properties of Variance</h1>
+<hr>
+<ul>
+<li><p>For any random variable <span class="math inline">\(X\)</span>, we have <span class="math inline">\(\mbox{Var}(X) = E(X^2) - \mu_X^2\)</span>.</p></li>
+<li><p>If <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent random variables and <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> constants, then <span class="math inline">\(\mbox{Var}(aX + bY) = a^2 \mbox{Var}(X) + b^2 \mbox{Var}(Y)\)</span>.</p></li>
+</ul>
+<section id="question-6" class="level2">
+<h2 class="anchored" data-anchor-id="question-6">Question 6</h2>
+<hr>
+<p>The data set <em>spotify-hits.csv</em><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> is stored online and contains audio statistics of the top 2000 tracks on Spotify from 2000-2019. The data is stored in a <span style="color:dodgerblue"><strong>comma separated file (csv)</strong></span>.</p>
+<ul>
+<li>We can use the function <code>read.csv()</code> to import the csv file into an R data frame we call <code>hits</code>.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>hits <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"https://raw.githubusercontent.com/CU-Denver-MathStats-OER/Statistical-Theory/main/Data/spotify-hits.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In the code cell below:</p>
+<ul>
+<li>We convert <code>artist</code>, <code>song</code>, and <code>genre</code> to categorical variables using the <code>factor()</code> function.</li>
+<li>Extract the variables <code>artist</code>, <code>song</code>, <code>energy</code>, <code>acousticness</code>, and <code>genre</code> (ignoring the rest).</li>
+<li>Print the first 6 rows to screen to get a glimpse of the resulting data frame.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>hits<span class="sc">$</span>artist <span class="ot">&lt;-</span> <span class="fu">factor</span>(hits<span class="sc">$</span>artist)  <span class="co"># artist is categorical</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>hits<span class="sc">$</span>song <span class="ot">&lt;-</span> <span class="fu">factor</span>(hits<span class="sc">$</span>song)  <span class="co"># song is categorical</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>hits<span class="sc">$</span>genre <span class="ot">&lt;-</span> <span class="fu">factor</span>(hits<span class="sc">$</span>genre)  <span class="co"># genre is categorical</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>hits <span class="ot">&lt;-</span> hits[,<span class="fu">c</span>(<span class="st">"artist"</span>, <span class="st">"song"</span>, <span class="st">"energy"</span>, <span class="st">"acousticness"</span>, <span class="st">"genre"</span>)] </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(hits)  <span class="co"># display first 6 rows of data frame</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          artist                   song energy acousticness             genre
+1 Britney Spears Oops!...I Did It Again  0.834       0.3000               pop
+2      blink-182   All The Small Things  0.897       0.0103         rock, pop
+3     Faith Hill                Breathe  0.496       0.1730      pop, country
+4       Bon Jovi           It's My Life  0.913       0.0263       rock, metal
+5         *NSYNC            Bye Bye Bye  0.928       0.0408               pop
+6          Sisqo             Thong Song  0.888       0.1190 hip hop, pop, R&amp;B</code></pre>
+</div>
+</div>
+<ul>
+<li><strong>Energy</strong>: A measure of how energetic a song is from <span class="math inline">\(0.0\)</span> to <span class="math inline">\(1.0\)</span> (least to most energy) of. Typically, energetic songs are fast, loud, and noisy.</li>
+<li><strong>Acousticness</strong>: A measure from <span class="math inline">\(0.0\)</span> to <span class="math inline">\(1.0\)</span> (least to most acoustic) of depending on how significant the use of acoustic instruments are in the song.</li>
+</ul>
+<p>Let <span class="math inline">\(X\)</span> denote the energy of a randomly selected song, and let <span class="math inline">\(Y\)</span> denote the acousticness of a randomly selected song. We define a new song metric, <span class="math inline">\(Z\)</span>, that is a weighted mean of score <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>:</p>
+<p><span class="math display">\[Z = \frac{3X + 2Y}{5}\]</span></p>
+<section id="question-6a" class="level3">
+<h3 class="anchored" data-anchor-id="question-6a">Question 6a</h3>
+<hr>
+<p>Do you believe <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are independent random variables? Explain why or why not.</p>
+<section id="solution-to-question-6a" class="level4">
+<h4 class="anchored" data-anchor-id="solution-to-question-6a">Solution to Question 6a</h4>
+<hr>
+<p><br>
+<br>
+<br>
+</p>
+</section>
+</section>
+<section id="question-6b" class="level3">
+<h3 class="anchored" data-anchor-id="question-6b">Question 6b</h3>
+<hr>
+<p>Use R to compute <span class="math inline">\(E(X)\)</span>, <span class="math inline">\(E(Y)\)</span>, and <span class="math inline">\(E(Z)\)</span>. Check whether or not the property <span class="math inline">\(E(aX + bY) = aE(X) + bE(Y)\)</span> holds in this context.</p>
+<ul>
+<li>Hint: Recall R, the function <code>mean(x)</code> calculates the mean (expected value) of <code>x</code>.</li>
+</ul>
+<section id="solution-to-question-6b" class="level4">
+<h4 class="anchored" data-anchor-id="solution-to-question-6b">Solution to Question 6b</h4>
+<hr>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use code cell to compare variances</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> hits<span class="sc">$</span>energy  <span class="co"># random variable x</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> hits<span class="sc">$</span>acousticness  <span class="co"># random variable y</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> (<span class="dv">3</span><span class="sc">*</span>x <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>y) <span class="sc">/</span> <span class="dv">5</span>  <span class="co"># random variable z</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br>
+<br>
+<br>
+</p>
+</section>
+</section>
+<section id="question-6c" class="level3">
+<h3 class="anchored" data-anchor-id="question-6c">Question 6c</h3>
+<hr>
+<p>Use R to compute <span class="math inline">\(\mbox{Var}(X)\)</span>, <span class="math inline">\(\mbox{Var}(Y)\)</span>, and <span class="math inline">\(\mbox{Var}(Z)\)</span>. Check whether or not the property <span class="math inline">\(\mbox{Var}(aX + bY) = a^2\mbox{Var}(X) + b^2\mbox{Var}(Y)\)</span> holds in this context.</p>
+<ul>
+<li>Hint: The function <code>var(x)</code> calculates the variance of <code>x</code>.</li>
+</ul>
+<section id="solution-to-question-6c" class="level4">
+<h4 class="anchored" data-anchor-id="solution-to-question-6c">Solution to Question 6c</h4>
+<hr>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use code cell to compare variances</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br>
+<br>
+<br>
+</p>
+</section>
+</section>
+<section id="question-6d" class="level3">
+<h3 class="anchored" data-anchor-id="question-6d">Question 6d</h3>
+<hr>
+<p>Determine whether each of the statements below are true or false. If false, explain why.</p>
+<p>For any two random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> and constants <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>:</p>
+<ul>
+<li>It always follows that <span class="math inline">\(E(aX + bY) = aE(X) + bE(Y)\)</span>.</li>
+<li>It always follows that <span class="math inline">\(\mbox{Var}(aX + bY) = a^2\mbox{Var}(X) + b^2\mbox{Var}(Y)\)</span>.</li>
+</ul>
+<section id="question-6d-1" class="level4">
+<h4 class="anchored" data-anchor-id="question-6d-1">Question 6d</h4>
+<hr>
+<p><br>
+<br>
+<br>
+</p>
+</section>
+</section>
+</section>
+</section>
+<section id="appendix-properties-of-random-variables" class="level1">
+<h1>Appendix: Properties of Random Variables</h1>
+<hr>
+<p>In <a href="https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap2/05-Intro-to-Random-Variables.ipynb">Introduction to Random Variables</a> we discovered the following properties for a random variable <span class="math inline">\(X\)</span>.</p>
+<section id="properties-of-discrete-random-variables" class="level2">
+<h2 class="anchored" data-anchor-id="properties-of-discrete-random-variables">Properties of Discrete Random Variables</h2>
+<hr>
+<p>For a <strong>discrete</strong> random variable <span class="math inline">\(X\)</span>, let <span class="math inline">\(p(x)\)</span> and <span class="math inline">\(F(x)\)</span> denote the pmf and cdf, respectively, we have:</p>
+<ul>
+<li><p><span class="math inline">\(0 \leq p(x) \leq 1\)</span> for all <span class="math inline">\(x\)</span></p></li>
+<li><p><span class="math inline">\(\displaystyle \sum_{\rm{all}\  x} p(x) = 1\)</span></p></li>
+<li><p><span class="math inline">\(F(x) = \displaystyle P(X \leq x) = \sum_{k= x_{\rm min}}^x p(k)\)</span></p></li>
+<li><p><span class="math inline">\(0 \leq F(x) \leq 1\)</span> for all <span class="math inline">\(x\)</span></p></li>
+<li><p><span class="math inline">\(\displaystyle \lim_{x \to \infty} F(x) = 1\)</span></p></li>
+<li><p><span class="math inline">\(F(x)\)</span> is nondecreasing.</p></li>
+</ul>
+</section>
+<section id="properties-of-continuous-random-variables" class="level2">
+<h2 class="anchored" data-anchor-id="properties-of-continuous-random-variables">Properties of Continuous Random Variables</h2>
+<hr>
+<p>For a <strong>continuous</strong> random variable <span class="math inline">\(X\)</span>, let <span class="math inline">\(f(x)\)</span> and <span class="math inline">\(F(x)\)</span> denote the pdf and cdf, respectively, we have:</p>
+<ul>
+<li><p><span class="math inline">\(f(x) \geq 0\)</span> for all <span class="math inline">\(x\)</span></p></li>
+<li><p><span class="math inline">\(\displaystyle \int_{-\infty}^{\infty} f(x) = 1\)</span></p></li>
+<li><p><span class="math inline">\(\displaystyle P(a &lt; x &lt; b) = \int_a^b f(x) \, dx\)</span></p></li>
+<li><p><span class="math inline">\(\displaystyle F(x) = \int_{-\infty}^x f(t) \, dt\)</span></p></li>
+<li><p>The <span class="math inline">\(F(x)\)</span> is an antiderivative of <span class="math inline">\(f\)</span>.</p></li>
+<li><p>The <span class="math inline">\(f(x)\)</span> is the derivative of <span class="math inline">\(F(x)\)</span>.</p></li>
+<li><p><span class="math inline">\(0 \leq F(x) \leq 1\)</span> for all <span class="math inline">\(x\)</span>.</p></li>
+<li><p><span class="math inline">\(\displaystyle \lim_{x \to \infty} F(x) = 1\)</span>.</p></li>
+<li><p><span class="math inline">\(F(x)\)</span> is nondecreasing.</p></li>
+</ul>
+<hr>
+<p><img src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" class="img-fluid" alt="Creative Commons License"> <nbsp></nbsp></p>
+<p><em>Statistical Methods: Exploring the Uncertain</em> by <a href="https://github.com/CU-Denver-MathStats-OER/Statistical-Theory">Adam Spiegler</a> is licensed under a <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+
+
+</section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Downloaded from <a href="https://www.kaggle.com/datasets/paradisejoy/top-hits-spotify-from-20002019">Kaggle</a> May 4, 2023<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./05-Intro-to-Random-Variables.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">2.2: Introduction to Random Variables</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./07-Common-Discrete-RandVar.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-title">2.4: Common Discrete Distributions</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Statistical Methods: Exploring the Uncertain by Adam Spiegler</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right"><img src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" class="img-fluid" alt="Creative Commons License"> <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-N-SA 4.0</a></div>
+  </div>
+</footer>
+
+
+
+</body></html>
