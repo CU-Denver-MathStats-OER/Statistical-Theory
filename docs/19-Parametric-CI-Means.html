@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5.4: Parametric Confidence Intervals for Means</title>
+<title>Statistical Methods: Exploring the Uncertain - 5.4: Parametric Confidence Intervals for Means</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,11 +58,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./20-Parametric-CI-Proportions.html" rel="next">
+<link href="./18-Bootstrap-Other-Stats.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -97,20 +100,405 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="fullcontent">
+<body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./16-Bootstrap-Dist.html">Chapter 5: Interval Estimates</a></li><li class="breadcrumb-item"><a href="./19-Parametric-CI-Means.html"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">5.4: Parametric Confidence Intervals for Means</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Statistical Methods: Exploring the Uncertain</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Chapter 1: Exploring Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-Intro-to-Inference.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1.1: Introduction to Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-EDA-Categorical.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1.2: Exploring Categorical Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-EDA-Quantitative.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1.3: Exploring Quantitative Data</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Chapter 2: Probability Essentials</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-Overview-of-Probability.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.1: An Overview of Probability</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-Intro-to-Random-Variables.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.2: Introduction to Random Variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-Expected-Value-and-Variance.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.3: Expected Value and Variance</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-Common-Discrete-RandVar.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.4: Common Discrete Distributions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-Common-Continuous-Distributions.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.5: Common Continuous Distributions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-Joint-Distributions.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.6: Joint Distributions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Chapter 3: Sampling Distributions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-Sampling-Dist-Mean.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3.1: Sampling Distribution of Means</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-Sampling-Dist-Prop.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3.2: Sampling Distributions for Proportions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-Sampling-Dist-Other.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3.3: Sampling Distributions of Other Statistics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Chapter 4: Estimation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-Estimation-MLE.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4.1: Maximum Likelihood Estimation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-Estimation-MOM.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4.2: Method of Moments Estimates</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-Properties-Estimators.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4.3: Properties of Estimators</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Chapter 5: Interval Estimates</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-Bootstrap-Dist.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5.1: Bootstrap Distributions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-Bootstrap-Confidence-Int.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5.2: Bootstrap Confidence Intervals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./18-Bootstrap-Other-Stats.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5.3: Bootstrapping Comparitive Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./19-Parametric-CI-Means.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">5.4: Parametric Confidence Intervals for Means</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./20-Parametric-CI-Proportions.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5.5: Parametric Confidence Intervals for Proportions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">Chapter 6: Hypothesis Tests</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21-Intro-Hypothesis-Tests.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6.1: Introduction to Hypothesis Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./22-Permutation-Tests.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6.2: Permutation Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./23-Hypothesis-Single-Population.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6.3: Parametric Hypothesis Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./24-Hypothesis-Comparing-Two.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6.4: Parametric Tests for Two Populations</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Installing-R-and-RStudio.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Installing R and RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Intro-to-Vectors-Dataframes.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Fundamentals of Working with Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Overview-of-Plots.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">An Overview of Plotting Data in R</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#parametric-and-non-parametric-methods" id="toc-parametric-and-non-parametric-methods" class="nav-link active" data-scroll-target="#parametric-and-non-parametric-methods">Parametric and Non-Parametric Methods</a></li>
+  <li><a href="#sec-storm" id="toc-sec-storm" class="nav-link" data-scroll-target="#sec-storm">Case Study: Average Wind Speed of Storms</a>
+  <ul class="collapse">
+  <li><a href="#loading-storms-data" id="toc-loading-storms-data" class="nav-link" data-scroll-target="#loading-storms-data">Loading Storms Data</a></li>
+  <li><a href="#picking-a-random-sample-of-storms" id="toc-picking-a-random-sample-of-storms" class="nav-link" data-scroll-target="#picking-a-random-sample-of-storms">Picking a Random Sample of Storms</a></li>
+  <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a>
+  <ul class="collapse">
+  <li><a href="#solution-to-question-1" id="toc-solution-to-question-1" class="nav-link" data-scroll-target="#solution-to-question-1">Solution to Question 1</a></li>
+  </ul></li>
+  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a>
+  <ul class="collapse">
+  <li><a href="#solution-to-question-2" id="toc-solution-to-question-2" class="nav-link" data-scroll-target="#solution-to-question-2">Solution to Question 2</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#a-bootstrap-confidence-interval" id="toc-a-bootstrap-confidence-interval" class="nav-link" data-scroll-target="#a-bootstrap-confidence-interval">A Bootstrap Confidence Interval</a></li>
+  <li><a href="#sec-param" id="toc-sec-param" class="nav-link" data-scroll-target="#sec-param">A Parametric Method for Interval Estimates</a>
+  <ul class="collapse">
+  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3</a>
+  <ul class="collapse">
+  <li><a href="#question-3a" id="toc-question-3a" class="nav-link" data-scroll-target="#question-3a">Question 3a</a></li>
+  <li><a href="#question-3b" id="toc-question-3b" class="nav-link" data-scroll-target="#question-3b">Question 3b</a></li>
+  <li><a href="#question-3c" id="toc-question-3c" class="nav-link" data-scroll-target="#question-3c">Question 3c</a></li>
+  <li><a href="#question-3d" id="toc-question-3d" class="nav-link" data-scroll-target="#question-3d">Question 3d</a></li>
+  </ul></li>
+  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4">Question 4</a>
+  <ul class="collapse">
+  <li><a href="#question-4a" id="toc-question-4a" class="nav-link" data-scroll-target="#question-4a">Question 4a</a></li>
+  <li><a href="#question-4b" id="toc-question-4b" class="nav-link" data-scroll-target="#question-4b">Question 4b</a></li>
+  <li><a href="#question-4c" id="toc-question-4c" class="nav-link" data-scroll-target="#question-4c">Question 4c</a></li>
+  <li><a href="#question-4d" id="toc-question-4d" class="nav-link" data-scroll-target="#question-4d">Question 4d</a></li>
+  <li><a href="#question-4e" id="toc-question-4e" class="nav-link" data-scroll-target="#question-4e">Question 4e</a></li>
+  <li><a href="#question-4f" id="toc-question-4f" class="nav-link" data-scroll-target="#question-4f">Question 4f</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#confidence-interval-for-a-mean" id="toc-confidence-interval-for-a-mean" class="nav-link" data-scroll-target="#confidence-interval-for-a-mean">95% Confidence Interval for a Mean</a>
+  <ul class="collapse">
+  <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5">Question 5</a>
+  <ul class="collapse">
+  <li><a href="#question-5a" id="toc-question-5a" class="nav-link" data-scroll-target="#question-5a">Question 5a</a></li>
+  <li><a href="#question-5b" id="toc-question-5b" class="nav-link" data-scroll-target="#question-5b">Question 5b</a></li>
+  <li><a href="#question-5c" id="toc-question-5c" class="nav-link" data-scroll-target="#question-5c">Question 5c</a></li>
+  <li><a href="#question-5d" id="toc-question-5d" class="nav-link" data-scroll-target="#question-5d">Question 5d</a></li>
+  <li><a href="#question-5e" id="toc-question-5e" class="nav-link" data-scroll-target="#question-5e">Question 5e</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#what-is-uncertain-and-what-is-unknown" id="toc-what-is-uncertain-and-what-is-unknown" class="nav-link" data-scroll-target="#what-is-uncertain-and-what-is-unknown">What is Uncertain and What is Unknown?</a></li>
+  <li><a href="#interpreting-confidence-intervals" id="toc-interpreting-confidence-intervals" class="nav-link" data-scroll-target="#interpreting-confidence-intervals">Interpreting Confidence Intervals</a>
+  <ul class="collapse">
+  <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6">Question 6</a>
+  <ul class="collapse">
+  <li><a href="#question-6a" id="toc-question-6a" class="nav-link" data-scroll-target="#question-6a">Question 6a</a></li>
+  <li><a href="#question-6b" id="toc-question-6b" class="nav-link" data-scroll-target="#question-6b">Question 6b</a></li>
+  <li><a href="#question-6c" id="toc-question-6c" class="nav-link" data-scroll-target="#question-6c">Question 6c</a></li>
+  <li><a href="#question-6d" id="toc-question-6d" class="nav-link" data-scroll-target="#question-6d">Question 6d</a></li>
+  <li><a href="#question-6e" id="toc-question-6e" class="nav-link" data-scroll-target="#question-6e">Question 6e</a></li>
+  </ul></li>
+  <li><a href="#attaching-uncertainty-to-the-intervals" id="toc-attaching-uncertainty-to-the-intervals" class="nav-link" data-scroll-target="#attaching-uncertainty-to-the-intervals">Attaching Uncertainty to the Intervals</a></li>
+  <li><a href="#question-7" id="toc-question-7" class="nav-link" data-scroll-target="#question-7">Question 7</a>
+  <ul class="collapse">
+  <li><a href="#solution-to-question-7" id="toc-solution-to-question-7" class="nav-link" data-scroll-target="#solution-to-question-7">Solution to Question 7</a></li>
+  </ul></li>
+  <li><a href="#question-8" id="toc-question-8" class="nav-link" data-scroll-target="#question-8">Question 8</a>
+  <ul class="collapse">
+  <li><a href="#question-8a" id="toc-question-8a" class="nav-link" data-scroll-target="#question-8a">Question 8a</a></li>
+  <li><a href="#question-8b" id="toc-question-8b" class="nav-link" data-scroll-target="#question-8b">Question 8b</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#changing-the-confidence-level" id="toc-changing-the-confidence-level" class="nav-link" data-scroll-target="#changing-the-confidence-level">Changing the Confidence Level</a></li>
+  <li><a href="#confidence-intervals-when-the-variance-is-unknown" id="toc-confidence-intervals-when-the-variance-is-unknown" class="nav-link" data-scroll-target="#confidence-intervals-when-the-variance-is-unknown">Confidence Intervals When the Variance Is Unknown</a>
+  <ul class="collapse">
+  <li><a href="#the-t-distribution" id="toc-the-t-distribution" class="nav-link" data-scroll-target="#the-t-distribution">The <span class="math inline">\(t\)</span>-Distribution</a></li>
+  <li><a href="#using-a-t-distribution-when-variance-is-unknown" id="toc-using-a-t-distribution-when-variance-is-unknown" class="nav-link" data-scroll-target="#using-a-t-distribution-when-variance-is-unknown">Using a <span class="math inline">\(t\)</span>-Distribution When Variance is Unknown</a></li>
+  <li><a href="#question-9" id="toc-question-9" class="nav-link" data-scroll-target="#question-9">Question 9</a>
+  <ul class="collapse">
+  <li><a href="#question-9a" id="toc-question-9a" class="nav-link" data-scroll-target="#question-9a">Question 9a</a></li>
+  <li><a href="#question-9b" id="toc-question-9b" class="nav-link" data-scroll-target="#question-9b">Question 9b</a></li>
+  <li><a href="#question-9c" id="toc-question-9c" class="nav-link" data-scroll-target="#question-9c">Question 9c</a></li>
+  </ul></li>
+  <li><a href="#different-methods-for-t-distribution-confidence-intervals" id="toc-different-methods-for-t-distribution-confidence-intervals" class="nav-link" data-scroll-target="#different-methods-for-t-distribution-confidence-intervals">Different Methods for <span class="math inline">\(t\)</span>-Distribution Confidence Intervals</a></li>
+  <li><a href="#question-10" id="toc-question-10" class="nav-link" data-scroll-target="#question-10">Question 10</a>
+  <ul class="collapse">
+  <li><a href="#solution-to-question-10" id="toc-solution-to-question-10" class="nav-link" data-scroll-target="#solution-to-question-10">Solution to Question 10</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#confidence-interval-for-a-difference-in-two-means" id="toc-confidence-interval-for-a-difference-in-two-means" class="nav-link" data-scroll-target="#confidence-interval-for-a-difference-in-two-means">Confidence Interval for a Difference in Two Means</a>
+  <ul class="collapse">
+  <li><a href="#sec-clt-diff-means" id="toc-sec-clt-diff-means" class="nav-link" data-scroll-target="#sec-clt-diff-means">Question 11</a>
+  <ul class="collapse">
+  <li><a href="#solution-to-question-11" id="toc-solution-to-question-11" class="nav-link" data-scroll-target="#solution-to-question-11">Solution to Question 11</a></li>
+  </ul></li>
+  <li><a href="#sec-informal" id="toc-sec-informal" class="nav-link" data-scroll-target="#sec-informal">Confidence Intervals for a Difference in Means</a></li>
+  </ul></li>
+  <li><a href="#which-month-has-the-strongest-storms" id="toc-which-month-has-the-strongest-storms" class="nav-link" data-scroll-target="#which-month-has-the-strongest-storms">Which Month Has the Strongest Storms?</a>
+  <ul class="collapse">
+  <li><a href="#question-12" id="toc-question-12" class="nav-link" data-scroll-target="#question-12">Question 12</a>
+  <ul class="collapse">
+  <li><a href="#solution-to-question-12" id="toc-solution-to-question-12" class="nav-link" data-scroll-target="#solution-to-question-12">Solution to Question 12</a></li>
+  </ul></li>
+  <li><a href="#refining-our-question" id="toc-refining-our-question" class="nav-link" data-scroll-target="#refining-our-question">Refining Our Question</a></li>
+  <li><a href="#subsetting-into-two-independent-samples" id="toc-subsetting-into-two-independent-samples" class="nav-link" data-scroll-target="#subsetting-into-two-independent-samples">Subsetting into Two Independent Samples</a></li>
+  <li><a href="#question-13" id="toc-question-13" class="nav-link" data-scroll-target="#question-13">Question 13</a>
+  <ul class="collapse">
+  <li><a href="#question-13a" id="toc-question-13a" class="nav-link" data-scroll-target="#question-13a">Question 13a</a></li>
+  <li><a href="#question-13b" id="toc-question-13b" class="nav-link" data-scroll-target="#question-13b">Question 13b</a></li>
+  <li><a href="#question-13c" id="toc-question-13c" class="nav-link" data-scroll-target="#question-13c">Question 13c</a></li>
+  <li><a href="#question-13d" id="toc-question-13d" class="nav-link" data-scroll-target="#question-13d">Question 13d</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#using-t.test-for-a-difference-in-means" id="toc-using-t.test-for-a-difference-in-means" class="nav-link" data-scroll-target="#using-t.test-for-a-difference-in-means">Using <code>t.test()</code> for a Difference in Means</a>
+  <ul class="collapse">
+  <li><a href="#question-14" id="toc-question-14" class="nav-link" data-scroll-target="#question-14">Question 14</a>
+  <ul class="collapse">
+  <li><a href="#solution-to-question-14" id="toc-solution-to-question-14" class="nav-link" data-scroll-target="#solution-to-question-14">Solution to Question 14</a></li>
+  </ul></li>
+  <li><a href="#subsetting-with-t.test" id="toc-subsetting-with-t.test" class="nav-link" data-scroll-target="#subsetting-with-t.test">Subsetting with <code>t.test</code></a></li>
+  <li><a href="#question-15" id="toc-question-15" class="nav-link" data-scroll-target="#question-15">Question 15</a>
+  <ul class="collapse">
+  <li><a href="#solution-to-question-15" id="toc-solution-to-question-15" class="nav-link" data-scroll-target="#solution-to-question-15">Solution to Question 15</a></li>
+  </ul></li>
+  <li><a href="#caution-using-t.test-for-a-difference-in-two-means" id="toc-caution-using-t.test-for-a-difference-in-two-means" class="nav-link" data-scroll-target="#caution-using-t.test-for-a-difference-in-two-means">Caution Using <code>t.test()</code> for a Difference in Two Means</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">5.4: Parametric Confidence Intervals for Means</h1>
+<h1 class="title"><span class="chapter-title">5.4: Parametric Confidence Intervals for Means</span></h1>
 </div>
 
 
@@ -695,7 +1083,7 @@ Tip
 <div id="fig-success" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="19-Parametric-CI-Means_files/figure-html/fig-success-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;1: Results of 100 randomly generated 95% confidence intervals.</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;26.1: Results of 100 randomly generated 95% confidence intervals.</figcaption>
 </figure>
 </div>
 </div>
@@ -780,7 +1168,7 @@ Tip
 <div id="fig-cutoffs" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="19-Parametric-CI-Means_files/figure-html/fig-cutoffs-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;2: Identifying Z Values for Confidence Interval</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;27.1: Identifying Z Values for Confidence Interval</figcaption>
 </figure>
 </div>
 </div>
@@ -821,7 +1209,7 @@ Tip
 </div>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;3: Standardized Distribution When Variance Unknown.</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;28.1: Standardized Distribution When Variance Unknown.</figcaption><p></p>
 </figure>
 </div>
 <p>The distribution <span class="math inline">\(W\)</span> is symmetric and bell-shaped. From the QQ-plot, we see <span class="math inline">\(W\)</span> is approximately normal in the middle of the distribution. However, the tails of distribution <span class="math inline">\(W\)</span> are not similar to tails of a normal distribution. Distribution <span class="math inline">\(W\)</span> has <strong>fatter tails</strong> than a normal distribution.</p>
@@ -833,7 +1221,7 @@ Tip
 <div id="fig-tdist" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="19-Parametric-CI-Means_files/figure-html/fig-tdist-1.png" class="img-fluid figure-img" width="672"></p>
-<figcaption class="figure-caption">Figure&nbsp;4: Plots of t-distributions with different degrees of freedom</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;28.2: Plots of t-distributions with different degrees of freedom</figcaption>
 </figure>
 </div>
 </div>
@@ -1487,7 +1875,28 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./18-Bootstrap-Other-Stats.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">5.3: Bootstrapping Comparitive Statistics</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./20-Parametric-CI-Proportions.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-title">5.5: Parametric Confidence Intervals for Proportions</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Statistical Methods: Exploring the Uncertain by Adam Spiegler</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right"><img src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" class="img-fluid" alt="Creative Commons License"> <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-N-SA 4.0</a></div>
+  </div>
+</footer>
 
 
 
