@@ -8,7 +8,7 @@
 
 <meta name="author" content="Adam Spiegler, University of Colorado Denver">
 
-<title>An Overview of Plotting Data in R</title>
+<title>Statistical Methods: Exploring the Uncertain - Appendix C — An Overview of Plotting Data in R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -59,11 +59,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./Intro-to-Vectors-Dataframes.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -98,20 +100,358 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="fullcontent">
+<body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Installing-R-and-RStudio.html">Appendices</a></li><li class="breadcrumb-item"><a href="./Overview-of-Plots.html"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">An Overview of Plotting Data in R</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Statistical Methods: Exploring the Uncertain</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Chapter 1: Exploring Data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-Intro-to-Inference.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1.1: Introduction to Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-EDA-Categorical.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1.2: Exploring Categorical Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-EDA-Quantitative.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1.3: Exploring Quantitative Data</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Chapter 2: Probability Essentials</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-Overview-of-Probability.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.1: An Overview of Probability</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-Intro-to-Random-Variables.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.2: Introduction to Random Variables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-Expected-Value-and-Variance.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.3: Expected Value and Variance</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-Common-Discrete-RandVar.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.4: Common Discrete Distributions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-Common-Continuous-Distributions.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.5: Common Continuous Distributions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-Joint-Distributions.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.6: Joint Distributions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Chapter 3: Sampling Distributions</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-Sampling-Dist-Mean.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3.1: Sampling Distribution of Means</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-Sampling-Dist-Prop.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3.2: Sampling Distributions for Proportions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-Sampling-Dist-Other.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3.3: Sampling Distributions of Other Statistics</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Chapter 4: Estimation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-Estimation-MLE.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4.1: Maximum Likelihood Estimation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-Estimation-MOM.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4.2: Method of Moments Estimates</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-Properties-Estimators.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4.3: Properties of Estimators</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Chapter 5: Interval Estimates</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-Bootstrap-Dist.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5.1: Bootstrap Distributions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-Bootstrap-Confidence-Int.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5.2: Bootstrap Confidence Intervals</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./18-Bootstrap-Other-Stats.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5.3: Bootstrapping Comparitive Statistics</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./19-Parametric-CI-Means.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5.4: Parametric Confidence Intervals for Means</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./20-Parametric-CI-Proportions.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5.5: Parametric Confidence Intervals for Proportions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">Chapter 6: Hypothesis Tests</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21-Intro-Hypothesis-Tests.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6.1: Introduction to Hypothesis Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./22-Permutation-Tests.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6.2: Permutation Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./23-Hypothesis-Single-Population.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6.3: Parametric Hypothesis Tests</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./24-Hypothesis-Comparing-Two.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6.4: Parametric Tests for Two Populations</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Installing-R-and-RStudio.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Installing R and RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Intro-to-Vectors-Dataframes.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Fundamentals of Working with Data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Overview-of-Plots.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">An Overview of Plotting Data in R</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
+  <li><a href="#help-documentation" id="toc-help-documentation" class="nav-link" data-scroll-target="#help-documentation">Help Documentation</a></li>
+  </ul></li>
+  <li><a href="#what-are-packages-in-r" id="toc-what-are-packages-in-r" class="nav-link" data-scroll-target="#what-are-packages-in-r">What Are Packages in R?</a>
+  <ul class="collapse">
+  <li><a href="#loading-packages-with-the-library-command" id="toc-loading-packages-with-the-library-command" class="nav-link" data-scroll-target="#loading-packages-with-the-library-command">Loading Packages with the <code>library()</code> Command</a></li>
+  <li><a href="#reloading-packages-when-restarting-a-session" id="toc-reloading-packages-when-restarting-a-session" class="nav-link" data-scroll-target="#reloading-packages-when-restarting-a-session">Reloading Packages When Restarting a Session</a></li>
+  </ul></li>
+  <li><a href="#summarizing-storms-data" id="toc-summarizing-storms-data" class="nav-link" data-scroll-target="#summarizing-storms-data">Summarizing <code>storms</code> Data</a></li>
+  <li><a href="#one-quantitative-variable" id="toc-one-quantitative-variable" class="nav-link" data-scroll-target="#one-quantitative-variable">One Quantitative Variable</a>
+  <ul class="collapse">
+  <li><a href="#histograms" id="toc-histograms" class="nav-link" data-scroll-target="#histograms">Histograms</a></li>
+  <li><a href="#density-plots" id="toc-density-plots" class="nav-link" data-scroll-target="#density-plots">Density plots</a></li>
+  <li><a href="#boxplots" id="toc-boxplots" class="nav-link" data-scroll-target="#boxplots">Boxplots</a>
+  <ul class="collapse">
+  <li><a href="#changing-the-layout-of-boxplots" id="toc-changing-the-layout-of-boxplots" class="nav-link" data-scroll-target="#changing-the-layout-of-boxplots">Changing the Layout of Boxplots</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#one-qualitative-variable" id="toc-one-qualitative-variable" class="nav-link" data-scroll-target="#one-qualitative-variable">One Qualitative Variable</a>
+  <ul class="collapse">
+  <li><a href="#checking-the-data-type" id="toc-checking-the-data-type" class="nav-link" data-scroll-target="#checking-the-data-type">Checking the Data Type</a>
+  <ul class="collapse">
+  <li><a href="#data-types" id="toc-data-types" class="nav-link" data-scroll-target="#data-types">Data Types</a></li>
+  </ul></li>
+  <li><a href="#caution-with-data-types-and-using-plot" id="toc-caution-with-data-types-and-using-plot" class="nav-link" data-scroll-target="#caution-with-data-types-and-using-plot">Caution with Data Types and Using <code>plot()</code></a></li>
+  <li><a href="#creating-bar-charts-from-tables" id="toc-creating-bar-charts-from-tables" class="nav-link" data-scroll-target="#creating-bar-charts-from-tables">Creating Bar Charts From Tables</a></li>
+  <li><a href="#relative-frequency-tables-and-bar-charts" id="toc-relative-frequency-tables-and-bar-charts" class="nav-link" data-scroll-target="#relative-frequency-tables-and-bar-charts">Relative Frequency Tables and Bar Charts</a></li>
+  <li><a href="#pie-charts-with-pie" id="toc-pie-charts-with-pie" class="nav-link" data-scroll-target="#pie-charts-with-pie">Pie Charts with <code>pie()</code></a></li>
+  <li><a href="#converting-to-a-factor-and-then-plot" id="toc-converting-to-a-factor-and-then-plot" class="nav-link" data-scroll-target="#converting-to-a-factor-and-then-plot">Converting to a <code>factor()</code> and Then <code>plot()</code></a></li>
+  </ul></li>
+  <li><a href="#plotting-one-quantitative-and-one-qualitative-variable" id="toc-plotting-one-quantitative-and-one-qualitative-variable" class="nav-link" data-scroll-target="#plotting-one-quantitative-and-one-qualitative-variable">Plotting One Quantitative and One Qualitative Variable&lt;</a>
+  <ul class="collapse">
+  <li><a href="#side-by-side-boxplots" id="toc-side-by-side-boxplots" class="nav-link" data-scroll-target="#side-by-side-boxplots">Side by Side Boxplots</a>
+  <ul class="collapse">
+  <li><a href="#adding-a-legend-to-plots" id="toc-adding-a-legend-to-plots" class="nav-link" data-scroll-target="#adding-a-legend-to-plots">Adding a Legend to Plots</a></li>
+  </ul></li>
+  <li><a href="#subsetting-data-by-category" id="toc-subsetting-data-by-category" class="nav-link" data-scroll-target="#subsetting-data-by-category">Subsetting Data by Category</a></li>
+  </ul></li>
+  <li><a href="#relationship-between-two-qualitative-variables" id="toc-relationship-between-two-qualitative-variables" class="nav-link" data-scroll-target="#relationship-between-two-qualitative-variables">Relationship Between Two Qualitative Variables</a>
+  <ul class="collapse">
+  <li><a href="#creating-contingency-or-two-way-table" id="toc-creating-contingency-or-two-way-table" class="nav-link" data-scroll-target="#creating-contingency-or-two-way-table">Creating Contingency or Two-Way Table</a></li>
+  <li><a href="#creating-grouped-frequency-bar-charts" id="toc-creating-grouped-frequency-bar-charts" class="nav-link" data-scroll-target="#creating-grouped-frequency-bar-charts">Creating Grouped Frequency Bar Charts</a></li>
+  <li><a href="#grouped-frequency-bar-charts" id="toc-grouped-frequency-bar-charts" class="nav-link" data-scroll-target="#grouped-frequency-bar-charts">Grouped Frequency Bar Charts</a></li>
+  <li><a href="#stacked-bar-charts-relative-to-grand-total" id="toc-stacked-bar-charts-relative-to-grand-total" class="nav-link" data-scroll-target="#stacked-bar-charts-relative-to-grand-total">Stacked Bar Charts Relative to Grand Total</a></li>
+  <li><a href="#stacked-bar-chart-relative-to-column-totals" id="toc-stacked-bar-chart-relative-to-column-totals" class="nav-link" data-scroll-target="#stacked-bar-chart-relative-to-column-totals">Stacked Bar Chart Relative to Column Totals</a></li>
+  </ul></li>
+  <li><a href="#relationship-between-two-quantitative-variables" id="toc-relationship-between-two-quantitative-variables" class="nav-link" data-scroll-target="#relationship-between-two-quantitative-variables">Relationship Between Two Quantitative Variables</a></li>
+  <li><a href="#arranging-multiple-plots-in-an-array" id="toc-arranging-multiple-plots-in-an-array" class="nav-link" data-scroll-target="#arranging-multiple-plots-in-an-array">Arranging Multiple Plots in an Array</a></li>
+  <li><a href="#more-advanced-plots-with-ggplot2" id="toc-more-advanced-plots-with-ggplot2" class="nav-link" data-scroll-target="#more-advanced-plots-with-ggplot2">More Advanced Plots with <code>ggplot2</code></a>
+  <ul class="collapse">
+  <li><a href="#loading-ggplot2" id="toc-loading-ggplot2" class="nav-link" data-scroll-target="#loading-ggplot2">Loading <code>ggplot2</code></a></li>
+  <li><a href="#plotting-one-numerical-variable-with-ggplot2" id="toc-plotting-one-numerical-variable-with-ggplot2" class="nav-link" data-scroll-target="#plotting-one-numerical-variable-with-ggplot2">Plotting One Numerical Variable with <code>ggplot2</code></a></li>
+  <li><a href="#scatter-plots-with-ggplot2" id="toc-scatter-plots-with-ggplot2" class="nav-link" data-scroll-target="#scatter-plots-with-ggplot2">Scatter Plots with <code>ggplot2</code></a></li>
+  <li><a href="#scaling-ggplot2-plots" id="toc-scaling-ggplot2-plots" class="nav-link" data-scroll-target="#scaling-ggplot2-plots">Scaling <code>ggplot2</code> plots</a>
+  <ul class="collapse">
+  <li><a href="#scaling-by-shape" id="toc-scaling-by-shape" class="nav-link" data-scroll-target="#scaling-by-shape">Scaling by Shape</a></li>
+  <li><a href="#applying-multiple-scales" id="toc-applying-multiple-scales" class="nav-link" data-scroll-target="#applying-multiple-scales">Applying Multiple Scales</a></li>
+  </ul></li>
+  <li><a href="#facetting-in-ggplot2" id="toc-facetting-in-ggplot2" class="nav-link" data-scroll-target="#facetting-in-ggplot2">Facetting in <code>ggplot2</code></a></li>
+  <li><a href="#bar-charts-with-ggplot2" id="toc-bar-charts-with-ggplot2" class="nav-link" data-scroll-target="#bar-charts-with-ggplot2">Bar Charts with <code>ggplot2</code></a>
+  <ul class="collapse">
+  <li><a href="#stacked-bar-charts-of-counts-with-ggplot2" id="toc-stacked-bar-charts-of-counts-with-ggplot2" class="nav-link" data-scroll-target="#stacked-bar-charts-of-counts-with-ggplot2">Stacked Bar Charts of Counts with <code>ggplot2</code></a></li>
+  <li><a href="#stacked-relative-frequency-bar-charts-with-ggplot2" id="toc-stacked-relative-frequency-bar-charts-with-ggplot2" class="nav-link" data-scroll-target="#stacked-relative-frequency-bar-charts-with-ggplot2">Stacked Relative Frequency Bar Charts with <code>ggplot2</code></a></li>
+  <li><a href="#grouped-bar-charts-of-counts-with-ggplot2" id="toc-grouped-bar-charts-of-counts-with-ggplot2" class="nav-link" data-scroll-target="#grouped-bar-charts-of-counts-with-ggplot2">Grouped Bar Charts of Counts with <code>ggplot2</code></a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#spatial-plots-with-mapview" id="toc-spatial-plots-with-mapview" class="nav-link" data-scroll-target="#spatial-plots-with-mapview">Spatial Plots with <code>mapview</code></a>
+  <ul class="collapse">
+  <li><a href="#load-library" id="toc-load-library" class="nav-link" data-scroll-target="#load-library">Load Library</a></li>
+  <li><a href="#mapping-all-storms-by-status" id="toc-mapping-all-storms-by-status" class="nav-link" data-scroll-target="#mapping-all-storms-by-status">Mapping All Storms by Status</a></li>
+  <li><a href="#mapping-category-5-hurricanes" id="toc-mapping-category-5-hurricanes" class="nav-link" data-scroll-target="#mapping-category-5-hurricanes">Mapping Category 5 Hurricanes</a></li>
+  </ul></li>
+  <li><a href="#creative-commons-license-information" id="toc-creative-commons-license-information" class="nav-link" data-scroll-target="#creative-commons-license-information">Creative Commons License Information</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">An Overview of Plotting Data in R</h1>
+<h1 class="title">Appendix C — An Overview of Plotting Data in R</h1>
 </div>
 
 
@@ -1413,7 +1753,25 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Intro-to-Vectors-Dataframes.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Fundamentals of Working with Data</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">Statistical Methods: Exploring the Uncertain by Adam Spiegler</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right"><img src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" class="img-fluid" alt="Creative Commons License"> <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-N-SA 4.0</a></div>
+  </div>
+</footer>
 
 
 
