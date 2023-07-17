@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Statistical Methods: Exploring the Uncertain - 5.1: Bootstrap Distributions</title>
+<title>5.1: Bootstrap Distributions</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,14 +58,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./17-Bootstrap-Confidence-Int.html" rel="next">
-<link href="./15-Properties-Estimators.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -100,376 +97,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="nav-sidebar floating">
+<body class="fullcontent">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./16-Bootstrap-Dist.html">Chapter 5: Interval Estimates</a></li><li class="breadcrumb-item"><a href="./16-Bootstrap-Dist.html"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">5.1: Bootstrap Distributions</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
-    </div>
-  </nav>
-</header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="./">Statistical Methods: Exploring the Uncertain</a> 
-        <div class="sidebar-tools-main">
-  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
-  <div class="quarto-reader-toggle-btn">
-  <i class="bi"></i>
-  </div>
-</a>
-</div>
-    </div>
-      </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preface</span></a>
-  </div>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Chapter 1: Exploring Data</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./01-Intro-to-Inference.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1.1: Introduction to Statistics</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./02-EDA-Categorical.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1.2: Exploring Categorical Data</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./03-EDA-Quantitative.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1.3: Exploring Quantitative Data</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">Chapter 2: Probability Essentials</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./04-Overview-of-Probability.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.1: An Overview of Probability</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./05-Intro-to-Random-Variables.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.2: Introduction to Random Variables</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./06-Expected-Value-and-Variance.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.3: Expected Value and Variance</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./07-Common-Discrete-RandVar.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.4: Common Discrete Distributions</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./08-Common-Continuous-Distributions.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.5: Common Continuous Distributions</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./09-Joint-Distributions.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.6: Joint Distributions</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">Chapter 3: Sampling Distributions</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./10-Sampling-Dist-Mean.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3.1: Sampling Distribution of Means</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./11-Sampling-Dist-Prop.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3.2: Sampling Distributions for Proportions</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./12-Sampling-Dist-Other.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3.3: Sampling Distributions of Other Statistics</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text">Chapter 4: Estimation</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./13-Estimation-MLE.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4.1: Maximum Likelihood Estimation</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./14-Estimation-MOM.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4.2: Method of Moments Estimates</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./15-Properties-Estimators.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4.3: Properties of Estimators</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text">Chapter 5: Interval Estimates</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./16-Bootstrap-Dist.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">5.1: Bootstrap Distributions</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./17-Bootstrap-Confidence-Int.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5.2: Bootstrap Confidence Intervals</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./18-Bootstrap-Other-Stats.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5.3: Bootstrapping Comparitive Statistics</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./19-Parametric-CI-Means.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5.4: Parametric Confidence Intervals for Means</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./20-Parametric-CI-Proportions.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5.5: Parametric Confidence Intervals for Proportions</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
- <span class="menu-text">Chapter 6: Hypothesis Tests</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./21-Intro-Hypothesis-Tests.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6.1: Introduction to Hypothesis Tests</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./22-Permutation-Tests.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6.2: Permutation Tests</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./23-Hypothesis-Single-Population.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6.3: Parametric Hypothesis Tests</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./24-Hypothesis-Comparing-Two.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6.4: Parametric Test for Two Populations</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Installing-R-and-RStudio.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Installing R and RStudio</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Intro-to-Vectors-Dataframes.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Fundamentals of Working with Data</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Overview-of-Plots.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">An Overview of Plotting Data in R</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#sampling-from-a-population" id="toc-sampling-from-a-population" class="nav-link active" data-scroll-target="#sampling-from-a-population">Sampling From a Population</a>
-  <ul class="collapse">
-  <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a>
-  <ul class="collapse">
-  <li><a href="#solution-to-question-1" id="toc-solution-to-question-1" class="nav-link" data-scroll-target="#solution-to-question-1">Solution to Question 1</a></li>
-  </ul></li>
-  </ul></li>
-  <li><a href="#case-study-golden-jackal-mandible-length" id="toc-case-study-golden-jackal-mandible-length" class="nav-link" data-scroll-target="#case-study-golden-jackal-mandible-length">Case Study: Golden Jackal Mandible Length</a>
-  <ul class="collapse">
-  <li><a href="#loading-the-data" id="toc-loading-the-data" class="nav-link" data-scroll-target="#loading-the-data">Loading the Data</a>
-  <ul class="collapse">
-  <li><a href="#summarizing-and-storing-the-data" id="toc-summarizing-and-storing-the-data" class="nav-link" data-scroll-target="#summarizing-and-storing-the-data">Summarizing and Storing the Data</a></li>
-  </ul></li>
-  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a>
-  <ul class="collapse">
-  <li><a href="#solution-to-question-2" id="toc-solution-to-question-2" class="nav-link" data-scroll-target="#solution-to-question-2">Solution to Question 2</a></li>
-  </ul></li>
-  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3</a>
-  <ul class="collapse">
-  <li><a href="#solution-to-question-3" id="toc-solution-to-question-3" class="nav-link" data-scroll-target="#solution-to-question-3">Solution to Question 3</a></li>
-  </ul></li>
-  <li><a href="#what-is-a-statistical-question" id="toc-what-is-a-statistical-question" class="nav-link" data-scroll-target="#what-is-a-statistical-question">What is a Statistical Question?</a></li>
-  </ul></li>
-  <li><a href="#bootstrapping-sampling-from-a-sample" id="toc-bootstrapping-sampling-from-a-sample" class="nav-link" data-scroll-target="#bootstrapping-sampling-from-a-sample">Bootstrapping: Sampling from a Sample</a>
-  <ul class="collapse">
-  <li><a href="#bootstrap-distributions" id="toc-bootstrap-distributions" class="nav-link" data-scroll-target="#bootstrap-distributions">Bootstrap Distributions</a>
-  <ul class="collapse">
-  <li><a href="#a-bootstrapping-algorithm" id="toc-a-bootstrapping-algorithm" class="nav-link" data-scroll-target="#a-bootstrapping-algorithm">A Bootstrapping Algorithm</a></li>
-  </ul></li>
-  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4">Question 4</a>
-  <ul class="collapse">
-  <li><a href="#question-4a" id="toc-question-4a" class="nav-link" data-scroll-target="#question-4a">Question 4a</a></li>
-  <li><a href="#question-4b" id="toc-question-4b" class="nav-link" data-scroll-target="#question-4b">Question 4b</a></li>
-  <li><a href="#question-4c" id="toc-question-4c" class="nav-link" data-scroll-target="#question-4c">Question 4c</a></li>
-  <li><a href="#question-4d" id="toc-question-4d" class="nav-link" data-scroll-target="#question-4d">Question 4d</a></li>
-  <li><a href="#question-4e" id="toc-question-4e" class="nav-link" data-scroll-target="#question-4e">Question 4e</a></li>
-  </ul></li>
-  <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5">Question 5</a>
-  <ul class="collapse">
-  <li><a href="#solution-to-question-5" id="toc-solution-to-question-5" class="nav-link" data-scroll-target="#solution-to-question-5">Solution to Question 5</a></li>
-  </ul></li>
-  </ul></li>
-  <li><a href="#monte-carlo-methods" id="toc-monte-carlo-methods" class="nav-link" data-scroll-target="#monte-carlo-methods">Monte Carlo Methods</a>
-  <ul class="collapse">
-  <li><a href="#sec-jawboot" id="toc-sec-jawboot" class="nav-link" data-scroll-target="#sec-jawboot">Creating a Bootstrap Distribution in R</a>
-  <ul class="collapse">
-  <li><a href="#step-1-pick-a-bootstrap-resample" id="toc-step-1-pick-a-bootstrap-resample" class="nav-link" data-scroll-target="#step-1-pick-a-bootstrap-resample">Step 1: Pick a Bootstrap Resample</a></li>
-  <li><a href="#step-2-calculate-statistics-from-the-bootstrap-sample" id="toc-step-2-calculate-statistics-from-the-bootstrap-sample" class="nav-link" data-scroll-target="#step-2-calculate-statistics-from-the-bootstrap-sample">Step 2: Calculate Statistic(s) from the Bootstrap Sample</a></li>
-  <li><a href="#step-3-repeat-over-and-over-again" id="toc-step-3-repeat-over-and-over-again" class="nav-link" data-scroll-target="#step-3-repeat-over-and-over-again">Step 3: Repeat Over and Over Again</a></li>
-  </ul></li>
-  <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6">Question 6</a>
-  <ul class="collapse">
-  <li><a href="#solution-to-question-6" id="toc-solution-to-question-6" class="nav-link" data-scroll-target="#solution-to-question-6">Solution to Question 6</a></li>
-  </ul></li>
-  </ul></li>
-  <li><a href="#sec-bias" id="toc-sec-bias" class="nav-link" data-scroll-target="#sec-bias">Measuring the Bias of Booststrap Estimates</a>
-  <ul class="collapse">
-  <li><a href="#question-7" id="toc-question-7" class="nav-link" data-scroll-target="#question-7">Question 7</a>
-  <ul class="collapse">
-  <li><a href="#solution-to-question-7" id="toc-solution-to-question-7" class="nav-link" data-scroll-target="#solution-to-question-7">Solution to Question 7</a></li>
-  </ul></li>
-  <li><a href="#question-8" id="toc-question-8" class="nav-link" data-scroll-target="#question-8">Question 8</a>
-  <ul class="collapse">
-  <li><a href="#solution-to-question-8" id="toc-solution-to-question-8" class="nav-link" data-scroll-target="#solution-to-question-8">Solution to Question 8</a></li>
-  </ul></li>
-  </ul></li>
-  <li><a href="#sec-jawclt" id="toc-sec-jawclt" class="nav-link" data-scroll-target="#sec-jawclt">A Central Limit Theorem Model</a>
-  <ul class="collapse">
-  <li><a href="#question-9" id="toc-question-9" class="nav-link" data-scroll-target="#question-9">Question 9</a>
-  <ul class="collapse">
-  <li><a href="#solution-to-question-9" id="toc-solution-to-question-9" class="nav-link" data-scroll-target="#solution-to-question-9">Solution to Question 9</a></li>
-  </ul></li>
-  </ul></li>
-  <li><a href="#comparison-of-bootstrap-approximations-to-clt" id="toc-comparison-of-bootstrap-approximations-to-clt" class="nav-link" data-scroll-target="#comparison-of-bootstrap-approximations-to-clt">Comparison of Bootstrap Approximations to CLT</a>
-  <ul class="collapse">
-  <li><a href="#question-10" id="toc-question-10" class="nav-link" data-scroll-target="#question-10">Question 10</a>
-  <ul class="collapse">
-  <li><a href="#solution-to-question-10" id="toc-solution-to-question-10" class="nav-link" data-scroll-target="#solution-to-question-10">Solution to Question 10</a></li>
-  </ul></li>
-  <li><a href="#sec-plugin" id="toc-sec-plugin" class="nav-link" data-scroll-target="#sec-plugin">The Plug-in Principle</a></li>
-  </ul></li>
-  <li><a href="#properties-of-bootstrap-estimators" id="toc-properties-of-bootstrap-estimators" class="nav-link" data-scroll-target="#properties-of-bootstrap-estimators">Properties of Bootstrap Estimators</a>
-  <ul class="collapse">
-  <li><a href="#question-11-arsenic-case-study" id="toc-question-11-arsenic-case-study" class="nav-link" data-scroll-target="#question-11-arsenic-case-study">Question 11: Arsenic Case Study</a>
-  <ul class="collapse">
-  <li><a href="#loading-the-data-1" id="toc-loading-the-data-1" class="nav-link" data-scroll-target="#loading-the-data-1">Loading the Data</a></li>
-  <li><a href="#question-11a" id="toc-question-11a" class="nav-link" data-scroll-target="#question-11a">Question 11a</a></li>
-  <li><a href="#question-11b" id="toc-question-11b" class="nav-link" data-scroll-target="#question-11b">Question 11b</a></li>
-  <li><a href="#question-11c" id="toc-question-11c" class="nav-link" data-scroll-target="#question-11c">Question 11c</a></li>
-  <li><a href="#question-11d" id="toc-question-11d" class="nav-link" data-scroll-target="#question-11d">Question 11d</a></li>
-  </ul></li>
-  </ul></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">5.1: Bootstrap Distributions</span></h1>
+<h1 class="title">5.1: Bootstrap Distributions</h1>
 </div>
 
 
@@ -544,7 +185,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;17.1: Left: Golden Jackal (Canis aureus) Right: Mandible bones of wolf and jackal</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: Left: Golden Jackal (Canis aureus) Right: Mandible bones of wolf and jackal</figcaption><p></p>
 </figure>
 </div>
 <p>A zoologist would like to answer the following question?</p>
@@ -811,7 +452,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>temp.samp <span class="ot">&lt;-</span> <span class="fu">sample</span>(jaw.sample, <span class="at">size=</span><span class="dv">20</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)  <span class="co"># sample with replacement</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>temp.samp  <span class="co"># print sample to screen</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] 111 111 107 110 111 111 111 111 105 117 110 106 111 111 112 120 120 107 111
+<pre><code> [1] 111 114 111 105 110 114 111 108 111 105 105 112 107 114 111 111 111 107 108
 [20] 110</code></pre>
 </div>
 </div>
@@ -823,7 +464,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(temp.samp)  <span class="co"># mean of bootstrap resample</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 111.15</code></pre>
+<pre><code>[1] 109.8</code></pre>
 </div>
 </div>
 </section>
@@ -1009,7 +650,7 @@ Caution
 </div>
 </div>
 </div>
-<p></p><figcaption class="figure-caption">Figure&nbsp;23.1: Comparing Bootstrap Approximation of Sampling Distribution to CLT</figcaption><p></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: Comparing Bootstrap Approximation of Sampling Distribution to CLT</figcaption><p></p>
 </figure>
 </div>
 <table class="table">
@@ -1461,28 +1102,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="./15-Properties-Estimators.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">4.3: Properties of Estimators</span></span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="./17-Bootstrap-Confidence-Int.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-title">5.2: Bootstrap Confidence Intervals</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">Statistical Methods: Exploring the Uncertain by Adam Spiegler</div>   
-    <div class="nav-footer-center">
-      &nbsp;
-    </div>
-    <div class="nav-footer-right"><img src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" class="img-fluid" alt="Creative Commons License"> <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-N-SA 4.0</a></div>
-  </div>
-</footer>
 
 
 
