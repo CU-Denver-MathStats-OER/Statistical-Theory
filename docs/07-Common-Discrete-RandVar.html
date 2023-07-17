@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Statistical Methods: Exploring the Uncertain - 2.4: Common Discrete Distributions</title>
+<title>common-discrete-randvar</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -58,14 +58,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./08-Common-Continuous-Distributions.html" rel="next">
-<link href="./06-Expected-Value-and-Variance.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -100,393 +97,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="nav-sidebar floating">
+<body class="fullcontent">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-Overview-of-Probability.html">Chapter 2: Probability Essentials</a></li><li class="breadcrumb-item"><a href="./07-Common-Discrete-RandVar.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">2.4: Common Discrete Distributions</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
-    </div>
-  </nav>
-</header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="./">Statistical Methods: Exploring the Uncertain</a> 
-        <div class="sidebar-tools-main">
-  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
-  <div class="quarto-reader-toggle-btn">
-  <i class="bi"></i>
-  </div>
-</a>
-</div>
-    </div>
-      </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Preface</span></a>
-  </div>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
- <span class="menu-text">Chapter 1: Exploring Data</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./01-Intro-to-Inference.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1.1: Introduction to Statistics</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./02-EDA-Categorical.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1.2: Exploring Categorical Data</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./03-EDA-Quantitative.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">1.3: Exploring Quantitative Data</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
- <span class="menu-text">Chapter 2: Probability Essentials</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./04-Overview-of-Probability.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.1: An Overview of Probability</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./05-Intro-to-Random-Variables.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.2: Introduction to Random Variables</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./06-Expected-Value-and-Variance.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.3: Expected Value and Variance</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./07-Common-Discrete-RandVar.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">2.4: Common Discrete Distributions</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./08-Common-Continuous-Distributions.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.5: Common Continuous Distributions</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./09-Joint-Distributions.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">2.6: Joint Distributions</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">Chapter 3: Sampling Distributions</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./10-Sampling-Dist-Mean.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3.1: Sampling Distribution of Means</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./11-Sampling-Dist-Prop.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3.2: Sampling Distributions for Proportions</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./12-Sampling-Dist-Other.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">3.3: Sampling Distributions of Other Statistics</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
- <span class="menu-text">Chapter 4: Estimation</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./13-Estimation-MLE.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4.1: Maximum Likelihood Estimation</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./14-Estimation-MOM.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4.2: Method of Moments Estimates</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./15-Properties-Estimators.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">4.3: Properties of Estimators</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
- <span class="menu-text">Chapter 5: Interval Estimates</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./16-Bootstrap-Dist.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5.1: Bootstrap Distributions</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./17-Bootstrap-Confidence-Int.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5.2: Bootstrap Confidence Intervals</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./18-Bootstrap-Other-Stats.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5.3: Bootstrapping Comparitive Statistics</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./19-Parametric-CI-Means.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5.4: Parametric Confidence Intervals for Means</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./20-Parametric-CI-Proportions.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5.5: Parametric Confidence Intervals for Proportions</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
- <span class="menu-text">Chapter 6: Hypothesis Tests</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./21-Intro-Hypothesis-Tests.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6.1: Introduction to Hypothesis Tests</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./22-Permutation-Tests.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6.2: Permutation Tests</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./23-Hypothesis-Single-Population.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6.3: Parametric Hypothesis Tests</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./24-Hypothesis-Comparing-Two.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6.4: Parametric Test for Two Populations</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Installing-R-and-RStudio.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Installing R and RStudio</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Intro-to-Vectors-Dataframes.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Fundamentals of Working with Data</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Overview-of-Plots.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">An Overview of Plotting Data in R</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#a-case-study-in-randomness-jury-duty" id="toc-a-case-study-in-randomness-jury-duty" class="nav-link active" data-scroll-target="#a-case-study-in-randomness-jury-duty">A Case Study in Randomness: Jury Duty</a>
-  <ul class="collapse">
-  <li><a href="#how-jurors-are-selected" id="toc-how-jurors-are-selected" class="nav-link" data-scroll-target="#how-jurors-are-selected">How Jurors Are Selected</a></li>
-  <li><a href="#question-1" id="toc-question-1" class="nav-link" data-scroll-target="#question-1">Question 1</a>
-  <ul class="collapse">
-  <li><a href="#question-1a" id="toc-question-1a" class="nav-link" data-scroll-target="#question-1a">Question 1a</a></li>
-  <li><a href="#question-1b" id="toc-question-1b" class="nav-link" data-scroll-target="#question-1b">Question 1b</a></li>
-  </ul></li>
-  </ul></li>
-  <li><a href="#counting-outcomes" id="toc-counting-outcomes" class="nav-link" data-scroll-target="#counting-outcomes">Counting Outcomes</a>
-  <ul class="collapse">
-  <li><a href="#ignoring-the-order-of-selection-n-choose-k" id="toc-ignoring-the-order-of-selection-n-choose-k" class="nav-link" data-scroll-target="#ignoring-the-order-of-selection-n-choose-k">Ignoring the Order of Selection: N Choose K</a>
-  <ul class="collapse">
-  <li><a href="#why-divide-by-k" id="toc-why-divide-by-k" class="nav-link" data-scroll-target="#why-divide-by-k">Why Divide By <span class="math inline">\(k!\)</span>?</a></li>
-  </ul></li>
-  <li><a href="#question-2" id="toc-question-2" class="nav-link" data-scroll-target="#question-2">Question 2</a>
-  <ul class="collapse">
-  <li><a href="#solution-to-question-2" id="toc-solution-to-question-2" class="nav-link" data-scroll-target="#solution-to-question-2"></a><a name="07sol2" class="nav-link" data-scroll-target="undefined">Solution to Question 2</a></li>
-  </ul></li>
-  </ul></li>
-  <li><a href="#defining-a-random-variable" id="toc-defining-a-random-variable" class="nav-link" data-scroll-target="#defining-a-random-variable">Defining a Random Variable</a>
-  <ul class="collapse">
-  <li><a href="#question-3" id="toc-question-3" class="nav-link" data-scroll-target="#question-3">Question 3</a>
-  <ul class="collapse">
-  <li><a href="#question-3a" id="toc-question-3a" class="nav-link" data-scroll-target="#question-3a">Question 3a</a></li>
-  <li><a href="#question-3b" id="toc-question-3b" class="nav-link" data-scroll-target="#question-3b">Question 3b</a></li>
-  <li><a href="#question-3c" id="toc-question-3c" class="nav-link" data-scroll-target="#question-3c">Question 3c</a></li>
-  <li><a href="#question-3d" id="toc-question-3d" class="nav-link" data-scroll-target="#question-3d">Question 3d</a></li>
-  <li><a href="#question-3e" id="toc-question-3e" class="nav-link" data-scroll-target="#question-3e">Question 3e</a></li>
-  </ul></li>
-  <li><a href="#question-4" id="toc-question-4" class="nav-link" data-scroll-target="#question-4">Question 4</a>
-  <ul class="collapse">
-  <li><a href="#question-4a" id="toc-question-4a" class="nav-link" data-scroll-target="#question-4a">Question 4a</a></li>
-  <li><a href="#question-4b" id="toc-question-4b" class="nav-link" data-scroll-target="#question-4b">Question 4b</a></li>
-  </ul></li>
-  </ul></li>
-  <li><a href="#the-binomial-distribution" id="toc-the-binomial-distribution" class="nav-link" data-scroll-target="#the-binomial-distribution">The Binomial Distribution</a>
-  <ul class="collapse">
-  <li><a href="#a-trial-with-two-possible-outcomes" id="toc-a-trial-with-two-possible-outcomes" class="nav-link" data-scroll-target="#a-trial-with-two-possible-outcomes">A Trial with Two Possible Outcomes</a></li>
-  <li><a href="#a-formula-for-the-binomial-distribution" id="toc-a-formula-for-the-binomial-distribution" class="nav-link" data-scroll-target="#a-formula-for-the-binomial-distribution">A Formula for the Binomial Distribution</a></li>
-  <li><a href="#expected-value-and-variance-of-binomial-distributions" id="toc-expected-value-and-variance-of-binomial-distributions" class="nav-link" data-scroll-target="#expected-value-and-variance-of-binomial-distributions">Expected Value and Variance of Binomial Distributions</a></li>
-  <li><a href="#binomial-distribution-functions-in-r" id="toc-binomial-distribution-functions-in-r" class="nav-link" data-scroll-target="#binomial-distribution-functions-in-r">Binomial Distribution Functions in R</a></li>
-  <li><a href="#plotting-a-binomial-distribution" id="toc-plotting-a-binomial-distribution" class="nav-link" data-scroll-target="#plotting-a-binomial-distribution">Plotting a Binomial Distribution</a></li>
-  <li><a href="#question-5" id="toc-question-5" class="nav-link" data-scroll-target="#question-5">Question 5</a>
-  <ul class="collapse">
-  <li><a href="#question-5a" id="toc-question-5a" class="nav-link" data-scroll-target="#question-5a">Question 5a</a></li>
-  <li><a href="#question-5b" id="toc-question-5b" class="nav-link" data-scroll-target="#question-5b">Question 5b</a></li>
-  <li><a href="#question-5c" id="toc-question-5c" class="nav-link" data-scroll-target="#question-5c">Question 5c</a></li>
-  </ul></li>
-  </ul></li>
-  <li><a href="#the-discrete-uniform-distribution" id="toc-the-discrete-uniform-distribution" class="nav-link" data-scroll-target="#the-discrete-uniform-distribution">The Discrete Uniform Distribution</a>
-  <ul class="collapse">
-  <li><a href="#question-6" id="toc-question-6" class="nav-link" data-scroll-target="#question-6">Question 6</a>
-  <ul class="collapse">
-  <li><a href="#question-6a" id="toc-question-6a" class="nav-link" data-scroll-target="#question-6a">Question 6a</a></li>
-  <li><a href="#question-6b" id="toc-question-6b" class="nav-link" data-scroll-target="#question-6b">Question 6b</a></li>
-  <li><a href="#question-6c" id="toc-question-6c" class="nav-link" data-scroll-target="#question-6c">Question 6c</a></li>
-  </ul></li>
-  </ul></li>
-  <li><a href="#the-geometric-distribution" id="toc-the-geometric-distribution" class="nav-link" data-scroll-target="#the-geometric-distribution">The Geometric Distribution</a></li>
-  <li><a href="#the-poisson-distribution" id="toc-the-poisson-distribution" class="nav-link" data-scroll-target="#the-poisson-distribution">The Poisson Distribution</a></li>
-  <li><a href="#practice-with-discrete-random-variables" id="toc-practice-with-discrete-random-variables" class="nav-link" data-scroll-target="#practice-with-discrete-random-variables">Practice with Discrete Random Variables</a>
-  <ul class="collapse">
-  <li><a href="#question-7" id="toc-question-7" class="nav-link" data-scroll-target="#question-7">Question 7</a>
-  <ul class="collapse">
-  <li><a href="#solution-to-question-7" id="toc-solution-to-question-7" class="nav-link" data-scroll-target="#solution-to-question-7">Solution to Question 7</a></li>
-  </ul></li>
-  <li><a href="#question-8" id="toc-question-8" class="nav-link" data-scroll-target="#question-8">Question 8</a>
-  <ul class="collapse">
-  <li><a href="#solution-to-question-8" id="toc-solution-to-question-8" class="nav-link" data-scroll-target="#solution-to-question-8">Solution to Question 8</a></li>
-  </ul></li>
-  <li><a href="#question-9" id="toc-question-9" class="nav-link" data-scroll-target="#question-9">Question 9</a>
-  <ul class="collapse">
-  <li><a href="#solution-to-question-9" id="toc-solution-to-question-9" class="nav-link" data-scroll-target="#solution-to-question-9">Solution to Question 9</a></li>
-  </ul></li>
-  <li><a href="#question-10" id="toc-question-10" class="nav-link" data-scroll-target="#question-10">Question 10</a>
-  <ul class="collapse">
-  <li><a href="#solution-to-question-10" id="toc-solution-to-question-10" class="nav-link" data-scroll-target="#solution-to-question-10">Solution to Question 10</a></li>
-  </ul></li>
-  <li><a href="#question-11" id="toc-question-11" class="nav-link" data-scroll-target="#question-11">Question 11</a>
-  <ul class="collapse">
-  <li><a href="#solution-to-question-11" id="toc-solution-to-question-11" class="nav-link" data-scroll-target="#solution-to-question-11">Solution to Question 11</a></li>
-  </ul></li>
-  </ul></li>
-  <li><a href="#sec-append" id="toc-sec-append" class="nav-link" data-scroll-target="#sec-append">Appendix: Summary of Common Discrete Random Variables</a>
-  <ul class="collapse">
-  <li><a href="#sec-append-binom" id="toc-sec-append-binom" class="nav-link" data-scroll-target="#sec-append-binom">The Binomial Distribution</a></li>
-  <li><a href="#sec-append-unif" id="toc-sec-append-unif" class="nav-link" data-scroll-target="#sec-append-unif">The Discrete Uniform Distribution</a></li>
-  <li><a href="#sec-append-geom" id="toc-sec-append-geom" class="nav-link" data-scroll-target="#sec-append-geom">The Geometric Distribution</a></li>
-  <li><a href="#sec-append-pois" id="toc-sec-append-pois" class="nav-link" data-scroll-target="#sec-append-pois">The Poisson Distribution</a></li>
-  </ul></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title"><span class="chapter-title">2.4: Common Discrete Distributions</span></h1>
-</div>
 
-
-
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-</header>
 
 <p><a href="https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap2/07-Common-Discrete-RandVar.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" class="img-fluid" alt="Open In Colab"></a> <nbsp></nbsp></p>
+<section id="common-discrete-distributions" class="level1">
+<h1>2.4: Common Discrete Distributions</h1>
 <hr>
 <p>In statistics, we are typically using data from a sample to make inferences about characteristics of a population. We want to may have claims or questions to test. We may want to estimate some characteristics or <span style="color:dodgerblue"><strong>parameters</strong></span> of the population. By identifying patterns in the sample data and applying probability, we can build theoretical models to inform predictions about the population. These predictions depend on the level of uncertainty due to sampling, that may be flawed, biased, or simply unlikely. Data and models come in all shapes and levels of complexity.</p>
 <p>We will take a look at several of the most common and useful distributions when working with discrete random variables, such as counting the frequency of occurrences in certain classes of categorical variables. There are many more distributions for discrete random variables, some of which we will see later!</p>
+</section>
 <section id="a-case-study-in-randomness-jury-duty" class="level1">
 <h1>A Case Study in Randomness: Jury Duty</h1>
 <hr>
@@ -1322,28 +952,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="./06-Expected-Value-and-Variance.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">2.3: Expected Value and Variance</span></span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="./08-Common-Continuous-Distributions.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-title">2.5: Common Continuous Distributions</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">Statistical Methods: Exploring the Uncertain by Adam Spiegler</div>   
-    <div class="nav-footer-center">
-      &nbsp;
-    </div>
-    <div class="nav-footer-right"><img src="https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png" class="img-fluid" alt="Creative Commons License"> <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-N-SA 4.0</a></div>
-  </div>
-</footer>
 
 
 
