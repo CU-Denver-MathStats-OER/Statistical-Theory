@@ -49,3 +49,7 @@ vignettes/*.pdf
 
 # Python files
 **/.ipynb_checkpoints/**
+
+# quarto files
+/.quarto/
+/_book/
