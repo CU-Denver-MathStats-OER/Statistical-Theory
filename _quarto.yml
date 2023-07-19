@@ -1,0 +1,125 @@
+project:
+  type: book
+#  output-dir: docs
+
+book:
+  title: "Statistical Methods: Exploring the Uncertain"
+  author: "Adam Spiegler, University of Colorado Denver"
+  reader-mode: true
+#  date: "`r Sys.Date()`"
+
+  page-footer:
+      left: |
+        Statistical Methods: Exploring the Uncertain by Adam Spiegler
+      right: |
+        ![Creative Commons License](https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png) [CC BY-N-SA 4.0](http://creativecommons.org/licenses/by-nc-sa/4.0/)
+#        This book was built with <a href="https://quarto.org/">Quarto</a>.
+  cover-image: cover.png
+
+  chapters:
+    - index.qmd
+    - part: "Chapter 1: Exploring Data"
+      chapters:
+       - 01-Intro-to-Inference.qmd
+       - 02-EDA-Categorical.qmd
+       - 03-EDA-Quantitative.qmd
+    - part: "Chapter 2: Probability Essentials"
+      chapters:
+       - 04-Overview-of-Probability.qmd
+       - 05-Intro-to-Random-Variables.qmd
+       - 06-Expected-Value-and-Variance.qmd
+       - 07-Common-Discrete-RandVar.qmd
+       - 08-Common-Continuous-Distributions.qmd
+       - 09-Joint-Distributions.qmd
+    - part: "Chapter 3: Sampling Distributions"
+      chapters:
+       - 10-Sampling-Dist-Mean.qmd
+       - 11-Sampling-Dist-Prop.qmd
+       - 12-Sampling-Dist-Other.qmd
+    - part: "Chapter 4: Estimation"
+      chapters:
+       - 13-Estimation-MLE.qmd
+       - 14-Estimation-MOM.qmd
+       - 15-Properties-Estimators.qmd
+    - part: "Chapter 5: Interval Estimates"
+      chapters:  
+       - 16-Bootstrap-Dist.qmd
+       - 17-Bootstrap-Confidence-Int.qmd
+       - 18-Bootstrap-Other-Stats.qmd
+       - 19-Parametric-CI-Means.qmd
+       - 20-Parametric-CI-Proportions.qmd
+    - part: "Chapter 6: Hypothesis Tests"
+      chapters:  
+       - 21-Intro-Hypothesis-Tests.qmd
+       - 22-Permutation-Tests.qmd
+       - 23-Hypothesis-Single-Population.qmd
+       - 24-Hypothesis-Comparing-Two.qmd
+       - 25-Error-Types-and-Power-of-Tests.qmd
+  appendices:
+       - Installing-R-and-RStudio.qmd
+       - Intro-to-Vectors-Dataframes.qmd  
+       - Overview-of-Plots.qmd
+#    - intro.qmd
+#    - summary.qmd
+#    - references.qmd
+
+#bibliography: references.bib
+
+format:
+  html:
+#    toc: true
+#    toc_depth: 1
+#    theme: cerulean
+    theme: cosmo
+#    number-depth: 1
+    number-sections: false
+#  pdf:
+#    documentclass: scrreprt
+#    number-sections: false
+#  epub:
+#    cover-image: cover.png
+execute:
+  eval: false
+
+editor: source
+
+# footnote example - see 05 or 08
+# <span style="color:dodgerblue"></span> # font color
+# for two columns - see 06
+# figure see probability section in 04 
+# (https://raw.githubusercontent.com/CU-Denver-MathStats-OER/Statistical-Theory/main/Images/08fig-normal-table.png){width="70%"}
+# #| eval: true
+# #| output: false
+
+# https://quarto.org/docs/guide/
+# https://quarto.org/docs/books/ 
+# https://quarto.org/docs/reference/projects/books.html
+# https://www.njtierney.com/post/2022/04/11/rmd-to-qmd/
+
+# data(package = .packages(all.available = TRUE))
+
+# clean up routine in colab:
+# change runtime to R
+# Fix embedded images
+# Fix tables: latex use \large and add extra &nbsp; after column header for space and use <font size="3">
+# Add proper cc license cell at end
+# Fix footnotes
+# Fix link in git image link (check chapter too)
+# Add a title
+# replace all for: 
+### <a name="##" and </a>
+### ------
+### \n line breaks: click the Use regular expression option with \n (include a space after)
+### <span style="color: and </span>
+### cross-ref quest number: \[Question change to [Question and number\] change to number](#q#) 
+### .qmd) to .ipynb)
+### Somehow add the gittocolb before cross refences
+# Check: 
+### search on <span> 
+### search on ggg and zzz
+### search on .qmd
+### <a name="##"
+### seach on ](# to make sure cross refs fixed
+# Fix callouts
+# Clean up the rest of the soft line breaks
+# Clean up code cells. For plots: cex.lab=1.5, cex.axis=1.5, cex.main=1.5)  # increase font size on labels

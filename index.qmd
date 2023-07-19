@@ -1,0 +1,43 @@
+# Preface {.unnumbered}
+
+---
+
+*Statistical Methods: Exploring the Uncertain* is a set of course materials for an undergraduate course (typically junior year) in statistics that is required for our math majors. The course is designed as a full semester course and topics covered include exploratory data analysis, statistical inference, probability, estimation, resampling methods, and hypothesis tests.
+
+
+## Intended Audience
+
+---
+
+These activities are developed for MATH 3382 - Statistical Theory at University of Colorado Denver. The course is required for Math/Stat majors. Students typically have completed a course in multivariate calculus. Familiarity with linear algebra, programming, and/or probability are not required.
+
+## How to Access these Materials
+
+---
+
+The intention is to balance simplicity in Markdown and R code with the formatting and aesthetic features.
+
+- By clicking the `Render` button or `Build Book` button on the toolbar above, you should get a nice looking, static html document without needing any further software (LaTeX in not required when rendering to html). This materials are intended to be interactive. Edit them as you like.
+
+- The Markdown text hopefully is easy to follow and edit.
+- The R Code is intended to be interactive.
+  - Change plotting options, labels, colors.
+  - Replace the examples/data with your own.
+
+
+
+# Creative Commons License Information
+
+---
+
+![Creative Commons License](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png) <nbsp>
+
+*Statistical Methods: Exploring the Uncertain* by [Adam Spiegler (University of Colorado Denver)](https://github.com/CU-Denver-MathStats-OER/Statistical-Theory) is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/). This work is funded by an [Institutional OER Grant from the Colorado Department of Higher Education (CDHE)](https://cdhe.colorado.gov/educators/administration/institutional-groups/open-educational-resources-in-colorado).
+
+For similar interactive OER materials in other courses funded by this project in the Department of Mathematical and Statistical Sciences at the University of Colorado Denver, visit <https://github.com/CU-Denver-MathStats-OER>.
+
+## Quarto Books
+
+---
+
+These materials are creating using Quarto books. To learn more about Quarto books visit <https://quarto.org/docs/books>.

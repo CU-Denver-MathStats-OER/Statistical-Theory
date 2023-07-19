@@ -1,0 +1,589 @@
+---
+#title: "Fundamentals of Working with Data"
+author: 'Adam Spiegler, University of Colorado Denver'
+output:
+  html_document:
+#    toc: yes
+#    toc_depth: 1
+#    theme: cerulean
+#jupyter:
+#  kernelspec:
+#    display_name: R
+#    language: R
+#    name: ir
+#output:
+#    ipynbdocument::ipynb_document
+---
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Appendix/Intro-to-Vectors-Dataframes.ipynb)
+
+
+# Fundamentals of Working with Data
+
+---
+
+Understanding the data types of the variables in our data set, and the structure of our data is crucial before we can identify what aspects might need to be cleaned and transformed so we can perform statistical analysis more efficiently.
+
+
+This notebook is intended to be a brief overview of some fundamentals of working with data in R.
+
+- How to save and display output of from commands?
+- What are the basic data types?
+- How to convert data types?
+- What are the data structures in R?
+- How to create or import a data frame?
+- How to slice and extract rows and columns of a data frame?
+
+These topics are important. This notebook just scratches the surface on many concepts. If you do not find a complete answer here, there are free resources online that dig deeper and more completely. Below are two such recommended references.
+
+- [An Introduction to R](https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf) by the Developers of R
+
+- [Programming with R Guide to Data Types and Structures](https://swcarpentry.github.io/r-novice-inflammation/13-supp-data-structures/)
+
+
+## Loading Packages with the `library()` Command
+
+---
+
+
+To explore some fundamentals of working with data in R, we will use the `storms` data set which is located in the package `dplyr`.
+
+-   The `dplyr` package is already installed in Google Colaboratory
+-   We still need to use a `library` command to load the package.
+-   <span style="color:dodgerblue">**Run the code cell below to load the `dplyr` package.**</span>
+
+```{r}
+#| eval: true
+#| output: false
+# load the library of functions and data in dplyr
+library(dplyr)
+```
+
+## Help Documentation
+
+---
+
+The functions introduced in this document have robust help documentation with lots of options to customize. If you want to view help documentation for any of the functions used in this document, run commands such`?typeof`, `?is.numeric`, `?read.table`, and so on.
+
+# Getting to Know Our Data
+
+---
+
+The package `dplyr` contains a data set called `storms`. Let’s find some useful information about this data.
+
+- The code cell below will provide a numeric summary of all variables in the `storms` data.
+- Recall we need to first run the command `library(dplyr)` in the code cell above to be able to access `storms`.
+
+
+```{r}
+#| eval: true
+# get a numerical summary of all variables
+summary(storms)
+```
+
+## Missing Data
+
+------------------------------------------------------------------------
+
+A <span style="color:dodgerblue">**missing value**</span> occurs when the value of something isn't known.
+R uses the special object `NA` to represent missing value. If you have a missing value, you should represent that value as `NA`. Note: The character string `"NA"` is not the same thing as `NA`.
+
+- The `storms` data has properly coded 14,382 missing values for `category` since storms that are not hurricanes do not have a category.
+- The `storms` data has properly coded 9,512 missing values for each of `tropicalstorm_force_diameter` and `hurricane_force_diameter` since these value only began being recorded in 2004.
+
+
+# Assignment to New (or Existing) Objects
+
+------------------------------------------------------------------------
+
+To store a data structure in the computer's memory we must assign it a name.
+
+Data structures can be stored using the assignment operator `<-` or `=`.
+
+Some comments:
+
+-   In general, both `<-` and `=` *can* be used for assignment.
+-   `<-` and `=` can be used identically most of the time, but not always.
+-   <span style="color:dodgerblue">**It's safer and more conventional to use `<-` for assignment**</span>.
+
+
+In the following code, we compute the mean of a vector.
+**Why can't we see the result after running it**?
+
+```{r}
+#| eval: true
+w <- storms$wind  # wind is now stored in w
+xbar.w <- mean(w)  # compute mean wind speed and assign to xbar.w
+```
+
+-   Once an object has been assigned a name, it can be printed by executing the name of the object.
+
+```{r}
+#| eval: true
+xbar.w  # print the mean wind speed to screen
+```
+
+
+-   We can also print an object to screen using the `print()` function. 
+
+```{r}
+#| eval: true
+print(xbar.w)  # print the mean with print() command
+```
+
+
+-   We can calculate, assign, and print the result by putting parenthesis around the assignment.
+
+
+```{r}
+#| eval: true
+# calculate, assign, and print standard deviation
+(s <- sd(w))  # note ( ) around the entire command
+```
+
+-   **Sometimes you want to see the result of a code cell, and sometimes you will not.**
+
+# Basic Data Types
+
+------------------------------------------------------------------------
+
+R has 6 basic [data types](https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Basic-types):
+
+1.  <span style="color:dodgerblue">**character**</span>: collections of characters. E.g., `"a"`, `"hello world!"`
+2.  <span style="color:dodgerblue">**double**</span>: decimal numbers. e.g., `1.2`, `1.0`
+3.  <span style="color:dodgerblue">**integer**</span>: whole numbers. In R, you must add `L` to the end of a number to specify it as an integer. E.g., `1L` is an integer but `1` is a double.
+4.  <span style="color:dodgerblue">**logical**</span>: Boolean values, `TRUE` and `FALSE`
+5.  <span style="color:dodgerblue">**complex**</span>: complex numbers. E.g., `1+3i`
+6.  <span style="color:dodgerblue">**raw**</span>: a type to hold raw bytes.
+
+## Checking Data Type Using `typeof()`
+
+------------------------------------------------------------------------
+
+-   The `typeof()` function returns the R internal type or storage mode of any object.
+
+```{r}
+#| eval: true
+typeof(1.0)
+typeof(2)
+typeof(3L)
+typeof("hello")
+typeof(TRUE)
+typeof(storms$status)
+typeof(storms$year)
+typeof(storms$name)
+```
+
+## Investigating Data Types with `is.numeric()`
+
+------------------------------------------------------------------------
+
+-   The `is.numeric(x)` function tests whether or not an object `x` is numeric.
+-   The `is.character(x)` function tests whether `x` is a character or not.
+-   The `is.factor(x)` function tests whether `x` is a factor or not.
+  - <span style="color:dodgerblue">**Note: Categorical data is typically stored as a `factor` in R.**</span>
+
+
+```{r}
+#| eval: true
+is.numeric(storms$year)  # year is numeric
+is.numeric(storms$category)  # category is also numeric
+is.numeric(storms$name)  # name is not numeric
+is.character(storms$name)  # name is character string
+```
+
+```{r}
+#| eval: true
+is.numeric(storms$status)  # status is not numeric
+is.character(storms$status)  # status is not a character
+is.factor(storms$status)  # status is a factor which is categorical
+```
+
+-   The function `str(x)` provides information about the levels or classes of `x`.
+
+```{r}
+#| eval: true
+str(storms$status)
+```
+
+## Changing Data Types
+
+------------------------------------------------------------------------
+
+### Converting to Categorical Data with `factor()`
+
+------------------------------------------------------------------------
+
+-   Sometimes we think a variable is one data type, but it is actually being stored (and thus interpreted by R) as a different data type.
+-   One common issue is categorical data is stored as characters. We would like observations with the same values to be group together.
+  - The `status` variable in `storms` is being properly stored as a `factor`!
+  - The `category` variable in `storms` is being stored as a `numeric` since it is ordinal.
+-   With ordinal categories, we may choose to keep it stored as `numeric`, or we may prefer to treat them as factors.
+
+```{r}
+#| eval: true
+summary(storms$category)
+```
+
+
+- The summary of `category` computes statistics such as mean and median.
+- Typically with categorical data, we prefer to count how many observations are in each class of the variable.
+- In the code cell below, we convert `category` to a factor, and then observe the resulting summary.
+
+```{r}
+#| eval: true
+storms$category <- factor(storms$category)
+summary(storms$category)
+```
+
+### Converting Data Types with `as.numeric()`, `as.integer()`, etc.
+
+------------------------------------------------------------------------
+
+From the summary of the `storms` data set we first found above, we see that the variables `year` and `month` are being stored as `double`. These variables actually are integer values.
+
+We can convert another variable of one format into another format using `as.[new_datatype]()`
+
+-   For example, to convert to year to `integer`, we use `as.integer(storms$year)`.
+-   To convert a data type to character, we can use `as.character(x)`.
+-   To convert to a decimal (`double`), we can use `as.numeric(x)`
+
+```{r}
+#| eval: true
+typeof(storms$year)
+typeof(storms$month)
+storms$year <- as.integer(storms$year)
+storms$month <- as.integer(storms$month)
+typeof(storms$year)
+typeof(storms$month)
+```
+
+# Data structures
+
+------------------------------------------------------------------------
+
+R operates on <span style="color:dodgerblue">**data structures**</span>.
+A data structure is simply some sort of "container" that holds certain kinds of information
+
+R has 5 basic data structures:
+
+-   <span style="color:dodgerblue">**vector**</span>: One dimensional object of a single data type.
+-   <span style="color:dodgerblue">**matrix**</span>: Two dimensional object of a single data type.
+-   <span style="color:dodgerblue">**array**</span>: $n$ dimensional object of a single data type.
+-   <span style="color:dodgerblue">**data frame**</span>: Two dimensional object where each column can be a different data type.
+-   <span style="color:dodgerblue">**list**</span>: An object that contains elements of different types like (and possibly another list inside it).
+
+[See R documentation](https://cran.r-project.org/doc/manuals/r-release/R-lang.html#List-objects) for more info.
+
+## Vectors
+
+------------------------------------------------------------------------
+
+A <span style="color:dodgerblue">**vector**</span> is a single-dimensional set of data of the same type.
+
+### Creating Vectors from Scratch
+
+------------------------------------------------------------------------
+
+The most basic way to create a vector is the combine function `c`. The following commands create vectors of type numeric, character, and logical, respectively.
+
+```{r}
+#| eval: true
+x1 <- c(1, 2, 5.3, 6, -2, 4)
+x2 <- c("one", "two", "three")
+x3 <- c(TRUE, TRUE, FALSE, TRUE)
+x4 <- c(TRUE, 3.4, "hello")
+typeof(x1)
+typeof(x2)
+typeof(x3)
+typeof(x4)
+```
+
+-   We can check the data structure of an object using commands such as `is.vector()`, `is.list()`, `is.matrix()`, and so on.
+
+```{r}
+#| eval: true
+is.list(x1)
+is.vector(x1)
+is.list(x4)
+is.vector(x4)
+```
+
+## Data Frames
+
+------------------------------------------------------------------------
+
+<span style="color:dodgerblue">**Data frames**</span> are two-dimensional data objects and are the **fundamental** data structure used by most of R's libraries of functions and data sets.
+
+-   Tabular data is <span style="color:dodgerblue">**tidy**</span> if each row corresponds to a different observation and column corresponds to a different variable.
+
+Each column of a data frame is a <span style="color:dodgerblue">**variable**</span> (stored as a **vector**). If the variable:
+
+-   Is measured or counted by a number, it is a <span style="color:dodgerblue">**quantitative**</span> or <span style="color:dodgerblue">**numerical**</span> variable.
+-   Groups observations into different categories or rankings, it is a <span style="color:dodgerblue">**qualitative**</span> or <span style="color:dodgerblue">**categorical**</span> variable.
+
+### Creating Data Frames from Scratch
+
+------------------------------------------------------------------------
+
+Data frames are created by passing vectors into the `data.frame()` function.
+
+The names of the columns in the data frame are the names of the vectors you give the `data.frame` function.
+
+Consider the following simple example.
+
+```{r}
+#| eval: true
+# create basic data frame
+d <- c(1, 2, 3, 4)
+e <- c("red", "white", "blue", NA)
+f <- c(TRUE, TRUE, TRUE, FALSE)
+df <- data.frame(d,e,f)
+df
+```
+
+
+### Naming Column Headers
+
+---
+
+The columns of a data frame can be renamed using the `names()` function on the data frame.
+
+```{r}
+#| eval: true
+# name columns of data frame
+names(df) <- c("ID", "Color", "Passed")
+df
+```
+
+
+The columns of a data frame can be named when you are first creating the data frame by using `[new_name] = [orig_vec_name]` for each vector of data.
+
+
+```{r}
+#| eval: true
+# create data frame with better column names
+df2 <- data.frame(ID = d, Color = e, Passed = f)
+df2
+```
+
+## Checking Data Structure 
+
+------------------------------------------------------------------------
+
+-   The `is.matrix(x)` function tests whether or not an object `x` is a matrix.
+-   The `is.vector(x)` function test whether `x` is a vector.
+-   The `is.data.frame(x)` function test whether `x` is a data frame.
+
+```{r}
+#| eval: true
+is.matrix(df)
+is.vector(df)
+is.data.frame(df)
+```
+
+# Extracting and Slicing Data Frames
+
+------------------------------------------------------------------------
+
+## Extracting a Column By Name
+
+---
+
+The column vectors of a data frame may be extracted using `$` and specifying the name of the desired vector.
+
+-   `df$Color` would access the `Color` column of data frame `df`.
+
+```{r}
+#| eval: true
+df$Color  # prints column of data frame df named Color
+```
+
+## Slicing Rows and Columns By Indexing
+
+---
+
+Part of a data frame can also be extracted by thinking of at as a general matrix and specifying the desired rows or columns in square brackets after the object name.
+
+-   <span style="color:dodgerblue">**Note R starts with index 1 which is different from Python which indexes starting from 0.**</span>
+
+For example, if we had a data frame named `df`:
+
+-   `df[1,]` would access the first row of `df`.
+-   `df[1:2,]` would access the first two rows of `df`.
+-   `df[,2]` would access the second column of `df`.
+-   `df[1:2, 2:3]` would access the information in rows 1 and 2 of columns 2 and 3 of `df`.
+
+```{r}
+#| eval: true
+df[,2]  # second column is Color
+```
+
+```{r}
+#| eval: true
+df[2,]  # second row of df
+```
+
+```{r}
+df[1:2,2:3]  # first and second rows of columns 2 and 3
+```
+
+If you need to select multiple columns of a data frame by name, you can pass a character vector with column names in the column position of `[]`.
+
+-   `df[, c("ID", "Passed")]` would extract the `ID` and `Passed` columns of `df`.
+
+```{r}
+#| eval: true
+df[, c("ID", "Passed")]
+```
+
+
+```{r}
+#| eval: true
+df[, c(1, 3)]  # another we to pick columns 1 and 3
+```
+
+```{r}
+#| eval: true
+# another we to pick columns 1 and 3
+df[, -2]  # exclude column 2
+```
+
+# Importing an External File as a Data Frame
+
+------------------------------------------------------------------------
+
+The `read.table` function imports data from file into R as a data frame.
+
+Usage: `read.table(file, header = TRUE, sep = ",")`
+
+-   `file` is the file path and name of the file you want to import into R.
+    -   If you don't know the file path, set `file = file.choose()` will bring up a dialog box asking you to locate the file you want to import.
+-   `header` specifies whether the data file has a header (variable labels for each column of data in the first row of the data file).
+    -   If you don't specify this option in R or use `header = FALSE`, then R will assume the file doesn't have any headings.
+    -   `header = TRUE` tells R to read in the data as a data frame with column names taken from the first row of the data file.
+-   `sep` specifies the delimiter separating elements in the file.
+    -   If each column of data in the file is separated by a space, then use `sep = " "`
+    -   If each column of data in the file is separated by a comma, then use `sep = ","`
+    -   If each column of data in the file is separated by a tab, then use `sep = "\t"`.
+
+Here is an example reading a csv (comma separated file) with a header:
+
+
+```{r}
+#| eval: true
+# import data as data frame
+bike.store <- read.table(file="https://raw.githubusercontent.com/CU-Denver-MathStats-OER/Statistical-Theory/main/Data/Transactions.csv",
+                         header = TRUE,  # Keep column headers as names
+                         sep = ",")  # comma as separator of columns
+
+glimpse(bike.store)
+```
+
+- The `glimpse()` function provides a nice summary of the structure.
+- Run the code cell below to see the various options of `read.table()`.
+- There are other functions and packages that may be better at reading in tabular data. `read.table()` is a good place to start!
+
+
+```{r}
+?read.table
+```
+
+
+# Logical Statements
+
+------------------------------------------------------------------------
+
+
+Sometimes we need to know if the elements of an object satisfy certain conditions.
+This can be determined using the logical operators `<`, `<=`, `>`, `>=`, `==`, `!=`.
+
+-   `==` means equal to.
+-   `!=` means NOT equal to.
+
+Execute the following commands in R and see what you get.
+
+```{r}
+#| eval: true
+a <- seq(2, 16, by = 2) # creating the vector a
+a
+a > 10
+a <= 4
+a == 10
+a != 10
+```
+
+## And and Or Statements
+
+------------------------------------------------------------------------
+
+More complicated logical statements can be made using `&` and `|`.
+
+-   `&` means "and"
+    -   Both statements must be true for `state1 & state2` to return `TRUE`.
+-   `|` means "or"
+    -   Only one of the the two statements must be true for `state1 | state2` to return `TRUE`.
+    - If both statements are true in an "or" statement, the statement is also `TRUE`.
+
+Below is a summary of "and" and "or" logic:
+
+-   `TRUE & TRUE` returns `TRUE`
+-   `FALSE & TRUE` returns `FALSE`
+-   `FALSE & FALSE` returns `FALSE`
+-   `TRUE | TRUE` returns `TRUE`
+-   `FALSE | TRUE` returns `TRUE`
+-   `FALSE | FALSE` returns `FALSE`
+
+```{r}
+#| eval: true
+# relationship between logicals & (and), | (or)
+TRUE & TRUE
+FALSE & TRUE
+FALSE & FALSE
+TRUE | TRUE
+FALSE | TRUE
+FALSE | FALSE
+```
+
+Execute the following commands in R and see what you get.
+
+
+```{r}
+#| eval: true
+b <- 3  # b is equal to the number 3
+
+# complex logical statements
+(b > 6) & (b <= 10)  # FALSE and TRUE
+(b <= 4) | (b >= 12)  # TRUE or FALSE
+```
+
+
+## Logical Indexing
+
+---
+
+We can use a logical statement as an index to extract certain entries from a vector or data frame. For example, if we want to to know the `product_id` (column 2), `brand` (column 7), `product_line` (column 8), and `list_price` (column 11) of all transactions that have a `list_price` greater than \$2,090, we can run the code cell below.
+
+- We use a logical index for the row to extract just the rows that have a `list_price` value strictly greater than 2090.
+- We indicate we want to keep just columns 2, 7 through 8, and 11 with the column index `c(2, 7:8, 11)`.
+- We store the results to a new data frame named `expensive`.
+- Finally, we print the first 6 rows of our new data frame with the `head()` function to check the results.
+
+
+```{r}
+#| eval: true
+expensive <- bike.store[bike.store$list_price > 2090, c(2, 7:8, 11)]
+head(expensive)
+```
+
+# Creative Commons License Information
+
+---
+
+![Creative Commons License](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)
+
+*Statistical Methods: Exploring the Uncertain* by [Adam Spiegler (University of Colorado Denver)](https://github.com/CU-Denver-MathStats-OER/Statistical-Theory) is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/). This work is funded by an [Institutional OER Grant from the Colorado Department of Higher Education (CDHE)](https://cdhe.colorado.gov/educators/administration/institutional-groups/open-educational-resources-in-colorado).
+
+For similar interactive OER materials in other courses funded by this project in the Department of Mathematical and Statistical Sciences at the University of Colorado Denver, visit <https://github.com/CU-Denver-MathStats-OER>.
+
+
