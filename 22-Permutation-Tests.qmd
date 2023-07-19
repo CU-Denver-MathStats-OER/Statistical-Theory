@@ -1,0 +1,1127 @@
+---
+title: '6.2: Permutation Tests'
+#author: 'Adam Spiegler, University of Colorado Denver'
+execute:
+  eval: false
+output:
+  html_document:
+#    toc: yes
+#    toc_depth: 1
+#    theme: cerulean
+#jupyter:
+#  kernelspec:
+#    display_name: R
+#    language: R
+#    name: ir
+#output:
+#    ipynbdocument::ipynb_document
+---
+
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap6/22-Permutation-Tests.ipynb) <nbsp> 
+
+
+![Credit: Torsten Mütze, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0), via Wikimedia Commons](https://upload.wikimedia.org/wikipedia/commons/b/b3/Permutation_generation_algorithms.svg){fig-align="left" width=55% fig-alt="Permutation Illustration"}
+
+# A Summary of Hypothesis Testing
+
+---
+
+In the section [Introduction to Hypothesis Tests](21-Intro-Hypothesis-Tests.qmd), we walked through the process of performing a statistical hypothesis test:
+
+1. State the <span style="color:dodgerblue">**null and alternative hypotheses**</span> in terms of population parameter(s).
+2. Compute <span style="color:dodgerblue">**test statistic(s)**</span> from random sample(s). 
+3. Calculate the <span style="color:dodgerblue">**p-value**</span> to help assess which claim is more likely to be true.
+4. What <span style="color:dodgerblue">**conclusions**</span> (if any) can we make about the two competing claims?
+
+See [Introduction to Hypothesis Tests](21-Intro-Hypothesis-Tests.qmd) for a refresher on Steps 1 and 2. We also informally explored the concept of [statistical significance](21-Intro-Hypothesis-Tests.qmd#sec-informal-p). Today, we focus on Step 3 and discuss a resampling method, called a <span style="color:dodgerblue">**permutation test**</span>, that we can use to calculate p-values to assess significance.
+
+## The Null Distribution and p-values
+
+---
+
+Recall the logic of hypothesis test. We want to assess which of two competing claims, the null hypothesis $H_0$ or the alternative hypothesis $H_a$, are more likely to be true. We assume $H_0$ is true and consider whether the sample data supports or refutes the null claim.  
+
+- The <span style="color:dodgerblue">**null distribution**</span> is the distribution of the test statistic **if the null hypothesis is true**. We use the null distribution to calculate the p-value.
+- The <span style="color:dodgerblue">**p-value**</span> is the **probability that we would get a random sample** with a test statistic as or more extreme as the observed test statistic **if the null hypothesis were true**.
+
+$${\large {\color{dodgerblue}{p\mbox{-value} = P( \mbox{test statistic as or more extreme than observed} \ | \ H_0 \mbox{ is true} )}}}.$$
+
+-   The **smaller the $p$-value**, the **less likely the sample** is assuming $H_0$ is true.
+  - There is evidence that **contradicts $H_0$ and supports $H_a$**.
+  - The **smaller the $p$-value**, the **more statistically significant** the result.
+
+
+
+# Case Study: The Unscrupulous Diner's Dilemma
+
+---
+
+We previously considered the [unscrupulous diner's dilemma](21-Intro-Hypothesis-Tests.qmd#sec-diner)^[Gneezy, U., E. Haruvy, and H. Yafe (2004), ["The Inefficiency of Splitting the Bill"](https://rady.ucsd.edu/_files/faculty-research/uri-gneezy/splitting-bill.pdf), *The Economic Journal* 114.].
+
+
+> The unscrupulous diner's dilemma is a problem faced frequently in social settings. When a group of diners jointly enjoys a meal at a restaurant, often an unspoken agreement exists to divide the check equally. A selfish diner could thereby enjoy exceptional dinners at bargain prices. This dilemma typifies a class of serious social problems^[Glance, N., and B. Huberman, ["The Dynamics of Social Dilemmas"](http://www.uvm.edu/~pdodds/files/papers/others/1994/glance1994a.pdf), *Scientific American*] from environmental protection and resource conservation to eliciting charity donations and slowing arms races.
+
+
+Researchers wanted to test whether people order more food and beverages when they know the bill is going to be split evenly compared to when each person only pays for what they ordered.
+
+
+## Step 1: State the Hypotheses
+
+---
+
+-   $H_0$: There is no difference in how much people order regardless of how the bill is split. ${\color{dodgerblue}{\mu_{\rm even} - \mu_{\rm control}=0}}.$
+-   $H_a$: People order more when the bill is split evenly as opposed to when each person pays for what they order. ${\color{dodgerblue}{\mu_{\rm even} - \mu_{\rm control}>0}}.$
+
+
+## Step 2: Collect Sample Data and Define a Test Statistic
+
+---
+
+8 people volunteered to take part in the study.
+
+- 4 people were randomly assigned to sit at a table where they were told the bill would be evenly split between the 4 people.
+- 4 people were randomly assigned to sit at a table where they were told each person would pay only for what they order themselves.
+
+The results of the study are given in the tables below:
+
+| Even Split Group                         | Pay for what you order (control) Group    |
+|------------------------------------|------------------------------------|
+| $\$15.00$, $\$8.00$, $\$8.75$, $\$13.17$ | $\$8.50$ , $\$7.90$ , $\$10.85$, $\$7.43$ |
+| $\bar{x}_{\rm even} = \$11.23$           | $\bar{x}_{\rm control} = \$8.67$          |
+
+-   **We can use the difference in the two sample means as a test statistic:**
+
+$${\color{dodgerblue}{T= \bar{x}_{\rm even} - \bar{x}_{\rm control} = 2.56}}$$
+
+## Step 3: How Extreme Is the Observed Difference?
+
+---
+
+The p-value is the probability of getting a difference in sample means between the even-split and self-pay groups as or more extreme than the observed test statistic, $\bar{x}_{\rm even} - \bar{x}_{\rm control} = 2.56$. In this case (one-tailed test), more extreme implies a difference that is even bigger than $\$2.56$.
+
+$${\color{dodgerblue}{\mbox{p-value} = P(\bar{x}_{\rm even} - \bar{x}_{\rm control} \geq 2.56 \ | \ H_0 \mbox{ is true} )}}$$
+
+If $H_0$ is true, then $\mu_{\rm even} - \mu_{\rm control} =0$. Under this assumption, the center of the sampling distribution for the difference in sample means would be $0$. However, we do not know how much variability there is due to the sampling. **Is a difference in sample means equal to $\$2.56$ a "big" difference, or is the difference within the margins we would expect due to the uncertainty of sampling?**
+
+> How can we calculate the p-value if we do not know the underlying probability distribution for the test statistic $T = \mu_{\rm{even}} - \mu_{\rm{control}}$ if $H_0$ is true?
+
+
+## Question 1
+
+---
+
+If people order the same amount of food no matter how the bill is split (assuming $H_0$ is true), we assume each person would order the same amount of food regardless of the table they were seated at. **Splitting by groups based on how the bill is paid is no different than if the eight values were just randomly divided into two groups of four people.** If each person would have ordered the same regardless of which table they were seated at, then another possible sample could have been:
+
+| Even Split Group                   | Pay for what you order (control) Group |
+|------------------------------------|----------------------------------------|
+| $\mathbf{\color{dodgerblue}{\$7.43}}$ , $\$8.00$, $\$8.75$, $\$13.17$ | $\$8.50$ , $\$7.90$ , $\$10.85$, $\mathbf{\color{dodgerblue}{\$15.00}}$ |
+
+### Question 1a
+
+---
+
+What would be the test statistic for the two samples above?
+
+#### Solution to Question 1a
+
+---
+
+```{r}
+# find the test statistic for another possible sample
+
+```
+
+
+<br>  
+<br>  
+
+### Question 1b
+
+---
+
+How many different ways can we divide the eight participants into two groups of four?
+
+#### Solution to Question 1b
+
+---
+
+
+```{r}
+# how many possible ways can we create two groups of 4
+
+```
+
+
+<br>  
+<br>  
+
+# Two-Sample Permutation Tests {#sec-perm-test}
+
+---
+
+To perform a <span style="color:dodgerblue">**two-sample permutation test**</span> on data collected from two samples size $m$ and $n$:
+
+1.  Pool the $m+n$ values together.
+2.  Draw a <span style="color:dodgerblue">**permutation resample**</span> of size $m$ (size of first sample), **without replacement**.
+3.  Use the remaining $n$ (size of second sample) observations for the other sample.
+4.  Calculate the difference in means or another statistic to compares samples.
+5.  Repeat the resampling process many times and construct the distribution of test statistics.
+
+<span style="color:dodgerblue">**The p-value is the proportion of times the randomized statistics are as or more extreme than the observed difference.**</span>
+
+![Permutation resamples of the Unscrupulous Diners Dilemma Data](https://raw.githubusercontent.com/CU-Denver-MathStats-OER/Statistical-Theory/main/Images/22fig-meal-perm.png){width="90%"}
+
+# Case Study: Melanoma Lesion Thickness
+
+---
+
+
+![Credit: Braga, Macedo, Pinto, et. al., [CC BY 4.0](https://creativecommons.org/licenses/by/4.0), via Wikimedia Commons](https://upload.wikimedia.org/wikipedia/commons/d/d0/Superficial_spreading_melanoma_in_situ_on_dermoscopy%2C_reflectance_confocal_microscopy_and_histopathology_2.jpg){fig-align="left" width=55% fig-alt="Superficial spreading melanoma"}
+
+
+Skin is the largest organ in the human body. In the United States, skin cancer is the most common cancer. Current estimates are that one in five Americans will develop skin cancer in their lifetime^[American Academy of Dermatology, <https://www.aad.org/media/stats-skin-cancer>.]. There are different types of skin cancers, and melanoma is one form of skin cancer that is particularly dangerous if not detected early. However, if a skin lesion is detected early, it can be surgically removed before it spreads, and a patient generally has good long-term outcomes.
+
+The data set `melanoma` in the `boot` package contains measurements from a random sample of $205$ patients with malignant melanoma at the University Hospital of Odense in Denmark. Each patient had a skin lesion (or tumor) surgically removed and various attributes of the patient and tumors are recorded. Run the code cell below to load the `boot` package and summarize the variables in the `melanoma` data set.
+
+```{r}
+#| eval: true
+library(boot)
+summary(melanoma)
+```
+
+
+
+## Question 2
+
+---
+
+Based on the `summary(melanoma)` output, give a possible statistical question that could be analyzed using a hypothesis test. Which variable(s) in the `melanoma` data set would be involved in your analysis?
+
+::: {.callout-tip}
+Run `?melanoma` to access the help documentation and learn more about the data.
+:::
+
+### Solution to Question 2
+
+---
+
+<br>  
+<br>  
+<br>  
+
+## Question 3
+
+---
+
+Which variables in `melanoma` are categorical? Are those variables being stored as categorical variables? If so, explain how you can tell. If not, in the code cell below, convert the categorical variables to a `factor`.
+
+
+### Solution to Question 3
+
+---
+
+```{r}
+# if needed, convert each categorical variable to a factor
+
+```
+
+```{r}
+#| eval: true
+#| echo: false
+melanoma$status <- factor(melanoma$status)
+melanoma$sex <- factor(melanoma$sex)
+melanoma$ulcer <- factor(melanoma$ulcer)
+```
+
+<br>  
+<br>  
+
+
+## Creating a Pooled Sample
+
+---
+
+One possible question we could ask: *"Is the mean tumor thickness greater for all people with fatal melanoma compared to the mean tumor thickness for all people that survive melanoma?"* The two variables of interest are `status` and `thickness`.
+
+- `status`: The patients status at the end of the study. `1` indicates that they had died from melanoma, `2` indicates that they were still alive and `3` indicates that they had died from causes unrelated to their melanoma.
+- `thickness`: Tumor thickness in millimeters (mm).
+
+For our study, we are comparing two independent populations:
+
+- People that have a melanoma tumor removed and survive. This is `status` group `2`.
+- People that have a melanoma tumor removed and died from melanoma. This is `status` group `1`.
+- The people in `status` group `3` we exclude from this analysis.
+
+
+## Question 3
+
+---
+
+Answer the questions below to state our hypotheses, organize our data, and calculate a test statistic to help determine whether the mean tumor thickness is greater for all people with fatal melanoma compared to the mean tumor thickness for all people that survive melanoma?
+
+
+### Question 3a
+
+---
+
+Create side-by-side box plots to display the distribution of tumor thickness for each of the three `status` groups `1` (died from melanoma), `2` (survived), and `3` (died from other causes).
+
+
+#### Solution to Question 3a
+
+---
+
+Fill in the `boxplot()` command to answer the question.
+
+
+```{r}
+boxplot(??)
+```
+
+<br>  
+<br>  
+
+
+
+### Question 3b
+
+---
+
+The function `tapply(data, index, function)` has three inputs:
+
+-   The `data` is the data you want to summarize.
+-   The `index` is a categorical feature that will split the data into two or more different classes or factors.
+-   The `function` is some function that you want to apply to the data.
+
+Interpret the output from the code cell below.
+
+```{r}
+#| eval: true
+# run code and interpret output below
+tapply(melanoma$thickness, melanoma$status, length)  # nothing to edit
+```
+
+#### Solution to Question 3b
+
+---
+
+
+<br>  
+<br>  
+<br>  
+
+
+
+### Question 3c
+
+---
+
+We would like to use the data in `melanoma` to test the if the mean tumor thickness is greater for all people with fatal melanoma compared to the mean tumor thickness for all people that survive melanoma? State the corresponding null and alternative hypotheses for this test. Be sure to state each hypothesis both in words and using mathematical notation.
+
+
+#### Solution to Question 3c
+
+---
+
+- $H_0$: 
+
+- $H_a$: 
+
+<br>  
+<br>  
+
+### Question 3d
+
+---
+
+Using the code cell below, subset the `melanoma` data to create three different vectors:
+
+1. The vector `died` is the `thickness` values for `status` group 1.
+2. The vector `survived` is the `thickness` values for `status` group 2.
+3. The vector `pooled` is the `thickness` values for  both `status` groups 1 and 2 (excluding group 3).
+
+::: {.callout-note}
+The logical operator `==` means "is equal to" while the logical operator `!=` means "is not equal to".
+:::
+
+::: {.callout-note}
+The option `drop = TRUE` means the output will be a vector of numerical values as opposed to a data frame that has a variable with the name `thickness`. For example, if we want to calculate the sample mean for the `pooled` data:
+
+- Since the data is stored as a vector, we use `mean(pooled)`. There are no headers in vectors.
+- If the data is stored as a data frame, we do need to use headers and have `mean(pooled$thickness)`.
+
+The output of the code cell below are vectors, so we do not use the `$var_name` convention when referring to the sample data which helps simplify the code a little.
+:::
+
+
+#### Solution to Question 3d
+
+---
+
+Replace each of the 9 `??` with an appropriate value or variable name.
+
+```{r}
+died <- subset(melanoma, select = ??, ?? == "??", drop = TRUE)
+survived <- subset(melanoma, select = ??, ?? == "??", drop = TRUE)
+pooled <- subset(melanoma, select = ??, ?? != "??", drop = TRUE)
+```
+
+<br>  
+<br>  
+
+
+```{r}
+#| eval: true
+#| echo: false
+died <- subset(melanoma, select = thickness, status == "1", drop = TRUE)
+survived <- subset(melanoma, select = thickness, status == "2", drop = TRUE)
+pooled <- subset(melanoma, select = thickness, status != "3", drop = TRUE)
+```
+
+
+### Question 3e
+
+---
+
+
+Using the vectors `died`, `survived`, and `pooled` from [Question 3d], calculate the sample size and the sample mean for each of the samples `died`, `survived`, and `pooled`. 
+
+
+#### Solution to Question 3e
+
+---
+
+```{r}
+n.died <- ??  # size of sample of melanoma deaths
+n.survived <- ??  # size of sample of survivors
+n.pooled <- ??  # size of both samples pooled together
+xbar.died <- ??  # mean thickness of sample that died
+xbar.survived <- ??  # mean thickness of sample that survived
+xbar.pooled <- ??  # mean thickness of pooled sample
+
+# print each result to screen
+n.died 
+n.survived 
+n.pooled 
+xbar.died 
+xbar.survived 
+xbar.pooled   
+```
+
+<br>  
+<br>  
+
+### Question 3f
+
+---
+
+Based on the output in [Question 3e], calculate, store, and print the test statistic for this test to the screen.
+
+#### Solution to Question 3f
+
+---
+
+
+```{r}
+test.stat <- ??  # compute test statistic
+test.stat  # print test statistic to screen
+```
+
+<br>  
+<br>  
+
+
+
+# Constructing a Permutation Distribution
+
+---
+
+## Step 1: Create a Vector of Pooled Data
+
+---
+
+See the code used to create `pooled` in [Question 3d].
+
+
+## Step 2: Create Resamples for Each Treatment Group
+
+---
+
+For this step, it is important to note the size of each original sample. From [Question 3e] we know
+
+- The sample `died` consists of 57 observations.
+- The sample `survived` consists of 134 observations.
+- The `pooled` sample consists of $57 + 134= 191$ observations.
+
+#### Create an Index Vector
+
+---
+
+We first create a vector called `index` that selects (without replacement) 57 random integers out of the integers $1, 2, \ldots , 191$.
+
+```{r}
+#| eval: true
+set.seed(3021)  # fix the randomization seeding
+index <- sample(191, size = 57, replace = FALSE)  # these are the 57 observations chosen for resample 1
+```
+
+The command `head(index)` shows the first 6 values in the vector `index`. 
+
+```{r}
+#| eval: true
+head(index)
+```
+
+The first `index` value 55 means observation 55 from the `pooled` vector is the first thickness value randomly assigned to the `died` sample. From the code cell below, we see the 55th observation in `pooled` is a thickness of $0.81$ mm.
+
+```{r}
+#| eval: true
+pooled[55]
+```
+
+The next `index` value 164 means observation 164 from the `pooled` vector is the second thickness value randomly assigned to the `died` sample. From the code cell below, we see the 164th observation in `pooled` is a thickness of $0.65$ mm.
+
+```{r}
+#| eval: true
+pooled[164]
+```
+
+#### Use `index` to Select Resample of Group 1
+
+---
+
+The `index` vector is a vector of integers that tells us which values in `pooled` are randomly assigned to the `died` resample. However, `index` does not contain the corresponding thicknesses of the selected observations. The vector `pooled[index]` will contain the tumor thicknesses for all 57 randomly selected observations picked in `index`.
+
+
+```{r}
+#| eval: true
+died.resample <- pooled[index]
+```
+
+
+#### Use `-index` to Select the Remaining Values for Resample Group 2
+
+---
+
+- The vector `index` consists of 57 randomly selected integers out of the integers $1, 2, \ldots , 191$.
+- The vector `-index` contains the remaining 134 integers that were not selected for `index`.
+- The vector `pooled[-index]` will contain thicknesses for the remaining 134 observations in resample group 2.
+
+
+```{r}
+#| eval: true
+survived.resample <- pooled[-index]
+```
+
+
+## Step 3: Calculate the Test Statistic for the Resamples
+
+---
+
+Calculate the difference in the sample means between the two resamples.
+
+```{r}
+#| eval: true
+perm.stat <- mean(died.resample) - mean(survived.resample)
+perm.stat
+```
+
+## Step 4: Repeat this Many Times to Construct a Permutation Distribution
+
+---
+
+- In practice, it takes a lot of time and energy (and money) to generate all possible resamples (without any duplicate resamples). 
+  - Instead we'll generate a lot of resamples rather than all possible resamples.
+- We'll use $N=10^5-1=99,\!999$ as the default number of resamples. <span style="color:tomato">**Why use 99,999 resamples?**</span>
+  - We may not generate the original sample as one of the resamples.
+  - We want to be sure that we do include the original sample when we calculate the p-value.
+  - We will add the original sample back in with the $99,\!999$ resamples giving $100,\!000$ samples.
+-   The resulting distribution of test statistics of the permutation resamples is called a <span style="color:dodgerblue">**permutation distribution**</span>.
+  - We use the permutation distribution as an estimate for the null distribution to compute the p-value.
+
+
+
+## Question 4
+
+---
+
+Complete the first code cell below to create a permutation distribution for the difference in sample mean tumor thickness. Be sure you have already created the vector `pooled` in [Question 3d] and stored `test.stat` in [Question 3f].
+
+After generating a permutation distribution, run the second code cell below to create a histogram to display the distribution of resample statistics along with a red vertical line through the observed test statistic. There is nothing to edit in the second code cell.
+
+
+
+```{r}
+#| eval: true
+#| echo: false
+n.died <- length(died)  # size of sample of melanoma deaths
+n.survived <- length(survived)  # size of sample of survivors
+n.pooled <- length(pooled)  # size of both samples pooled together
+xbar.died <- mean(died)  # mean thickness of sample that died
+xbar.survived <- mean(survived)  # mean thickness of sample that survived
+test.stat <- mean(died) - mean(survived)  # test stat
+```
+
+```{r}
+#| eval: true
+#| echo: false
+#| output: true
+##########################################
+# save all 99,999 permutation resample 
+# statistics to the vector perm.stat
+##########################################
+set.seed(3021)
+N <- 10^5 - 1
+perm.stat <- numeric(N)
+
+for (i in 1:N)
+{
+  index <- sample(n.pooled, size = n.died, replace = FALSE)  # create index vector
+  x.died <- pooled[index]  # use index to select died resample
+  x.survived <- pooled[-index]  # the rest of the values go to survived resample
+  perm.stat[i] <- mean(x.died) - mean(x.survived)  # calc difference in sample means
+}
+```
+
+
+### Solution to Question 4
+
+---
+
+
+
+```{r}
+##########################################
+# save all 99,999 permutation resample 
+# statistics to the vector perm.stat
+##########################################
+N <- 10^5 - 1
+perm.stat <- numeric(N)
+
+for (i in 1:N)
+{
+  index <- sample(??, size = ??, replace = ??)  # create index vector
+  x.died <- ??  # use index to select died resample
+  x.survived <- ??  # the rest of the values go to survived resample
+  perm.stat[i] <- ??  # calc difference in sample means
+}
+```
+
+
+
+```{r}
+##################################################
+# plot permutation distribution as a histogram
+# mark observed test stat with red vertical line
+##################################################
+hist(perm.stat, xlab = "xbar.died - xbar.survived",
+     main = "Permutation Distribution")
+abline(v = test.stat, col = "red")
+```
+
+# p-values with Permutation Distributions
+
+---
+
+
+We use the permutation distribution as an estimate for the null distribution. The p-value is the proportion of all resampled test statistics that are as or more extreme than the observed test statistic. We can use a logical test to help compute this proportion.
+
+## Question 5
+
+---
+
+How likely is it to get resamples with a difference in means as or more extreme than the observed test statistic? Explain what the code below is doing in practical terms.
+
+```{r}
+p.value <- sum(perm.stat >= test.stat)/N
+p.value
+```
+
+### Solution to Question 5
+
+---
+
+Interpret the code cell above.
+
+<br>  
+<br>  
+<br>  
+
+
+## Question 6
+
+---
+
+The calculation from [Question 5] used the $N=10^5-1=99,\!999$ permutation resamples, but recall we want to be sure to include the original, observed sample when computing the p-value. Explain how the code cell below accomplishes this goal.
+
+```{r}
+p.value <- (sum(perm.stat >= test.stat) + 1) / (N + 1)
+p.value
+```
+
+### Solution to Question 6
+
+---
+
+
+<br>  
+<br>  
+<br>  
+
+
+
+
+## Question 7
+
+---
+
+Interpret the practical meaning of the p-value from [Question 6] to a person who is not very familiar with statistics.
+
+### Solution to Question 7
+
+---
+
+<br>  
+<br>  
+<br>  
+
+
+# Permutation Test for a Difference in Variances
+
+---
+
+## Question 8
+
+---
+
+Ulceration is a breakdown of the skin over the melanoma tumor. Using the data set `melanoma` from the `boot` package, perform a permutation test to see if the variance of the tumor thickness for ulcerated tumors is different from the variance of the tumor thickness for non-ulcerated tumors.
+
+::: {.callout-tip}
+The variable `ulcer` indicates whether the removed tumor was ulcerated (`ulcer` group `1`) or not ulcerated (`ulcer` group `0`).
+:::
+
+### Question 8a
+
+---
+
+Write out the null and alternative hypotheses using appropriate notation.
+
+#### Solution to Question 8a
+
+---
+
+-   $H_0$:
+
+-   $H_a$:
+
+<br>  
+<br>  
+<br>  
+
+
+### Question 8b
+
+---
+
+What can we use as the test statistic? What is the value of the observed test statistic?
+
+#### Solution to Question 8b
+
+---
+
+```{r}
+test.stat2 <- ??  # compute observed test statistic
+test.stat2  # print output to screen
+```
+
+<br>  
+<br>  
+
+### Question 8c
+
+---
+
+Create a permutation distribution for the difference in sample variances.
+
+#### Solution to Question 8c
+
+---
+
+```{r}
+# nothing to edit in this cell
+pooled2 <- melanoma$thickness  # create pooled vector of all tumor thicknesses
+```
+
+
+```{r}
+# Save resamples to vector called result
+N <- 10^5 - 1
+result <- numeric(N)
+
+# Create permutation distribution
+for (i in 1:N)
+{
+  index <- sample(??, size = ??, replace = ??)
+  result[i] <- ??
+}
+
+# Display permutation distribution and observed sample diff
+hist(result, xlab = "diff in sample variances",
+     main = "Permutation Distribution")
+abline(v = c(-test.stat2, test.stat2), col = c("blue", "red"))
+```
+
+<br>  
+<br>  
+
+### Question 8d
+
+---
+
+Calculate the p-value of the observed test statistic and interpret its meaning in practical terms.
+
+#### Solution to Question 8d
+
+---
+
+```{r}
+# compute the p-value
+
+```
+
+<br>  
+<br>  
+<br>  
+
+
+# Permutation Test for a Difference in Proportions
+
+---
+
+
+## Question 9
+
+---
+
+Is the proportion of females with ulcerated tumors less than the proportion of males with ulcerated tumors?
+
+### Question 9a
+
+---
+
+Write out the null and alternative hypotheses using appropriate notation.
+
+#### Solution to Question 9a
+
+---
+
+-   $H_0$:
+
+-   $H_a$:
+
+<br>  
+<br>  
+<br>  
+
+
+### Question 9b
+
+---
+
+What can we use as the test statistic? What is the value of the observed test statistic?
+
+
+#### Solution to Question 9b
+
+---
+
+
+```{r}
+# original ulceration data for female sample
+female <- subset(melanoma, select = "ulcer", sex == "0", drop = TRUE)
+
+# original ulceration data for male sample
+male <- subset(melanoma, select = "ulcer", sex == "1", drop = TRUE)
+
+# original ulceration data for both samples pooled together
+pooled.sex <- melanoma$ulcer 
+
+
+# enter a formula to compute the test statistic
+test.diff.prop <- ??
+```
+
+<br>  
+<br>  
+
+### Question 9c
+
+---
+
+Create a permutation distribution for the difference in sample proportions.
+
+#### Solution to Question 9c
+
+---
+
+Complete the code cell below.
+
+```{r}
+N <- 10^5 - 1
+result.prop <- numeric(N)
+
+for (i in 1:N)
+{
+  index <- sample(??, size = ??, replace = ??)
+  result.prop[i] <- ??
+}
+
+hist(result.prop, xlab = "phat1-phat2",
+     main = "Permutation Distribution")
+abline(v = test.diff.prop, col = "red")
+```
+
+<br>  
+<br>  
+
+### Question 9d
+
+---
+
+Calculate the p-value of the observed test statistic and interpret its meaning in practical terms.
+
+#### Solution to Question 9d
+
+---
+
+```{r}
+# compute the p-value
+
+```
+
+<br>  
+<br>  
+<br>  
+
+
+# Permutation Test for Matched Pairs
+
+---
+
+## Question 10
+
+---
+
+In this example, we use data collected from a matched pair designed study to determine whether smoking during pregnancy is associated with lower birth weight. In our study, we solicit volunteers that have already given birth to two babies. During one of the pregnancies, the parent smoked. During the other pregnancy, they did not smoke. Below is hypothetical data from such a study. A sample of $n=10$ people volunteer to share their data with the researchers from which we have 10 different pairs of birth weights (in grams) summarized in the table below.
+
+
+|             | 1    | 2    | 3    | 4    | 5    | 6    | 7    | 8    | 9    | 10   |
+|-------------|------|------|------|------|------|------|------|------|------|------|
+| No Smoking  | 2750 | 2920 | 3860 | 3402 | 2282 | 3790 | 3586 | 3487 | 2920 | 2835 |
+| Smoked      | 1790 | 2381 | 3940 | 3317 | 2125 | 2665 | 3572 | 3156 | 2721 | 2225 |
+
+
+
+### Question 10a
+
+---
+
+Researchers are testing to see if the birth weight of babies born to a parent that smoked while pregnant is less, on average, compared to a babies whose parent did not smoke while they were pregnant. Write out the null and alternative hypotheses using appropriate notation.
+
+
+
+#### Solution to Question 10a
+
+---
+
+-   $H_0$:
+
+-   $H_a$:
+
+<br>  
+<br>  
+<br>  
+
+
+
+### Question 10b
+
+---
+
+What can we use as the test statistic? What is the value of the observed test statistic?
+
+#### Solution to Question 10b
+
+---
+
+
+```{r}
+# data from study
+no <- c(2750, 2920, 3860, 3402, 2282, 
+        3790, 3586, 3487, 2920, 2835)  # non-smoking births weights
+
+smoker <- c(1790, 2381, 3940, 3317, 2125, 
+            2665, 3572, 3156, 2721, 2225)  # matching smoking birth weight
+
+diff <- no - smoker  # differences between matched pairs
+
+# Calculate the observed test statistic
+
+```
+
+<br>  
+<br>  
+
+### Question 10c
+
+---
+
+When we construct a permutation distribution for the sample mean difference between matched pairs, we want to be sure the resampling we use **preserves each pairing**.
+
+- We do not randomize how the pairs are formed.
+- Each pair of values should remain paired after resampling.
+- Instead, we randomly assign values in each pair to the smoker and non-smoker positions.
+
+For example, our original sample of matched pair differences is
+
+|             | 1    | 2    | 3    | 4    | 5    | 6    | 7    | 8    | 9    | 10   |
+|-------------|------|------|------|------|------|------|------|------|------|------|
+| No Smoking  | 2750 | 2920 | 3860 | 3402 | 2282 | 3790 | 3586 | 3487 | 2920 | 2835 |
+| Smoked      | 1790 | 2381 | 3940 | 3317 | 2125 | 2665 | 3572 | 3156 | 2721 | 2225 |
+| Difference  | 960  | 539  | -80  | 85   | 157  | 1125 | 14   | 331  | 199  | 610  |
+
+One possible resample is given below.
+
+|             | 1    | 2    | 3    | 4    | 5    | 6    | 7    | 8    | 9    | 10   |
+|-------------|------|------|------|------|------|------|------|------|------|------|
+| No Smoking Resample  | <span style="color:tomato">1790</span> | 2920 | 3860 | <span style="color:tomato">3317</span> | 2282 | <span style="color:tomato">2665</span> | 3586 | 3487 | 2920 | 2835 |
+| Smoked Resample      | <span style="color:tomato">2750</span> | 2381 | 3940 | <span style="color:tomato">3402</span> | 2125 | <span style="color:tomato">3790</span> | 3572 | 3156 | 2721 | 2225 |
+| Difference Resample | <span style="color:tomato">-960</span>  | 539  | -80  | <span style="color:tomato">-85</span>   | 157  | <span style="color:tomato">-1125</span> | 14   | 331  | 199  | 610  |
+
+
+To create a permutation distribution for the sample mean difference between matched pairs, <span style="color:dodgerblue">**we randomly choose a sign (positive or negative) for each observed matched-pair difference.**</span> Complete the code cell below to generate a permutation distribution for the sample mean difference between matched pairs.
+
+
+
+#### Solution to Question 10c
+
+---
+
+Complete and run the code cell below to create a permutation distribution.
+
+```{r}
+N <- 10^5-1
+perm.match <-numeric(N)
+
+# for each pair, randomly assign the difference to be positive or negative.
+# then calculate the new mean of the paired differences
+for (i in 1:N)
+{
+  sign <-sample(c(-1,1), size = ??, replace = ??) # random choose a sign -1 or 1
+  diff.resample <- sign * diff
+  perm.match[i] <- ??
+}
+```
+
+There is nothing to edit in the code cell below. Run the code cell below to plot the permutation distribution and test statistic. 
+
+```{r}
+# create a histogram of the permutation distribution
+# and add a vertical line at the observed test statistic
+hist(perm.match,  xlab = "xbar-diff",
+     main = "Permutation Distribution")
+abline(v = test.match, col ="red")
+```
+
+<br>  
+<br>  
+
+### Question 10d
+
+---
+
+Calculate the p-value of the observed test statistic and interpret its meaning in practical terms.
+
+#### Solution to Question 10d
+
+---
+
+```{r}
+# compute the p-value
+
+```
+
+<br>  
+<br>  
+<br>  
+
+
+
+## Question 11
+
+---
+
+
+**Is there a difference in the price of groceries sold by Target and Walmart?** The data set `Groceries` in the `resampledata` package contains a sample of $n=24$ different grocery items and a pair prices (price at Target and price at Walmart) advertised on their respective websites on a specific day.
+
+- First we load the `resampledata` package.
+
+```{r}
+#| eval: true
+#| output: false
+library(resampledata)  # load resampledata package
+```
+
+- Then we print the first six rows of the `Groceries` data.
+- Notice this is matched pairs data!
+
+::: {.callout-warning}
+If you received an error when running the code cell below, it is possible you do not have the `resampledata` package installed. From the R console, run the command `install.packages("resampledata")` to first install the `resampledata` packaged.  Run the `library(resampledata)` command in the code cell above again. Then try running the code cell below again.
+:::
+
+```{r}
+#| eval: true
+head(Groceries)
+```
+
+- Next, we save corresponding Target and Walmart prices to separate vectors `target` and `walmart`.
+- The first six values in each vector are printed to the screen.
+- Notice the ordering of the values in each vector is very important to preserve.
+
+
+```{r}
+#| eval: true
+target <- Groceries$Target
+walmart <- Groceries$Walmart
+head(target)
+head(walmart)
+```
+
+Using the sample data stored in `target` and `walmart`, answer the questions below to perform a permutation test.
+
+
+a.  Set up hypotheses to test whether there a difference in the price of groceries sold by Target and Walmart?
+
+b.  What is the observed test statistic?
+
+c.  Create a permutation distribution for the sample mean difference between matched pairs.
+
+d.  Calculate the p-value.
+
+e.  Interpret the meaning of the p-value.
+
+### Solution to Question 11
+
+---
+
+<br>  
+<br>  
+<br>  
+
+
+---
+
+![Creative Commons License](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png) <nbsp>
+
+*Statistical Methods: Exploring the Uncertain* by [Adam Spiegler](https://github.com/CU-Denver-MathStats-OER/Statistical-Theory) is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/).

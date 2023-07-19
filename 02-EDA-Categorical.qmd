@@ -1,0 +1,664 @@
+---
+#title: "1.2: Exploring Categorical Data"
+#author: 'Adam Spiegler, University of Colorado Denver'
+output:
+  html_document:
+#    toc: yes
+#    toc_depth: 1
+#    theme: cerulean
+#jupyter:
+#  kernelspec:
+#    display_name: R
+#    language: R
+#    name: ir
+#output:
+#    ipynbdocument::ipynb_document
+---
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap1/02-EDA-Categorical.ipynb) <nbsp>
+
+# 1.2: Exploring Categorical Data
+
+---
+
+Additional Reading:
+
+- See [Overview of Plotting Data in R](Overview-of-Plots.qmd) for further reading and examples about plotting in R.
+
+- See [Fundamentals of Working with Data](Intro-to-Vectors-Dataframes.qmd) for further details about data types and structures in R.
+
+- [R Graph Gallery](https://r-graph-gallery.com/) has examples of many other types of graphs.
+
+
+# An Overview of Exploratory Data Analysis
+
+------------------------------------------------------------------------
+
+<span style="color:dodgerblue">**Exploratory data analysis**</span>, or <span style="color:dodgerblue">**EDA**</span> for short, can be thought of as a cycle:
+
+- Generate questions about our data.
+- Search for answers by visualizing, transforming, and modeling our data.
+- Use what we learn to refine your questions and/or generate new questions.
+
+The main goal of EDA is to develop an understanding of your data. When we ask a question, the question focuses our attention on a specific part of the data set and helps us decide which graphs, models, or transformations to make.
+
+
+# Loading the `dplyr` Package {#sec-dplyr}
+
+------------------------------------------------------------------------
+
+The `dplyr` packages is perhaps one of the most useful R packages for <span style="color:dodgerblue">**data wrangling**</span> and EDA. Data wrangling is generally the cleaning, reorganizing, and transforming data so it can be more easily analyzed. `dplyr` also contains data sets that we can use to practice our wrangling and visualization skills. In this lab, we will work with the data set called `storms`.
+
+- See [official dplyr documentation](https://dplyr.tidyverse.org/articles/dplyr.html) for a comprehensive tutorial.
+- **Run the code cell below to load the `dplyr` package.**
+
+```{r}
+#| eval: true
+#| output: false
+# loads dplyr package
+library(dplyr)
+```
+
+## Finding Help Documentation
+
+---
+
+- The code cell below opens a glossary tab of all (most?) functions and data in the package `dplyr`.
+
+```{r}
+# open glossary of dplyr functions
+help(package = "dplyr")
+```
+
+- The code cell below opens a help tab with information about the `storms` data set.
+
+```{r}
+# opens help tab with info about storms data set
+?storms
+```
+
+# The Structure of Data
+
+------------------------------------------------------------------------
+
+<span style="color:dodgerblue">**Data frames**</span> are two-dimensional data objects and are the **fundamental** data structure used by most of R's libraries of functions and data sets.
+
+-   Tabular data is <span style="color:dodgerblue">**tidy**</span> if each row corresponds to a different observation and each column corresponds to a different variable.
+
+Each column of a data frame is a <span style="color:dodgerblue">**variable**</span> (stored as a **vector**) of possibly different data types.
+
+-    If a variable is measured or counted by a number, it is called a <span style="color:dodgerblue">**quantitative**</span> or <span style="color:dodgerblue">**numerical**</span> variable.
+  -   Quantitative variables may be <span style="color:dodgerblue">**discrete**</span> (integers) or <span style="color:dodgerblue">**continuous**</span> (decimals).
+-   If a variable groups observations into different categories or rankings, it is a <span style="color:dodgerblue">**qualitative**</span> or <span style="color:dodgerblue">**categorical**</span> variable.
+  - The different categories of a qualitative variable are called <span style="color:dodgerblue">**levels**</span> or <span style="color:dodgerblue">**classes**</span>.
+  - Levels may be labeled as character strings without any implicit order.
+  - Levels may be labeled as character strings, and there may be a ranking of the levels.
+  - Levels may be labeled with a integer without any implicit order.
+  - Levels may be labeled with an integer that does indicate an order or ranking. 
+
+# Exploring Our Data
+
+------------------------------------------------------------------------
+
+Below are some common functions used to get a first introduction to our data:
+
+-   `summary(df)` gives numerical summary of all variables in data frame with generic name `df`.
+-   `glimpse(df)` gives a glimpse of the data frame `df`.
+-   `str(df)` summarizes the structure of all variables in data frame `df`
+-   `head(df)` view first 6 rows in data frame.
+-   `tail(df)` view last 6 rows in data frame.
+-   `View(df)` to view the full data frame.
+  - <span style="color:tomato">It typically is not recommended to include a `View()` command in your work</span> since that opens the entire data set.
+  - The goal of EDA is to provide nice summaries of a data set so we do not need to look at all the raw data!
+
+
+## Question 1
+
+------------------------------------------------------------------------
+
+Let's get to know the `storms` data set. Using some (or all) of the commands above, answer the following questions:
+
+- How many observations are in data set `storms`? 
+- How many variables are `storms`?
+  - Which variables are quantitative and which are categorical? 
+  - Which categorical variables have a ranking? Which do not?
+- Hint: Avoid using the `View()` function. Instead, use `head()` or `tail()` if you want to get a sense of what the raw data looks like.
+  
+<span style="color:dodgerblue">**Experiment with some of the functions in the code cell below to answer the questions. Then type your answer in the space below.**</span>
+
+
+```{r}
+#| eval: true
+summary(storms)  # summary of each variable in storms
+#head(storms)  # prints first 6 rows to screen
+#tail(storms)  # prints last 6 rows to screen
+#glimpse(storms)  # gives a glimpse of the data set
+#str(storms)   # summary of data structure
+```
+
+
+### Solution to Question 1
+
+------------------------------------------------------------------------
+
+\
+\
+\
+
+
+## Question 2:
+
+------------------------------------------------------------------------
+
+What additional information would you like to know about the `storms` data set that you were unable to find? What questions do you have about the data? In particular, what data is missing and why?
+
+### Solution to Question 2:
+
+------------------------------------------------------------------------
+
+\
+\
+\
+
+# Data Types
+
+------------------------------------------------------------------------
+
+R has 6 basic [data types](https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Basic-types):
+
+1.  <span style="color:dodgerblue">**character**</span>: collections of characters. E.g., `"a"`, `"hello world!"`
+2.  <span style="color:dodgerblue">**double**</span>: decimal numbers. e.g., `1.2`, `1.0`
+3.  <span style="color:dodgerblue">**integer**</span>: whole numbers. In R, you must add `L` to the end of a number to specify it as an integer. E.g., `1L` is an integer but `1` is a double.
+4.  <span style="color:dodgerblue">**logical**</span>: Boolean values, `TRUE` and `FALSE`
+5.  <span style="color:dodgerblue">**complex**</span>: complex numbers. E.g., `1+3i`
+6.  <span style="color:dodgerblue">**raw**</span>: a type to hold raw bytes.
+
+See the Appendix for an [Fundamentals of Working with Data](Intro-to-Vectors-Dataframes.qmd) for more information.
+
+## Checking Data Types Using `typeof()`
+
+---
+
+-   The `typeof()` function returns the R internal type or storage mode of any object.
+
+```{r}
+#| eval: true
+typeof(1.0)
+typeof(2)
+typeof(3L)
+typeof("hello")
+typeof(TRUE)
+typeof(storms$status)
+typeof(storms$year)
+typeof(storms$name)
+```
+
+
+## Extracting a Variable By Name with `$`
+
+---
+
+In the command `typeof(storms$status)`, notice we refer to just the `status` variable of the `storms` data frame. <span style="color:dodgerblue">**A variable from a data frame may be extracted using `$` and then specifying the name of the desired variable**.</span>
+
+- First indicate the name of the data frame, `storms`.
+- Followed by a dollar sign `$`.
+- Then indicate the name of the variable, for example `wind`.
+- The `storms$wind` is a vector that contains the wind speed of each storm.
+
+```{r}
+#| eval: true
+is.vector(storms)  # storms is not a vector
+is.data.frame(storms)  # storms is a data frame
+is.data.frame(storms$wind)  # status is not a data frame
+is.vector(storms$wind)  # status is a vector
+```
+
+## Investigating Data Types with `is.numeric()`
+
+------------------------------------------------------------------------
+
+-   The `is.numeric(x)` function tests whether or not an object `x` is numeric.
+-   The `is.character(x)` function tests whether `x` is a character or not.
+-   The `is.factor(x)` function tests whether `x` is a factor or not.
+  - <span style="color:dodgerblue">**Note: Categorical data is typically stored as a `factor` in R.**</span>
+
+
+```{r}
+#| eval: true
+is.numeric(storms$year)  # year is numeric
+is.numeric(storms$category)  # category is also numeric
+is.numeric(storms$name)  # name is not numeric
+is.character(storms$name)  # name is character string
+```
+
+
+```{r}
+#| eval: true
+is.numeric(storms$status)  # status is not numeric
+is.character(storms$status)  # status is not a character
+is.factor(storms$status)  # status is a factor which is categorical
+```
+
+## Converting Decimals to Integers 
+
+------------------------------------------------------------------------
+
+From the summary of the `storms` data set we first found above, we see that the variables `year` and `month` are being stored as `double`. These variables actually are integer values.
+
+We can convert another variable of one format into another format using `as.[new_datatype]()`
+
+-   For example, to convert to year to `integer`, we use `as.integer(storms$year)`.
+-   To convert a data type to character, we can use `as.character(x)`.
+-   To convert to a decimal (`double`), we can use `as.numeric(x)`
+
+```{r}
+#| eval: true
+typeof(storms$year)
+typeof(storms$month)
+storms$year <- as.integer(storms$year)
+storms$month <- as.integer(storms$month)
+typeof(storms$year)
+typeof(storms$month)
+```
+
+
+## Converting to Categorical Data with `factor()`
+
+------------------------------------------------------------------------
+
+-   Sometimes we think a variable is one data type, but it is actually being stored (and thus interpreted by R) as a different data type.
+-   One common issue is categorical data is stored as characters or integers. We would like observations with the same values to be group together.
+  - The `status` variable in `storms` is being properly stored as a `factor`.
+  - The `category` variable in `storms` is being stored as a `numeric` since it is ordinal.
+-   With ordinal categories, we may choose to keep it stored as `numeric`, or we may prefer to treat them as factors.
+
+```{r}
+#| eval: true
+summary(storms$category)
+```
+
+
+- The summary of `category` computes statistics such as mean and median.
+- <span style="color:dodgerblue">**Typically with categorical data, we prefer to count how many observations are in each class of the variable.**</span>
+- In the code cell below, we convert `category` to a factor, and then observe the resulting summary.
+
+
+```{r}
+#| eval: true
+storms$category <- factor(storms$category)
+summary(storms$category)
+```
+
+## Assignment of New Objects
+
+---
+
+Notice in the code cell above, we replace the original integers in the `category` column with a integers that are now stored as different levels of a categorical variable.
+
+- To store a data structure in the computer's memory we must assign it a name.
+  - In this case, we choose to give the variable the same name, an therefore overwrite the original `category` column.
+- <span style="color:dodgerblue">**Data structures can be stored using the assignment operator `<-`.**</span>
+
+
+
+# Frequency and Relative Frequency Tables
+
+---
+
+- `table(x)` creates a frequency table for categorical variable `x`.
+- `table(x, y)` creates a two-way (or contingency) table for two categorical variables `x` and `y`
+- `prop.table([table])` creates a relative frequency table relative to the grand total.
+  -  The input of `prop.table()` must be a table.
+  - `prop.table([table], 1)` creates a relative frequency table relative to total in each row.
+  - `prop.table([table], 2)` creates a relative frequency table relative to total in each column.
+
+
+## Question 3
+
+---
+
+a. Which month over the period from 1975-2021 had the greatest number of **subtropical** storms? Which table did you use to help answer your question?
+
+b. Which month over the period from 1975-2021 had the greatest proportion of **subtropical** storms? Which table did you use to help answer your question?
+
+
+**Run each of the four code cells below, and after interpreting the output of each, answer the questions in the space below.**
+
+```{r}
+#| eval: true
+my.table <- table(storms$month, storms$status)  # gives counts
+my.table
+```
+
+```{r}
+#| eval: true
+prop.grand <- prop.table(my.table)  # gives proportions relative to grand total
+round(prop.grand, 4)
+```
+
+```{r}
+#| eval: true
+prop.row <- prop.table(my.table, 1)  # gives proportions relative to row totals
+round(prop.row, 4)
+```
+
+```{r}
+#| eval: true
+prop.col <- prop.table(my.table, 2)  # gives proportions relative to column totals
+round(prop.col, 4)
+```
+
+
+### Solution to Question 3
+
+---
+
+\
+\
+\
+
+
+# Visualizing Categorical Data
+
+---
+
+There are many different ways we can great visualizations to gain insight into our data and search for possible patterns and relations between different variables.
+
+-   **For one categorical variable:** Bar charts (or bar plots) and pie charts are commonly used.
+-   **For two categorical variables:** Grouped and stacked bar charts are commonly used.
+
+## Creating Bar Charts with `plot()`
+
+---
+
+- The `plot()` function is the most broadly used function for plotting different data types.
+- The type of plot generated by `plot()` depends on the data type(s) and the number of variable(s) we input.
+  - If we input one categorical variable that is stored as `factor`, we get a bar chart.
+  - If we input one quantitative variable, the plot is typically not very useful.
+  - If a categorical variable is stored incorrectly as quantitative, we do not get an appropriate plot.
+- If we use `plot()` to display a categorical variable, the variable must be stored as a factor!
+  - Recall we converted `category` to a `factor` in a previous code cell.
+  - The variable `month` is a quantitative variable.
+
+  
+```{r}
+#| eval: true
+# plots appear in an array with 1 row and 2 columns
+par(mfrow = c(1, 2))  # create an array of plots
+
+plot(storms$category,  # categorical data
+     main = "Hurricanes by Category",  # main title
+     xlab = "Hurricane Category",  # horizontal axis label
+     ylab = "Frequency",  # vertical axis label
+     col = "steelblue")  # fill color of bars)
+
+plot(storms$month,  # quantitative data
+     main = "Not Number of Storms in Month",  # main title
+     xlab = "Index (Row of Observation)",  # horizontal axis label
+     ylab = "Month")  # vertical axis label
+```
+
+## Creating Bar Charts and Pie Charts from a Table
+
+---
+
+If we want to keep `month` stored as an integer, but would like to create a visualization to display the number of storms that occurred in each month, we can: 
+
+1. First use the `table()` function to count how many storms occurred in each month.
+2. Then create a bar chart using the `barplot()` function or pie chart using `pie()`.
+
+
+```{r}
+#| eval: true
+# plots appear in an array with 1 row and 2 columns
+par(mfrow = c(1, 2))  # create an array of plots
+
+month.table <- table(storms$month)  # create table of month counts
+category.table <- table(storms$category)  # create table of category counts
+
+barplot(month.table,  # input table of month counts
+        main = "Storms in Each Month",  # main title
+        xlab = "Month",  # horizontal axis label
+        ylab = "Frequency",  # vertical axis label
+        col = "seagreen")  # fill color of bars
+
+pie(category.table,  # input table of category counts
+    main = "Hurricanes by Category")  # main title
+```
+
+Note, `pie()` and `barplot()` both take tables as inputs. Even if a variable is stored as a `factor`, we need to store the counts in a table first.
+
+- The `category` variable in `storms` is stored as a factor, but the code below still crashes.
+
+```{r}
+# see what happens if input is not a table
+pie(storms$category)
+```
+
+
+# Relationship Between Two Categorical Variables
+
+------------------------------------------------------------------------
+
+
+Imagine we would like to compare the number of different category hurricanes that occurred in each month. In this case, we would like to compare two qualitative variables, namely `category` and `month`.
+
+
+## Grouped Frequency Bar Charts
+
+---
+
+To create a bar chart displaying the number of category hurricanes that occurred in each month:
+
+1. First create a two-way table of counts. 
+  - The second variable (`month`) is displayed on horizontal axis.
+  - We get a separate bar for each level of the first variable (`category`).
+2. Input the table into the `barplot()` function.
+  - Note the option `beside = TRUE` groups the bars for each month.
+  - The default option `beside = FALSE` stacks the bars.
+
+```{r}
+#| eval: true
+# two-way table of counts of category in each month
+cat.table <- table(storms$category, storms$month)  # gives counts
+```
+
+
+```{r}
+#| eval: true
+# create a vector of colors
+my.colors <- c("green", "purple", "grey", "red", "blue") 
+
+# create side by side bar chart
+barplot(cat.table,  # use counts from contingency table
+        beside = TRUE,  # groups side-by-side
+        main = "Category Hurricanes By Month",  # main title
+        xlab = "Month",  # horizontal axis label
+        col = my.colors,  # fill color of bars
+        ylab = "Frequency")  # vertical axis label
+
+# add a legend to plot
+legend(x="topleft",  # place legend in top left
+       legend=rownames(cat.table),  # get labels from row name in contingency table
+       fill = my.colors)  # use same fill colors
+```
+
+## Stacked Relative Frequency Bar Charts
+
+---
+
+To create a bar chart displaying the relative frequency (or proportion) of category hurricanes that occurred in each month:
+
+1. First create a two-way table of relative frequencies.
+  - Pay attention to whether you want the proportions relative to grand, row, or column totals.
+2. Input the table into the `barplot()` function.
+  - The default option `beside = FALSE` stacks the bars.
+
+```{r}
+#| eval: true
+cat.grand <- prop.table(cat.table)  # gives proportions relative to grand total
+cat.row <- prop.table(cat.table, 1)  # gives proportions relative to row totals
+cat.col <- prop.table(cat.table, 2)  # gives proportions relative to column totals
+```
+
+
+```{r}
+#| eval: true
+par(mfrow = c(1, 3))  # create an array of plots
+
+# create stacked bar chart 1
+barplot(cat.grand,  # use proportions from contingency table
+        main = "Category Hurricanes By Month",  # main title
+        xlab = "Month",  # horizontal axis label
+        col = my.colors,  # color of bars
+        ylab = "Frequency")  # vertical axis label
+
+# add legend to plot
+legend(x="topleft",  # place legend in top left
+       legend=rownames(cat.grand),  # get labels
+       fill = my.colors)  # use same colors
+
+##########
+
+# create stacked bar chart 2
+barplot(cat.row,  # use proportions from contingency table
+        main = "Category Hurricanes By Month",  # main title
+        xlab = "Month",  # horizontal axis label
+        col = my.colors,  # color of bars
+        ylab = "Frequency")  # vertical axis label
+
+# add legend to plot
+legend(x="topleft",  # place legend in top left
+       legend=rownames(cat.row),  # get labels
+       fill = my.colors)  # use same colors
+
+###########
+
+# create stacked bar chart 3
+barplot(cat.col,  # use proportions from contingency table
+        main = "Category Hurricanes By Month",  # main title
+        xlab = "Month",  # horizontal axis label
+        col = my.colors,  # color of bars
+        ylab = "Frequency")  # vertical axis label
+
+# add legend to plot
+legend(x="topleft",  # place legend in top left
+       legend=rownames(cat.col),  # get labels
+       fill = my.colors)  # use same colors
+```
+
+## Question 4
+
+---
+
+Based on the three plots generated in the previous code cell, answer the questions below.
+
+a. Which month has the most hurricanes?
+
+b. In which month is the proportion of category 1 hurricanes greatest?
+
+### Solution to Question 4
+
+---
+
+\
+\
+\
+
+## Question 5
+
+---
+
+What are the the differences in the three plots in the output of the previous code cell? Which of the three bar plots above do you believe best visualizes the occurrence of different category hurricanes by month? Which plot do you think is the least useful overall? Explain why. 
+
+
+### Solution to Question 5
+
+---
+
+\
+\
+\
+
+
+# Exploring the General Social Survey Data Set
+
+---
+
+
+The data set `gss_cat` can be accessed from the `forcats` package. Below is a quote taken from the website of the [GSS Data Explorer website](https://gssdataexplorer.norc.org/about) maintained by NORC at the University of Chicago
+
+>The General Social Survey (GSS) is a project of NORC at the University of Chicago, with principal funding from the National Science Foundation. Since 1972, the GSS has been monitoring societal change and studying the growing complexity of American society.
+
+>The GSS is a publicly available national resource, and is one of the most frequently analyzed sources of information in the social sciences. GSS Data Explorer is one of many ways that NORC supports the dissemination of GSS data for use by legislators, policymakers, researchers, educators and others.
+
+
+
+```{r}
+#| eval: true
+# load the forcats package
+library(forcats)
+```
+
+```{r}
+# open help documentation for gss_cat
+?gss_cat
+```
+
+
+```{r}
+#| eval: true
+# get numerical summary of variables
+summary(gss_cat)
+```
+
+
+## Question 6
+
+---
+
+Create a plot to visualize one categorical variable in the `gss_cat` data set. Based on your plot, comment on any interesting features of the variable you plotted.
+
+
+```{r}
+# create a visualization for one categorical variable
+
+```
+
+### Solution to Question 6
+
+---
+
+\
+\
+\
+
+## Question 7
+
+---
+
+Create a plot to visualize the relationship between two categorical variables in the `gss_cat` data set. Based on your plot, comment on any interesting features or relations between two the variables you plotted.
+
+```{r}
+# create a visualization to illustrate the relation
+# between two categorical variables
+
+```
+
+### Solution to Question 7
+
+---
+
+\
+\
+\
+
+
+
+---
+
+![Creative Commons License](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png) <nbsp>
+
+*Statistical Methods: Exploring the Uncertain* by [Adam Spiegler](https://github.com/CU-Denver-MathStats-OER/Statistical-Theory) is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/).
+
+

@@ -1,0 +1,1042 @@
+---
+#title: "1.3: Exploring Quantitative Data"
+#author: 'Adam Spiegler, University of Colorado Denver'
+output:
+  html_document:
+#    toc: yes
+#    toc_depth: 1
+#    theme: cerulean
+#jupyter:
+#  kernelspec:
+#    display_name: R
+#    language: R
+#    name: ir
+#output:
+#    ipynbdocument::ipynb_document
+---
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap1/03-EDA-Quantitative.ipynb) <nbsp>
+
+# 1.3: Exploring Quantitative Data
+
+------------------------------------------------------------------------
+
+Additional Reading:
+
+-   See [Overview of Plotting Data in R](Overview-of-Plots.qmd) for further reading and examples about plotting in R.
+
+-   See [Fundamentals of Working with Data](Intro-to-Vectors-Dataframes.qmd) for further details about data types and logical statements in R.
+
+-   [R Graph Gallery](https://r-graph-gallery.com/) has examples of many other types of graphs.
+
+# Types of Variables
+
+---
+
+In statistics, <span style="color:dodgerblue">**variables**</span> are the attributes measured or collected in data. We refer to them as variables since the values or classes of attributes typically vary from observation to observation. The term variable is used differently in statistics from the notation of a variable in algebra. There are two types of variables in statistics:
+
+-   If a variable is measured or counted by a number, it is called a <span style="color:dodgerblue">**quantitative**</span> or <span style="color:dodgerblue">**numerical**</span> variable.
+
+-   Quantitative variables may be <span style="color:dodgerblue">**discrete (integers)**</span> or <span style="color:dodgerblue">**continuous (decimals)**</span>.
+
+-   If a variable groups observations into different categories or rankings, it is a <span style="color:dodgerblue">**qualitative**</span> or <span style="color:dodgerblue">**categorical**</span> variable.
+
+-   The different categories of a qualitative variable are called <span style="color:dodgerblue">**levels**</span> or <span style="color:dodgerblue">**classes**</span>.
+
+The type of statistical analysis we can do depends on whether:
+
+-   We are investigating a single variable, or looking for an association between multiple variables.
+-   The variable(s) are quantitative or categorical.
+-   The data satisfies certain assumptions.
+
+In our work with [Exploring Categorical Data](02-EDA-Categorical.qmd), we performed an initial summary of the categorical variables in the `storms` data set. Today, we will investigate how to numerically and visually summarize quantitative variables.
+
+# Getting to Know Our Data {#sec-storms}
+
+------------------------------------------------------------------------
+
+The `dplyr` package contains a data set from the [NOAA Hurricane Best Track Data](https://www.nhc.noaa.gov/data/#hurdat) that contains data on the following attributes of tracked North Atlantic storms since 1975:
+
+-   Storm name: `name`
+-   Date and time: `year`, `month`, `day`, and `hour`
+-   Storm position: `lat` and `long`
+-   Storm classification: `status`
+-   Category of hurricane: `category` (non-hurricanes are `NA`)
+-   Wind speed (in knots): `wind`
+-   Pressure (in millibars): `pressure`
+-   Tropical storm force diameter (in nautical miles): `tropicalstorm_force_diameter`
+-   Hurricane force diameter (in nautical miles): `hurricane_force_diameter`
+
+See [Exploring Categorical Data](02-EDA-Categorical.qmd) for a refresher on our initial exploration with the `storms` data frame.
+
+Then open the help documentation for `storms` in the second code cell to review the background of the data.
+
+## Loading Required Package
+
+------------------------------------------------------------------------
+
+In order to access the `storms` data frame in the `dplyr` package, we first load the package with the `library()` function.
+
+```{r}
+#| eval: true
+#| output: false
+library(dplyr)  # load dplyr package
+```
+
+## Help Documentation for `storms` {#sec-03help}
+
+------------------------------------------------------------------------
+
+The `?` help operator and `help()` function provide access to the help manuals for R functions, data sets, and other objects. If at any point we want to learn more about data or a function used in this notebook, we can use the help operator. For example, `?typeof`, `?str`, `?hist`, and `?boxplot` will open a help tab with further details about each of function.
+
+-   **Run the code cell below to access the help documentation for the `storms` data set.**
+
+```{r}
+?storms  # open help tab
+```
+
+## Question 1
+
+------------------------------------------------------------------------
+
+List all the quantitative variables in `storms`. Which are being stored as `integer`, and which are stored as `double` (decimals)? 
+
+- You can edit, run  and rerun the `typeof()` function in the first code cell below to help identify the data types of individual variables in `storms`.
+- You can use the `str()` function in the second code cell to identify the data types of all variables at once.
+
+```{r}
+#| eval: true
+typeof(storms$year)
+```
+
+### Solution to Question 1
+
+------------------------------------------------------------------------
+
+\
+\
+\
+
+## Question 2
+
+------------------------------------------------------------------------
+
+What wind speeds are classified as a Category 2 hurricane?
+
+### Solution to Question 2
+
+------------------------------------------------------------------------
+
+\
+\
+\
+
+## Question 3
+
+------------------------------------------------------------------------
+
+What does the variable `tropicalstorm_force_diameter` measure? What does it mean if a storm observation has a 0 for `tropicalstorm_force_diameter`?
+
+### Solution to Question 3
+
+------------------------------------------------------------------------
+
+\
+\
+\
+
+## Question 4
+
+------------------------------------------------------------------------
+
+Enter comments in the code cell below to help describe what each command performs. Then run the `str()` function after running the commands to see the updated data structure of `storms`.
+
+### Solution to Question 4
+
+------------------------------------------------------------------------
+
+```{r}
+#| eval: true
+# enter your comments after each # 
+storms$year <- as.integer(storms$year)  #
+storms$month <- as.integer(storms$month)  #
+storms$hour <- as.integer(storms$hour)  #
+storms$category <- factor(storms$category)  #
+```
+
+```{r}
+#| eval: true
+# view the resulting data structure
+str(storms)
+```
+
+# Summarizing Quantitative Data
+
+------------------------------------------------------------------------
+
+When we analyze the categorical variables in `storms`, we use counts and proportions. In the table created by the code cell below, we see how many observations there are in each storm classification.
+
+```{r}
+#| eval: true
+tbl.status <- table(storms$status) # store counts for each storm classification
+tbl.status  # print table to screen
+```
+
+-   The code cell below gives the proportion of storms in the data are in each storm classification.
+
+```{r}
+#| eval: true
+# table of counts for each storm classification
+prop.table(tbl.status)
+```
+
+We used bar charts and pie charts to visualize the distribution and relations between categorical variables.
+
+```{r}
+#| eval: true
+plot(storms$category,  # categorical data
+     main = "Hurricanes by Category",  # main title
+     xlab = "Hurricane Category",  # horizontal axis label
+     ylab = "Frequency",  # vertical axis label
+     col = "steelblue")  # fill color of bars)
+```
+
+-   <span style="color:tomato">**For quantitative variables, such as wind speed (`wind`), counting and proportions are not as appropriate or useful.**</span>
+-   <span style="color:dodgerblue">**We get a better understanding of a quantitative variable by describing where the values are centered and the spread of the values.**</span>
+-   Similarly, a good visualization for a quantitative variable will help illustrate where the values are centered, how variable (spread out) the values are, and other useful properties.
+
+# Plotting Quantitative Data
+
+------------------------------------------------------------------------
+
+Additional resources for help with plotting data:
+
+-   See [Overview of Plotting Data in R](Overview-of-Plots.qmd) for further reading and examples about plotting in R.
+
+-   [R Graph Gallery](https://r-graph-gallery.com/) has examples of many other types of graphs.
+
+
+## Histograms
+
+------------------------------------------------------------------------
+
+A <span style="color:dodgerblue">**histogram**</span> is special bar chart we use to display the distribution of values for a quantitative variable.
+
+-   We first group the values into different ranges of values called <span style="color:dodgerblue">**bins**</span> of equal width.
+    -   This essentially converts the quantitative variable to an ordinal categorical variable with with each bin representing a different level.
+    -   Consider the quantitative variable `wind`. We can use bin ranges such as 0-10 knots, 10-20 knots, ... , 160-170 knots.
+        -   Each bin range should have the same width.
+        -   The bins do not overlap.
+        -   The ordering of the bins is very important.
+-   Then we count how many values in the data are in each bin.
+-   A histogram is a bar chart that represents the number of values that are in each bin range.
+-   Values of the quantitative variable are measured on the horizontal axis.
+-   The height of the bars over each bin range is the number of values (or frequency) in each bin range.
+-   **By default, the counts are right closed.**
+-   A histogram should not have an spaces between consecutive bars. Empty space means no values are in that bin range.
+-   <span style="color:dodgerblue">**The R function `hist(x, [options])` creates a histogram.**</span>
+-   Run `?hist` for more information about the available options for customizing a histogram, some of which are illustrated in the code cell below.
+
+```{r}
+#| eval: true
+# create a histogram
+hist(storms$wind,  # vector of values to plot
+     breaks = 15,  # number of bin ranges to use
+     xlab = "wind speed (in knots)",   # x-axis label
+     xlim = c(0,200),  # sets window for x-axis
+     ylab = "Frequency",  # y-axis label
+     ylim = c(0,5000),  # sets window for y-axis
+     main = "Distribution of Storm Wind Speed",  # main label
+     col = "steelblue")  # fill color of bars
+```
+
+
+## Question 5
+
+------------------------------------------------------------------------
+
+Based on the histogram above, approximately how many storms have a wind speed less than or equal to 40 knots?
+
+### Solution to Question 5
+
+------------------------------------------------------------------------
+
+\
+\
+\
+
+## Question 6
+
+------------------------------------------------------------------------
+
+The code cell below can help us check our answer.
+
+a.  Explain what operation(s) the command in the code cell below. Running the code cell and compare the last 10 entries in the vector `le.40` and the vector `storms$wind` to help determine your answer.
+
+b.  Then run and explain what the second code cell below does. *Hint: R reads the logical `TRUE` as the number 1 and `FALSE` as the number 0.*
+
+c.  How accurate was your previous answer in [Question 5]?
+
+### Solution to Question 6
+
+------------------------------------------------------------------------
+
+a.  Enter comment in first code cell.
+
+b.  Enter comment in second code cell.
+
+c.  How accurate was your answer in [Question 5]?
+
+```{r}
+#| eval: true
+le.40 <- storms$wind <= 40  # ??
+
+tail(storms$wind, 10)  # prints last 10 rows of wind speed vector
+tail(le.40, 10)  # prints last 10 rows of logical vector le.40
+```
+
+```{r}
+#| eval: true
+# enter comment to interpret this command
+sum(le.40)  # ??
+```
+
+### Changing the Number of Bins
+
+------------------------------------------------------------------------
+
+A histogram can illustrate the general shape of the distribution of quantitative variable; however, the number of breaks we use can have a substantial impact.
+
+-   If we include too few bins, we do not get much detail, and we may even get a misleading picture.
+-   If we include too many bins, the histogram may be difficult to read.
+-   The fun of interacting with data in R is we can play around and adjust the number of breaks and other options until we are satisfied.
+
+```{r}
+#| eval: true
+# plots appear in an array with 1 row and 2 columns
+par(mfrow = c(1, 2))  # create an array of plots
+
+# create a histogram
+hist(storms$wind,  # vector of values to plot
+     breaks = 5,  # number of bin ranges to use
+     xlab = "wind speed (in knots)",   # x-axis label
+     xlim = c(0,200),  # sets window for x-axis
+     ylab = "Frequency",  # y-axis label
+     ylim = c(0,15000),  # sets window for y-axis
+     main = "Distribution of Storm Wind Speed",  # main label
+     col = "steelblue")  # fill color of bars
+
+# create a histogram
+hist(storms$wind,  # vector of values to plot
+     breaks = 50,  # number of bin ranges to use
+     xlab = "wind speed (in knots)",   # x-axis label
+     xlim = c(0,200),  # sets window for x-axis
+     ylab = "Frequency",  # y-axis label
+     ylim = c(0,3000),  # sets window for y-axis
+     main = "Distribution of Storm Wind Speed",  # main label
+     col = "seagreen")  # fill color of bars
+```
+
+## Question 7
+
+------------------------------------------------------------------------
+
+How would you describe the shape of the distribution of wind speed in the histograms above?
+
+### Solution to Question 7
+
+------------------------------------------------------------------------
+
+\
+\
+\
+
+## Question 8
+
+------------------------------------------------------------------------
+
+Create a histogram to display the quantitative variable `month`. What does the shape of that graph tell you about the data?
+
+### Solution to Question 8
+
+------------------------------------------------------------------------
+
+```{r}
+
+```
+
+\
+\
+\
+
+## Question 9
+
+------------------------------------------------------------------------
+
+Create a histogram to display the quantitative variable `long`. What does the shape of that graph tell you about the data?
+
+### Solution to Question 9
+
+------------------------------------------------------------------------
+
+```{r}
+
+```
+
+\
+\
+\
+
+## The Skewness of Data
+
+------------------------------------------------------------------------
+
+The <span style="color:dodgerblue">**skewness**</span> of the data describes the direction of the tail of the data. The tail of the data indicates the direction of outliers (if any).
+
+```{r}
+#| eval: true
+par(mfrow = c(1, 3))  # Create a 1 x 3 array of plots
+
+hist(storms$wind, 
+     xlab = "wind speed (in knots)",   # x-axis label
+     ylab = "Frequency",  # y-axis label
+     main = "Distribution of Wind Speeds",  # main title
+     col = "steelblue")  # fill color of bars
+
+hist(storms$month, 
+     breaks = 12,  # number of breaks
+     xlab="Month",   # x-axis label
+     ylab = "Frequency",  # y-axis label
+     main = "Distribution of Months",  # main title
+     col = "coral1")  # fill color of bars
+
+hist(storms$long, 
+     breaks = 15,  # number of breaks
+     xlab="Degrees of Longitude",   # x-axis label
+     ylab = "Frequency",  # y-axis label
+     main = "Distribution of Longitude",  # main title
+     col = "aquamarine4")  # fill color of bars
+```
+
+-   The distribution of wind speeds is <span style="color:dodgerblue">**skewed right**</span>.
+-   The distribution of months is <span style="color:dodgerblue">**skewed left**</span>.
+-   The distribution of longitude is approximately <span style="color:dodgerblue">**symmetric**</span>.
+
+# Measurements of Center
+
+------------------------------------------------------------------------
+
+Typical measurements of center are:
+
+-   The <span style="color:dodgerblue">**mean**</span> is the average value.
+
+$${\large \bar{x} = \frac{\mbox{sum of all values}}{\mbox{total number of values}} =  \sum_{i=1}^{n} \frac{x_n}{n}}. $$ 
+
+- We use $\color{dodgerblue}{\mathbf{\bar{x}}}$ (pronounced x-bar) to denote a <span style="color:dodgerblue">**sample**</span> mean. 
+  - We use $\color{mediumseagreen}{\mathbf{\mu}}$ (Greek letter mu) to denote a <span style="color:mediumseagreen">**population**</span> mean.
+  - In R, we use the function `mean()`. 
+  
+- The <span style="color:dodgerblue">**median**</span> is the $50^{\mbox{th}}$ percentile. This means 50% of the values in the data set are less than the median. 
+  - In R, we use the function `median()`. - If there are an odd number of values, the median is the middle value. 
+  - If there are an even number of values, the median is the midpoint between the two middle values.
+
+## Question 10
+
+------------------------------------------------------------------------
+
+Compute the mean and median wind speed of the `storms` data. Interpret each value in practical terms. Be sure to include the units in your interpretation.
+
+*Hint: We can input the vector of wind speeds with the code `storms$wind`.*
+
+### Solution to Question 10
+
+------------------------------------------------------------------------
+
+```{r}
+
+```
+
+\
+\
+\
+
+## Question 11
+
+------------------------------------------------------------------------
+
+Why do you think the mean wind speed is greater than the median wind speed?
+
+### Solution to Question 11
+
+------------------------------------------------------------------------
+
+\
+\
+\
+
+## Relation of Shape to Measurements of Center
+
+------------------------------------------------------------------------
+
+![Image Credit: Adam Spiegler, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0).](https://raw.githubusercontent.com/CU-Denver-MathStats-OER/Statistical-Theory/main/Images/03fig-skewness.png){fig-alt="Relation of Skewness to Mean and Median."}
+
+-   The mean is more sensitive to outliers than the median. The mean is pulled in the direction of the tail.
+-   If the shape of the histogram is <span style="color:dodgerblue">**symmetric**</span>, then the <span style="color:dodgerblue">**mean is equal to the median**</span>.
+-   If the shape of a histogram is <span style="color:tomato">**skewed to the left**</span>, the <span style="color:tomato">**mean is less than the median**</span>.
+-   If the shape of a histogram is <span style="color:mediumseagreen">**skewed to the right**</span>, the <span style="color:mediumseagreen">**mean is greater than the median**</span>.
+
+# Measurements of Spread
+
+------------------------------------------------------------------------
+
+Typical measurements of spread are:
+
+-   The <span style="color:dodgerblue">**range**</span> $= \mbox{max} - \mbox{min}$.
+    - The advantage of the range is that it is easy to compute.
+    - However, the range ignores all values in the data other than the maximum and minimum values.
+-   The <span style="color:dodgerblue">**standard deviation**</span> approximately measures the average distance of all values from the mean value.
+    -   For a sample, $\displaystyle s = \sqrt{\dfrac{\sum_{i=1}^{n} (x_i - \bar{x})^2}{n-1}}$.
+    -   The standard deviation takes all values into account and thus involves many calculations. We typically use technology to help!
+    -   The command `sd(var_name)` computes the sample standard deviation in R.
+    -   We use $\color{dodgerblue}{\mathbf{s}}$ to denote a <span style="color:dodgerblue">**sample**</span> standard deviation.
+    -   We use $\color{tomato}{\mathbf{\sigma}}$ (Greek letter sigma) to denote a <span style="color:tomato">**population**</span> standard deviation.
+
+![Image Credit: Adam Spiegler, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0).](https://raw.githubusercontent.com/CU-Denver-MathStats-OER/Statistical-Theory/main/Images/03fig-stdev.png){fig-alt="Figure Illustrating Standard Deviation"}
+
+## Question 12
+
+------------------------------------------------------------------------
+
+Which of the histograms (i)-(vi) has the largest range? The smallest range?
+
+### Solution to Question 12
+
+------------------------------------------------------------------------
+
+\
+\
+\
+
+## Question 13
+
+------------------------------------------------------------------------
+
+Which of the histograms (i)-(vi) has the largest standard deviation? The smallest standard deviation?
+
+### Solution to Question 13
+
+------------------------------------------------------------------------
+
+\
+\
+\
+
+
+# Quantiles
+
+------------------------------------------------------------------------
+
+-   The $25^{\mbox{th}}$ percentile <span style="color:dodgerblue">**first quartile**</span> is denoted $\color{dodgerblue}{\mathbf{Q_1}}$. 
+  - In R, use the function `quantile(x, probs=0.25)`.
+-   The $75^{\mbox{th}}$ percentile <span style="color:dodgerblue">**third quartile**</span> is denoted $\color{dodgerblue}{\mathbf{Q_3}}$. 
+  -   - In R, use the function `quantile(x, probs = 0.75)`.
+-   The <span style="color:dodgerblue">**Interquartile Range (IQR)**</span>$\color{dodgerblue}{=Q_3-Q_1}$. 
+  -   - In R, use the function `IQR(x)`.
+-   The <span style="color:dodgerblue">**five number summary**</span> can also provide a good description of the spread of the values since we know <span style="color:dodgerblue">**25% of the values fall between each consecutive pair of values**</span>. 
+$$\color{dodgerblue}{(\mbox{min}, Q_1 , \mbox{median}, Q_3, \mbox{max} )}$$
+  - In R, use the function `fivenum(x)` to compute the five number summary. 
+
+## Question 14
+
+------------------------------------------------------------------------
+
+Give the five number summary for the wind speed of all observations in the `storms` data set.
+
+### Solution to Question 14
+
+------------------------------------------------------------------------
+
+```{r}
+
+```
+
+\
+\
+
+## Five Number Summaries and Boxplots
+
+------------------------------------------------------------------------
+
+The five number summary for wind speeds is $(10, 30, 45, 65, 165)$. Below is a <span style="color:dodgerblue">**boxplot**</span> for this data.
+
+- 25% of the wind speeds are between 10 and 30 knots.
+- 25% of the wind speeds are between 30 and 45 knots.
+- 25% of the wind speeds are between 45 and 65 knots.
+- 25% of the wind speeds are between 65 and 165 knots.
+
+```{r}
+#| eval: true
+boxplot(storms$wind,  # data to plot
+        main = "Wind Speeds of Storms",  # main title 
+        xlab = "Wind Speed (in knots)",  # x-axis label
+        xaxt='n',  # turn off default ticks on x-axis
+        horizontal = TRUE)  # align horizontally
+axis(1, at = fivenum(storms$wind))  # add tickmarks at five number summary
+```
+
+## How to Read and Create Boxplots
+
+------------------------------------------------------------------------
+
+To create a boxplot:
+
+-   Find the values of $Q_1$, median, and $Q_3$.
+-   Draw a box with edges at $Q_1$ and $Q_3$ and line inside the box for the median.
+-   Identify the upper and lower fence to classify outliers:
+    -   Upper fence $=Q_3 + 1.5(\mbox{IQR})$.
+    -   Lower fence $=Q_1 - 1.5(\mbox{IQR})$.
+-   Extend a line (whisker) from the lower edge of box to the smallest observation greater than the lower fence.
+-   Extend a line (whisker) from the upper edge of the box to the largest value that is less than the upper fence.
+-   The observations that are less than the lower fence or greater than the upper fence are considered <span style="color:dodgerblue">**outliers**</span>.
+     -  Outlier values are marked with individual points.
+
+
+## Question 15
+
+------------------------------------------------------------------------
+
+Compute the upper and lower fences for the wind speed observations in `storms`.
+
+### Solution to Question 15
+
+------------------------------------------------------------------------
+
+
+\
+\
+\
+
+# The Empirical Cumulative Distribution Function (ecdf)
+
+---
+
+A question we often wish to explore is what proportion of values in our data are less or equal to a specified value $x$? To answer this question, we count to the total number of observations in our data that are less than or equal to $x$, and then divide by the total number of observations in our data.
+
+
+## Counting Observations with Logical Statements
+
+---
+
+To illustrate how we can count observations that satisfy a given condition, consider the a vector of 5 values: $31$, $33$, $34$, $36$, and $38$. We store these values in the vector named `test.data` below. The command `test.data <= 35` applies a logical test to each of the 5 values in the vector:
+
+> Is the value less than or equal to 35?
+
+Run the code cell below and check the output to verify the test works as expected.
+
+```{r}
+#| eval: true
+test.data <- c(31, 33, 34, 36, 38)  # vector of test data
+test.data <= 35  # logical test
+```
+
+- The result `TRUE` is counted as 1.
+- The result `FALSE` is counted as 0.
+- We can use the `sum()` function to count how many `TRUE` results we have.
+- Running the code cell below, we verify that 3 values in `test.data` are less than or equal to 35.
+
+```{r}
+#| eval: true
+sum(test.data <= 35)  # sum the TRUE results
+```
+
+We can convert the count to a proportion by dividing by the total number of values in our data. Our vector `test.data` has a total of 5 observations; therefore, the proportion of values that are less than or equal to 35 is 3 out of 5 or $0.6$. We can use the `mean()` to count the number of `TRUE` results and divide by the total number of all observations in one command to simplify the code.
+
+```{r}
+#| eval: true
+mean(test.data <= 35)  # total values <= 35 divided by total number of values
+```
+
+
+## Question 16
+
+---
+
+What proportion of observations in `storms$wind` have a wind speed less than or equal to 50 knots?
+
+### Solution to Question 16
+
+---
+
+```{r}
+# what proportion of observations have wind less than or equal to 50
+
+```
+
+
+## What is the Empirical Cumulative Distribution Function?
+
+---
+
+The <span style="color:dodgerblue">**empirical cumulative distribution function (ecdf)**</span> is typically denoted by the notation $\mathbf{\color{dodgerblue}{\widehat{F}(x)}}$. We read the notation $\hat{F}$ as **F hat**, and we will make use of the hat notation throughout the semester.
+
+- The input $x$ is a value.
+- The output $\widehat{F}(x)$ of the ecdf is the proportion of values in the sample that are less than or equal to $x$.
+
+Recall the vector `test.data` contains the values $31$, $33$, $34$, $36$, and $38$. We can express the ecdf as a piecewise function. 
+
+$$
+\widehat{F}(x) = \left\{ 
+\begin{array}{ll}
+0  & x < 31 \\
+0.2 &  31 \leq x < 33 \\
+0.4 &  33 \leq x < 34 \\
+0.6 &  34 \leq x < 36 \\
+0.8 &  36 \leq x < 38 \\
+1 & x \geq 38
+\end{array} \right.
+$$
+
+
+## Graphing the Empirical Cumulative Distribution Function 
+
+---
+
+We can plot the ecdf using the `plot.ecdf()` function in R, and the resulting plot is a piecewise, step function.
+
+```{r}
+#| eval: true
+plot.ecdf(test.data, col="steelblue")
+```
+
+
+## Question 17
+
+---
+
+Complete the statements below to identify some key properties of ecdf's.
+
+### Solution to Question 17
+
+---
+
+
+- The minimum output value of an ecdf is ??.
+- The maximum value output value of an ecdf is ??.
+- The ecdf is a ?? function since as $x$ increases, $\widehat{F}(x)$ cannot decrease.
+
+
+## Question 18
+
+---
+
+Plot the empirical cumulative distribution function for the wind speeds in the `storms` data set and check your answer to [Question 16].
+
+### Solution to Question 18
+
+---
+
+```{r}
+# plot the ecdf for wind speeds in storms
+
+```
+
+
+
+# Comparing Quantitative and Categorical Data
+
+------------------------------------------------------------------------
+
+We have explored some of the categorical variables in the `storms` data set in our work with [Exploring Categorical Data](02-EDA-Categorical.qmd). We have discussed how we can summarize and plot a quantitative variable. Often in statistics we would like to compare the distribution of a quantitative variable for different classes of a categorical variable. For example, we may be interested in investigating the following:
+
+> In which month do storms have the greatest wind speed?
+
+We first check the data type of the month variable in `storms` using the `typeof()` function.
+
+```{r}
+#| eval: true
+typeof(storms$month)  # check how months is stored
+```
+
+## Converting a Quantitative Variable to a Categorical Variable with `factor()`
+
+---
+
+Months were initially stored as decimals. We converted `month` to an integer earlier, and we can see `month` is still stored as an integer. Let's convert `month` to a `factor` so R will treat each month as a separate class.
+
+```{r}
+#| eval: true
+storms$month <- factor(storms$month)  # convert month to a categorical variable
+summary(storms$month)  # check summary output after converting to factor
+```
+
+
+## Side by Side Boxplots with `plot()`
+
+---
+
+The `plot()` function creates different types of plots depending on the data type and number of variables we enter.
+
+- If `x` is quantitative, `plot(x)` creates an index plot which is generally not too useful.
+- If `x` is categorical, `plot(x)` creates a bar chart.
+
+```{r}
+#| eval: true
+par(mfrow = c(1,2))  # create a 1 by 2 array of plots
+plot(storms$month)  # bar chart is created for categorical data
+plot(storms$wind)  # index plot is created for quantitative data
+par(mfrow = c(1,1))  # reset to 1 plot per figure
+```
+
+
+- If `x` is categorical and `y` is quantitative, `plot(y ~ x, data = [name])` creates side by side boxplots, one for each class of `x`.
+- If both `x` and `y` are quantitative variables, `plot(y ~ x, data = [name])` creates a scatterplot.
+
+
+```{r}
+#| eval: true
+par(mfrow = c(1,2))  # create a 1 by 2 array of plots
+plot(wind ~ month, data = storms)  # side by side boxplots
+plot(wind ~ pressure, data = storms)  # scatterplot
+par(mfrow = c(1,1))  # reset to 1 plot per figure
+```
+
+
+The side by side boxplots created above are hard to read since we have 12 boxplots in total. The two months with the most storms data are August and September. 
+
+> How can we compare storms only in August and September?
+
+
+## Subsetting and Filtering Data
+
+------------------------------------------------------------------------
+
+We can compare data for only August and September using various methods. One common method is to subset all of the data in `storms` into two separate data frames, one for each month. Below three are different ways we can subset data:
+
+- Using the `subset()` function in base R.
+- Using the `filter()` function in the `dplyr` package.
+- Using logical statements.
+
+Other methods exist as well.
+
+
+### The `subset()` Function in Base R
+
+------------------------------------------------------------------------
+
+As the name implies, the `subset()` function in base R is a really useful function for subsetting! We can open the help documentation with `?subset` to learn how to apply this function. Below are some examples of different ways we may want to subset the `storms` data to analyze for storms that occurred in August.
+
+
+```{r}
+#| eval: true
+# keeps all variables for storms in August
+aug <- subset(storms, month == "8")
+
+# keeps only the wind speed variable for August storms
+aug.wind <- subset(storms, select = wind, month == "8")
+
+# drop = T drops the column name and creates a vector instead of a data frame
+aug.wind.vec <- subset(storms, select = wind, month == "8", drop = T) 
+```
+
+```{r}
+#| eval: true
+# we can see all variables are selected
+head(aug)
+```
+
+```{r}
+#| eval: true
+# just the wind variable is selected
+head(aug.wind)
+```
+
+```{r}
+#| eval: true
+# wind speeds in august stored in a vector
+head(aug.wind.vec)
+```
+
+
+## Question 19
+
+------------------------------------------------------------------------
+
+Compute the mean and median wind speed of storms in August. Compare the values of the mean and median. What does this tell us about the shape of the data?
+
+### Solution to Question 19
+
+------------------------------------------------------------------------
+
+```{r}
+
+```
+
+\
+\
+\
+
+### The `filter()` Function in `dplyr`
+
+------------------------------------------------------------------------
+
+Using the `filter` function in `dplyr` package, we can filter out just the August observations. 
+
+- Note you need to load the `dplyr` package with a `library()` in order to use `filter()`.
+- We have already loaded `dplyr` since that is where the `storms` data is found.
+- The command below gives the same result as `subset(storms, month == "8")`.
+
+```{r}
+#| eval: true
+aug2 <- filter(storms, month == "8")  # filter requires dplyr package
+head(aug2)  # selects all variables
+```
+
+### Using Logical Statements
+
+------------------------------------------------------------------------
+
+When writing more complex code such as for loops, it is often useful to subset data using logical statements. For example, `storms[storms$month == "8", ]` extracts just the rows that have a `month` value equal to 8.
+
+```{r}
+#| eval: true
+# extract rows from storms with month equal to 8
+aug.logic <- storms[storms$month == "8", ]
+head(aug.logic)
+```
+
+
+## Question 20
+
+---
+
+Using one of the methods above, create a data frame name `sept` that contains all variables for only the observations that occurred in September.
+
+
+### Solution to Question 20
+
+---
+
+```{r}
+# keeps all variables for storms in September
+
+```
+
+
+## Creating Side by Side Boxplots with `boxplot`
+
+---
+
+Once we have created the data frames `aug` and `sept`, we can create side by side boxplots to compare the wind speeds for storms in these two months.
+
+```{r}
+# need to answer previous question first
+boxplot(aug$wind, sept$wind,  # enter two vectors of data
+        main = "Comparing Wind Speeds in Aug. and Sept.",   # main title
+        xlab = "Wind Speed (in knots)",  # x-axis label
+        horizontal = TRUE,  # align boxplots horizontally
+        names = c("August", "September"),  # label each boxplot
+        col = c("seagreen", "steelblue"))  # fill color for box
+```
+
+
+
+## Question 21
+
+------------------------------------------------------------------------
+
+In which month (August or September) are the wind speeds of storms more severe? What statistics did you use to draw your conclusion?
+
+### Solution to Question 21
+
+------------------------------------------------------------------------
+
+\
+\
+\
+
+
+## Question 22
+
+------------------------------------------------------------------------
+
+Create side by side boxplots to compare the distribution of wind speeds in July, August and September.
+
+### Solution to Question 22
+
+------------------------------------------------------------------------
+
+```{r}
+
+```
+
+\
+\
+
+
+
+
+# Appendix: Assignment of Objects
+
+------------------------------------------------------------------------
+
+To store a data structure in the computer's memory we must assign it a name.
+
+Data structures can be stored using the assignment operator `<-` or `=`.
+
+Some comments:
+
+-   In general, both `<-` and `=` *can* be used for assignment.
+-   `<-` and `=` can be used identically most of the time, but not always.
+-   It's safer and more conventional to use `<-` for assignment.
+-   **Pressing the "Alt" and "-" keys simultaneously on a PC** or Linux machine **(Option and - on a Mac)** will **insert `<-` into the R** console and script files.
+
+## Why Can't I See the Output?
+
+------------------------------------------------------------------------
+
+In the following code, we compute the mean of a vector. **Why can't we see the result after running it**?
+
+```{r}
+#| eval: true
+w <- storms$wind  # wind is now stored in w
+xbar.w <- mean(w)  # compute mean wind speed and assign to xbar.w
+```
+
+In the code cell above, the output has been stored in an object that we can refer to later.
+
+## Printing Output to Screen
+
+------------------------------------------------------------------------
+
+Once an object has been assigned a name, it can be printed by executing the name of the object or using the `print` function or just entering the object name.
+
+```{r}
+#| eval: true
+#| output: false
+xbar.w  # print the mean wind speed to screen
+print(xbar.w)  # print a different way
+```
+
+## Assigning and Printing An Object At Once
+
+------------------------------------------------------------------------
+
+Another nice way to both execute, store, and print the output of a command is the parentheses `( )` method.
+
+```{r}
+#| eval: true
+#| output: false
+(sd.w <- sd(w))  # using ( ) around a command will execute, store and print output
+```
+
+### Sometimes you want to see the result of a code cell, and sometimes you will not.
+
+
+
+---
+
+![Creative Commons License](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png) <nbsp>
+
+*Statistical Methods: Exploring the Uncertain* by [Adam Spiegler](https://github.com/CU-Denver-MathStats-OER/Statistical-Theory) is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/).
+
+

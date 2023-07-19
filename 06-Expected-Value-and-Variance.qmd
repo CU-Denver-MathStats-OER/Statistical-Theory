@@ -1,0 +1,644 @@
+---
+title: '2.3: Expected Value and Variance'
+#author: 'Adam Spiegler, University of Colorado Denver'
+output:
+  html_document:
+#    toc: yes
+#    toc_depth: 1
+#    theme: cerulean
+#jupyter:
+#  kernelspec:
+#    display_name: R
+#    language: R
+#    name: ir
+#output:
+#    ipynbdocument::ipynb_document
+---
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap2/06-Expected-Value-and-Variance.ipynb) <nbsp>
+
+```{r}
+#| echo: false
+# Video Idea
+
+#Introduce a raffle with 1/4 that win 10 buck and 3/4 win 0. What is expected value? What is variance?
+
+#Lets make one grand prize ticket worth 10,000. 3/4 win 0, 249/1000 win 10 and 1/1000 win 10,000
+```
+
+Additional Reference: See [Introduction to Random Variables](05-Intro-to-Random-Variables.qmd) where we discovered some important properties for a random variable $X$ that are summarized in the [Appendix: Properties of Random Variables].
+
+
+# How Much is the Raffle Ticket Worth?
+
+---
+
+:::: {.columns}
+
+::: {.column width="33%"}
+![Image credit: Randy Heinitz via [flickr](https://www.flickr.com/photos/rheinitz/)](https://live.staticflickr.com/8229/8360300072_0b811f884d_w.jpg)
+:::
+
+::: {.column width="67%"}
+A raffle sells 1,000 tickets with the following payouts:
+
+-   There is one winning randomly selected ticket that will win the grand prize of \$5,000.
+-   Two tickets will be randomly selected to win a second prize each worth \$1,000.
+-   Ten tickets will be randomly selected to win a third prize each worth \$200.
+-   The remaining tickets do not win a prize.
+:::
+
+::::
+
+
+## Question 1
+
+---
+
+Let random variable $X$ be the amount of money won by a randomly selected raffle ticket. We let $p(x)$ denote the corresponding probability mass function of $X$.
+
+
+### Question 1a
+
+---
+
+Fill in the values of $x$ and $p(x)$ in the table below.
+
+#### Solution to Question 1a
+
+---
+
+**Fill in the blanks to complete the table.**
+
+| $x$    | ??  | ??  | ??  | ??  |
+|--------|-----|-----|-----|-----|
+| $p(x)$ | ??  | ??  | ??  | ??  |
+
+
+\
+\
+
+
+### Question 1b
+
+---
+
+If somebody offered to buy a raffle ticket from you, what do you think fair value is for the ticket?
+
+
+#### Solution to Question 1b
+
+---
+
+
+\
+\
+\
+
+
+### Question 1c
+
+---
+
+Consider another ticket raffle. There 1,000 tickets with the following payouts:
+
+- 500 randomly selected tickets will win a grand prize of \$15.
+- The other 500 tickets do not win a prize.
+
+Let random variable $Y$ be the amount of money won by a randomly selected raffle ticket.
+
+Somebody offers one free ticket to either raffle $X$ or raffle $Y$ (but not both!), which would you prefer and why?
+
+
+#### Solution to Question 1c
+
+---
+
+
+\
+\
+\
+
+
+
+# The Expected Value of a Discrete Random Variable
+
+---
+
+The <span style="color:dodgerblue">**expected value**</span> for a discrete random variable $X$ is denoted $\color{dodgerblue}{E(X)}$. We compute
+
+$$\color{dodgerblue}{E(X) = \mu_{X} =  \sum_x \left( x \cdot p(x) \right)}. $$
+
+
+- $E(X)$ is the <span style="color:dodgerblue">**average** or **mean**</span> value of random variable $X$.
+- The expected value of $X$ is denoted $\color{dodgerblue}{E(X)}$ or $\color{dodgerblue}{\mu_X}$.
+- The expected value of $X$ might not be a possible value of $X$.
+
+
+# The Variance of a Discrete Random Variable
+
+---
+
+The <span style="color:dodgerblue">**variance**</span> for a discrete random variable $X$ is one common way to measure how spread out (in relation to the expected value) are the values of $X$.  We compute
+
+$$\color{dodgerblue}{\mbox{Var}(X) = \sigma_X^2 =  E\big( (x-\mu_X)^2 \big) = \sum_x \left( (x-\mu_X)^2 \cdot p(x) \right)}. $$
+
+- $\mbox{Var}(X)$ is the expected value of the squared distance from the mean.
+- The variance is denoted $\color{dodgerblue}{\mbox{Var}(X)}$ or $\color{dodgerblue}{\sigma_X^2}$.
+
+# The Standard Deviation of a Discrete Random Variable
+
+---
+
+The <span style="color:dodgerblue">**standard deviation**</span> for a discrete random variable $X$ is the square root of the variance,
+
+$$ \mbox{SD}(X) = \sigma_X  =  \sqrt{\mbox{Var}(X)}. $$
+
+
+- The standard deviation of random variable $X$ is denoted $\color{dodgerblue}{\sigma_X}$.
+- The standard deviation essentially measures the average distance of the values of $X$ from its mean $\mu_X$.
+- The units of $\sigma_X$ and $X$ are the same, and thus standard deviation is often a practical way to describe the spread of $X$.
+
+## Question 2
+
+---
+
+Using [Properties of Discrete Random Variables], show that for any discrete random variable $X$ with pmf $p(X)$ and expected value $E(X) = \mu$, we have
+
+$$\mbox{Var}(X) = E(X^2)  - \mu^2.$$
+
+### Solution to Question 2
+
+---
+
+**Finish the proof below!**
+
+Let $X$ be a discrete random variable with pmf $p(x)$ and expected value $E(X)=\mu$. Then we have
+
+$$\begin{array}{rcll}
+\mbox{Var}(X) &=&  \sum_x \left( (x-\mu)^2 \cdot p(x) \right) & \mbox{(by definition)}\\
+ &=& \sum_x \left( (x^2 -2 \mu x + \mu^2) \cdot p(x) \right) & \mbox{(distributing squared term)}\\
+ &=& \sum_x \left( x^2 \cdot p(x) -2 \mu x  \cdot p(x)  + \mu^2  \cdot p(x)  \right) & \mbox{(distributing p(x))}\\
+ &=& \sum_x \left( x^2 \cdot p(x) \right) - \sum_x \left(2 \mu x  \cdot p(x) \right)  + \sum_x \left( \mu^2  \cdot p(x)  \right) & \mbox{(properties of summation)}\\
+ &=& ?? & \mbox{(??)} \\
+ &=& ?? & \mbox{(??)} \\
+ &=& ?? & \mbox{(??)} \\
+ &=& ?? & \mbox{(??)} \\
+\end{array}$$
+
+
+\
+
+
+Therefore, we see that $\mbox{Var}(X) = E(X^2)  - \mu^2$.
+
+\
+\
+
+
+## Question 3
+
+---
+
+Let $X$ and $Y$ denote the raffle ticket random variables from [Question 1].
+
+Calculate $E(X)$ and $\mbox{Var}(X)$.
+
+### Question 3a
+
+---
+
+Calculate $E(X)$ and $\mbox{Var}(X)$.
+
+#### Solution to Question 3a
+
+---
+
+
+\
+\
+\
+
+
+### Question 3b
+
+---
+
+Calculate $E(Y)$ and $\mbox{Var}(Y)$.
+
+
+#### Solution to Question 3b
+
+---
+
+
+\
+\
+\
+
+
+# Mean, Median, and Variance of Continuous Random Variables
+
+---
+
+Let $f(x)$ and $F(x)$ denote the probability density function and cumulative distribution function for a continuous random variable $X$.
+
+-   The <span style="color:dodgerblue">**expected value**</span> or <span style="color:dodgerblue">**mean**</span> is
+
+$$E(X) = \mu_X = \int_{-\infty}^{\infty} x \cdot f(x) \, dx.$$
+
+-   The <span style="color:dodgerblue">**variance**</span> is 
+
+$$\mbox{Var}(X) = E(X-\mu_X)^2 = E(X^2) - \mu_X^2.$$
+
+-   The <span style="color:dodgerblue">**median**</span> is the value $x$ such that $P(X < x) = 0.5$. Thus, to find the median we solve the equations below for $x$,
+
+$$\int_{-\infty}^x f(t) \, dt = 0.5 \qquad \mbox{or equivalently} \qquad F(x) =0.5.$$
+
+## Question 4
+
+---
+
+Consider the random variable $X$ with pdf
+
+$$ f_X(x) = \left\{ \begin{array}{ll} 
+\frac{x}{8}, &  0 \leq x \leq 4 \\ 
+0, &  \mbox{otherwise} 
+\end{array} \right. .$$
+
+
+### Question 4a
+
+---
+
+On a separate piece of paper, sketch a graph of the pdf, $f_X$.
+
+#### Solution to Question 4a
+
+---
+
+Sketch a graph on a separate piece of paper.
+
+
+\
+\
+
+
+### Question 4b
+
+---
+
+Enter the formula for $F_X$ below. Then on a separate piece of paper sketch the graph $F_X$.
+
+
+
+#### Solution to Question 4b
+
+---
+
+$$F_X(x) = \left\{ \begin{array}{ll}
+0 & x < 0\\
+?? & 0 \leq x \leq 4 \\
+1 & x > 4 
+\end{array} \right.$$
+
+
+\
+
+
+
+Sketch a graph on a separate piece of paper.
+
+
+\
+\
+
+
+
+### Question 4c
+
+---
+
+Calculate $P(X < 1)$ and illustrate this value on each of your graphs in the solutions to [Question 1a] and [Question 1b].
+
+#### Solution to Question 4c
+
+---
+
+
+\
+\
+\
+
+
+### Question 4d
+
+---
+
+Calculate $E(X)$ and illustrate this on your graph in the solution to [Question 1a].
+
+#### Solution to Question 4d
+
+---
+
+
+\
+\
+\
+
+
+### Question 4e
+
+---
+
+Give the median value and illustrate this value on both of your graphs in the solutions to [Question 1a] and [Question 1b].
+
+#### Solution to Question 4e
+
+---
+
+
+\
+\
+\
+
+
+
+### Question 4f
+
+---
+
+Compute $\mbox{Var}(X)$.
+
+
+#### Solution to Question 4f
+
+---
+
+
+\
+\
+\
+
+
+
+## Question 5
+
+---
+
+Let $X$ and $Y$ denote the raffle ticket random variables from [Question 1].
+
+
+### Question 5a
+
+---
+
+Do you believe random variables $X$ and $Y$ are independent random variables? Explain why or why not.
+
+
+#### Solution to Question 5a
+
+---
+
+
+\
+\
+\
+
+
+### Question 5b
+
+--- 
+
+If you purchase 3 raffle tickets from raffle $X$ and 2 raffle tickets from raffle $Y$, what is the expected value of your winnings?
+
+
+#### Solution to Question 5b
+
+---
+
+
+\
+\
+\
+
+
+### Question 5c
+
+--- 
+
+If you purchase 3 raffle tickets from raffle $X$ and 2 raffle tickets from raffle $Y$, what is the variance of your winnings?
+
+
+#### Solution to Question 5c
+
+---
+
+
+
+\
+\
+\
+
+
+# Properties of Expected Value {#sec-prop-exp}
+
+--- 
+
+Let $X$ and $Y$ denote a random variables, and let $a$ and $b$ denote constants. Then we have the following properties.
+
+- $E(a) = a$
+- $E(aX + bY) = aE(X) + bE(Y)$
+
+
+# Properties of Variance {#sec-prop-var}
+
+---
+
+- For any random variable $X$, we have $\mbox{Var}(X) = E(X^2) - \mu_X^2$.
+
+-  If $X$ and $Y$ are independent random variables and $a$ and $b$ constants, then $\mbox{Var}(aX + bY) = a^2 \mbox{Var}(X) + b^2 \mbox{Var}(Y)$.
+
+## Question 6
+
+---
+
+The data set *spotify-hits.csv*^[Downloaded from [Kaggle](https://www.kaggle.com/datasets/paradisejoy/top-hits-spotify-from-20002019) May 4, 2023] is stored online and contains audio statistics of the top 2000 tracks on Spotify from 2000-2019. The data is stored in a <span style="color:dodgerblue">**comma separated file (csv)**</span>. 
+
+- We can use the function `read.csv()` to import the csv file into an R data frame we call `hits`.
+
+```{r}
+#| eval: true
+#| output: false
+hits <- read.csv("https://raw.githubusercontent.com/CU-Denver-MathStats-OER/Statistical-Theory/main/Data/spotify-hits.csv")
+```
+
+In the code cell below: 
+
+- We convert `artist`, `song`, and `genre` to categorical variables using the `factor()` function.
+- Extract the variables `artist`, `song`, `energy`, `acousticness`, and `genre` (ignoring the rest).
+- Print the first 6 rows to screen to get a glimpse of the resulting data frame.
+
+```{r}
+#| eval: true
+hits$artist <- factor(hits$artist)  # artist is categorical
+hits$song <- factor(hits$song)  # song is categorical
+hits$genre <- factor(hits$genre)  # genre is categorical
+hits <- hits[,c("artist", "song", "energy", "acousticness", "genre")] 
+head(hits)  # display first 6 rows of data frame
+```
+
+
+- **Energy**:  A measure of how energetic a song is from $0.0$ to $1.0$ (least to most energy) of. Typically, energetic songs are fast, loud, and noisy.
+- **Acousticness**: A measure from $0.0$ to $1.0$ (least to most acoustic) of depending on how significant the use of acoustic instruments are in the song.
+
+Let $X$ denote the energy of a randomly selected song, and let $Y$ denote the acousticness of a randomly selected song. We define a new song metric, $Z$, that is a weighted mean of score $X$ and $Y$:
+
+$$Z = \frac{3X + 2Y}{5}$$
+
+### Question 6a
+
+---
+
+Do you believe $X$ and $Y$ are independent random variables? Explain why or why not.
+
+#### Solution to Question 6a
+
+---
+
+
+\
+\
+\
+
+
+### Question 6b
+
+---
+
+Use R to compute $E(X)$, $E(Y)$, and $E(Z)$. Check whether or not the property $E(aX + bY) = aE(X) + bE(Y)$ holds in this context.
+
+- Hint: Recall R, the function `mean(x)` calculates the mean (expected value) of `x`.
+
+
+#### Solution to Question 6b
+
+---
+
+```{r}
+# use code cell to compare variances
+x <- hits$energy  # random variable x
+y <- hits$acousticness  # random variable y
+z <- (3*x + 2*y) / 5  # random variable z
+
+
+```
+
+
+\
+\
+\
+
+
+### Question 6c
+
+---
+
+Use R to compute $\mbox{Var}(X)$, $\mbox{Var}(Y)$, and $\mbox{Var}(Z)$. Check whether or not the property $\mbox{Var}(aX + bY) = a^2\mbox{Var}(X) + b^2\mbox{Var}(Y)$ holds in this context. 
+
+- Hint: The function `var(x)` calculates the variance of `x`.
+
+#### Solution to Question 6c
+
+---
+
+```{r}
+# use code cell to compare variances
+
+
+```
+
+
+\
+\
+\
+
+
+### Question 6d
+
+---
+
+Determine whether each of the statements below are true or false. If false, explain why.
+
+For any two random variables $X$ and $Y$ and constants $a$ and $b$:
+
+- It always follows that $E(aX + bY) = aE(X) + bE(Y)$.
+- It always follows that $\mbox{Var}(aX + bY) = a^2\mbox{Var}(X) + b^2\mbox{Var}(Y)$.
+
+
+#### Question 6d
+
+---
+
+
+
+\
+\
+\
+
+
+# Appendix: Properties of Random Variables
+
+---
+
+In [Introduction to Random Variables](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap2/05-Intro-to-Random-Variables.ipynb) we discovered the following properties for a random variable $X$.
+
+
+## Properties of Discrete Random Variables
+
+---
+
+For a **discrete** random variable $X$, let $p(x)$ and $F(x)$ denote the pmf and cdf, respectively, we have:
+
+-   $0 \leq p(x) \leq 1$ for all $x$
+
+-   $\displaystyle \sum_{\rm{all}\  x} p(x) = 1$
+
+-   $F(x) = \displaystyle P(X \leq x) = \sum_{k= x_{\rm min}}^x p(k)$
+
+-   $0 \leq F(x) \leq 1$ for all $x$
+
+-   $\displaystyle \lim_{x \to \infty} F(x) = 1$
+
+-   $F(x)$ is nondecreasing.
+
+## Properties of Continuous Random Variables
+
+---
+
+For a **continuous** random variable $X$, let $f(x)$ and $F(x)$ denote the pdf and cdf, respectively, we have:
+
+-   $f(x) \geq 0$ for all $x$
+
+-   $\displaystyle \int_{-\infty}^{\infty} f(x) = 1$
+
+-   $\displaystyle P(a < x < b) = \int_a^b f(x) \, dx$
+
+-   $\displaystyle F(x) = \int_{-\infty}^x f(t) \, dt$
+
+-   The $F(x)$ is an antiderivative of $f$.
+
+-   The $f(x)$ is the derivative of $F(x)$.
+
+-   $0 \leq F(x) \leq 1$ for all $x$.
+
+-   $\displaystyle \lim_{x \to \infty} F(x) = 1$.
+
+-   $F(x)$ is nondecreasing.
+
+
+---
+
+![Creative Commons License](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png) <nbsp>
+
+*Statistical Methods: Exploring the Uncertain* by [Adam Spiegler](https://github.com/CU-Denver-MathStats-OER/Statistical-Theory) is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/).

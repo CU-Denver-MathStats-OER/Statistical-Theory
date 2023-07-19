@@ -1,0 +1,861 @@
+---
+title: '4.2: Method of Moments Estimates'
+#author: 'Adam Spiegler, University of Colorado Denver'
+#execute:
+#  eval: false
+output:
+  html_document:
+#    toc: yes
+#    toc_depth: 1
+#    theme: cerulean
+#jupyter:
+#  kernelspec:
+#    display_name: R
+#    language: R
+#    name: ir
+#output:
+#    ipynbdocument::ipynb_document
+---
+
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap4/14-Estimation-MOM.ipynb) <nbsp>
+
+Estimation is generally the process of predicting the value(s) of unknown population parameters using data collected from a sample. There are different statistical methods that can be applied to a data set to reach the same ultimate goal, such as finding an accurate estimate for a parameter. We explored the method of [maximum likelihood estimation (MLE)](13-Estimation-MLE.qmd). With MLE estimation, we find the most likely value of a parameter, $\theta$, by identifying the value for $\theta$ that gives the maximimum value of the likelihood function.
+
+We now explore another estimation method called the <span style="color:dodgerblue">**method of moments**</span> (commonly abbreviated as <span style="color:dodgerblue">**MoM**</span>). Both MLE and MoM estimates are used to answer the same question, what is the value of an unknown population parameter, $\theta$? MoM estimates approach the question following a different objective then MLE. We find the values for the population parameters such that certain properties of the population (for example $\mu_X=E(X)$ and $\sigma^2_X = \mbox{Var}(X)$) are equal to the corresponding statistics (such as the sample mean, $\bar{x}$, and sample variance, $s^2$) that we calculate from a randomly selected sample.
+
+
+# Building a Model for Bear Cub Weight
+
+--- 
+
+![Credit: [Black Grizzly Bear Cub On Top of Tree](https://www.pickpik.com/bear-cub-black-wildlife-animal-nature-112893)](https://i2.pickpik.com/photos/601/295/670/bear-cub-black-wildlife-preview.jpg){fig-align="left" width=40% fig-alt="Black Grizzly"} <nbsp>
+
+
+A biologist is studying black bears. In particular, what distribution best fits the weight (in ounces) of newborn black bear cubs? Their sample data contains 10 observations, $x_1, x_2, \ldots , x_{10}$, corresponding the birth weight of 10 randomly selected black bear cubs.
+
+- Run the code cell below to "secretly" generate values for parameters that we store in `mu.cub` and `sigma.cub`. 
+- A data frame called `cub` is created that has one variable, `wt` that has the sample birth weight data.
+- The command `set.seed(113)` will seed the randomization so we have the same parameter values and sample every time we run it.
+- Do not view the values of `mu.cub` or `sigma.cub` for now. Keep them secret for now!
+
+```{r}
+#| eval: true
+set.seed(113)  # fix randomization
+
+mu.cub <- sample(seq(8.6, 9.8, 0.1), size=1)  # set value of mu
+sigma.cub <- sample(seq(0.9, 1.3, 0.05), size=1)  # set value of sigma
+
+picked <- rnorm(10, mu.cub, sigma.cub)  # pick a random sample n=10
+cub <- data.frame(wt = picked)  # save sample to the cub data frame
+round(cub$wt, 2)  # print sample to screen
+```
+
+
+## What is the Best Fitting Model?
+
+---
+
+From the code cell above, we have generated the following sample of cub birth weights (in ounces) that are stored in `cub$wt`,
+
+$$x = (9.71, 7.77, 8.47, 7.35, 7.83, 9.06, 8.66, 8.74, 10.82, 8.27 ).$$
+
+Our goal is to find the "best" description of the distribution ofOur goal is to find the “best” description of the distribution of all black bear cub birth weights. The interpretation of "best" depends on the context of the question and can mean different things to different statisticians. 
+
+
+## Question 1
+
+---
+
+The figure below shows a dot plot of the selected sample (size $n=10$) of cub birth weights along with the plots of 4 different models we could choose for our data. Answer the questions based on plot figure below.
+
+
+```{r}
+#| eval: true
+#| echo: false
+#| output: false
+library(ggplot2)
+```
+
+```{r}
+#| label: fig-models
+#| fig-cap: "Comparing Models for Bear Cub Weights"
+#| layout-ncol: 1
+#| eval: true
+#| echo: false
+ggplot(cub, aes(x = wt)) + 
+# dot plot
+  geom_dotplot(fill = NA, stackdir = "centerwhole", 
+               stackratio = 0.4, 
+               stroke = 2, 
+               binwidth = 0.15) + 
+# blue curve
+    stat_function(fun = dunif,  # plot unif
+                args = c(min = 7, max = 11),  
+                col = "dodgerblue",
+                linetype="F1",
+                linewidth=1) +
+# red curve
+    stat_function(fun = dnorm,  # plot gaussian
+                args = c(mean = 9, sd = 0.5),  
+                col = "firebrick2",
+                linetype="dotdash",
+                linewidth=1) +  
+# green curve
+    stat_function(fun = dnorm,  # plot gaussian
+                args = c(mean = 9, sd = 1.1),  
+                col = "mediumseagreen",
+                linetype="longdash",
+                linewidth=1) +   
+# yellow curve
+    stat_function(fun = dnorm,  # plot gaussian
+                args = c(mean = 7.8, sd = 1.1),  
+                col = "darkgoldenrod1",
+                linetype="solid",
+                linewidth=1) +      
+# add labels to plot  
+  labs(title = "Modeling the Distribution of Bear Cub Weights",
+       x = "Weight, oz",
+       y = "Density") + 
+  theme_minimal() +
+  xlim(6, 12) +  # x axis limits
+  ylim(0, 0.9) +  # y axis limits
+# font size for labels and axes
+  theme(axis.title.x = element_text(size=14),
+        title = element_text(size=14),
+        axis.text.x  = element_text(size=12),
+        axis.text.y  = element_text(size=12),
+        panel.grid.minor = element_blank()) +
+# add text annotations  
+  annotate("text", x=11, y=0.3, 
+           size=5, col="dodgerblue", hjust = 0, 
+           label= "Model 1") + 
+  annotate("text", x=9, y=0.85,
+           size=5, col="firebrick2", hjust = 0, 
+           label= "Model 2") +  
+  annotate("text", x=8.6, y=0.4,
+           size=5, col="mediumseagreen", hjust = 0, 
+           label= "Model 3") +  
+  annotate("text", x=6.5, y=0.35, 
+           size=5, col="darkgoldenrod1", hjust = 0, 
+           label= "Model 4")   
+```
+
+
+
+### Question 1a
+
+--- 
+
+Which of the models labeled 1-4 in the plot above do you believe best fits the sample data cub birth weights?
+
+
+#### Solution to Question 1a
+
+--- 
+
+<br>  
+<br>  
+<br>  
+
+
+### Question 1b
+
+---
+
+What type of continuous distribution best matches the graph you selected? Explain why in terms of birth weights of black bear cubs this distribution is reasonable and makes practical sense.
+
+
+- *Hint: See the [appendix of common continuous random variables section](08-Common-Continuous-Distributions.qmd#sec-append) for some options.*
+
+
+#### Solution to Question 1b
+
+--- 
+
+<br>  
+<br>  
+<br> 
+
+
+### Question 1c
+
+Using the sample of birth weights `cub$wt`, give estimates for each of the parameter(s) in the  distribution you identified in [Question 1b].
+
+
+
+#### Solution to Question 1c
+
+--- 
+
+
+```{r}
+# be sure you have already run the first code cell and 
+# stored sample weights to variable `wt` in data frame `cub`
+
+
+```
+
+
+Based on your code above, what are the values of the parameters of the distribution in [Question 1b]?
+
+
+
+<br>  
+<br>  
+<br>  
+
+
+## Identifying Key Properties for Our Model
+
+---
+
+Let $X$ be a random variable with pdf $f(x; \theta_1, \theta_2, \ \ldots \theta_k)$ that depends on parameters $\theta_1, \theta_2, \ldots , \theta_k$.  If we independently pick a random variables $X_1, X_2, \ldots X_n$ from population $X$, we can determine the values of $\theta_1, \theta_2, \ldots , \theta_k$ that best fit the data in the following sense:
+
+- The mean $\mu_X = E(X)$ of the population $X$ equals the sample mean, $\bar{x}$.
+- The variance $\sigma^2_X = \mbox{Var}(X)$ of the population equals the variance of the sample, $s^2$.
+- The skewness of the population equals the skewness of the sample.
+- The "peakiness" (kurtosis) of the population equals the "peakiness" of the sample.
+- $\ldots$ and so on.
+
+For example, in the birth weight of black bear cubs example, we assumed the population of birth weights $X$ is normally distributed.  Normal distributions are determined by two parameters, $\mu$ and $\sigma$.
+
+- The random sample has $\bar{x} = 8.668$. We estimate $E(X) = \mu=\bar{x} = 8.668$.
+- The random sample has $s^2 = 1.032$. We estimate $\mbox{Var(X)} = \sigma^2=s^2=1.032$.
+
+
+> <span style="color:dodgerblue">We find values of the parameters so the properties of random variable $X$ are equal to corresponding statistics from our sample.</span>
+
+
+# Theoretical Moments
+
+---
+
+Let $X$ be a random variable with pdf $f(x)$. For a positive integer $k$, the <span style="color:dodgerblue">**k^th^ theoretical moment of $X$**</span> is $\color{dodgerblue}{\mu_k = E \left( X^k \right) }$.
+
+$$\color{dodgerblue}{\boxed{\mu_k = E \left( X^k \right) = \int_{-\infty}^{\infty} x^kf(x) \, dx \ \ \ \mbox{(for continuous)} \qquad \mbox{or} \qquad  \mu_k = E \left( X^k \right) = \sum_X x^kp(x) \ \ \ \mbox{(for discrete)}}},$$
+
+## Interpretation of Theoretical Moments
+
+---
+
+- The  <span style="color:dodgerblue">**first moment**</span> is $\color{dodgerblue}{\mu_1 = E \left( X \right) }$.
+    - $\mu_1$ is the <span style="color:dodgerblue">**mean**</span>. 
+
+- The  <span style="color:tomato">**second moment**</span> is $\color{tomato}{\mu_2 = E \left( X^2 \right) }$.
+    - $\mu_2$ is related *(but not equal)* to the <span style="color:tomato">**variance**</span>. 
+    - If we can find $\mbox{Var}(X)$ and have computed the first theoretical moment, $\mu_1$, we have:
+
+$${\color{tomato}{\mu_{2}}} = \mbox{Var}(X) + \mu_1^2 \qquad \mbox{since} \qquad \mbox{Var}(X) = E \big( (X-\mu_1)^2 \big) = {\color{tomato}{E(X^2)}} - \mu_1^2 = {\color{tomato}{\mu_{2}}} - \mu_1^2.$$
+
+- The  <span style="color:mediumseagreen">**third moment**</span> is $\color{mediumseagreen}{\mu_3 = E \left( X^3 \right) }$.
+  - $\mu_3$ is related  to the <span style="color:mediumseagreen">**skewness**</span> of $X$ which is defined as $E \big( (X-\mu_1)^3 \big)$
+
+
+![Credit: Diva Jain, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0), via [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Relationship_between_mean_and_median_under_different_skewness.png)](https://upload.wikimedia.org/wikipedia/commons/c/cc/Relationship_between_mean_and_median_under_different_skewness.png){fig-align="center" width=80% fig-alt="Comparing Plots of Skewness"}
+
+
+- The  <span style="color:mediumpurple">**fourth moment**</span> is $\color{mediumpurple}{\mu_4 = E \left( X^4 \right) }$.
+  - $\mu_4$ is related to the <span style="color:mediumpurple">**kurtosis**</span> of $X$ which is defined as $E \big( (X-\mu_1)^4 \big)$.
+    - Informally, the kurtosis measures how "peaky" or flat the distribution is.
+
+
+```{r}
+#| eval: true
+#| echo: false
+#| output: false
+#library(ggplot2)
+library(VGAM)
+```
+
+
+```{r}
+#| label: fig-kurtosis
+#| fig-cap: "A Graphical Overview of Kurtosis"
+#| layout-ncol: 1
+#| eval: true
+#| echo: false
+x.in <- seq(0,10,0.1)
+df <- data.frame(x.in = x.in)
+
+ggplot(df, aes(x = x.in)) + 
+# blue curve
+    stat_function(fun = dunif,  # plot uniform
+                args = c(min = 7, max = 11),  
+                col = "dodgerblue",
+                linewidth=1) +
+# red curve
+    stat_function(fun = dlaplace,  # plot laplace
+                args = c(location = 9, scale = 1),  
+                col = "firebrick2",
+                linewidth=1) +  
+# green curve
+    stat_function(fun = dnorm,  # plot normal
+                args = c(mean = 9, sd = 1.1),  
+                col = "mediumseagreen",
+                linewidth=1) +   
+# add labels to plot  
+  labs(title = "A Graphical Overview of Kurtosis",
+       x = "X",
+       y = "Density") + 
+  theme_minimal() +
+  xlim(6, 12) +  # x axis limits
+  ylim(0, 0.55) +  # y axis limits
+# add text annotations  
+  annotate("text", x=9, y=0.55,
+           size=5, col="firebrick2", hjust = 0, 
+           label= "Kurtosis > 3, leptokurtic") +  
+  annotate("text", x=9.5, y=0.35,
+           size=5, col="mediumseagreen", hjust = 0, 
+           label= "Kurtosis = 3, mesokurtic") +  
+  annotate("text", x=10, y=0.27, 
+           size=5, col="dodgerblue", hjust = 0, 
+           label= "Kurtosis < 3, platykurtic") +  
+# font size for labels and axes
+  theme(axis.title.x = element_text(size=14),
+        title = element_text(size=14),
+        axis.text.x  = element_text(size=12),
+        axis.text.y  = element_text(size=12),
+        panel.grid.minor = element_blank()) #+
+```
+
+
+
+## Sample Moments
+
+--- 
+
+For a sample $X_1=x_1, X_2=x_2, \ldots , X_n=x_n$, we can calculate the corresponding <span style="color:dodgerblue">**sample moments**</span>.
+
+- The first sample moment is   $\displaystyle M_1 = \frac{1}{n} \sum_{i=1}^n x_i$.
+
+- The second sample moment is   $\displaystyle M_2 = \frac{1}{n} \sum_{i=1}^n x_i^2 $.
+
+- The <span style="color:dodgerblue">**k^th^ sample  moment**</span> is   $\color{dodgerblue}{\displaystyle M_k = \frac{1}{n} \sum_{i=1}^n x_i^k }$.
+
+
+:::{.callout-note}
+We use Latin letters $\color{dodgerblue}{M_k}$ to denote <span style="color:dodgerblue">sample moments</span> and Greek letters $\color{tomato}{\mu_k}$ to denote <span style="color:tomato">theoretical moments</span> for the population.
+:::
+
+## Question 2
+
+---
+
+Let $X$ be a random variable with pdf 
+
+$$f(x; \lambda, \delta)=\lambda e^{-\lambda(x-\delta)}$$
+
+for $x > \delta$ with parameters $\lambda, \delta >0$.
+
+
+### Question 2a
+
+---
+
+Write out (but do not evaluate) integrals that represent the first and second theoretical moments.
+
+
+#### Solution to Question 2a
+
+---
+
+
+$$\mu_1 = E(X) = \int_{\delta}^{\infty} \left(   ?? \right)  \, dx$$
+$$\mu_2 = E(X^2) = \int_{\delta}^{\infty} \left(   ?? \right)  \, dx$$
+
+<br>  
+<br>  
+
+
+### Question 2b
+
+---
+
+Applying integration methods, we can evaluate the integrals in [Question 2a] to get the following expressions for the first and second theoretical moments.
+
+$$\mu_1 = E(X) = \delta + \frac{1}{\lambda}.$$
+
+$$\mu_2 = E(X^2) = \left( \delta + \frac{1}{\lambda} \right)^2 + \frac{1}{\lambda^2}.$$
+
+What integration methods do you believe will be useful to integrate the formulas in [Question 2a]? Explain in words how you could evaluate each of the integrals.
+
+
+- *Time permitting: Refresh your integration skills by verifying the formulas for $\mu_1$ and $\mu_2$.*
+
+
+#### Solution to Question 2b
+
+---
+
+
+<br>  
+<br>  
+<br>  
+
+
+### Question 2c
+
+---
+
+Let $X_1=3$, $X_2=4$, $X_3 = 5$, and $X_4 = 8$ be a random sample from the random variable $X$ from [Question 2]. Find the first and second sample moments. 
+
+
+
+#### Solution to Question 2c
+
+---
+
+
+<br>  
+<br>  
+<br>  
+
+
+
+# Defining the Method of Moments Estimate
+
+--- 
+
+Let $X$ be a random variable with pdf $f(x; \theta_1, \theta_2, \ldots, \theta_k)$ and let $X_1$, $X_2$, $\ldots$, $X_n$ be a random sample.
+
+1. Compute sample moments $M_1, M_2, \ldots , M_k$ based on the sample data.
+2. Find formulas for the the theoretical moments $\mu_1, \mu_2, \ldots , \mu_k$. 
+   - The formulas for the theoretical moments will depend on the parameters $\theta_1, \theta_2, \ldots, \theta_k$.
+3. The <span style="color:dodgerblue">**method of moments (MOM) estimate**</span> is obtained by solving the system:
+   - *Note: If $X$ is a discrete random variable, change the integrals to summations.*
+
+
+$$\begin{aligned}
+\mu_1 = \int_{-\infty}^{\infty} xf(x) \, dx &= \frac{1}{n} \sum_{i=1}^n X_i = M_1\\
+\mu_2 = \int_{-\infty}^{\infty} x^2f(x) \, dx &= \frac{1}{n} \sum_{i=1}^n X_i^2 = M_2\\
+& \vdots \\
+\mu_k = \int_{-\infty}^{\infty} x^kf(x) \, dx &= \frac{1}{n} \sum_{i=1}^n X_i^k = M_k
+\end{aligned}$$
+
+:::{.callout-note}
+We need to set up as many equations as the number of parameters in the pdf for random variable $X$.
+
+- If the distribution has one parameter, we will only need to solve one equation $\mu_1 = M_1$.
+- If the distribution has two parameters, we will need to solve a system fo two equations involving the first and second moments.
+- We will not encounter any distribution with more than two parameters this semester, though this method can be extended to distributions with more 3 or more parameters.
+:::
+
+
+# Practice
+
+---
+  
+
+
+## Question 3
+
+---
+
+Let $X$ be a random variable from [Question 2] with pdf $\displaystyle f(x; \lambda, \delta)=\lambda e^{-\lambda(x-\delta)}$ for $x > \delta$ with parameters $\lambda, \delta >0$. The first and second theoretical moments (see [Question 2a] and [Question 2b]) are
+
+$$\mu_1 = E(X) = \delta + \frac{1}{\lambda} \qquad \mbox{and} \qquad
+\mu_2 = E(X^2) = \left( \delta + \frac{1}{\lambda} \right)^2 + \frac{1}{\lambda^2}.$$
+
+
+Let $X_1=3$, $X_2=4$, $X_3 = 5$, and $X_4 = 8$ be a random sample from $X$. Find $\hat{\lambda}_{\rm{MoM}}$ and $\hat{\delta}_{\rm{MoM}}$, the MoM estimates for parameters $\lambda$ and $\delta$. *Hint: Use the sample moments from [Question 2c].*
+
+### Solution to Question 3
+
+---
+
+<br>  
+<br>  
+<br>  
+
+
+
+
+## Question 4
+
+---
+
+
+
+Let $X_1=1, X_2=3, X_3=7, X_4=10$ be four numbers picked at random from a continuous uniform distribution on $\lbrack \alpha , \beta \rbrack$. Find the MoM estimates of $\alpha$ and $\beta$. 
+
+
+:::{.callout-tip}
+You do not need to evaluate any integrals to find expressions for $\mu_1$ and $\mu_2$. Recall if $X$ is a continuous uniform distribtion, we have
+
+$$E(X) = \frac{\alpha + \beta}{2}  \qquad \mbox{and} \qquad \mbox{Var}(X) = \frac{\beta- \alpha}{12}.$$
+:::
+
+
+:::{.callout-warning}
+$\mu_2 \ne \mbox{Var}(X)$. However, you can derive a formula for $\mu_2 = E(X^2)$ from formulas for both $\mbox{Var}(X)$ and $E(X)$.
+:::
+
+### Solution to Question 4
+
+---
+
+<br>  
+<br>  
+<br>  
+
+
+## Question 5
+
+---
+
+Let $X_1=1, X_2=3, X_3=3, X_4=2$ be four values picked at random from a binomial distribution $X \sim \mbox{Binom}(n,p)$. Find the MoM estimates of $n$ and $p$. 
+
+
+### Solution to Question 5
+
+---
+
+<br>
+<br>
+<br>
+
+## Question 6
+
+---
+
+Let $X_1=x_1, X_2=x_2, \ldots X_n=x_n$ denote a random sample size $n$ from the continuous uniform distribution on $\lbrack \alpha , \beta \rbrack$. 
+
+
+### Question 6a
+
+---
+
+Derive the following general formulas for the MoM estimates of $\alpha$ and $\beta$:
+
+$$\hat{\alpha}_{\rm{MoM}} = M_1 - \sqrt{3} \left( \sqrt{ M_2 - M_1^2} \right)$$
+$$\hat{\beta}_{\rm{MoM}} = M_1 + \sqrt{3} \left( \sqrt{ M_2 - M_1^2} \right)$$
+
+where $M_1=\bar{x} = \frac{1}{n}\sum_{i=1}^n x_i$ and $M_2= \frac{1}{n} \sum_{i=1}^n x_i^2$ denote the first and second sample moments, respectively. Find the MoM estimates of $\alpha$ and $\beta$. 
+
+
+#### Solution to Question 6a
+
+---
+
+<br>  
+<br>  
+<br>  
+
+
+### Question 6b
+
+---
+
+Verify your solution to [Question 4] using the formulas for the MoM estimates for $\alpha$ and $\beta$ in [Question 6a].
+
+-   Complete and run the partially completed R code cell below.
+
+
+#### Solution to Question 6b
+
+---
+
+Replace each of the two `??` in the code cell below with appropriate code. Then run the completed code to check the MoM estimates for $\hat{\alpha}_{\rm{MoM}}$ and $\hat{\beta}_{\rm{MoM}}$ obtained [Question 4].
+
+
+```{r}
+x.unif <- c(1, 3, 7, 10)  # sample from question 4
+n <- length(x.unif)  # length of sample
+
+m1 <- sum(x.unif)/n  # first sample moment
+m2 <- sum(x.unif^2)/n  # second sample moment
+
+alpha.hat <- ??  # enter formula for MoM estimate for alpha
+beta.hat <- ??   # enter formula for MoM estimate for beta
+
+# print results to screen
+alpha.hat
+beta.hat
+```
+
+
+## Question 7
+
+---
+
+The code below generates sampling distributions for MoM estimates for the parameters $\alpha$ and $\beta$ for random variable $X \sim \mbox{Unif}(\alpha, \beta)$ using sample size $n=4$.
+
+- A total of 1,000 random samples each of size $n$ are generated in the for loop.
+- The distribution of $\hat{\alpha}_{\rm{MoM}}$ values are stored in the vector `mom.alpha`.
+- The distribution of $\hat{\beta}_{\rm{MoM}}$ values are stored in the vector `mom.beta`.
+
+
+```{r}
+#| eval: true
+#############################
+# do not edit
+# run the code cell as is
+#############################
+n <- 4  # sample size
+
+mom.alpha <- numeric(1000)
+mom.beta <- numeric(1000)
+
+for (i in 1:1000)
+{
+  x.temp <- runif(n, 0, 11)  # generate random sample
+  m1 <- sum(x.temp)/n  # first sample moment
+  m2 <- sum(x.temp^2)/n  # second sample moment
+  k <- sqrt(3) * sqrt(m2 - m1^2)  # compute sqrt(3)*(m2 - m1^2)
+  mom.alpha[i] <- m1 - k  # enter formula for MoM estimate for alpha
+  mom.beta[i] <- m1 + k  # enter formula for MoM estimate for beta
+}
+```
+
+The distribution of $\hat{\alpha}_{\rm{MoM}}$ values generated by the code above is plotted in the histogram below.
+
+- A <span style="color:dodgerblue">blue vertical line</span> is drawn at the actual value of $\color{dodgerblue}{\alpha=0}$.
+- A <span style="color:tomato">red vertical line</span> is drawn at the value of
+$\color{tomato}{\hat{\alpha}_{\rm{MoM}}=-0.797}$ we found for the sample in [Question 4].
+
+
+```{r}
+#| eval: true
+#############################
+# do not edit
+# run the code cell as is
+#############################
+hist(mom.alpha, 
+     breaks = 20,
+     xlab = "MoM for alpha",
+     main = "Dist. of MoM's for alpha")
+abline(v = 0, col = "dodgerblue", lwd = 2)  # plot at actual value of alpha
+abline(v = -0.797, col = "tomato", lwd = 2)  # plot at estimated value of alpha
+```
+
+The distribution of $\hat{\beta}_{\rm{MoM}}$ values generated by the code above is plotted in the histogram below.
+
+- A <span style="color:dodgerblue">blue vertical line</span> is drawn at the actual value of $\color{dodgerblue}{\beta=11}$.
+- A <span style="color:tomato">red vertical line</span> is drawn at the value of
+$\color{tomato}{\hat{\beta}_{\rm{MoM}}=11.297}$ we found for the sample in [Question 4].
+
+
+```{r}
+#| eval: true
+#############################
+# do not edit
+# run the code cell as is
+#############################
+hist(mom.beta, 
+     breaks = 20,
+     xlab = "MoM for beta",
+     main = "Dist. of MoM's for beta")
+abline(v = 11, col = "dodgerblue", lwd = 2)  # plot at actual value of beta
+abline(v = 11.297, col = "tomato", lwd = 2)  # plot at estimated value of alpha
+```
+
+
+### Question 7a
+
+---
+
+Based on inspecting the the sampling distributions plotted for $\hat{\alpha}_{\rm{MoM}}$ and $\hat{\beta}_{\rm{MoM}}$ in [Question 7]:
+
+
+- Do you believe the MoM estimator for $\alpha$ is biased? Explain why or why not.
+- Do you believe the MoM estimator for $\beta$ is biased? Explain why or why not.
+- Base your answers on the distribution of all estimates, not just the red vertical lines corresponding to the sample from [Question 4].
+
+
+#### Solution to Question 7a
+
+---
+
+
+<br>  
+<br>  
+<br>  
+
+
+### Question 7b
+
+---
+
+Check your answers in [Question 7a] more carefully using the MoM estimates stored in `mom.alpha` and `mom.beta`.
+
+- Hint: Recall an estimator $\hat{\theta}$ is unbiased if $E(\hat{\theta}) = \theta$.
+
+
+#### Solution to Question 7b
+
+---
+
+
+```{r}
+# check whether or not each estimator is biased
+
+
+```
+
+
+<br>  
+<br>  
+
+
+### Question 7c
+
+---
+
+
+Which estimator, $\hat{\alpha}_{\rm{MoM}}$ or $\hat{\beta}_{\rm{MoM}}$, is more precise?
+
+
+- Hint: Recall the precision of an estimator $\hat{\theta}$ is often measured by $\mbox{Var}(\hat{\theta}) = \theta$.
+- Hint: Use R code and the MoM estimates stored in `mom.alpha` and `mom.beta`.
+
+
+#### Solution to Question 7c
+
+---
+
+
+```{r}
+# check which estimator is more precise
+
+
+```
+
+<br>  
+<br>  
+
+
+### Question 7d
+
+---
+
+Adjust the sample size in the first line in the first code cell below to investigate what happens to the distributions of estimators $\hat{\alpha}_{\rm{MoM}}$ and $\hat{\beta}_{\rm{MoM}}$. In particular, as $n$ gets larger and larger:
+
+- Does each estimator seem to get more, less, or no change in bias?
+- Does each estimator get more, less, or no change in variability?
+- Does the shape of each distribution change?
+
+
+#### Solution to Question 7d
+
+---
+
+
+#### Experiment with different sample sizes, $n$.
+
+---
+
+
+```{r}
+#######################
+# adjust sample size
+#######################
+n <- 4  # sample size
+
+#####################################
+# do not edit the rest of the code
+#####################################
+
+mom.alpha <- numeric(1000)
+mom.beta <- numeric(1000)
+
+for (i in 1:1000)
+{
+  x.temp <- runif(n, 0, 11)  # generate random sample
+  m1 <- sum(x.temp)/n  # first sample moment
+  m2 <- sum(x.temp^2)/n  # second sample moment
+  k <- sqrt(3) * sqrt(m2 - m1^2)  # compute sqrt(3)*(m2 - m1^2)
+  mom.alpha[i] <- m1 - k  # enter formula for MoM estimate for alpha
+  mom.beta[i] <- m1 + k  # enter formula for MoM estimate for beta
+}
+```
+
+
+```{r}
+##########################################
+# sampling distribution for MoM of alpha
+# do not edit cell, just run
+##########################################
+hist(mom.alpha, 
+     breaks = 20,
+     xlab = "MoM for alpha",
+     main = "Dist. of MoM's for alpha")
+abline(v = 0, col = "dodgerblue", lwd = 2)  # plot at actual value of alpha
+```
+
+```{r}
+##########################################
+# sampling distribution for MoM of beta
+# do not edit cell, just run
+##########################################
+hist(mom.beta, 
+     breaks = 20,
+     xlab = "MoM for beta",
+     main = "Dist. of MoM's for beta")
+abline(v = 11, col = "dodgerblue", lwd = 2)  # plot at actual value of beta
+```
+
+<br>  
+<br>  
+
+
+##### Exploring Bias of Each Estimator
+
+---
+
+- As $n$ gets larger, does each estimator seem to get more, less, or no change in bias?
+
+```{r}
+# check for change to bias
+
+
+```
+
+
+<br>  
+<br>  
+
+
+##### Exploring Variability of Estimators
+
+---
+
+- As $n$ gets larger, does each estimator get more, less, or no change in variability?
+
+
+```{r}
+# check for change in variability
+
+
+```
+
+<br>  
+<br>  
+
+
+#####  Exploring the Shape of Sampling Distributions
+
+---
+
+- Does the shape of each distribution change as $n$ gets larger?
+
+
+```{r}
+# check for change in shape
+
+
+```
+
+<br>  
+<br>  
+<br>  
+
+
+
+---
+
+![Creative Commons License](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png) <nbsp>
+
+*Statistical Methods: Exploring the Uncertain* by [Adam Spiegler](https://github.com/CU-Denver-MathStats-OER/Statistical-Theory) is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/).
+
+

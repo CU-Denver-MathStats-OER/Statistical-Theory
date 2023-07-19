@@ -1,0 +1,927 @@
+---
+#title: '6.3: Parametric Hypothesis Tests'
+#author: 'Adam Spiegler, University of Colorado Denver'
+execute:
+  eval: false
+output:
+  html_document:
+#    toc: yes
+#    toc_depth: 1
+#    theme: cerulean
+#jupyter:
+#  kernelspec:
+#    display_name: R
+#    language: R
+#    name: ir
+#output:
+#    ipynbdocument::ipynb_document
+---
+
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap6/23-Hypothesis-Single-Population.ipynb) <nbsp> 
+
+
+# 6.3: Parametric Hypothesis Tests
+
+---
+
+Hypothesis tests and confidence intervals are two examples of statistical inference. There is an unknown population parameter, and we would like estimate or assess claims about the parameter. We collect sample data, and:
+
+- With **confidence intervals (CI)**, we **estimate** the value of a population parameter building in a **margin of error** that is derived from a sampling distribution.
+- With **hypothesis tests**, we use a null distribution to measure whether a sample test statistic sufficiently contradicts the null claim. Then we **assess the competing claims** in $H_0$ and $H_a$.
+
+
+We can apply [Monte Carlo resampling (bootstrapping) methods](17-Bootstrap-Confidence-Int.qmd) and/or [parametric methods](19-Parametric-CI-Means.qmd) (using the Central Limit Theorem) to model a sampling distribution that is the foundation for constructing a confidence interval. Similarly, for hypothesis tests we have both resampling and parametric methods for measuring the significance of test statistics.
+
+- We explored [permutation distributions](22-Permutation-Tests.qmd) as one resampling method for calculating p-values.
+- We can use the Central Limit Theorem (CLT) to model null distributions and calculate p-values.
+
+
+# What is Significant Enough?
+
+---
+
+The general process form performing a hypothesis test is informally:
+
+1. State the null and alternative hypotheses in terms of population parameter(s).
+2. Collect data from a sample and calculate a test statistic.
+3. Calculate the p-value to measure the significance of the test statistic.
+4. Make a conclusion (if possible).
+5. Clearly summarize the results for a general audience.
+
+We have discussed [Steps 1 and 2](21-Intro-Hypothesis-Tests.qmd) and used [resampling methods](22-Permutation-Tests.qmd) as one method to calculate p-values in Step 3. Refer to [Appendix A](#sec-appenda) for a summary of the steps outlined above.  Before investigating parametric methods for computing p-values, let's discuss steps and 4 and 5:
+
+> How do we use p-values to decide whether the evidence is significant enough to reject $H_0$ and accept the claim we hoped to prove in $H_a$?
+
+- The **smaller the p-value**, the **stronger the evidence** contradicting $H_0$.
+- How small does the p-value need to be in order to claim the evidence is strong enough to reject $H_0$?
+
+## The Significance Level
+
+---
+
+The <span style="color:dodgerblue">**significance level**</span> of a test, denoted ${\color{dodgerblue}{\alpha}}$, is the value **we choose** that is used to **determine whether the p-value is small enough** to claim the result is statistically significant and reject $H_0$.
+
+- <span style="color:mediumseagreen">If p-value $\leq \alpha$, we reject $H_0$.</span>
+- <span style="color:tomato">If p-value $> \alpha$, we do not reject $H_0$.</span>
+
+Generally speaking, $H_0$ is a claim we currently accept as true. $H_a$ is some new and interesting result that if true would contradict the currently accepted belief in $H_0$. We typically require compelling evidence, beyond a "reasonable doubt", to reject the currently accepted claim in $H_0$ in favor of a new and competing claim in $H_a$. 
+
+- The default significance level is typically 5% (or $\alpha = 0.05$).
+- Some other (less) common significance levels are $\alpha = 0.1$, $0.01$ or $0.001$. 
+- The smaller we set $\alpha$, the more certainty we require to reject $H_0$.
+
+::: {.callout-note}
+The significance level is not something we compute. We choose the significance level for the test, and the significance level should be determined prior to our analysis. Do not first calculate the p-value, and then retroactively choose the significance level to ensure the result is significant.
+:::
+
+## Summarizing the Results
+
+---
+
+There are two possible results with hypothesis tests:
+
+- If <span style="color:mediumseagreen">p-value $\leq \alpha$</span>, the test is <span style="color:mediumseagreen">statistically significant</span>.
+
+  - There is strong enough evidence to reject $H_0$.
+  - And thus, we accept the competing claim  in $H_a$.
+
+- If <span style="color:tomato">p-value $> \alpha$</span>, the test is <span style="color:tomato">not statistically significant</span> and there is not sufficient evidence to reject $H_0$:
+
+  - We fail to reject $H_0$ (which is different from accepting $H_0$).
+  - The test is inconclusive regarding the claims in $H_0$ and $H_a$.
+
+In the end, we want to be sure we communicate the results **clearly**, in **proper context**, to a more **general audience** that may not have an advanced background in statistics and mathematics.
+
+## Question 1
+
+---
+
+![Credit: Kelvinsong, [CC BY 3.0](https://creativecommons.org/licenses/by/3.0), via Wikimedia Commons](https://upload.wikimedia.org/wikipedia/commons/4/4f/Hurricane-en.svg){fig-align="left" width=60% fig-alt="Tropical Cyclone Structure"}
+
+Pressure is a common measurement used to characterize the strength of a storm. The lower the storm pressure, the higher the wind speeds, and the more dangerous the storm. Let $\mu$ denote the mean pressure (in millibars) of all storms in the North Atlantic. Suppose we set up the following hypothesis to test claims about the value of $\mu$.
+
+- $H_0$: $\mu = 950$. The mean pressure of all storms in the North Atlantic is 950 millibars.
+- $H_a$: $\mu \ne 950$. The mean pressure of all storms in the North Atlantic is not 950 millibars.
+
+We collect a random sample of $n$ storm pressure observation. We find the sample mean pressure $\bar{x} = 992$ millibars has a p-value $= 0.012$.
+
+### Question 1a 
+
+---
+
+Summarize the results if we perform the hypothesis test using a 5% significance level. Be sure to explain in the context of the example using terminology a more general audience would understand.
+
+
+#### Solution to Question 1a
+
+----
+
+<br>  
+<br>
+<br>
+
+### Question 1b
+
+---
+
+Summarize the results if we perform the hypothesis test using a 10% significance level. Be sure to explain in the context of the example using terminology a more general audience would understand.
+
+
+#### Solution to Question 1b
+ 
+----
+
+<br>  
+<br>
+<br>
+
+
+### Question 1c
+
+---
+
+Summarize the results if we perform the hypothesis test using a 1% significance level. Be sure to explain in the context of the example using terminology a more general audience would understand.
+
+
+#### Solution to Question 1c
+
+----
+
+<br>  
+<br>
+<br>
+
+
+### Question 1d
+
+---
+
+Suppose we instead we want to show the mean storm pressure is greater than 950 millibars.
+
+- $H_0$: $\mu = 950$. The mean pressure of all storms in the North Atlantic is 950 millibars.
+- $H_a$: $\mu > 950$. The mean pressure of all storms in the North Atlantic is greater than 950 millibars.
+
+We still have the sample of the same size $n$ and sample mean $\bar{x} = 992$ millibars as in [Question 1](#23q1). For the two-tailed test, this sample has a p-value $= 0.012$.
+
+- What would be the p-value for this same sample be if we use this one-tailed test instead?
+- Summarize the result of the one-tailed test in practical terms if we use a significance level of 5%.
+- Summarize the result of the one-tailed test in practical terms if we use a significance level of 1%.
+
+#### Solution to Question 1d 
+
+----
+
+<br>  
+<br>
+<br>
+
+
+
+# Test For a Single Proportion
+
+---
+
+
+
+## Question 2
+
+---
+
+![Credit: Mbz1, [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/), via Wikimedia Commons](https://upload.wikimedia.org/wikipedia/commons/8/8c/Paul_the_Octopus.jpg){fig-align="left" width=40% fig-alt="Paul the Oracle Octopus"}
+
+In the 2010 World Cup in Germany, Paul the octopus (aka the Oracle Octopus) correctly predicted the correct outcome in all 8 of the matches he predicted. Paul beat out his rival Mani, Singapore's psychic parakeet, who predicted six matches in a row before missing a prediction. Below is an excerpt from a recent article^["The 'psychic' animals predicting who will win the World Cup", [ABC News](https://abcnews.go.com/International/psychic-animals-predicting-win-world-cup/story?id=93915441), accessed July 13, 2023.] about animal clairvoyance and the World Cup.
+
+
+> No FIFA World Cup would be complete without "psychic" animals predicting the winners, and Qatar 2022 has been no exception. From "clairvoyant" camels to "mystic" elephants and "cryptic" rats, a range of animals -- big and small -- have tried their paws, hooves and tentacles at predicting the score line. <br>  <br>  It all started with Paul, the "psychic" octopus. The eight-tentacled icon put TV pundits to shame with an incredible string of correct World Cup winner predictions from his glass tank at the Aquarium Sea Life Centre in Oberhausen, Germany. The tentacled tipster had an incredible success rate: he correctly predicted eight world cup matches at South Africa's tournament in 2010, including Spain beating the Netherlands in the World Cup final.
+
+In 2010, Paul the Octopus "predicted" 8 matches and made 8 correct predictions. **Is this evidence that Paul actually has psychic powers?**
+
+### Question 2a
+
+---
+
+Set up the null and alternative hypotheses in terms of the proportion of all World Cup matches ever played that Paul correctly predicts. State hypotheses both in words and using appropriate notation.
+
+#### Solution to Question 2a
+
+---
+
+<br>  
+<br>  
+<br>  
+
+
+### Question 2b
+
+---
+
+How unusual would this be if Paul was just randomly guessing? Compute the p-value corresponding to this sample of $n=8$ predictions all of which are correct.
+
+#### Solution to Question 2b
+
+---
+
+<br>  
+<br>  
+<br>  
+
+
+### Question 2c
+
+---
+
+Summarize the result of the test to a general audience if a 5% significance level is chosen.
+
+#### Solution to Question 2c
+
+---
+
+<br>  
+<br>  
+<br>  
+
+
+## p-value for a Single Proportion
+
+---
+
+Let $X$ be a binomial random variable and let <span style="color:tomato">$p_0$ denote the value of $p$ claimed in $H_0$</span>. If we observe $X=x$ successes out of a sample of $n$ independent and identical trials, then we can find the p-value using the  <span style="color:dodgerblue">**binomial null distribution**</span> ${\color{dodgerblue}{X \sim \mbox{Binom}(n, {\color{tomato}{p_0}})}}$.
+
+
+# Test for a Single Mean: Known $\sigma^2$
+
+---
+
+## Question 3
+
+---
+
+The mean height of all adult males in the United Kingdom is claimed^[["Height, Weight, and Body Mass of the British Population Since 1820"](https://www.nber.org/system/files/working_papers/h0108/h0108.pdf) by Roderick Floud, National Bureau of of Economic Research, October 1998.] to be the $68.5$ inches ($5$ foot $8.5$ inches or $173.9$ cm) with a standard deviation of $2.5$ inches (or $6.35$ cm). A physician suspects males in her town seem to be taller than average when compared to the population of all adult males in the UK. She collects data from a random sample of $n=25$ adult males from the town and calculates the mean height of the sample is $69.25$ inches.
+
+
+
+### Question 3a
+
+---
+
+Set up the null and alternative hypotheses (both in words and using appropriate notation) to test the physician's claim that adult males in the town are taller than the national average height for all adult males in the UK. 
+
+#### Solution to Question 3a
+
+---
+
+-   $H_0$: ??
+
+-   $H_a$: ??
+
+<br>  
+<br>  
+
+
+### Question 3b
+
+---
+
+Compute the test statistic.
+
+#### Solution to Question 3b
+
+---
+
+<br>  
+<br>  
+<br>  
+
+
+### Question 3c
+
+---
+
+What is a reasonable null distribution to use to perform this test? Standardize the test statistic (give the $z$-score) from [Question 3b].  Interpret the meaning of the standardized test statistic.
+
+
+#### Solution to Question 3c
+
+---
+
+<br>  
+<br>  
+<br>  
+
+
+### Question 3d
+
+---
+
+Compute the p-value and interpret the meaning in practical terms.
+
+#### Solution to Question 3d
+
+---
+
+<br>  
+<br>  
+<br>  
+
+
+### Question 3e
+
+--- 
+
+Shade area(s) under the graph of a null distribution corresponding to the p-value. Either make an informal sketch on paper or see [Appendix B](#sec-appendb-known) to plot in R.
+
+
+#### Solution to Question 3e
+
+---
+
+
+<br>  
+<br>  
+<br>  
+
+### Question 3f
+
+---
+
+- If a 5% significance level is chosen, summarize the result in practical terms. 
+- If a 10% significance level is chosen, summarize the result in practical terms.
+
+#### Solution to Question 3f
+
+---
+
+<br>  
+<br>  
+<br>  
+
+
+## p-value for a Single Mean: Known $\sigma^2$ 
+
+---
+
+Suppose a random sample size $n$ is picked from a population with known population variance $\sigma^2$ but unknown mean $\mu$. If we are doing a hypothesis test on a single mean with null claim ${\color{tomato}{H_0: \mu = \mu_0}}$, then as long as the population is symmetric or the sample size is large enough $(n \geq 30)$, we can use the Central Limit Theorem for means to:
+
+- Model the **null distribution** with the sampling distribution ${\color{dodgerblue}{\overline{X} \sim N \left( {\color{tomato}{\mu_0}}, \frac{\sigma}{\sqrt{n}} \right)}}$.
+- Calculate the **standardized test statistic** which is the $z$-score of the sample mean:
+
+$${\color{dodgerblue}{z = \frac{\mbox{sample stat}- {\color{tomato}{\mbox{null claim}}}}{\mbox{SE}(\overline{X})} = \dfrac{\bar{x} - {\color{tomato}{\mu_0}}}{\frac{\sigma}{\sqrt{n}}}}}.$$
+
+
+# Test for a Single Mean: Unknown $\sigma^2$
+
+---
+
+
+As with confidence intervals, when estimating an unknown population mean, we often do not know the population variance. Nevertheless, we can still conduct a hypothesis test on a single mean, but there will be some additional uncertainty due to our need to estimate $\sigma^2$. Below we work through an example using the `storms` data frame in the `dplyr` package to devise a method for computing p-values under these circumstances.
+
+## Picking a Random Sample of Storm Pressures
+
+--- 
+
+The `storms` data set is from the [NOAA Hurricane Best Track Data](https://www.nhc.noaa.gov/data/#hurdat). We will perform a hypothesis test to test claims about the mean storm pressure, so we will need to analyze the variable `pressure`. 
+
+- Run the code cell below to load the `dplyr` package (which should already be installed).
+
+```{r}
+#| eval: true
+#| output: false
+library(dplyr)  # load dplyr package
+```
+
+- Run the code cell below to pick a random sample of $n=32$ storm pressures from `storms`.
+
+
+```{r}
+#| eval: true
+my.sample <- sample(storms$pressure, size=32, replace=FALSE)
+```
+
+
+
+
+## Question 4
+
+---
+
+It is claimed^[[The University of Arizona Hydrology and Atmospheric Sciences](http://www.atmo.arizona.edu/students/courselinks/fall10/atmo336/lectures/sec2/hurricanes.html), accessed July 13, 2023.] that the average pressure of all North Atlantic storms is 950 millibars. You believe this claim is inaccurate and would like to show the average pressure of all storms is not 950 millibars.
+
+
+### Question 4a
+
+---
+
+Set up the null and alternative hypotheses both in words and using appropriate notation.
+
+#### Solution to Question 4a
+
+---
+
+-   $H_0$: ??
+
+-   $H_a$: ??
+
+<br>  
+<br>  
+
+
+### Question 4b
+
+---
+
+Compute the test statistic.
+
+#### Solution to Question 4b
+
+---
+
+<br>  
+<br>  
+<br>  
+
+### Question 4c
+
+---
+
+What is a reasonable standardized null distribution to use to perform this test? Standardize the test statistic from [Question 4b] and interpret its meaning.
+
+#### Solution to Question 4c
+
+---
+
+<br>  
+<br>  
+<br>  
+
+### Question 4d
+
+---
+
+Compute the p-value and interpret the meaning in practical terms.
+
+#### Solution to Question 4d
+
+---
+
+<br>  
+<br>  
+<br>  
+
+### Question 4e
+
+--- 
+
+Shade area(s) under the graph of a null distribution corresponding to the p-value in [Question 4d]. Either make an informal sketch on paper or see [Appendix B](#sec-appendb-unknown) to plot in R.
+
+
+#### Solution to Question 4e
+
+---
+
+
+<br>  
+<br>  
+<br>  
+
+### Question 4f
+
+---
+
+If a 5% significance level is chosen, summarize the result in practical terms.
+
+#### Solution to Question 4f
+
+---
+
+<br>  
+<br>  
+<br>  
+
+
+## p-value for a Single Mean: Unknown $\sigma^2$
+
+---
+
+Suppose a random sample size $n$ is picked from a population with unknown population mean and variance. If we are doing a hypothesis test on a single mean with null claim $H_0: \mu = \mu_0$, then as long as the population is symmetric or the sample size is large enough $(n \geq 30)$:
+
+- The **standardized test statistic** is called the <span style="color:dodgerblue">**t-test statistic**</span>:
+
+$${\large \boxed{{\color{dodgerblue}{{\color{tomato}{t}} = \frac{\mbox{sample stat}-\mbox{null claim}}{\mbox{SE}(\overline{X})} = \dfrac{\bar{x} - \mu_0}{\frac{{\color{tomato}{s}}}{\sqrt{n}}}}}}}.$$
+
+- The **null distribution** is the distribution of t-test statistics that we model using a <span style="color:dodgerblue">**$t$-distribution**</span> with <span style="color:dodgerblue">**$n-1$ degrees of freedom**</span>.
+
+
+In R, we can use the command `t.test(x, mu = [null], alt = [direction])`.
+  
+- Sample data is stored in the vector `x`.
+- Set the option `mu` equal to the value, $\mu_0$, claimed in $H_0$.
+- Set the option `alt` based on the inequality used in $H_a$.
+  - Use `"greater"` for right-tail test.
+  - Use `"less"` for left-tail test.
+  - Use `"two.sided"` for a two-tail test.
+  - If you do not indicate any `alt` option, the default is a two-tailed test.
+
+## Question 5
+
+---
+
+Check your results for the hypothesis test in [Question 4] using the `t.test()` function.
+
+### Solution to Question 5
+
+---
+
+
+Fill in the options for the `t.test()` function in the code cell below.
+
+
+```{r}
+t.test(??)
+```
+
+<br>  
+<br>  
+
+
+## Question 6
+
+---
+
+The output of `t.test()` gives both a p-value and a 95% confidence interval (by default).  Let's interpret the confidence interval and see if we obtain a result that is consistent with our summary in [Question 4f].
+
+
+### Question 6a
+
+---
+
+Based on the output of your code in [Question 5], what is a 95% confidence interval for the mean pressure of all North Atlantic storms? 
+
+#### Solution to Question 6a
+
+---
+
+A 95% confidence interval for the mean pressure of all storms is from ?? millibars to ?? millibars.
+
+<br>
+<br>
+
+
+### Question 6b
+
+---
+
+Based on the 95% confidence interval [Question 6a], is 950 millibars (the null claim for $\mu$ in $H_0$) a plausible estimate for $\mu$? Is this consistent with your answer in [Question 4f]? Explain why or why not.
+
+
+#### Solution to Question 6b
+
+---
+
+<br>
+<br>
+<br>  
+
+# Connection Between CI's and Two-Tailed Tests
+
+---
+
+If we are performing a two-tailed hypothesis test using a significance level $\alpha=0.05$, then we can reject the null hypothesis if either:
+
+- The $p$-value of our sample is less than or equal to $\alpha=0.05$, or
+- The value $\mu_0$ claimed in $H_0$ is NOT inside a 95% confidence interval.
+- The two statements above are equivalent to one another. We do not need to check both!
+
+We can adjust the statements above for a hypothesis test performed at other significance levels. For example, if we are conducting a two-tailed test at a 1% significance level, we can use 99% confidence interval instead of calculating a p-value.
+
+::: {.callout-caution}
+Confidence intervals include the middle 95% of samples by excluding the most extreme values in both tails, each with area $\frac{\alpha}{2}$. If we are performing a one-tailed test, then we only focus on area in one tail of the null distribution and if the area in one tail is less than or equal to $\alpha$.  Thus, <span style="color:tomato">**we cannot interpret confidence intervals in the same fashion for one-tailed tests.**</span>
+:::
+
+
+
+# Appendix A: Summary of Hypothesis Tests {#sec-appenda}
+
+---
+
+
+1. State the <span style="color:dodgerblue">**hypotheses**</span> and identify (from the alternative claim in $H_a$) if it is a one or two-tailed test.
+  
+    - $H_0$ is the "boring" claim. Express using an equal sign $=$.
+    - $H_a$ is the claim we want to show is likely true. Use inequality sign ($>$, $<$, or $\ne$).
+    - State both $H_0$ and $H_a$ in terms of population parameters such as $\mu$ and $p$.
+
+2. Compute the <span style="color:dodgerblue">**test statistic**</span>.
+
+    - If the observed sample contradicts the null claim, the result is significant.
+    - A standardized test statistic measures how many SE's the observed stat is from the null claim.
+    - A standardized test statistic with a large absolute value is supporting evidence to reject $H_0$.
+
+3. Using the null distribution, compute the <span style="color:dodgerblue">**p-value**</span>. The p-value is the probability of getting a sample with a test statistic as or more extreme than the observed sample assuming $H_0$ is true.
+
+    - The p-value is the area in one or both tails beyond the test statistic.
+    - The p-value is a probability, so we have $0 < \mbox{p-value} < 1$.
+    - The smaller the p-value, the stronger the evidence to reject $H_0$.
+
+4. Based on the <span style="color:dodgerblue">**significance level**</span>, $\alpha$, make a decision to reject or not reject the null hypothesis
+
+    - If p-value $\leq \alpha$, we reject $H_0$.
+    - If p-value $> \alpha$, we do not reject $H_0$.
+
+5.  <span style="color:dodgerblue">**Summarize the results**</span> in practical terms, **in the context of the example**.
+
+    - If we reject $H_0$, this means there is enough evidence to support the claim in $H_a$.
+    - If we do not reject $H_0$, this means there is not evidence to reject $H_0$ nor support $H_a$. The test is inconclusive.
+    
+# Appendix B: Illustrating p-values in R {#sec-appendb}
+
+---
+
+The plots below require the package `ggplot2` that is loaded in the code cell below. **Be sure to first run the code cell below to load `ggplot2` before running any of the code cells that follow.**
+
+::: {.callout-warning}
+If you receive an error running the code cells below, it is possible you have not installed the `ggplot2` package. Run the command `install.packages("ggplot2")` in the R console and try running the code cells below again.
+:::
+
+```{r}
+library(ggplot2)
+```
+
+## Illustrating p-values: Known Population Variance {#sec-appendb-known}
+
+---
+
+If we are performing a hypothesis test on a single mean for a population whose variance is known, then we can either use:
+
+- The null distribution is ${\color{dodgerblue}{\overline{X} \sim N \left( \mu_0, \frac{\sigma}{\sqrt{n}} \right)}}$ with test statistic is $\bar{x}$, or
+- The standardized normal distribution $Z \sim N(0,1)$ with standardized test statistic 
+
+$${\color{dodgerblue}{z =  \dfrac{\bar{x} - \mu_0}{\frac{\sigma}{\sqrt{n}}}}}.$$
+
+
+- In the code cell below, enter values for the mean and standard error of the null distribution as well as the test statistic.
+
+```{r}
+null.mean <- ??  # mean of the null distribution
+null.se <- ??  # standard error of the null distribution
+test.stat <- ??  # test statistic
+```
+
+### Two-Tailed Test: Known Variance
+
+---
+
+To illustrate the p-value for a two-tailed test:
+
+- Be sure you have already loaded the `ggplot2` package and defined `null.mean`, `null.se` and `test.stat`.
+- Run the code cell below. No edits are needed.
+
+```{r}
+################################################
+# for a two-tailed test run the code cell below
+################################################
+x.test <- abs(test.stat)
+xmax <- max(null.mean + 4*null.se, x.test)
+xmin <- -1*xmax
+
+
+ggplot(NULL, aes(c(-xmin, xmax))) + 
+  geom_area(stat = "function",   fun = dnorm, 
+            args = list(mean = null.mean, sd = null.se),
+            color = "black", fill = NA, 
+            xlim = c(-x.test, x.test)) +
+  geom_area(stat = "function",   fun = dnorm, 
+            args = list(mean = null.mean, sd = null.se),
+            color = "black", fill = "firebrick2", 
+            xlim = c(xmin, -x.test)) +
+  geom_area(stat = "function",   fun = dnorm, 
+            args = list(mean = null.mean, sd = null.se),
+            color = "black", fill = "firebrick2", 
+            xlim = c(x.test, xmax)) +
+  geom_vline(xintercept = c(-x.test, x.test), linetype="dashed", 
+                color = "firebrick2", linewidth = 1) + 
+  labs(x = "test statistic", y = "") +
+  scale_y_continuous(breaks = NULL) +
+  scale_x_continuous(breaks=c(-x.test,  x.test)) + 
+  geom_hline(yintercept=0) + 
+  theme_bw() + 
+  theme(axis.text.x=element_text(size=15, color = "firebrick2"))
+```
+
+### Left-Tailed Test: Known Variance
+
+---
+
+To illustrate the p-value for a left-tailed test:
+
+- Be sure you have already loaded the `ggplot2` package and defined `null.mean`, `null.se` and `test.stat`.
+- Run the code cell below. No edits are needed.
+
+
+```{r}
+################################################
+# for a left-tailed test run the code cell below
+################################################
+x.test <- abs(test.stat)
+xmax <- max(null.mean + 4*null.se, x.test)
+xmin <- -1*xmax
+
+ggplot(NULL, aes(c(-xmin, xmax))) + 
+  geom_area(stat = "function",   fun = dnorm, 
+            args = list(mean = null.mean, sd = null.se),
+            color = "black", fill = NA, 
+            xlim = c(-x.test, xmax)) +
+  geom_area(stat = "function",   fun = dnorm, 
+            args = list(mean = null.mean, sd = null.se),
+            color = "black", fill = "firebrick2", 
+            xlim = c(xmin, -x.test)) +
+  geom_vline(xintercept = -x.test, linetype="dashed", 
+                color = "firebrick2", linewidth = 1) + 
+  labs(x = "test statistic", y = "") +
+  scale_y_continuous(breaks = NULL) +
+  scale_x_continuous(breaks=-x.test) + 
+  geom_hline(yintercept=0) + 
+  theme_bw() + 
+  theme(axis.text.x=element_text(size=15, color = "firebrick2"))
+```
+
+### Right-Tailed Test: Known Variance
+
+---
+
+To illustrate the p-value for a right-tailed test:
+
+- Be sure you have already loaded the `ggplot2` package and defined `null.mean`, `null.se` and `test.stat`.
+- Run the code cell below. No edits are needed.
+
+
+```{r}
+################################################
+# for a right-tailed test run the code cell below
+################################################
+x.test <- abs(test.stat)
+xmax <- max(null.mean + 4*null.se, x.test)
+xmin <- -1*xmax
+
+ggplot(NULL, aes(c(-xmin, xmax))) + 
+  geom_area(stat = "function",   fun = dnorm, 
+            args = list(mean = null.mean, sd = null.se),
+            color = "black", fill = NA, 
+            xlim = c(xmin, x.test)) +
+  geom_area(stat = "function",   fun = dnorm, 
+            args = list(mean = null.mean, sd = null.se),
+            color = "black", fill = "firebrick2", 
+            xlim = c(x.test, xmax)) +
+  geom_vline(xintercept = x.test, linetype="dashed", 
+                color = "firebrick2", linewidth = 1) + 
+  labs(x = "test statistic", y = "") +
+  scale_y_continuous(breaks = NULL) +
+  scale_x_continuous(breaks=x.test) + 
+  geom_hline(yintercept=0) + 
+  theme_bw() + 
+  theme(axis.text.x=element_text(size=15, color = "firebrick2"))
+```
+
+## Illustrating p-values: Unknown Population Variance {#sec-appendb-unknown}
+
+---
+
+If we are performing a hypothesis test on a single mean for a population whose variance is unknown, then we use <span style="color:dodgerblue">**$\mathbf{t_{n-1}}$, a $t$-distribution with $n-1$ degrees of freedoms**</span>, for the null distribution and have <span style="color:dodgerblue">**t-test statistic**</span>
+
+$${\color{dodgerblue}{{\color{tomato}{t}} = \dfrac{\bar{x} - \mu_0}{\frac{{\color{tomato}{s}}}{\sqrt{n}}}}}.$$
+
+
+- In the code cell below, enter the value of the t-test statistic and the degrees of freedom.
+
+```{r}
+test.stat <- ??  # t-test statistic
+deg.free <- ??  # degrees of freedom  
+```
+
+### Two-Tailed Test: Unknown Variance
+
+---
+
+To illustrate the p-value for a two-tailed test:
+
+- Be sure you have already loaded the `ggplot2` package and defined `test.stat` and `deg.free`.
+- Run the code cell below. No edits are needed.
+
+```{r}
+################################################
+# for a two-tailed test run the code cell below
+################################################
+x.test <- abs(test.stat)
+xmax <- max(4, x.test)
+xmin <- -1*xmax
+v <- deg.free
+
+
+ggplot(NULL, aes(c(-xmin, xmax))) + 
+  geom_area(stat = "function",   fun = dt, 
+            args = list(df = v),
+            color = "black", fill = NA, 
+            xlim = c(-x.test, x.test)) +
+  geom_area(stat = "function",   fun = dt, 
+            args = list(df = v),
+            color = "black", fill = "firebrick2", 
+            xlim = c(xmin, -x.test)) +
+  geom_area(stat = "function",   fun = dt, 
+            args = list(df = v),
+            color = "black", fill = "firebrick2", 
+            xlim = c(x.test, xmax)) +
+  geom_vline(xintercept = c(-x.test, x.test), linetype="dashed", 
+                color = "firebrick2", linewidth = 1) + 
+  labs(x = "test statistic", y = "") +
+  scale_y_continuous(breaks = NULL) +
+  scale_x_continuous(breaks=c(-x.test,  x.test)) + 
+  geom_hline(yintercept=0) + 
+  theme_bw() + 
+  theme(axis.text.x=element_text(size=15, color = "firebrick2"))
+```
+
+### Left-Tailed Test: Unknown Variance
+
+---
+
+To illustrate the p-value for a left-tailed test:
+
+- Be sure you have already loaded the `ggplot2` package and defined `test.stat` and `deg.free`.
+- Run the code cell below. No edits are needed.
+
+
+```{r}
+################################################
+# for a left-tailed test run the code cell below
+################################################
+x.test <- abs(test.stat)
+xmax <- max(4, x.test)
+xmin <- -1*xmax
+v <- deg.free
+
+
+ggplot(NULL, aes(c(-xmin, xmax))) + 
+  geom_area(stat = "function",   fun = dt, 
+            args = list(df = v),
+            color = "black", fill = NA, 
+            xlim = c(-x.test, xmax)) +
+  geom_area(stat = "function",   fun = dt, 
+            args = list(df = v),
+            color = "black", fill = "firebrick2", 
+            xlim = c(xmin, -x.test)) +
+  geom_vline(xintercept = -x.test, linetype="dashed", 
+                color = "firebrick2", linewidth = 1) + 
+  labs(x = "test statistic", y = "") +
+  scale_y_continuous(breaks = NULL) +
+  scale_x_continuous(breaks=-x.test) + 
+  geom_hline(yintercept=0) + 
+  theme_bw() + 
+  theme(axis.text.x=element_text(size=15, color = "firebrick2"))
+```
+
+### Right-Tailed Test: Unknown Variance
+
+---
+
+To illustrate the p-value for a right-tailed test:
+
+- Be sure you have already loaded the `ggplot2` package and defined `test.stat` and `deg.free`.
+- Run the code cell below. No edits are needed.
+
+
+```{r}
+################################################
+# for a right-tailed test run the code cell below
+################################################
+x.test <- abs(test.stat)
+xmax <- max(4, x.test)
+xmin <- -1*xmax
+v <- deg.free
+
+
+ggplot(NULL, aes(c(-xmin, xmax))) + 
+  geom_area(stat = "function",   fun = dt, 
+            args = list(df = v),
+            color = "black", fill = NA, 
+            xlim = c(xmin, x.test)) +
+  geom_area(stat = "function",   fun = dt, 
+            args = list(df = v),
+            color = "black", fill = "firebrick2", 
+            xlim = c(x.test, xmax)) +
+  geom_vline(xintercept = x.test, linetype="dashed", 
+                color = "firebrick2", linewidth = 1) + 
+  labs(x = "test statistic", y = "") +
+  scale_y_continuous(breaks = NULL) +
+  scale_x_continuous(breaks=x.test) + 
+  geom_hline(yintercept=0) + 
+  theme_bw() + 
+  theme(axis.text.x=element_text(size=15, color = "firebrick2"))
+```
+
+
+---
+
+![Creative Commons License](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png) <nbsp>
+
+*Statistical Methods: Exploring the Uncertain* by [Adam Spiegler](https://github.com/CU-Denver-MathStats-OER/Statistical-Theory) is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/).
+
