@@ -14,7 +14,7 @@ book:
       right: |
         ![Creative Commons License](https://i.creativecommons.org/l/by-nc-sa/4.0/80x15.png) [CC BY-N-SA 4.0](http://creativecommons.org/licenses/by-nc-sa/4.0/)
 #        This book was built with <a href="https://quarto.org/">Quarto</a>.
-  cover-image: cover.png
+#  cover-image: cover.png
 
   chapters:
     - index.qmd
