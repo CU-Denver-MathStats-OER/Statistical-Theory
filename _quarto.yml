@@ -56,7 +56,7 @@ book:
        - 24-Hypothesis-Comparing-Two.qmd
        - 25-Error-Types-and-Power-of-Tests.qmd
   appendices:
-       - Installing-R-and-RStudio.qmd
+#       - Installing-R-and-RStudio.qmd
        - Intro-to-Vectors-Dataframes.qmd  
        - Overview-of-Plots.qmd
 #    - intro.qmd

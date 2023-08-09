@@ -1,5 +1,5 @@
 ---
-#title: "1.1: Introduction to Statistics"
+title: "1.1: Introduction to Statistics"
 #author: 'Adam Spiegler, University of Colorado Denver'
 output:
   html_document:
@@ -17,30 +17,23 @@ output:
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap1/01-Intro-to-Inference.ipynb) <nbsp>
 
-# 1.1: Introduction to Statistics
+<span style="color:dodgerblue">**Statistics**</span> is the study of collection, organization, analysis, interpretation, and presentation of data. Statistical methods are essential in exploring questions that can be analyzed using data. Sometimes insights from data arise from a nice visualization or plot. Many times, a nice visualization leads to more advanced questions that require further statistical theory, models, and analysis. We will explore both modern and classical statistical methods, and in order to do so, we need data!
 
-------------------------------------------------------------------------
-
-<span style="color:dodgerblue">**Statistics**</span> is the study of collection, organization, analysis, interpretation, and presentation of data.
-
-Statistical methods are essential in exploring questions that can be analyzed using data. Sometimes insights from data arise from a nice visualization or plot. Many times, a nice visualization leads to more advanced questions that require further statistical theory, models, and analysis. We will explore both modern and classical statistical methods, and in order to do so, we need data!
 
 # What is R?
 
-------------------------------------------------------------------------
+---
 
-[R](https://www.r-project.org/about.html) is a programming language used largely for statistical computing, data wrangling and visualization.
+[R](https://www.r-project.org/about.html) is a programming language used largely for statistical computing, data wrangling and visualization. We will be using R as a tool for exploring statistical theory.  The first stable version of R was released in 2000, and after all of this time, there is a large community of R users that have already created tons of useful packages and shared interesting data sets that are frequently updated.
 
--   The first stable version was released in 2000.
--   Open source and works cross all platforms.
--   Excellent tool for data wrangling.
--   Generates nice graphics.
--   Export to pdf, html, Word or PowerPoint.
--   Large community with tons of useful packages.
 
-# What Are Packages in R?
+::: {.callout-note}
+No prior programming experience is required to begin working in R in these materials.
+:::
 
-------------------------------------------------------------------------
+## What Are Packages in R?
+
+---
 
 R packages are a collection functions, sample data, and/or other code scripts. R installs a set of default packages during installation.
 
@@ -57,7 +50,7 @@ rownames(allpack)
 
 ## What Data is Available in R?
 
-------------------------------------------------------------------------
+---
 
 R has many available data sets that we can easily import, investigate, and apply statistical methods and analysis that we will discover this semester.
 
@@ -71,7 +64,7 @@ data(package = .packages(all.available = TRUE))
 
 ## Loading Packages with the `library()` Command
 
-------------------------------------------------------------------------
+---
 
 Each time we start or restart a new R session and want to access the library of functions and data in the package, we need to load the library of files in the package with the `library()` command.
 
@@ -84,17 +77,15 @@ Each time we start or restart a new R session and want to access the library of 
 library(dplyr)
 ```
 
-## Caution: Reloading Packages When Restarting a Session
-
-------------------------------------------------------------------------
-
+::: {.callout-caution}
 If we take a break in our work, it is possible our R session will time out and close. <span style="color:tomato">**Each time we restart an R session, we will need to rerun `library()` commands in order reload any packages we plan to use**</span>.
 
 The same caution applies to any objects, vectors, or data frames we create or edit in an R session. If a session times out, and we want to use an object `x` that we previously created, we will need to run the code cell(s) where object `x` is created again before we can refer back to `x` in the current session.
+:::
 
-# Finding Help Documentation
+## Finding Help Documentation
 
-------------------------------------------------------------------------
+---
 
 As with learning any new skill, it is always useful to know where to find help. R has been in use since 2000, and there is a large, active community of users that share lots of helpful advice online. Certainly [Google](https://www.google.com/) or other search engines are a useful way to search and find help with R. Below are two additional websites useful for searching for help with R.
 
@@ -115,7 +106,7 @@ We can also find help without opening a separate browser window or tab. The `?` 
 
 ## Question 1
 
-------------------------------------------------------------------------
+---
 
 After reading the `storms` help documentation, answer the following questions:
 
@@ -127,15 +118,16 @@ c.  Over what period of time and how frequently are observations recorded?
 
 ### Solutions to Question 1
 
-------------------------------------------------------------------------
+---
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 ## Question 2
 
-------------------------------------------------------------------------
+---
 
 Insert a code cell and run the command `?hist` to see the help documentation for the histogram function.
 
@@ -145,15 +137,16 @@ b.  What option can we use to set the fill color for the bars of a histogram?
 
 ### Solution to Question 2
 
-------------------------------------------------------------------------
+---
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 # Statistical Inference
 
-------------------------------------------------------------------------
+---
 
 A fundamental application of statistics is to use data from a subset of a population to draw conclusions about the population.
 
@@ -168,7 +161,7 @@ A fundamental application of statistics is to use data from a subset of a popula
 
 ## Produce Data
 
-------------------------------------------------------------------------
+---
 
 <span style="color:dodgerblue">**We need data to do statistics!**</span> How we design the collection of data is a crucial first step. If we collect the wrong data or biased data, we cannot gain reasonable insights to achieve our goal even if we do proper analysis. In the end, the conclusions we infer are only as strong as the data we collect.
 
@@ -180,7 +173,7 @@ A fundamental application of statistics is to use data from a subset of a popula
 
 ## Explore Data
 
-------------------------------------------------------------------------
+---
 
 <span style="color:dodgerblue">**Exploratory data analysis**</span>, or <span style="color:dodgerblue">**EDA**</span> for short, can be thought of as a cycle:
 
@@ -196,19 +189,19 @@ The main goal of EDA is to develop an understanding of your data. When we ask a 
 
 ## Analyze and Interpret
 
-------------------------------------------------------------------------
+---
 
 After we explore data and generate statistical questions to investigate, we apply statistical methods to analyze the data and hopefully gain insight to draw conclusions. Sometimes, even though we carefully perform our analysis correctly, we are unable to reach a decisive conclusion. Sometimes instead of reaching an answer, the insight we gain informs us to refine our question. Other times, it simply leads to more questions! <span style="color:dodgerblue">**Probability**</span> is required to do statistical analysis, and we will explore some key results from probability that we will need to apply in this step.
 
 ## Present Findings
 
-------------------------------------------------------------------------
+---
 
 Finally, after we have interpreted our results, we present our findings to others. Sometimes our colleagues specialize in fields outside of mathematics, statistics, or data science. They rely on us to breakdown our findings in more practical terms accessible to a more general audience.
 
 ## Professional Ethics
 
-------------------------------------------------------------------------
+---
 
 As we learn and refine our statistical tools, it is our duty to be mindful of the moral and ethical considerations at play in deciding what statistical questions we want to explore, how we produce data, what is the source of our data, what is the benefit to society of our work, and who is impacted by our analysis.
 
@@ -219,25 +212,26 @@ Below is a excerpt from *An Introduction to the Science of Statistics: From Theo
 Below are two sources with ethical guidance to help steer our practice of statistics.
 
 -   [*Ethical Guidelines for Statistical Practice*](https://www.amstat.org/your-career/ethical-guidelines-for-statistical-practice) by the American Statistical Association (ASA).
--   [*Declaration on Professional Ethics*](https://www.isi-web.org/about/policies/professional-ethics) by the International Statistical Institute.
+-   [*Declaration on Professional Ethics*](https://isi-web.org/declaration-professional-ethics-2010) by the International Statistical Institute.
 
 ## Question 3
 
-------------------------------------------------------------------------
+---
 
 In the `storms` data set, is the data from a sample or a population? What information in the help documentation supports your answer? Recall you can run the command `?storms` to open the help documentation.
 
 ### Solution to Question 3
 
-------------------------------------------------------------------------
+---
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 ## Question 4
 
-------------------------------------------------------------------------
+---
 
 What statistical questions might be worth investigating among the variables in the `storms` data set? What data visualizations could be useful to uncover interesting questions?
 
@@ -249,15 +243,16 @@ summary(storms)
 
 ### Solution to Question 4
 
-------------------------------------------------------------------------
+---
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 # Sampling Methods
 
-------------------------------------------------------------------------
+---
 
 Since drawing a sample that resembles the population in every way (except smaller in number) is critical for drawing valid conclusions, how we pick samples is crucial. Sometimes we are limited by considerations such as how expensive or timely it is to collect data from a population. **We always have an obligation to be ethical in how we collect data.**
 
@@ -265,13 +260,13 @@ Since drawing a sample that resembles the population in every way (except smalle
 
 ## Random Sampling Methods
 
-------------------------------------------------------------------------
+---
 
 When possible, collecting samples randomly without human interference is the best and therefore preferred method. <span style="color:dodgerblue">**Randomly selecting samples is the best way to avoid bias.**</span> Below are some common methods for selecting random samples and avoiding bias.
 
 ### Simple Random Sample
 
-------------------------------------------------------------------------
+---
 
 When selecting a <span style="color:dodgerblue">**simple random sample**</span>, all individuals are equally likely to be selected.
 
@@ -282,7 +277,7 @@ When selecting a <span style="color:dodgerblue">**simple random sample**</span>,
 
 ### Stratified Sample
 
-------------------------------------------------------------------------
+---
 
 When selecting a <span style="color:dodgerblue">**stratified sample**</span>, the population is subdivided into groups based on some meaningful characteristic.
 
@@ -293,18 +288,18 @@ When selecting a <span style="color:dodgerblue">**stratified sample**</span>, th
 
 ### Systematic Sample
 
-------------------------------------------------------------------------
+---
 
 When selecting a <span style="color:dodgerblue">**systematic sample**</span>, the first individual is chosen at random. Then a rule is used so that every $\mbox{n}^{\mbox{th}}$ individual is selected after that.
 
 -   Randomly select a house on a street to survey. Then pick every third house after that to include in the survey.
 
-![Image Credit: Dan Kernler, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0), via Wikimedia Commons](https://upload.wikimedia.org/wikipedia/commons/c/c4/Systematic_sampling.PNG){width="60% fig-alt="Systematic Sample"}
+![Image Credit: Dan Kernler, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0), via Wikimedia Commons](https://upload.wikimedia.org/wikipedia/commons/c/c4/Systematic_sampling.PNG){width="60%" fig-alt="Systematic Sample"}
 
 
 ### Cluster Sample
 
-------------------------------------------------------------------------
+---
 
 When selecting a <span style="color:dodgerblue">**cluster sample**</span> groups rather than individual units of the target population are selected at random for the test.
 
@@ -315,7 +310,7 @@ When selecting a <span style="color:dodgerblue">**cluster sample**</span> groups
 
 ## Biased Sampling Methods
 
-------------------------------------------------------------------------
+---
 
 -   A <span style="color:tomato">**convenience sample**</span> is when people or elements in a sample are selected on the basis of their accessibility and availability. For example, email a survey to your friends to gauge public support for a newly proposed law.
 
@@ -323,7 +318,7 @@ When selecting a <span style="color:dodgerblue">**cluster sample**</span> groups
 
 # Designing Studies
 
-------------------------------------------------------------------------
+---
 
 Often in statistics we would like to investigate whether one variable is associated to another. Researchers carry out studies to understand the conditions and causes of certain outcomes.
 
@@ -339,7 +334,7 @@ If we are using one variable to help us understand or predict the values (or cat
 
 ## Question 5
 
-------------------------------------------------------------------------
+---
 
 For each question below, which variable is the predictor variable and which is the response variable? How would your organize the data you collect in each case?
 
@@ -351,21 +346,22 @@ c.  Is a new vaccine effective at preventing disease?
 
 ### Solution to Question 5
 
-------------------------------------------------------------------------
+---
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 ## Question 6
 
-------------------------------------------------------------------------
+---
 
 Both studies below are designed to examine whether rewarding good behavior or punishing bad behavior is a more effective method to help people quit smoking. Which study do you believe is better designed? Why?
 
 ### Study A
 
-------------------------------------------------------------------------
+---
 
 Employees at a large company voluntarily enroll in a quit smoking study. When they join, they are provided two options to select from:
 
@@ -380,7 +376,7 @@ After six months, we compare the success rate between the two groups to determin
 
 ### Study B
 
-------------------------------------------------------------------------
+---
 
 Employees at a large company voluntarily enroll in a quit smoking study.
 
@@ -390,15 +386,16 @@ After six months, we compare the success rate between the two groups to determin
 
 ### Solution to Question 6
 
-------------------------------------------------------------------------
+---
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 ## Confounding Variables {#sec-confounding}
 
-------------------------------------------------------------------------
+---
 
 A variable that is associated with both the predictor variable and the response variable is called a <span style="color:dodgerblue">**confounding or lurking variable**</span>.
 
@@ -406,21 +403,22 @@ A variable that is associated with both the predictor variable and the response 
 
 ## Question 7
 
-------------------------------------------------------------------------
+---
 
 In [Question 6], identify a possible confounding variable in Study A or explain why there are no confounding variables. Identify a possible confounding variable in Study B or explain why there are no confounding variables.
 
 ### Solution to Question 7
 
-------------------------------------------------------------------------
+---
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 ## Experiments and Observational Studies
 
-------------------------------------------------------------------------
+---
 
 -   An <span style="color:dodgerblue">**observational study**</span> is a study in which the researcher does not actively control the assignment of individuals to different treatments or levels of a predictor variable.
     -   If the treatment groups are chosen by the individuals in the study, the samples in each treatment group are likely to differ in some meaningful way other than just the treatment.
@@ -433,17 +431,17 @@ In [Question 6], identify a possible confounding variable in Study A or explain 
 
 ## Question 8
 
-------------------------------------------------------------------------
+---
 
 In [Question 6], determine whether Study A is an observational study or an experiment. Determine whether Study B is an observational study or an experiment. Explain how you determined your answers.
 
 ### Solution to Question 8
 
-------------------------------------------------------------------------
+---
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
 
 
 ---
