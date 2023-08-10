@@ -1,5 +1,5 @@
 ---
-#title: "1.2: Exploring Categorical Data"
+title: "1.2: Exploring Categorical Data"
 #author: 'Adam Spiegler, University of Colorado Denver'
 output:
   html_document:
@@ -17,22 +17,17 @@ output:
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap1/02-EDA-Categorical.ipynb) <nbsp>
 
-# 1.2: Exploring Categorical Data
-
----
 
 Additional Reading:
 
 - See [Overview of Plotting Data in R](Overview-of-Plots.qmd) for further reading and examples about plotting in R.
-
-- See [Fundamentals of Working with Data](Intro-to-Vectors-Dataframes.qmd) for further details about data types and structures in R.
-
-- [R Graph Gallery](https://r-graph-gallery.com/) has examples of many other types of graphs.
+- See [Fundamentals of Working with Data](Intro-to-Vectors-Dataframes.qmd) for more information about data types and structures in R.
+- The [R Graph Gallery](https://r-graph-gallery.com/) has examples of many other types of graphs.
 
 
 # An Overview of Exploratory Data Analysis
 
-------------------------------------------------------------------------
+---
 
 <span style="color:dodgerblue">**Exploratory data analysis**</span>, or <span style="color:dodgerblue">**EDA**</span> for short, can be thought of as a cycle:
 
@@ -45,9 +40,9 @@ The main goal of EDA is to develop an understanding of your data. When we ask a 
 
 # Loading the `dplyr` Package {#sec-dplyr}
 
-------------------------------------------------------------------------
+---
 
-The `dplyr` packages is perhaps one of the most useful R packages for <span style="color:dodgerblue">**data wrangling**</span> and EDA. Data wrangling is generally the cleaning, reorganizing, and transforming data so it can be more easily analyzed. `dplyr` also contains data sets that we can use to practice our wrangling and visualization skills. In this lab, we will work with the data set called `storms`.
+The `dplyr` package is perhaps one of the most useful R packages for <span style="color:dodgerblue">**data wrangling**</span> and EDA. Data wrangling is generally the cleaning, reorganizing, and transforming data so it can be more easily analyzed. `dplyr` also contains data sets that we can use to practice our wrangling and visualization skills. In this lab, we will work with the data set called `storms`.
 
 - See [official dplyr documentation](https://dplyr.tidyverse.org/articles/dplyr.html) for a comprehensive tutorial.
 - **Run the code cell below to load the `dplyr` package.**
@@ -79,7 +74,7 @@ help(package = "dplyr")
 
 # The Structure of Data
 
-------------------------------------------------------------------------
+---
 
 <span style="color:dodgerblue">**Data frames**</span> are two-dimensional data objects and are the **fundamental** data structure used by most of R's libraries of functions and data sets.
 
@@ -87,18 +82,17 @@ help(package = "dplyr")
 
 Each column of a data frame is a <span style="color:dodgerblue">**variable**</span> (stored as a **vector**) of possibly different data types.
 
--    If a variable is measured or counted by a number, it is called a <span style="color:dodgerblue">**quantitative**</span> or <span style="color:dodgerblue">**numerical**</span> variable.
-  -   Quantitative variables may be <span style="color:dodgerblue">**discrete**</span> (integers) or <span style="color:dodgerblue">**continuous**</span> (decimals).
--   If a variable groups observations into different categories or rankings, it is a <span style="color:dodgerblue">**qualitative**</span> or <span style="color:dodgerblue">**categorical**</span> variable.
+- If a variable is measured or counted by a number, it is called a <span style="color:dodgerblue">**quantitative**</span> or <span style="color:dodgerblue">**numerical**</span> variable.
+  - Quantitative variables may be <span style="color:dodgerblue">**discrete**</span> (integers) or <span style="color:dodgerblue">**continuous**</span> (decimals).
+- If a variable groups observations into different categories or rankings, it is a <span style="color:dodgerblue">**qualitative**</span> or <span style="color:dodgerblue">**categorical**</span> variable.
   - The different categories of a qualitative variable are called <span style="color:dodgerblue">**levels**</span> or <span style="color:dodgerblue">**classes**</span>.
-  - Levels may be labeled as character strings without any implicit order.
-  - Levels may be labeled as character strings, and there may be a ranking of the levels.
-  - Levels may be labeled with a integer without any implicit order.
-  - Levels may be labeled with an integer that does indicate an order or ranking. 
+    - Levels are typically labeled with descriptive character strings or integers.
+    - Levels may or may not have an ordering.
+  - An <span style="color:dodgerblue">**ordinal variable**</span> is when the levels of a categorical variable do have a specified order.
 
 # Exploring Our Data
 
-------------------------------------------------------------------------
+---
 
 Below are some common functions used to get a first introduction to our data:
 
@@ -114,7 +108,7 @@ Below are some common functions used to get a first introduction to our data:
 
 ## Question 1
 
-------------------------------------------------------------------------
+---
 
 Let's get to know the `storms` data set. Using some (or all) of the commands above, answer the following questions:
 
@@ -139,30 +133,32 @@ summary(storms)  # summary of each variable in storms
 
 ### Solution to Question 1
 
-------------------------------------------------------------------------
+---
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
 
 
 ## Question 2:
 
-------------------------------------------------------------------------
+---
 
 What additional information would you like to know about the `storms` data set that you were unable to find? What questions do you have about the data? In particular, what data is missing and why?
 
 ### Solution to Question 2:
 
-------------------------------------------------------------------------
+---
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
+
 
 # Data Types
 
-------------------------------------------------------------------------
+---
 
 R has 6 basic [data types](https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Basic-types):
 
@@ -215,7 +211,7 @@ is.vector(storms$wind)  # status is a vector
 
 ## Investigating Data Types with `is.numeric()`
 
-------------------------------------------------------------------------
+---
 
 -   The `is.numeric(x)` function tests whether or not an object `x` is numeric.
 -   The `is.character(x)` function tests whether `x` is a character or not.
@@ -241,7 +237,7 @@ is.factor(storms$status)  # status is a factor which is categorical
 
 ## Converting Decimals to Integers 
 
-------------------------------------------------------------------------
+---
 
 From the summary of the `storms` data set we first found above, we see that the variables `year` and `month` are being stored as `double`. These variables actually are integer values.
 
@@ -264,13 +260,12 @@ typeof(storms$month)
 
 ## Converting to Categorical Data with `factor()`
 
-------------------------------------------------------------------------
+---
 
--   Sometimes we think a variable is one data type, but it is actually being stored (and thus interpreted by R) as a different data type.
--   One common issue is categorical data is stored as characters or integers. We would like observations with the same values to be group together.
-  - The `status` variable in `storms` is being properly stored as a `factor`.
-  - The `category` variable in `storms` is being stored as a `numeric` since it is ordinal.
--   With ordinal categories, we may choose to keep it stored as `numeric`, or we may prefer to treat them as factors.
+Sometimes we think a variable is one data type, but it is actually being stored (and thus interpreted by R) as a different data type. One common issue is categorical data is stored as characters or integers. We would like observations with the same values to be group together.
+
+- The `status` variable in `storms` is being properly stored as a `factor`.
+- The `category` variable in `storms` is being stored as a `numeric` since the classes are integers.
 
 ```{r}
 #| eval: true
@@ -278,8 +273,8 @@ summary(storms$category)
 ```
 
 
-- The summary of `category` computes statistics such as mean and median.
-- <span style="color:dodgerblue">**Typically with categorical data, we prefer to count how many observations are in each class of the variable.**</span>
+The summary of `category` computes statistics such as mean and median. <span style="color:dodgerblue">**Typically with categorical data, we prefer to count how many observations are in each class of the variable.**</span>
+
 - In the code cell below, we convert `category` to a factor, and then observe the resulting summary.
 
 
@@ -288,6 +283,8 @@ summary(storms$category)
 storms$category <- factor(storms$category)
 summary(storms$category)
 ```
+
+  
 
 ## Assignment of New Objects
 
@@ -353,9 +350,11 @@ round(prop.col, 4)
 
 ---
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
+
 
 
 # Visualizing Categorical Data
@@ -438,7 +437,7 @@ pie(storms$category)
 
 # Relationship Between Two Categorical Variables
 
-------------------------------------------------------------------------
+---
 
 
 Imagine we would like to compare the number of different category hurricanes that occurred in each month. In this case, we would like to compare two qualitative variables, namely `category` and `month`.
@@ -451,11 +450,11 @@ Imagine we would like to compare the number of different category hurricanes tha
 To create a bar chart displaying the number of category hurricanes that occurred in each month:
 
 1. First create a two-way table of counts. 
-  - The second variable (`month`) is displayed on horizontal axis.
-  - We get a separate bar for each level of the first variable (`category`).
+    - The second variable (`month`) is displayed on horizontal axis.
+    - We get a separate bar for each level of the first variable (`category`).
 2. Input the table into the `barplot()` function.
-  - Note the option `beside = TRUE` groups the bars for each month.
-  - The default option `beside = FALSE` stacks the bars.
+    - Note the option `beside = TRUE` groups the bars for each month.
+    - The default option `beside = FALSE` stacks the bars.
 
 ```{r}
 #| eval: true
@@ -490,9 +489,9 @@ legend(x="topleft",  # place legend in top left
 To create a bar chart displaying the relative frequency (or proportion) of category hurricanes that occurred in each month:
 
 1. First create a two-way table of relative frequencies.
-  - Pay attention to whether you want the proportions relative to grand, row, or column totals.
+    - Pay attention to whether you want the proportions relative to grand, row, or column totals.
 2. Input the table into the `barplot()` function.
-  - The default option `beside = FALSE` stacks the bars.
+    - The default option `beside = FALSE` stacks the bars.
 
 ```{r}
 #| eval: true
@@ -561,9 +560,11 @@ b. In which month is the proportion of category 1 hurricanes greatest?
 
 ---
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
+
 
 ## Question 5
 
@@ -576,9 +577,10 @@ What are the the differences in the three plots in the output of the previous co
 
 ---
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 # Exploring the General Social Survey Data Set
@@ -629,9 +631,11 @@ Create a plot to visualize one categorical variable in the `gss_cat` data set. B
 
 ---
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
+
 
 ## Question 7
 
@@ -649,9 +653,10 @@ Create a plot to visualize the relationship between two categorical variables in
 
 ---
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 
