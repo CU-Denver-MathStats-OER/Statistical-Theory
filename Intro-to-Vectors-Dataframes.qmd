@@ -18,7 +18,7 @@ output:
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Appendix/Intro-to-Vectors-Dataframes.ipynb)
 
 
-# Fundamentals of Working with Data
+# Fundamentals of Working with Data {#sec-intro}
 
 ---
 
@@ -27,21 +27,21 @@ Understanding the data types of the variables in our data set, and the structure
 
 This notebook is intended to be a brief overview of some fundamentals of working with data in R.
 
-- How to save and display output of from commands?
-- What are the basic data types?
-- How to convert data types?
-- What are the data structures in R?
-- How to create or import a data frame?
-- How to slice and extract rows and columns of a data frame?
+- [How to save and display output of from commands?](#sec-assign)
+- [What are the basic data types?](#sec-datatypes)
+- [How to convert data types?](#sec-changetype)
+- [What are the data structures in R?](#sec-structures)
+- How to [create](#sec-createdf) or [import](#sec-importing) a data frame?
+- [How to slice and extract rows and columns of a data frame?](#sec-extract)
 
 These topics are important. This notebook just scratches the surface on many concepts. If you do not find a complete answer here, there are free resources online that dig deeper and more completely. Below are two such recommended references.
 
-- [An Introduction to R](https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf) by the Developers of R
+- [An Introduction to R](https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf) by the developers of R
 
-- [Programming with R Guide to Data Types and Structures](https://swcarpentry.github.io/r-novice-inflammation/13-supp-data-structures/)
+- [Programming with R Guide to Data Types and Structures](https://swcarpentry.github.io/r-novice-inflammation/13-supp-data-structures.html)
 
 
-## Loading Packages with the `library()` Command
+## Loading Packages with the `library()` Command {#sec-load}
 
 ---
 
@@ -59,13 +59,29 @@ To explore some fundamentals of working with data in R, we will use the `storms`
 library(dplyr)
 ```
 
-## Help Documentation
+::: {.callout-caution}
+Each time you connect or restart a session, you will need to run a `library()` command in order to access data and scripts in a package.
+:::
+
+## Help Documentation {#sec-help}
 
 ---
 
 The functions introduced in this document have robust help documentation with lots of options to customize. If you want to view help documentation for any of the functions used in this document, run commands such`?typeof`, `?is.numeric`, `?read.table`, and so on.
 
-# Getting to Know Our Data
+```{r}
+# access help documentation for storms
+?storms  # side panel should open with help manual for storms
+```
+
+
+```{r}
+# access help documentation for typeof
+?typeof
+```
+
+
+# Getting to Know Our Data {#sec-knowdata}
 
 ---
 
@@ -81,7 +97,7 @@ The package `dplyr` contains a data set called `storms`. Let’s find some usefu
 summary(storms)
 ```
 
-## Missing Data
+## Missing Data {#sec-na}
 
 ------------------------------------------------------------------------
 
@@ -92,7 +108,7 @@ R uses the special object `NA` to represent missing value. If you have a missing
 - The `storms` data has properly coded 9,512 missing values for each of `tropicalstorm_force_diameter` and `hurricane_force_diameter` since these value only began being recorded in 2004.
 
 
-# Assignment to New (or Existing) Objects
+# Assignment to New (or Existing) Objects {#sec-assign}
 
 ------------------------------------------------------------------------
 
@@ -143,7 +159,7 @@ print(xbar.w)  # print the mean with print() command
 
 -   **Sometimes you want to see the result of a code cell, and sometimes you will not.**
 
-# Basic Data Types
+# Basic Data Types {#sec-datatypes}
 
 ------------------------------------------------------------------------
 
@@ -156,7 +172,7 @@ R has 6 basic [data types](https://cran.r-project.org/doc/manuals/r-release/R-la
 5.  <span style="color:dodgerblue">**complex**</span>: complex numbers. E.g., `1+3i`
 6.  <span style="color:dodgerblue">**raw**</span>: a type to hold raw bytes.
 
-## Checking Data Type Using `typeof()`
+## Checking Data Type Using `typeof()` {#sec-typeof}
 
 ------------------------------------------------------------------------
 
@@ -174,14 +190,17 @@ typeof(storms$year)
 typeof(storms$name)
 ```
 
-## Investigating Data Types with `is.numeric()`
+## Investigating Data Types with `is.numeric()` {#sec-isdatatype}
 
 ------------------------------------------------------------------------
 
 -   The `is.numeric(x)` function tests whether or not an object `x` is numeric.
 -   The `is.character(x)` function tests whether `x` is a character or not.
 -   The `is.factor(x)` function tests whether `x` is a factor or not.
-  - <span style="color:dodgerblue">**Note: Categorical data is typically stored as a `factor` in R.**</span>
+
+::: {.callout-note}
+Categorical data is typically stored as a `factor` in R.
+:::
 
 
 ```{r}
@@ -206,11 +225,11 @@ is.factor(storms$status)  # status is a factor which is categorical
 str(storms$status)
 ```
 
-## Changing Data Types
+## Changing Data Types {#sec-changetype}
 
 ------------------------------------------------------------------------
 
-### Converting to Categorical Data with `factor()`
+### Converting to Categorical Data with `factor()` {#sec-factor}
 
 ------------------------------------------------------------------------
 
@@ -236,7 +255,7 @@ storms$category <- factor(storms$category)
 summary(storms$category)
 ```
 
-### Converting Data Types with `as.numeric()`, `as.integer()`, etc.
+### Converting Data Types with `as.numeric()`, `as.integer()`, etc.  {#sec-astype}
 
 ------------------------------------------------------------------------
 
@@ -258,7 +277,7 @@ typeof(storms$year)
 typeof(storms$month)
 ```
 
-# Data structures
+# Data structures {#sec-structures}
 
 ------------------------------------------------------------------------
 
@@ -275,13 +294,13 @@ R has 5 basic data structures:
 
 [See R documentation](https://cran.r-project.org/doc/manuals/r-release/R-lang.html#List-objects) for more info.
 
-## Vectors
+## Vectors {#sec-vectors}
 
 ------------------------------------------------------------------------
 
 A <span style="color:dodgerblue">**vector**</span> is a single-dimensional set of data of the same type.
 
-### Creating Vectors from Scratch
+### Creating Vectors from Scratch {#sec-createvector}
 
 ------------------------------------------------------------------------
 
@@ -309,7 +328,7 @@ is.list(x4)
 is.vector(x4)
 ```
 
-## Data Frames
+## Data Frames {#sec-dataframe}
 
 ------------------------------------------------------------------------
 
@@ -322,7 +341,7 @@ Each column of a data frame is a <span style="color:dodgerblue">**variable**</sp
 -   Is measured or counted by a number, it is a <span style="color:dodgerblue">**quantitative**</span> or <span style="color:dodgerblue">**numerical**</span> variable.
 -   Groups observations into different categories or rankings, it is a <span style="color:dodgerblue">**qualitative**</span> or <span style="color:dodgerblue">**categorical**</span> variable.
 
-### Creating Data Frames from Scratch
+### Creating Data Frames from Scratch {#sec-createdf}
 
 ------------------------------------------------------------------------
 
@@ -343,7 +362,7 @@ df
 ```
 
 
-### Naming Column Headers
+### Naming Column Headers {#sec-namecol}
 
 ---
 
@@ -367,7 +386,7 @@ df2 <- data.frame(ID = d, Color = e, Passed = f)
 df2
 ```
 
-## Checking Data Structure 
+## Checking Data Structure {#sec-checkstructure}
 
 ------------------------------------------------------------------------
 
@@ -382,11 +401,11 @@ is.vector(df)
 is.data.frame(df)
 ```
 
-# Extracting and Slicing Data Frames
+# Extracting and Slicing Data Frames {#sec-extract}
 
 ------------------------------------------------------------------------
 
-## Extracting a Column By Name
+## Extracting a Column By Name {#sec-extractname}
 
 ---
 
@@ -399,7 +418,7 @@ The column vectors of a data frame may be extracted using `$` and specifying the
 df$Color  # prints column of data frame df named Color
 ```
 
-## Slicing Rows and Columns By Indexing
+## Slicing Rows and Columns By Indexing {#sec-indexing}
 
 ---
 
@@ -449,7 +468,7 @@ df[, c(1, 3)]  # another we to pick columns 1 and 3
 df[, -2]  # exclude column 2
 ```
 
-# Importing an External File as a Data Frame
+# Importing an External File as a Data Frame {#sec-importing}
 
 ------------------------------------------------------------------------
 
@@ -490,7 +509,7 @@ glimpse(bike.store)
 ```
 
 
-# Logical Statements
+# Logical Statements {#sec-logical}
 
 ------------------------------------------------------------------------
 
@@ -513,7 +532,7 @@ a == 10
 a != 10
 ```
 
-## And and Or Statements
+## And and Or Statements {#sec-andor}
 
 ------------------------------------------------------------------------
 
@@ -558,7 +577,7 @@ b <- 3  # b is equal to the number 3
 ```
 
 
-## Logical Indexing
+## Logical Indexing {#sec-logicindex}
 
 ---
 
@@ -576,14 +595,12 @@ expensive <- bike.store[bike.store$list_price > 2090, c(2, 7:8, 11)]
 head(expensive)
 ```
 
-# Creative Commons License Information
+## Creative Commons License Information {#sec-cc}
 
 ---
 
-![Creative Commons License](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)
+![Creative Commons License](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png) <nbsp>
 
-*Statistical Methods: Exploring the Uncertain* by [Adam Spiegler (University of Colorado Denver)](https://github.com/CU-Denver-MathStats-OER/Statistical-Theory) is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/). This work is funded by an [Institutional OER Grant from the Colorado Department of Higher Education (CDHE)](https://cdhe.colorado.gov/educators/administration/institutional-groups/open-educational-resources-in-colorado).
-
-For similar interactive OER materials in other courses funded by this project in the Department of Mathematical and Statistical Sciences at the University of Colorado Denver, visit <https://github.com/CU-Denver-MathStats-OER>.
+*Statistical Methods: Exploring the Uncertain* by [Adam Spiegler](https://github.com/CU-Denver-MathStats-OER/Statistical-Theory) is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/).
 
 
