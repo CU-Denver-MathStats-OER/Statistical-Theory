@@ -1,5 +1,5 @@
 ---
-#title: "Fundamentals of Working with Data"
+title: "Fundamentals of Working with Data"
 author: 'Adam Spiegler, University of Colorado Denver'
 output:
   html_document:
@@ -15,10 +15,10 @@ output:
 #    ipynbdocument::ipynb_document
 ---
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Appendix/Intro-to-Vectors-Dataframes.ipynb)
 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Appendix/Intro-to-Vectors-Dataframes.ipynb) <nbsp> 
 
-# Fundamentals of Working with Data {#sec-intro}
+# Introduction {#sec-intro}
 
 ---
 

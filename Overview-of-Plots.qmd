@@ -15,7 +15,7 @@ output:
 #    ipynbdocument::ipynb_document
 ---
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Appendix/Overview-of-Plots.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Appendix/Overview-of-Plots.ipynb) <nbsp> 
 
 
 # Introduction
@@ -1040,13 +1040,11 @@ mapview(cat5, xcol = "long", ycol = "lat", cex = "wind", crs = 4269, grid = FALS
 mapview(cat5, xcol = "long", ycol = "lat", zcol = "name", cex = "wind", crs = 4269, grid = FALSE)
 ```
 
-# Creative Commons License Information
+## Creative Commons License Information {#sec-cc}
 
 ---
 
-![Creative Commons License](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)
+![Creative Commons License](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png) <nbsp>
 
-*Statistical Methods: Exploring the Uncertain* by [Adam Spiegler (University of Colorado Denver)](https://github.com/CU-Denver-MathStats-OER/Statistical-Theory) is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/). This work is funded by an [Institutional OER Grant from the Colorado Department of Higher Education (CDHE)](https://cdhe.colorado.gov/educators/administration/institutional-groups/open-educational-resources-in-colorado).
-
-For similar interactive OER materials in other courses funded by this project in the Department of Mathematical and Statistical Sciences at the University of Colorado Denver, visit <https://github.com/CU-Denver-MathStats-OER>.
+*Statistical Methods: Exploring the Uncertain* by [Adam Spiegler](https://github.com/CU-Denver-MathStats-OER/Statistical-Theory) is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/).
 
