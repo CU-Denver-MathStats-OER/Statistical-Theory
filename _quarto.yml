@@ -83,6 +83,13 @@ execute:
 
 editor: source
 
+############################################
+# embed video in colab: see 23 paul video
+############################################
+#<a href="https://www.youtube.com/embed/pc0FLC8H7D8">
+# <img src="http://img.youtube.com/vi/pc0FLC8H7D8/0.jpg" alt="Paul the Phsychic Octopus" width="560" height="315" frameborder="0"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" />
+#</a>
+
 # footnote example - see 05 or 08
 # <span style="color:dodgerblue"></span> # font color
 # for two columns - see 06
