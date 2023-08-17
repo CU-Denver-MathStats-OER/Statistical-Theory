@@ -15,14 +15,14 @@ output:
 #    ipynbdocument::ipynb_document
 ---
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap1/03-EDA-Quantitative.ipynb) <nbsp>
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap1/03-EDA-Quantitative.ipynb){target="_blank"} <nbsp>
 
 
 Additional Reading:
 
-- See [Overview of Plotting Data in R](Overview-of-Plots.qmd) for further reading and examples about plotting in R.
-- See [Fundamentals of Working with Data](Intro-to-Vectors-Dataframes.qmd) for more information about data types and structures in R.
-- The [R Graph Gallery](https://r-graph-gallery.com/) has examples of many other types of graphs.
+- See [Overview of Plotting Data in R](Overview-of-Plots.qmd){target="_blank"} for further reading and examples about plotting in R.
+- See [Fundamentals of Working with Data](Intro-to-Vectors-Dataframes.qmd){target="_blank"} for more information about data types and structures in R.
+- The [R Graph Gallery](https://r-graph-gallery.com/){target="_blank"} has examples of many other types of graphs.
 
 
 # Types of Variables
@@ -42,13 +42,13 @@ The type of statistical analysis we can do depends on whether:
 -   The variable(s) are quantitative or categorical.
 -   The data satisfies certain assumptions.
 
-In our work with [Exploring Categorical Data](02-EDA-Categorical.qmd), we performed an initial summary of the categorical variables in the `storms` data set. Today, we will investigate how to numerically and visually summarize quantitative variables.
+In our work with [Exploring Categorical Data](02-EDA-Categorical.qmd){target="_blank"}, we performed an initial summary of the categorical variables in the `storms` data set. Today, we will investigate how to numerically and visually summarize quantitative variables.
 
 # Getting to Know Our Data {#sec-storms}
 
 ---
 
-The `dplyr` package contains a data set from the [NOAA Hurricane Best Track Data](https://www.nhc.noaa.gov/data/#hurdat) that contains data on the following attributes of tracked North Atlantic storms since 1975:
+The `dplyr` package contains a data set from the [NOAA Hurricane Best Track Data](https://www.nhc.noaa.gov/data/#hurdat){target="_blank"} that contains data on the following attributes of tracked North Atlantic storms since 1975:
 
 -   Storm name: `name`
 -   Date and time: `year`, `month`, `day`, and `hour`
@@ -61,7 +61,7 @@ The `dplyr` package contains a data set from the [NOAA Hurricane Best Track Data
 -   Hurricane force diameter (in nautical miles): `hurricane_force_diameter`
 
 ::: {.callout-tip}
-See [Exploring Categorical Data](02-EDA-Categorical.qmd) for a refresher on our initial exploration with the `storms` data frame.
+See [Exploring Categorical Data](02-EDA-Categorical.qmd){target="_blank"} for a refresher on our initial exploration with the `storms` data frame.
 :::
 
 ## Loading Required Package
@@ -207,8 +207,8 @@ plot(storms$category,  # categorical data
 
 Additional resources for help with plotting data:
 
--   See [Overview of Plotting Data in R](Overview-of-Plots.qmd) for further reading and examples about plotting in R.
--   The [R Graph Gallery](https://r-graph-gallery.com/) has examples of many other types of graphs.
+-   See [Overview of Plotting Data in R](Overview-of-Plots.qmd){target="_blank"} for further reading and examples about plotting in R.
+-   The [R Graph Gallery](https://r-graph-gallery.com/){target="_blank"} has examples of many other types of graphs.
 
 
 ## Histograms
@@ -308,9 +308,13 @@ A histogram can illustrate the general shape of the distribution of quantitative
 -   The fun of interacting with data in R is we can play around and adjust the number of breaks and other options until we are satisfied.
 
 ```{r}
+#| label: fig-breaks
+#| fig-cap: "Changing the Breaks: Histograms of Wind Speed"
+#| fig-subcap: 
+#|   - "Histogram with 5 Breaks (4 bins)"
+#|   - "Histogram with 50 Breaks (49 bins)"
+#| layout-ncol: 2
 #| eval: true
-# plots appear in an array with 1 row and 2 columns
-par(mfrow = c(1, 2))  # create an array of plots
 
 # create a histogram
 hist(storms$wind,  # vector of values to plot
@@ -319,7 +323,8 @@ hist(storms$wind,  # vector of values to plot
      xlim = c(0,200),  # sets window for x-axis
      ylab = "Frequency",  # y-axis label
      ylim = c(0,15000),  # sets window for y-axis
-     main = "Distribution of Storm Wind Speed",  # main label
+     main = "Storm Wind Speed (breaks = 5)",  # main label
+     cex.lab=1.5, cex.axis=1.5, cex.main=1.5,  # increase font size
      col = "steelblue")  # fill color of bars
 
 # create a histogram
@@ -329,7 +334,8 @@ hist(storms$wind,  # vector of values to plot
      xlim = c(0,200),  # sets window for x-axis
      ylab = "Frequency",  # y-axis label
      ylim = c(0,3000),  # sets window for y-axis
-     main = "Distribution of Storm Wind Speed",  # main label
+     main = "Storm Wind Speed (breaks = 50)",  # main label
+     cex.lab=1.5, cex.axis=1.5, cex.main=1.5,  # increase font size
      col = "seagreen")  # fill color of bars
 ```
 
@@ -392,14 +398,25 @@ Create a histogram to display the quantitative variable `long`. What does the sh
 
 The <span style="color:dodgerblue">**skewness**</span> of the data describes the direction of the tail of the data. The tail of the data indicates the direction of outliers (if any).
 
+
+
 ```{r}
+#| label: fig-shape
+#| fig-cap: "Comparing the Shapes of Distributions"
+#| fig-subcap: 
+#|   - "Skewed Right"
+#|   - "Skewed Left"
+#|   - "Approximately Symmetric"
+#| layout-ncol: 3
 #| eval: true
-par(mfrow = c(1, 3))  # Create a 1 x 3 array of plots
+
+#par(mfrow = c(1, 3))  # Create a 1 x 3 array of plots
 
 hist(storms$wind, 
      xlab = "wind speed (in knots)",   # x-axis label
      ylab = "Frequency",  # y-axis label
      main = "Distribution of Wind Speeds",  # main title
+     cex.lab=1.7, cex.axis=1.7, cex.main=1.7,  # increase font size
      col = "steelblue")  # fill color of bars
 
 hist(storms$month, 
@@ -407,6 +424,7 @@ hist(storms$month,
      xlab="Month",   # x-axis label
      ylab = "Frequency",  # y-axis label
      main = "Distribution of Months",  # main title
+     cex.lab=1.7, cex.axis=1.7, cex.main=1.7,  # increase font size
      col = "coral1")  # fill color of bars
 
 hist(storms$long, 
@@ -414,6 +432,7 @@ hist(storms$long,
      xlab="Degrees of Longitude",   # x-axis label
      ylab = "Frequency",  # y-axis label
      main = "Distribution of Longitude",  # main title
+     cex.lab=1.7, cex.axis=1.7, cex.main=1.7,  # increase font size
      col = "aquamarine4")  # fill color of bars
 ```
 
@@ -446,7 +465,9 @@ $${\large \bar{x} = \frac{\mbox{sum of all values}}{\mbox{total number of values
 
 Compute the mean and median wind speed of the `storms` data. Interpret each value in practical terms. Be sure to include the units in your interpretation.
 
-*Hint: We can input the vector of wind speeds with the code `storms$wind`.*
+::: {.callout-tip}
+We can input the vector of wind speeds with the code `storms$wind`.
+:::
 
 ### Solution to Question 10
 
@@ -751,7 +772,7 @@ Plot the empirical cumulative distribution function for the wind speeds in the `
 
 ---
 
-We have explored some of the categorical variables in the `storms` data set in our work with [Exploring Categorical Data](02-EDA-Categorical.qmd). We have discussed how we can summarize and plot a quantitative variable. Often in statistics we would like to compare the distribution of a quantitative variable for different classes of a categorical variable. For example, we may be interested in investigating the following:
+We have explored some of the categorical variables in the `storms` data set in our work with [Exploring Categorical Data](02-EDA-Categorical.qmd){target="_blank"}. We have discussed how we can summarize and plot a quantitative variable. Often in statistics we would like to compare the distribution of a quantitative variable for different classes of a categorical variable. For example, we may be interested in investigating the following:
 
 > In which month do storms have the greatest wind speed?
 
@@ -789,7 +810,6 @@ The `plot()` function creates different types of plots depending on the data typ
 par(mfrow = c(1,2))  # create a 1 by 2 array of plots
 plot(storms$month)  # bar chart is created for categorical data
 plot(storms$wind)  # index plot is created for quantitative data
-par(mfrow = c(1,1))  # reset to 1 plot per figure
 ```
 
 
@@ -802,7 +822,6 @@ par(mfrow = c(1,1))  # reset to 1 plot per figure
 par(mfrow = c(1,2))  # create a 1 by 2 array of plots
 plot(wind ~ month, data = storms)  # side by side boxplots
 plot(wind ~ pressure, data = storms)  # scatterplot
-par(mfrow = c(1,1))  # reset to 1 plot per figure
 ```
 
 
@@ -817,14 +836,14 @@ The side by side boxplots created above are hard to read since we have 12 boxplo
 
 We can compare data for only August and September using various methods. One common method is to subset all of the data in `storms` into two separate data frames, one for each month. Below are three different ways we can subset data:
 
-- Using the `subset()` function in base R.
-- Using the `filter()` function in the `dplyr` package.
-- Using logical statements.
+- Using the [`subset()`](#sec-subset) function in base R.
+- Using the [`filter()`](#sec-filter) function in the `dplyr` package.
+- Using [logical statements](#sec-logic).
 
 Other methods exist as well.
 
 
-### The `subset()` Function in Base R
+### The `subset()` Function in Base R {#sec-subset}
 
 ---
 
@@ -881,7 +900,7 @@ Compute the mean and median wind speed of storms in August. Compare the values o
 <br>  
 
 
-### The `filter()` Function in `dplyr`
+### The `filter()` Function in `dplyr` {#sec-filter}
 
 ---
 
@@ -897,7 +916,7 @@ aug2 <- filter(storms, month == "8")  # filter requires dplyr package
 head(aug2)  # selects all variables
 ```
 
-### Using Logical Statements
+### Using Logical Statements {#sec-logic}
 
 ---
 

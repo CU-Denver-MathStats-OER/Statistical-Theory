@@ -15,7 +15,7 @@ output:
 #    ipynbdocument::ipynb_document
 ---
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap1/01-Intro-to-Inference.ipynb) <nbsp>
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap1/01-Intro-to-Inference.ipynb){target="_blank"} <nbsp>
 
 <span style="color:dodgerblue">**Statistics**</span> is the study of collection, organization, analysis, interpretation, and presentation of data. Statistical methods are essential in exploring questions that can be analyzed using data. Sometimes insights from data arise from a nice visualization or plot. Many times, a nice visualization leads to more advanced questions that require further statistical theory, models, and analysis. We will explore both modern and classical statistical methods, and in order to do so, we need data!
 
@@ -24,7 +24,7 @@ output:
 
 ---
 
-[R](https://www.r-project.org/about.html) is a programming language used largely for statistical computing, data wrangling and visualization. We will be using R as a tool for exploring statistical theory.  The first stable version of R was released in 2000, and after all of this time, there is a large community of R users that have already created tons of useful packages and shared interesting data sets that are frequently updated.
+[R](https://www.r-project.org/about.html){target="_blank"} is a programming language used largely for statistical computing, data wrangling and visualization. We will be using R as a tool for exploring statistical theory.  The first stable version of R was released in 2000, and after all of this time, there is a large community of R users that have already created tons of useful packages and shared interesting data sets that are frequently updated.
 
 
 ::: {.callout-note}
@@ -87,10 +87,10 @@ The same caution applies to any objects, vectors, or data frames we create or ed
 
 ---
 
-As with learning any new skill, it is always useful to know where to find help. R has been in use since 2000, and there is a large, active community of users that share lots of helpful advice online. Certainly [Google](https://www.google.com/) or other search engines are a useful way to search and find help with R. Below are two additional websites useful for searching for help with R.
+As with learning any new skill, it is always useful to know where to find help. R has been in use since 2000, and there is a large, active community of users that share lots of helpful advice online. Certainly [Google](https://www.google.com/){target="_blank"} or other search engines are a useful way to search and find help with R. Below are two additional websites useful for searching for help with R.
 
--   The developers of R have [useful page where to find help](https://www.r-project.org/help.html).
--   [Rseek](https://rseek.org/) is provided by Sasha Goodman at Stanford university. This engine lets you search several R related sites.
+-   The developers of R have [useful page where to find help](https://www.r-project.org/help.html){target="_blank"}.
+-   [Rseek](https://rseek.org/){target="_blank"} is provided by Sasha Goodman at Stanford university. This engine lets you search several R related sites.
 
 We can also find help without opening a separate browser window or tab. The `?` help operator and `help()` function provide access to the help manuals for R functions, data sets, and other objects. Running a `?` or `help()` command in a code cell opens a side bar with a tab displaying the help documentation.
 
@@ -184,7 +184,7 @@ A fundamental application of statistics is to use data from a subset of a popula
 The main goal of EDA is to develop an understanding of your data. When we ask a question, the question focuses our attention on a specific part of the data set and helps us decide which graphs, models, or transformations to make.
 
 -   EDA can be an intricate process that requires developing some keen investigation skills.
--   [Exploratory Data Analysis with R](https://bookdown.org/rdpeng/exdata/) by Roger Peng is a free textbook to help you dig deeper into EDA if interested!
+-   [Exploratory Data Analysis with R](https://bookdown.org/rdpeng/exdata/){target="_blank"} by Roger Peng is a free textbook to help you dig deeper into EDA if interested!
 -   Our focus this semester will not be on EDA, but at times we will be exploring data in order to uncover our own statistical questions.
 
 ## Analyze and Interpret
@@ -211,8 +211,8 @@ Below is a excerpt from *An Introduction to the Science of Statistics: From Theo
 
 Below are two sources with ethical guidance to help steer our practice of statistics.
 
--   [*Ethical Guidelines for Statistical Practice*](https://www.amstat.org/your-career/ethical-guidelines-for-statistical-practice) by the American Statistical Association (ASA).
--   [*Declaration on Professional Ethics*](https://isi-web.org/declaration-professional-ethics-2010) by the International Statistical Institute.
+-   [*Ethical Guidelines for Statistical Practice*](https://www.amstat.org/your-career/ethical-guidelines-for-statistical-practice){target="_blank"} by the American Statistical Association (ASA).
+-   [*Declaration on Professional Ethics*](https://isi-web.org/declaration-professional-ethics-2010){target="_blank"} by the International Statistical Institute.
 
 ## Question 3
 
