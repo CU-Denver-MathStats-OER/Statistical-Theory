@@ -36,12 +36,12 @@ The intent of introducing R is not to avoid a deep and rigorous understanding of
 
 ---
 
-This [html version](https://aspiegler.github.io/Statistical-Theory/) of the materials is not dynamic. You cannot edit the text or run code with the html version.
+This [html version](https://aspiegler.github.io/Statistical-Theory/){target="_blank"} of the materials is not dynamic. You cannot edit the text or run code with the html version.
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap1/01-Intro-to-Inference.ipynb)<nbsp>
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap1/01-Intro-to-Inference.ipynb){target="_blank"} <nbsp>
 
 - At the top of each notebook is a "button" such as the one above.
-- Click the button to open an interactive Jupyter notebook version initialized to run R code in [Google Colaboratory](https://colab.research.google.com/) (or Colab).
+- Click the button to open an interactive Jupyter notebook version initialized to run R code in [Google Colaboratory](https://colab.research.google.com/){target="_blank"} (or Colab).
 - You can begin working with the notebook right away in Colab! There is no software to install (or purchase!).
 - You can also access the materials directly on GitHub at <https://github.com/CU-Denver-MathStats-OER/Statistical-Theory.git>.
 
@@ -64,15 +64,15 @@ In addition to Jupyter notebooks versions that run in Colab, the original Quarto
 
 No prior experience or knowledge of R, Markdown, LaTeX, or Colaboratory is assumed or required to begin working with these materials. After working with these materials, you will have some knowledge and experience with R, Markdown, LaTeX, and Colaboratory!
 
-- [Welcome to Colaboratory](https://colab.research.google.com/notebooks/intro.ipynb) is a helpful notebook (with videos) to help introduce you to Colab.
-- Here's a helpful [Markdown guide](https://colab.research.google.com/notebooks/markdown_guide.ipynb)
+- [Welcome to Colaboratory](https://colab.research.google.com/notebooks/intro.ipynb){target="_blank"} is a helpful notebook (with videos) to help introduce you to Colab.
+- Here's a helpful [Markdown guide](https://colab.research.google.com/notebooks/markdown_guide.ipynb){target="_blank"}.
 
 
 ### What is R?
 
 ---
 
-[R](https://www.r-project.org/about.html) is a programming language used largely for statistical computing, data wrangling and visualization. We will be using R as a tool for exploring statistical theory.  The first stable version of R was released in 2000, and after all of this time, there is a large community of R users that have already created tons of useful packages and shared interesting data sets that are frequently updated. We will create, modify, and run R code in Jupyter notebooks. **No prior programming experience is required to begin working in R in these materials.**
+[R](https://www.r-project.org/about.html){target="_blank"} is a programming language used largely for statistical computing, data wrangling and visualization. We will be using R as a tool for exploring statistical theory.  The first stable version of R was released in 2000, and after all of this time, there is a large community of R users that have already created tons of useful packages and shared interesting data sets that are frequently updated. We will create, modify, and run R code in Jupyter notebooks. **No prior programming experience is required to begin working in R in these materials.**
 
 The goal of these materials are to investigate statistical theory, not learn how to be an expert R programmer. The hope is that we can use R as a tool for experimenting, gaining a deeper insight, and implementing resampling methods. In the process, hopefully you gain a familiarity with R and coding so it is no longer a barrier to future work! Have I mentioned **no prior programming experience is required to begin working in R in these materials**?
 
@@ -82,9 +82,9 @@ The goal of these materials are to investigate statistical theory, not learn how
 
 ---
 
-[LaTeX](https://www.cmor-faculty.rice.edu/~heinken/latex/symbols.pdf) is a system for rendering nice looking mathematical symbols, expressions, and equations. All of the mathematical notation in these materials are created using LaTeX. You can view and edit all of the LaTeX code in the Markdown cells. You do not need to become an expert in LaTeX, but having a familiarity with LaTeX is quite helpful and LaTeX can be used to typeset math in a number of different applications.
+[LaTeX](https://www.cmor-faculty.rice.edu/~heinken/latex/symbols.pdf){target="_blank"} is a system for rendering nice looking mathematical symbols, expressions, and equations. All of the mathematical notation in these materials are created using LaTeX. You can view and edit all of the LaTeX code in the Markdown cells. You do not need to become an expert in LaTeX, but having a familiarity with LaTeX is quite helpful and LaTeX can be used to typeset math in a number of different applications.
 
-- Here is a useful [dictionary of LaTeX math symbols](https://www.cmor-faculty.rice.edu/~heinken/latex/symbols.pdf) to get a glimpse of LaTeX.
+- Here is a useful [dictionary of LaTeX math symbols](https://www.cmor-faculty.rice.edu/~heinken/latex/symbols.pdf){target="_blank"} to get a glimpse of LaTeX.
 
 
 ## How to Contact Me
@@ -102,9 +102,9 @@ If you have any questions, comments, or suggestions about these materials, pleas
 
 --- 
 
-![Colorado Department of Higher Education](https://cdhe.colorado.gov/sites/highered/files/logo.svg){fig-align="left" width=30% fig-alt="Colorado Department of Higher Education"}<nbsp>
+![Colorado Department of Higher Education](https://cdhe.colorado.gov/sites/highered/files/logo.svg){fig-align="left" width=30% fig-alt="Colorado Department of Higher Education" target="_blank"}<nbsp>
 
-This project was supported by the [Colorado Department of Higher Education (CDHE)](https://cdhe.colorado.gov/) OER Grant Program. A big thank you to Megan Patnott for reviewing the materials and providing many great corrections and suggestions to improve the materials!
+This project was supported by the [Colorado Department of Higher Education (CDHE)](https://cdhe.colorado.gov/){target="_blank"} OER Grant Program. A big thank you to Megan Patnott for reviewing the materials and providing many great corrections and suggestions to improve the materials!
 
 
 
