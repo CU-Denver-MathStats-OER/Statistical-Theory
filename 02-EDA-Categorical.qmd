@@ -15,14 +15,14 @@ output:
 #    ipynbdocument::ipynb_document
 ---
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap1/02-EDA-Categorical.ipynb) <nbsp>
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap1/02-EDA-Categorical.ipynb){target="_blank"} <nbsp>
 
 
 Additional Reading:
 
-- See [Overview of Plotting Data in R](Overview-of-Plots.qmd) for further reading and examples about plotting in R.
-- See [Fundamentals of Working with Data](Intro-to-Vectors-Dataframes.qmd) for more information about data types and structures in R.
-- The [R Graph Gallery](https://r-graph-gallery.com/) has examples of many other types of graphs.
+- See [Overview of Plotting Data in R](Overview-of-Plots.qmd){target="_blank"} for further reading and examples about plotting in R.
+- See [Fundamentals of Working with Data](Intro-to-Vectors-Dataframes.qmd){target="_blank"} for more information about data types and structures in R.
+- The [R Graph Gallery](https://r-graph-gallery.com/){target="_blank"} has examples of many other types of graphs.
 
 
 # An Overview of Exploratory Data Analysis
@@ -44,7 +44,7 @@ The main goal of EDA is to develop an understanding of your data. When we ask a 
 
 The `dplyr` package is perhaps one of the most useful R packages for <span style="color:dodgerblue">**data wrangling**</span> and EDA. Data wrangling is generally the cleaning, reorganizing, and transforming data so it can be more easily analyzed. `dplyr` also contains data sets that we can use to practice our wrangling and visualization skills. In this lab, we will work with the data set called `storms`.
 
-- See [official dplyr documentation](https://dplyr.tidyverse.org/articles/dplyr.html) for a comprehensive tutorial.
+- See [official dplyr documentation](https://dplyr.tidyverse.org/articles/dplyr.html){target="_blank"} for a comprehensive tutorial.
 - **Run the code cell below to load the `dplyr` package.**
 
 ```{r}
@@ -160,7 +160,7 @@ What additional information would you like to know about the `storms` data set t
 
 ---
 
-R has 6 basic [data types](https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Basic-types):
+R has 6 basic [data types](https://cran.r-project.org/doc/manuals/r-release/R-lang.html#Basic-types){target="_blank"}:
 
 1.  <span style="color:dodgerblue">**character**</span>: collections of characters. E.g., `"a"`, `"hello world!"`
 2.  <span style="color:dodgerblue">**double**</span>: decimal numbers. e.g., `1.2`, `1.0`
@@ -588,7 +588,7 @@ What are the the differences in the three plots in the output of the previous co
 ---
 
 
-The data set `gss_cat` can be accessed from the `forcats` package. Below is a quote taken from the website of the [GSS Data Explorer website](https://gssdataexplorer.norc.org/about) maintained by NORC at the University of Chicago
+The data set `gss_cat` can be accessed from the `forcats` package. Below is a quote taken from the website of the [GSS Data Explorer website](https://gssdataexplorer.norc.org/about){target="_blank"} maintained by NORC at the University of Chicago
 
 >The General Social Survey (GSS) is a project of NORC at the University of Chicago, with principal funding from the National Science Foundation. Since 1972, the GSS has been monitoring societal change and studying the growing complexity of American society.
 
