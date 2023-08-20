@@ -15,7 +15,7 @@ output:
 #    ipynbdocument::ipynb_document
 ---
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap2/07-Common-Discrete-RandVar.ipynb) <nbsp>
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap2/07-Common-Discrete-RandVar.ipynb){target="_blank"} <nbsp>
 
 # 2.4: Common Discrete Distributions
 
@@ -43,7 +43,7 @@ A random sample of 12 adults cannot be a perfect representative of the populatio
 
 ---
 
-The federal judicial branch in the United States decides the constitutionality of federal laws and resolves disputes about federal laws. The federal court system is divided into 94 district courts. The US District Court in the District of Colorado randomly selects jurors from voter registration lists, driver license records, and state-issued adult identification records, by a computerized method. Below is an explanation of how juries are chosen in the District of Colorado. See [The District of Colorado Juror Information](http://www.cod.uscourts.gov/JurorInformation/HowJurorsAreSelected.aspx) for full details.
+The federal judicial branch in the United States decides the constitutionality of federal laws and resolves disputes about federal laws. The federal court system is divided into 94 district courts. The US District Court in the District of Colorado randomly selects jurors from voter registration lists, driver license records, and state-issued adult identification records, by a computerized method. Below is an explanation of how juries are chosen in the District of Colorado. See [The District of Colorado Juror Information](http://www.cod.uscourts.gov/JurorInformation/HowJurorsAreSelected.aspx){target="_blank"} for full details.
 
 
 > "This selection process creates the court’s 'Master Jury Wheel'. (This term originated in the days when names were placed into a large barrel-type wheel and turned around to mix them up. Today, computers are used to select names randomly.) From the 'Master Jury Wheel', jurors are randomly selected for a one month term of service or occasionally longer depending on the court's jury needs."
@@ -126,27 +126,9 @@ Thus, the number of combinations of $k$ items out of a set of $n$, denoted $_nC_
 
 $$\color{dodgerblue}{\begin{pmatrix} n \\ k \end{pmatrix} = \frac{n!}{k! (n-k)!}.}$$
 
-### Why Divide By $k!$?
-
----
-
-Where does $k!$ possible ways of permuting the order come from?
-
--   The <span style="color:dodgerblue">**symmetric group**</span> $\color{dodgerblue}{S_k}$ on $k$ items consists of all the possible ways of permuting the order of the $k$ items.
--   Each element corresponds to a permutation applied to the group of k items.
-- For example $S_3$ is the symmetric group on three items.
-    -   The identify element is $(1,2,3)$ which does not change the ordering of items $1, 2, 3$.
-    -   The element $(1, \color{tomato}{3}, \color{tomato}{2})$ is the transpose of items 2 and 3.
-    -   The element $(3, 1, 2)$ is a composition of two transpositions:
-      - First transpose items 1 and 2, that is element $(\color{tomato}{2}, \color{tomato}{1}, 3)$.
-      - Then transpose items 1 and 3 to get $(\color{tomato}{3}, 1, \color{tomato}{2})$.
--   The number of elements in the group is called the <span style="color:dodgerblue">**order of the group**</span> and denoted $\color{dodgerblue}{|S_k|}$.
--   For example, $S_3$ has $|S_3|=6=3!$ elements that can be represented as 
-
-$$(1,2,3), (1,3,2), (2, 1, 3), (2, 3, 1), (3, 2, 1), \mbox{ and } (3, 1, 2).$$
-
-- In fact, for any symmetric group we have $\color{dodgerblue}{|S_k|=k!}$.
-- <span style="color:dodgerblue">**Thus, there are $k!$ ways of permutating the order of $k$ items.**</span>
+::: {.callout-note}
+See the [Appendix: Why Divide By $k!$](#sec-append-why) if you are curious why we divide by $k!$ when we do not care about the order that the items are selected.
+:::
 
 
 
@@ -157,8 +139,9 @@ $$(1,2,3), (1,3,2), (2, 1, 3), (2, 3, 1), (3, 2, 1), \mbox{ and } (3, 1, 2).$$
 
 Use R to calculate the total number of outcomes in the event: Exactly 2 out of 5 jurors are independent voters.
 
--   Hint: The function `factorial(x)` calculates $x!$ for a non-negative integer $x$.
-
+::: {.callout-tip}
+The function `factorial(x)` calculates $x!$ for a non-negative integer $x$.
+:::
 
 ### Solution to Question 2
 
@@ -173,7 +156,9 @@ Use R to calculate the total number of outcomes in the event: Exactly 2 out of 5
 <br>  
 
 
-- An Even Better Hint: The function `choose(n, k)` calculates $\begin{pmatrix} n \\ k \end{pmatrix}$ for non-negative integers $n$ and $k$.
+::: {.callout-tip}
+An Even Better Tip: The function `choose(n, k)` calculates $\begin{pmatrix} n \\ k \end{pmatrix}$ for non-negative integers $n$ and $k$.
+:::
 
 
 ```{r}
@@ -203,7 +188,7 @@ We map each outcome to an integer $X$, and then we can compute values of the cor
 
 ---
 
-According to a recent article ["Why Independent Voters Are Key To Winning Colorado", PBS News. Oct 3, 2020](https://www.pbs.org/newshour/show/why-independent-voters-are-key-to-winning-colorado), approximately 42% of Colorado's voters identify as independent.
+According to a recent article ["Why Independent Voters Are Key To Winning Colorado", PBS News. Oct 3, 2020](https://www.pbs.org/newshour/show/why-independent-voters-are-key-to-winning-colorado){target="_blank"}, approximately 42% of Colorado's voters identify as independent.
 
 
 In solving [Question 2], there is a general pattern we can model to compute the probability of choose exactly $x$ jurors that identify as an independent voters in a jury of 5 people. In this question, we generalize the pattern to answer questions about a jury of 12 people.
@@ -399,20 +384,10 @@ $$f(x) = \left\{ \begin{array}{ll}
 0 & \mbox{otherwise} 
 \end{array} \right. $$
 
-#### Optional LaTeX Notes: Typsetting Arrays
 
----
-
--   The `array` environment is started with `\begin{array}`.
--   Next we indicate how many columns and how each column is aligned.
-    -   `{ll}` means two columns aligned to the left.
-    -   `{lrc}` would be three columns: the first aligned left, then right, then the last column is centered.
-    -   We use the `&` symbol to indicate a column break.
-    -   We use `\\` to indicate a row break.
--   If we want a big curly brace on the left of the array, enter `\left\{` before beginning the array.
--   We do not want a brace on the other side of the array, so we use `\right.` to close off the left brace without using any matching symbol on the right.
--   We use `\mbox{otherwise}` to type the text *otherwise* inside the equation.
-
+::: {.callout-note}
+See [Appendix: Typsetting Arrays in LaTeX](#sec-append-latex) for more information on how to typeset formulas such as the piecewise function above using LaTeX.
+:::
 
 ## Expected Value and Variance of Binomial Distributions
 
@@ -570,8 +545,11 @@ What is the expected value of rolling a fair-six sided die?
 
 ---
 
-What is the expected value of rolling a fair die with sides $1, 2, 3, \ldots , k$? *Hint: Recall the sum of the first $k$ integers is $\displaystyle \sum_{n=1}^k n = \frac{k(k+1)}{2}$*.
+What is the expected value of rolling a fair die with sides $1, 2, 3, \ldots , k$? 
 
+::: {.callout-tip}
+Recall the sum of the first $k$ integers is $\displaystyle \sum_{n=1}^k n = \frac{k(k+1)}{2}$.
+:::
 
 
 #### Solution to Question 6c
@@ -586,7 +564,7 @@ What is the expected value of rolling a fair die with sides $1, 2, 3, \ldots , k
 
 
 ::: {.callout-note}
-See [Appendix: Summary of Common Discrete Random Variables] for a summary of key formulas, graphs, shortcuts, and R functions for working with a Discrete Uniform Distribution.
+See [Appendix: The Discrete Uniform Distribution](#sec-append-unif) for a summary of key formulas, graphs, shortcuts, and R functions for working with a Discrete Uniform Distribution.
 :::
 
 # The Geometric Distribution
@@ -598,7 +576,7 @@ If we repeat a Bernoulli trial that has probability of success $p$ for each tria
 $$f(x) = q^xp \quad \mbox{for } x = 0, 1, 2, \ldots .$$
 
 ::: {.callout-note}
-See [Appendix: Summary of Common Discrete Random Variables] for a summary of key formulas, graphs, shortcuts, and R functions for working with a Geometric Distribution.
+See [Appendix: The Geometric Distribution](#sec-append-geom) for a summary of key formulas, graphs, shortcuts, and R functions for working with a Geometric Distribution.
 :::
 
 
@@ -610,7 +588,7 @@ See [Appendix: Summary of Common Discrete Random Variables] for a summary of key
 The <span style="color:dodgerblue">**Poisson distribution**</span> applies when the average frequency of occurrences in a given time period is known to be $\lambda$, and each occurrence is independent of the others. Let $X$ denote <span style="color:dodgerblue">the number of times an event occurs in the given time period</span>, then we have $\color{dodgerblue}{X \sim \mbox{Pois}(\lambda)}$.
 
 ::: {.callout-note}
-See [Appendix: Summary of Common Discrete Random Variables] for a summary of key formulas, graphs, shortcuts, and R functions for working with a Poisson Distribution.
+See [Appendix: The Poisson Distribution](#sec-append-pois) for a summary of key formulas, graphs, shortcuts, and R functions for working with a Poisson Distribution.
 :::
 
 
@@ -624,7 +602,8 @@ For each situation, identify which distribution best describes the distribution 
 
 ---
 
-A sports marketer for the Denver Nuggets randomly calls people in the Denver area until she encounters someone who attended a Nuggets' game. What is the probability that the marketer calls $7$ people who did not attend a game before the first "success" on their eighth call. Suppose we know that 10% of the population attended a Nuggets game last season?
+A sports marketer for the Denver Nuggets randomly calls people in the Denver area until they encounter someone who attended a Nuggets game last season. Suppose we know that 10% of the population attended a Nuggets game last season, and we consider a call to a person who did attend a game last season as a success. What is the probability that the marketer has their first success on their eighth call?
+
 
 
 ### Solution to Question 7
@@ -718,7 +697,7 @@ It is known that 3% of airbags manufactured by a certain car company are defecti
 <br>  
 
 
-# Appendix: Summary of Common Discrete Random Variables {#sec-append}
+# Appendix A: Summary of Common Discrete Random Variables {#sec-append}
 
 ---
 
@@ -838,7 +817,7 @@ $$f(x; \lambda) = \left\{ \begin{array}{ll}  e^{-\lambda} \dfrac{\lambda^x}{x!} 
 - The variance is $\mbox{Var} (X) = \sigma_X^2 =  \lambda$.
 - Use `dpois(x, lambda)` to calculate $p(x) = P(X = x)$.
 - Use `ppois(x, lambda)` to calculate $F(x) = P(X \leq x)$.
-- Use `rpoi(m, lambda)` to generate a random sample of size $m$ from population $X \sim \mbox{Pois}(\lambda)$.
+- Use `rpois(m, lambda)` to generate a random sample of size $m$ from population $X \sim \mbox{Pois}(\lambda)$.
 - Use `qpois(q, lambda)` to find the q^th^ percentile of $X \sim \mbox{Pois}(\lambda)$.
 
 ```{r}
@@ -857,6 +836,48 @@ plot(x, ppois(x, lam),
      type='s',  # stairs plot
      main='CDF') 
 ```
+
+
+# Appendix B: Additional Notes {#sec-append-b}
+
+---
+
+
+## Why Divide By $k!$? {#sec-append-why}
+
+---
+
+Where does $k!$ possible ways of permuting the order come from?
+
+-   The <span style="color:dodgerblue">**symmetric group**</span> $\color{dodgerblue}{S_k}$ on $k$ items consists of all the possible ways of permuting the order of the $k$ items.
+-   Each element corresponds to a permutation applied to the group of $k$ items.
+- For example $S_3$ is the symmetric group on three items.
+    -   The identity element is $(1,2,3)$ which does not change the ordering of items $1, 2, 3$.
+    -   The element $(1, \color{tomato}{3}, \color{tomato}{2})$ is the transpose of items 2 and 3.
+    -   The element $(3, 1, 2)$ is a composition of two transpositions:
+      - First transpose items 1 and 2, that is element $(\color{tomato}{2}, \color{tomato}{1}, 3)$.
+      - Then transpose items 1 and 3 to get $(\color{tomato}{3}, 1, \color{tomato}{2})$.
+-   The number of elements in the group is called the <span style="color:dodgerblue">**order of the group**</span> and denoted $\color{dodgerblue}{|S_k|}$.
+-   For example, $S_3$ has $|S_3|=6=3!$ elements that can be represented as 
+
+$$(1,2,3), (1,3,2), (2, 1, 3), (2, 3, 1), (3, 2, 1), \mbox{ and } (3, 1, 2).$$
+
+- In fact, for any symmetric group we have $\color{dodgerblue}{|S_k|=k!}$.
+- <span style="color:dodgerblue">**Thus, there are $k!$ ways of permutating the order of $k$ items.**</span>
+
+## Typsetting Arrays in LaTeX {#sec-append-latex}
+
+---
+
+-   The `array` environment is started with `\begin{array}`.
+-   Next we indicate how many columns and how each column is aligned.
+    -   `{ll}` means two columns aligned to the left.
+    -   `{lrc}` would be three columns: the first aligned left, then right, then the last column is centered.
+    -   We use the `&` symbol to indicate a column break.
+    -   We use `\\` to indicate a row break.
+-   If we want a big curly brace on the left of the array, enter `\left\{` before beginning the array.
+-   We do not want a brace on the other side of the array, so we use `\right.` to close off the left brace without using any matching symbol on the right.
+-   We use `\mbox{otherwise}` to type the text *otherwise* inside the equation.
 
 
 

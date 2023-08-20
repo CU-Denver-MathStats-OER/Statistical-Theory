@@ -15,7 +15,7 @@ output:
 #    ipynbdocument::ipynb_document
 ---
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap2/06-Expected-Value-and-Variance.ipynb) <nbsp>
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap2/06-Expected-Value-and-Variance.ipynb){target="_blank"} <nbsp>
 
 ```{r}
 #| echo: false
@@ -26,7 +26,7 @@ output:
 #Lets make one grand prize ticket worth 10,000. 3/4 win 0, 249/1000 win 10 and 1/1000 win 10,000
 ```
 
-Additional Reference: See [Introduction to Random Variables](05-Intro-to-Random-Variables.qmd) where we discovered some important properties for a random variable $X$ that are summarized in the [Appendix: Properties of Random Variables].
+**Additional Reference**: See [Introduction to Random Variables](05-Intro-to-Random-Variables.qmd){target="_blank"} where we discovered some important properties for a random variable $X$ that are summarized in the [Appendix](#sec-append).
 
 
 # How Much is the Raffle Ticket Worth?
@@ -75,8 +75,8 @@ Fill in the values of $x$ and $p(x)$ in the table below.
 | $p(x)$ | ??  | ??  | ??  | ??  |
 
 
-\
-\
+<br>  
+<br>  
 
 
 ### Question 1b
@@ -91,16 +91,17 @@ If somebody offered to buy a raffle ticket from you, what do you think fair valu
 ---
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 ### Question 1c
 
 ---
 
-Consider another ticket raffle. There 1,000 tickets with the following payouts:
+Consider another ticket raffle. There are 1,000 tickets with the following payouts:
 
 - 500 randomly selected tickets will win a grand prize of \$15.
 - The other 500 tickets do not win a prize.
@@ -115,9 +116,10 @@ Somebody offers one free ticket to either raffle $X$ or raffle $Y$ (but not both
 ---
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 
@@ -163,7 +165,7 @@ $$ \mbox{SD}(X) = \sigma_X  =  \sqrt{\mbox{Var}(X)}. $$
 
 ---
 
-Using [Properties of Discrete Random Variables], show that for any discrete random variable $X$ with pmf $p(X)$ and expected value $E(X) = \mu$, we have
+Using [properties of discrete random variables](#sec-propdis), show that for any discrete random variable $X$ with pmf $p(X)$ and expected value $E(X) = \mu$, we have
 
 $$\mbox{Var}(X) = E(X^2)  - \mu^2.$$
 
@@ -192,8 +194,9 @@ $$\begin{array}{rcll}
 
 Therefore, we see that $\mbox{Var}(X) = E(X^2)  - \mu^2$.
 
-\
-\
+<br>  
+<br>  
+
 
 
 ## Question 3
@@ -202,7 +205,6 @@ Therefore, we see that $\mbox{Var}(X) = E(X^2)  - \mu^2$.
 
 Let $X$ and $Y$ denote the raffle ticket random variables from [Question 1].
 
-Calculate $E(X)$ and $\mbox{Var}(X)$.
 
 ### Question 3a
 
@@ -215,9 +217,10 @@ Calculate $E(X)$ and $\mbox{Var}(X)$.
 ---
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 ### Question 3b
@@ -232,9 +235,10 @@ Calculate $E(Y)$ and $\mbox{Var}(Y)$.
 ---
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 # Mean, Median, and Variance of Continuous Random Variables
@@ -280,8 +284,9 @@ On a separate piece of paper, sketch a graph of the pdf, $f_X$.
 Sketch a graph on a separate piece of paper.
 
 
-\
-\
+<br>  
+<br>  
+
 
 
 ### Question 4b
@@ -303,15 +308,15 @@ $$F_X(x) = \left\{ \begin{array}{ll}
 \end{array} \right.$$
 
 
-\
+<br>
 
 
 
 Sketch a graph on a separate piece of paper.
 
 
-\
-\
+<br>  
+<br>
 
 
 
@@ -319,48 +324,51 @@ Sketch a graph on a separate piece of paper.
 
 ---
 
-Calculate $P(X < 1)$ and illustrate this value on each of your graphs in the solutions to [Question 1a] and [Question 1b].
+Calculate $P(X < 1)$ and illustrate this value on each of your graphs in the solutions to [Question 4a] and [Question 4b].
 
 #### Solution to Question 4c
 
 ---
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 ### Question 4d
 
 ---
 
-Calculate $E(X)$ and illustrate this on your graph in the solution to [Question 1a].
+Calculate $E(X)$ and illustrate this on your graph in the solution to [Question 4a].
 
 #### Solution to Question 4d
 
 ---
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 ### Question 4e
 
 ---
 
-Give the median value and illustrate this value on both of your graphs in the solutions to [Question 1a] and [Question 1b].
+Give the median value and illustrate this value on both of your graphs in the solutions to [Question 4a] and [Question 4b].
 
 #### Solution to Question 4e
 
 ---
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 
@@ -376,9 +384,10 @@ Compute $\mbox{Var}(X)$.
 ---
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 
@@ -401,9 +410,9 @@ Do you believe random variables $X$ and $Y$ are independent random variables? Ex
 ---
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
 
 
 ### Question 5b
@@ -418,9 +427,10 @@ If you purchase 3 raffle tickets from raffle $X$ and 2 raffle tickets from raffl
 ---
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 ### Question 5c
@@ -436,9 +446,10 @@ If you purchase 3 raffle tickets from raffle $X$ and 2 raffle tickets from raffl
 
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 # Properties of Expected Value {#sec-prop-exp}
@@ -463,7 +474,7 @@ Let $X$ and $Y$ denote a random variables, and let $a$ and $b$ denote constants.
 
 ---
 
-The data set *spotify-hits.csv*^[Downloaded from [Kaggle](https://www.kaggle.com/datasets/paradisejoy/top-hits-spotify-from-20002019) May 4, 2023] is stored online and contains audio statistics of the top 2000 tracks on Spotify from 2000-2019. The data is stored in a <span style="color:dodgerblue">**comma separated file (csv)**</span>. 
+The data set *spotify-hits.csv*^[Downloaded from [Kaggle](https://www.kaggle.com/datasets/paradisejoy/top-hits-spotify-from-20002019){target="_blank"} May 4, 2023] is stored online and contains audio statistics of the top 2000 tracks on Spotify from 2000-2019. The data is stored in a <span style="color:dodgerblue">**comma separated file (csv)**</span>. 
 
 - We can use the function `read.csv()` to import the csv file into an R data frame we call `hits`.
 
@@ -507,9 +518,10 @@ Do you believe $X$ and $Y$ are independent random variables? Explain why or why 
 ---
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 ### Question 6b
@@ -526,19 +538,20 @@ Use R to compute $E(X)$, $E(Y)$, and $E(Z)$. Check whether or not the property $
 ---
 
 ```{r}
-# use code cell to compare variances
 x <- hits$energy  # random variable x
 y <- hits$acousticness  # random variable y
 z <- (3*x + 2*y) / 5  # random variable z
+```
 
+```{r}
+# use code cell to compare expected values
 
 ```
 
 
-\
-\
-\
-
+<br>  
+<br>  
+<br>  
 
 ### Question 6c
 
@@ -559,9 +572,9 @@ Use R to compute $\mbox{Var}(X)$, $\mbox{Var}(Y)$, and $\mbox{Var}(Z)$. Check wh
 ```
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
 
 
 ### Question 6d
@@ -582,19 +595,19 @@ For any two random variables $X$ and $Y$ and constants $a$ and $b$:
 
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
 
 
-# Appendix: Properties of Random Variables
+# Appendix: Properties of Random Variables {#sec-append}
 
 ---
 
-In [Introduction to Random Variables](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap2/05-Intro-to-Random-Variables.ipynb) we discovered the following properties for a random variable $X$.
+In [Introduction to Random Variables](05-Intro-to-Random-Variables.qmd){target="_blank"} we discovered the following properties for a random variable $X$.
 
 
-## Properties of Discrete Random Variables
+## Properties of Discrete Random Variables {#sec-propdis}
 
 ---
 
@@ -612,7 +625,7 @@ For a **discrete** random variable $X$, let $p(x)$ and $F(x)$ denote the pmf and
 
 -   $F(x)$ is nondecreasing.
 
-## Properties of Continuous Random Variables
+## Properties of Continuous Random Variables {#sec-propcont}
 
 ---
 
