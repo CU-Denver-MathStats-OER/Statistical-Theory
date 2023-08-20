@@ -15,7 +15,7 @@ output:
 #    ipynbdocument::ipynb_document
 ---
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap2/05-Intro-to-Random-Variables.ipynb) <nbsp>
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap2/05-Intro-to-Random-Variables.ipynb){target="_blank"} <nbsp>
 
 # Randomness in a Music Playlist
 
@@ -26,9 +26,7 @@ output:
 
 ---
 
-The data set *spotify-hits.csv*^[Downloaded from [Kaggle](https://www.kaggle.com/datasets/paradisejoy/top-hits-spotify-from-20002019) May 4, 2023] is stored online and contains audio statistics of the top 2000 tracks on Spotify from 2000-2019. The data is stored in a <span style="color:dodgerblue">**comma separated file (csv)**</span>. 
-
-- We can use the function `read.csv()` to import the csv file into an R data frame we call `hits`.
+The data set *spotify-hits.csv*^[Downloaded from [Kaggle](https://www.kaggle.com/datasets/paradisejoy/top-hits-spotify-from-20002019){target="_blank"} May 4, 2023] is stored online and contains audio statistics of the top 2000 tracks on Spotify from 2000-2019. The data is stored in a <span style="color:dodgerblue">**comma separated file (csv)**</span>. We can use the function `read.csv()` to import the csv file into an R data frame we call `hits`.
 
 ```{r}
 #| eval: true
@@ -74,10 +72,9 @@ Explore the data set `hits`. For example:
 ---
 
 
-\ 
-\ 
-\ 
-
+<br>  
+<br>  
+<br>  
 
 ## Creating a Random Playlist
 
@@ -168,9 +165,10 @@ You can use an R code cell to help with the calculation.
 ---
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 # Distributions for Discrete Random Variables
@@ -214,9 +212,10 @@ Interpret the practical meaning of $p(3) = 0.0606$ and $F(3) = 0.9914$.
 ---
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 ## Question 4
@@ -230,9 +229,10 @@ What is the probability of picking a playlist with at least 3 pop songs?
 ---
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 ### Plotting Distribution Functions
@@ -246,8 +246,16 @@ p <- 0.241  # prob of success in a trial
 x <- 0:n  # vector from 0 to n=3
 
 par(mfrow=c(1, 2))
-plot(x, dbinom(x, size = n, prob = p), main = "Graph of pmf", xlab = "Number of Pop Songs", ylab = "p(x)")
-plot(x, pbinom(x, size = n, prob = p), type="s", main = "Graph of cdf", xlab = "Number of Pop Songs", ylab = "F(x)")
+plot(x, dbinom(x, size = n, prob = p), 
+     main = "Graph of pmf", 
+     xlab = "Number of Pop Songs", 
+     ylab = "p(x)")
+
+plot(x, pbinom(x, size = n, prob = p), 
+     type="s", 
+     main = "Graph of cdf", 
+     xlab = "Number of Pop Songs", 
+     ylab = "F(x)")
 par(mfrow=c(1, 1))
 ```
 
@@ -256,7 +264,7 @@ par(mfrow=c(1, 1))
 
 ---
 
-Let $X$ is a discrete random variable with pmf and cdf denoted $p(x)$ and $F(x)$, respectively. Determine if each statement is True or False.
+Let $X$  a discrete random variable with pmf and cdf denoted $p(x)$ and $F(x)$, respectively. Determine if each statement is True or False.
 
 a.  $0 \leq p(x) \leq 1$ for all $x$.
 b.  $0 \leq F(x) \leq 1$ for all $x$.
@@ -274,9 +282,10 @@ h.  The cdf must be a nondecreasing function.
 List the properties (a)-(h) that are indeed TRUE.
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 
@@ -284,7 +293,7 @@ List the properties (a)-(h) that are indeed TRUE.
 
 ---
 
-Discrete random variables map outcomes in the sample space to integers. In many situations we would like to consider mapping outcomes to a continuous interval of values, not just integers. For example, what is probability that randomly selected song has a tempo less than 82 beats per minute (BPM)?
+Discrete random variables map outcomes in the sample space to integers. In many situations we would like to consider mapping outcomes to a continuous interval of values, not just integers. For example, what is the probability that randomly selected song has a tempo less than 82 beats per minute (BPM)?
 
 - The sample space $\Omega$ consists of the set of all songs in `hits`.
 - $X: \Omega \to \mathbb{R}$  where we map each selected song to its tempo (in BPM).
@@ -297,7 +306,7 @@ Using modern technology such as music sequencers tempo has become a very precise
 summary(hits$tempo)
 ```
 
-- From the summary above, we see tempo is continuous measurement (it has decimal values) from a minimum of $60.02$ BPM to a maximum $210.85$ BPM.
+- From the summary above, we see tempo is a continuous measurement (it has decimal values) from a minimum of $60.02$ BPM to a maximum $210.85$ BPM.
 
 
 ## Question 6
@@ -336,9 +345,10 @@ axis(2, at = seq(0, 650, 50))  # set custom ticks on y-axis
 ---
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 ## Relative Frequency Histograms
@@ -384,9 +394,10 @@ axis(2, at = seq(0, 0.025, 0.005))  # set custom ticks on y-axis
 ---
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 ## Density Plots
@@ -398,11 +409,11 @@ A <span style="color:dodgerblue">**density plot**</span> can informally be consi
 
 1.  First convert the values of a quantitative variable to densities with the `density()` function.
 
--   For more information, see [density help documentation](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/density).
+-   For more information, see [density help documentation](https://www.rdocumentation.org/packages/stats/versions/3.6.2/topics/density){target="_blank"}.
 
 2.  Use the `plot()` function to plot the densities.
 
--   For more advanced density plots see <https://r-graph-gallery.com/density-plot.html>.
+-   For more advanced density plots see [https://r-graph-gallery.com/density-plot.html](https://r-graph-gallery.com/density-plot.html){target="_blank"}.
 
 
 ```{r}
@@ -422,7 +433,7 @@ If we want to use a density plot compute $P(X < 85)$, the probability that a ran
 
 - <span style="color:dodgerblue">**We approximate the AREA below the density curve over the interval from 0 to 85 BPM.**</span>
 -   If we have a theoretical model $f(x)$ for the density, <span style="color:dodgerblue">**we can use definite integrals to compute these proportions!**</span>
-- Run the cod cell below to sketch an area corresponding to $P(X<85)$. There is nothing to edit in the code cell.
+- Run the code cell below to sketch an area corresponding to $P(X<85)$. There is nothing to edit in the code cell.
 
 ```{r}
 #| eval: true
@@ -500,9 +511,10 @@ The figure below contains 8 plots of either a probability density function or a 
 
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 
@@ -532,9 +544,9 @@ h.  The cdf must be a nondecreasing function.
 List the properties (a)-(h) that are indeed TRUE.
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
 
 
 ## Question 10
@@ -561,9 +573,10 @@ Compute the probability that a Lithium-ion battery lasts more than 2 years.
 ---
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 ### Question 10b
@@ -578,9 +591,9 @@ Interpret the meaning of $P(X \leq 3)$ and $P(X < 3)$.
 ---
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
 
 
 ---

@@ -15,7 +15,7 @@ output:
 #    ipynbdocument::ipynb_document
 ---
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap2/09-Joint-Distributions.ipynb) <nbsp>
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap2/09-Joint-Distributions.ipynb){target="_blank"} <nbsp>
 
 # Situations with Multiple Random Variables
 
@@ -295,10 +295,10 @@ Explain how you determined your answer, and then interpret the practical signifi
 Let $X$ and $Y$ be two random variables with joint pdf $f(x,y)$.
 If $\color{dodgerblue}{Z=h(X,Y)}$, then
 
-$$E( \color{dodgerblue}{Z} ) = E( {\color{dodgerblue}{h(X,Y)}} ) = \left\{ \begin{array}{ll}
-\displaystyle \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \color{dodgerblue}{h(x,y)}\cdot f(x,y) \, dx \, dy , & \mbox{if X and Y are continuous} \\
+$$E( {\color{dodgerblue}{Z}} ) = E( {\color{dodgerblue}{h(X,Y)}} ) = \left\{ \begin{array}{ll}
+\displaystyle \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} {\color{dodgerblue}{h(x,y)}} \cdot f(x,y) \, dx \, dy , & \mbox{if X and Y are continuous} \\
  & \\
-\displaystyle \sum_y \sum_x \color{dodgerblue}{h(x,y)} \cdot f(x,y) , &  \mbox{if X and Y are discrete} \end{array} \right. .$$
+\displaystyle \sum_y \sum_x {\color{dodgerblue}{h(x,y)}} \cdot f(x,y) , &  \mbox{if X and Y are discrete} \end{array} \right. .$$
 
 This is often referred to as the <span style="color:dodgerblue">*Law of the Unconscious Statistician*</span> since we do not need to know the distribution $f_Z(z)$ in order to compute $E(Z)$.
 
@@ -348,12 +348,12 @@ Then we have
 
 $$\begin{aligned}
 E(aX+bY) &= \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} (ax+by)f(x,y) \, dx \, dy  & \mbox{Law of the Unconscious Statistician} \\
-&= \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \color{dodgerblue}{axf(x,y)} \, dx \, dy  + \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} \color{dodgerblue}{byf(x,y)} \, dx \, dy & \mbox{Explain step 1} \\
-&= \color{dodgerblue}{a} \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} xf(x,y) \, dx \, dy  + \color{dodgerblue}{b} \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} yf(x,y) \, dx \, dy & \mbox{Explain step 2} \\
-&= a \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} xf(x,y) \, \color{dodgerblue}{dy \, dx}  + b \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} yf(x,y) \, dx \, dy & \mbox{Explain step 3} \\
-&= a \int_{-\infty}^{\infty} \color{dodgerblue}{x} \left( \int_{-\infty}^{\infty} f(x,y) \, dy \right) \, dx  + b \int_{-\infty}^{\infty} \color{dodgerblue}{y} \left( \int_{-\infty}^{\infty} f(x,y) \, dx \right) \, dy & \mbox{Explain step 4} \\
-&= a \int_{-\infty}^{\infty} x \color{dodgerblue}{f_X(x)} \, dx  + b \int_{-\infty}^{\infty} y\color{dodgerblue}{f_Y(y)} \, dy & \mbox{Explain step 5} \\
-&= a \color{dodgerblue}{E(X)}  + b \color{dodgerblue}{E(Y)} & \mbox{Explain step 6} \\
+&= \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} {\color{dodgerblue}{axf(x,y)}} \, dx \, dy  + \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} {\color{dodgerblue}{byf(x,y)}} \, dx \, dy & \mbox{Explain step 1} \\
+&= {\color{dodgerblue}{a}} \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} xf(x,y) \, dx \, dy  + {\color{dodgerblue}{b}} \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} yf(x,y) \, dx \, dy & \mbox{Explain step 2} \\
+&= a \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} xf(x,y) \, {\color{dodgerblue}{dy \, dx}}  + b \int_{-\infty}^{\infty} \int_{-\infty}^{\infty} yf(x,y) \, dx \, dy & \mbox{Explain step 3} \\
+&= a \int_{-\infty}^{\infty} {\color{dodgerblue}{x}} \left( \int_{-\infty}^{\infty} f(x,y) \, dy \right) \, dx  + b \int_{-\infty}^{\infty} {\color{dodgerblue}{y}} \left( \int_{-\infty}^{\infty} f(x,y) \, dx \right) \, dy & \mbox{Explain step 4} \\
+&= a \int_{-\infty}^{\infty} x {\color{dodgerblue}{f_X(x)}} \, dx  + b \int_{-\infty}^{\infty} y {\color{dodgerblue}{f_Y(y)}} \, dy & \mbox{Explain step 5} \\
+&= a {\color{dodgerblue}{E(X)}}  + b {\color{dodgerblue}{E(Y)}} & \mbox{Explain step 6} \\
 \end{aligned}$$
 
 #### Explanation of Steps of Proof:
@@ -401,24 +401,24 @@ Let $X$ and $Y$ be two independent random variables. Prove $\mbox{Var}(aX+bY)=a^
 
 Let $X$ and $Y$ be two continuous, independent random variables. Then using the property $\mbox{Var}(X) = E(X^2) - \big( E(X) \big)^2$, we have
 
-$$\mbox{Var}(aX+bY) = E \left( \color{tomato}{??} \right) - \left( \color{tomato}{??} \right)^2.$$
+$$\mbox{Var}(aX+bY) = E \left( {\color{tomato}{??}} \right) - \left( {\color{tomato}{??}} \right)^2.$$
 
 Using the previous result, we have
 
-$$\left( E(aX+bY) \right)^2 = \color{tomato}{??}$$ 
+$$\left( E(aX+bY) \right)^2 = {\color{tomato}{??}}$$ 
 
 Next we simplify $E \left( (aX+bY)^2 \right)$ as follows
 
-$$E \left( (aX+bY)^2 \right) =\color{tomato}{??}$$
+$$E \left( (aX+bY)^2 \right) = {\color{tomato}{??}}$$
 
 Since $X$ and $Y$ are independent, we can apply the property that $\color{mediumseagreen}{E(XY) = E(X) E(Y)}$. This gives
 
 $$\begin{aligned}
 \mbox{Var}(aX+bY) &= E \left( (aX+bY)^2 \right) - \left( E(aX+bY) \right)^2\\
-&= \left( \color{dodgerblue}{a^2 E(X^2)} + \color{mediumseagreen}{ab E(X)E(Y)} + \color{tomato}{b^2 E(Y^2)} \right) - \left( \color{dodgerblue}{a^2 \big( E(X) \big)^2} + \color{mediumseagreen}{abE(X)E(Y)} + \color{tomato}{b^2 \big( E(Y) \big)^2} \right) \\
-&= \color{dodgerblue}{\left( a^2 E(X^2) - a^2 \big( E(X) \big)^2 \right)} + \color{tomato}{\left( b^2 E(Y^2) - b^2 \big( E(Y) \big)^2 \right)}\\
-&=  a^2 \color{dodgerblue}{\left(E(X^2) - \big( E(X) \big)^2 \right)} + b^2 \color{tomato}{\left(  E(Y^2) - \big( E(Y) \big)^2 \right)}\\
-&= a^2 \color{dodgerblue}{\mbox{Var}(X)} + b^2 \color{tomato}{\mbox{Var}(Y)} 
+&= \left( {\color{dodgerblue}{a^2 E(X^2)}} + {\color{mediumseagreen}{ab E(X)E(Y)}} + {\color{tomato}{b^2 E(Y^2)}} \right) - \left( {\color{dodgerblue}{a^2 \big( E(X) \big)^2}} + {\color{mediumseagreen}{abE(X)E(Y)}} + {\color{tomato}{b^2 \big( E(Y) \big)^2}} \right) \\
+&= {\color{dodgerblue}{\left( a^2 E(X^2) - a^2 \big( E(X) \big)^2 \right)}} + {\color{tomato}{\left( b^2 E(Y^2) - b^2 \big( E(Y) \big)^2 \right)}}\\
+&=  a^2 {\color{dodgerblue}{\left(E(X^2) - \big( E(X) \big)^2 \right)}} + b^2 {\color{tomato}{\left(  E(Y^2) - \big( E(Y) \big)^2 \right)}}\\
+&= a^2 {\color{dodgerblue}{\mbox{Var}(X)}} + b^2 {\color{tomato}{\mbox{Var}(Y)}} 
 \end{aligned}$$
 
 :::{.callout-note}

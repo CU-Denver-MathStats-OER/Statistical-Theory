@@ -15,7 +15,7 @@ output:
 #    ipynbdocument::ipynb_document
 ---
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap2/04-Overview-of-Probability.ipynb) <nbsp>
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap2/04-Overview-of-Probability.ipynb){target="_blank"} <nbsp>
 
 Statistical inference is the process of using data from a sample to describe 
 characteristics of the population. Our conclusions are going to be based on 
@@ -33,18 +33,18 @@ from probability to help quantify the uncertainty in our models and estimates.
 
 # Sample Space, Outcomes and Events
 
-------------------------------------------------------------------------
+---
 
 A <span style="color:dodgerblue">**statistical experiment or observation**</span> is any random activity that results in a definite outcome.
 
--   The <span style="color:dodgerblue">**sample space**</span> $\color{dodgerblue}{\Omega}$ is the set of all possible outcomes of an experiment.
--   An <span style="color:dodgerblue">**outcome**</span> $\color{dodgerblue}{\omega}$, is a result from an experiment or observation.
+-   The <span style="color:dodgerblue">**sample space**</span>, $\color{dodgerblue}{\Omega}$, is the set of all possible outcomes of an experiment.
+-   An <span style="color:dodgerblue">**outcome**</span>, $\color{dodgerblue}{\omega}$, is a result from an experiment or observation.
 -   An <span style="color:dodgerblue">**event**</span>, $\color{dodgerblue}{A}$, is a collection of one or more outcomes from an experiment or observation.
 
 
 ## Example: Rolling a Fair Six-Sided Die
 
-------------------------------------------------------------------------
+---
 
 ![Image Credit: Steaphan Greene, [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0), via Wikimedia Commons](https://upload.wikimedia.org/wikipedia/commons/c/c4/2-Dice-Icon.svg){fig-align="left" width=20% fig-alt="Image of Two Die."} 
 
@@ -58,7 +58,7 @@ The study of probability was initially inspired by calculating odds of outcomes 
 
 ## Probabilities with Equally Likely Outcomes
 
-------------------------------------------------------------------------
+---
 
 For finite sample spaces, we often use counting to determine probabilities. A special case which we will encounter often is when each outcome in the sample space $\Omega$ is equally likely to occur, and therefore
 
@@ -84,10 +84,9 @@ If a person rolls a fair, six-sided die, what is the probability the result of t
 
 
 
-\
-\
-\
-
+<br>  
+<br>  
+<br>  
 
 ### Installing and Loading `carData` Package
 
@@ -113,7 +112,7 @@ We can access and explore the data set `Arrests` in `carData`.
 
 ## Question 2
 
-------------------------------------------------------------------------
+---
 
 
 Use R functions such as `summary()`, `str()`, and/or `?Arrests` to answer some questions about the data:
@@ -137,9 +136,10 @@ Use R functions such as `summary()`, `str()`, and/or `?Arrests` to answer some q
 ```
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 ## Question 3
@@ -175,14 +175,14 @@ You should see from your output in Question 3a that more White arrestees were re
 ---
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
 
 
 ### Question 3c
 
-------------------------------------------------------------------------
+---
 
 What is the probability that a randomly selected arrestee in the study:
 
@@ -194,7 +194,7 @@ v.  Given that a person was Black, what is the probability they were not release
 
 #### Solution to Question 3c
 
-------------------------------------------------------------------------
+---
 
 Use the code cell below to compute each of the probabilities (i)-(v).
 
@@ -237,25 +237,26 @@ v.  Given that a person was Black, what is the probability they were not release
 
 ### Question 3d
 
-------------------------------------------------------------------------
+---
 
 Based on the data from this study, do you believe Black arrestees are more, less, or equally likely to be detained (not be released) than White arrestees? Support your answer using probabilities. You may want to compute additional probabilities that were not asked in [Question 3c] before reaching your conclusion.
 
 #### Solution to Question 3d
 
-------------------------------------------------------------------------
+---
 
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 
 # Simple and Compound Probabilities
 
-------------------------------------------------------------------------
+---
 
 Let $A$ and $B$ denote two events in sample space $\Omega$, then
 
@@ -263,14 +264,14 @@ Let $A$ and $B$ denote two events in sample space $\Omega$, then
 -   $\color{dodgerblue}{P(A^C) = P(\bar{A}) = P(A')}$ is the probability that event $A$ <span style="color:dodgerblue">**does NOT occur**</span>.
   -   The notation $\color{dodgerblue}{A^C}$, $\color{dodgerblue}{\bar{A}}$, or $\color{dodgerblue}{A'}$ are used to denote the <span style="color:dodgerblue">**complement**</span> of $A$.
 -   $\color{dodgerblue}{P(A \cap B)}$ is the probability that events $A$ <span style="color:dodgerblue">**and**</span> $B$ both occur.
--   $\color{dodgerblue}{P(A \cup B)}$ is the probability that either event $A$ <span style="color:dodgerblue">**or**</span> event $B$ occurs.
+-   $\color{dodgerblue}{P(A \cup B)}$ is the probability that either event $A$ <span style="color:dodgerblue">**or**</span> event $B$ occurs (or both $A$ and $B$ occur).
 -   $\color{dodgerblue}{P(B \ | \ A )}$ is the <span style="color:dodgerblue">**conditional probability**</span> that event $B$ occurs <span style="color:dodgerblue">**given that**</span> event $A$ occurs.
 -   $\color{dodgerblue}{P(A - B)}$ is the probability that <span style="color:dodgerblue">**event A occurs and event B does not occur**</span>.
 
 
 # Properties of Probability
 
-------------------------------------------------------------------------
+---
 
 We can generalize the calculations from the previous study on people arrested for small quantities of marijuana to obtain the following results:
 
@@ -307,22 +308,22 @@ Commons
 
 ### Solution to Question 4
 
-------------------------------------------------------------------------
+---
 
 | $A^C$      | $A \cup B$ | $A \cap B$ | $A-B$      |
 |------------|------------|------------|------------|
 | Diagram ?? | Diagram ?? | Diagram ?? | Diagram ?? |
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
 
 
 
 ## Question 5
 
-------------------------------------------------------------------------
+---
 
 When a customer purchases a new car, they are presented with a menu of options such as heated steering wheel, parking assistant, satellite radio, etc. The two most popular options on a certain type of new car are a sunroof (denoted $S$) and heated seats (denoted by $H$). Answer the following questions if we know that
 
@@ -330,71 +331,74 @@ $$ P(S) = 0.6, \quad P(H) = 0.45,\mbox{ and }  P(H | S ) = 0.65. $$
 
 ### Question 5a
 
-------------------------------------------------------------------------
+---
 
 Interpret the practical meaning of $P(H | S ) = 0.65$.
 
 #### Solution to Question 5a
 
-------------------------------------------------------------------------
+---
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 ### Question 5b
 
-------------------------------------------------------------------------
+---
 
 Compute $P(H^C)$ and interpret the meaning.
 
 #### Solution to Question 5b
 
-------------------------------------------------------------------------
+---
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 ### Question 5c
 
-------------------------------------------------------------------------
+---
 
 Compute $P(S \cap H)$ and interpret the meaning.
 
 #### Solution to Question 5c
 
-------------------------------------------------------------------------
+---
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
 
 
 ### Question 5d
 
-------------------------------------------------------------------------
+---
 
 Compute $P(S | H)$ and interpret the meaning.
 
 #### Solution to Question 5d
 
-------------------------------------------------------------------------
+---
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 ### Question 5e
 
-------------------------------------------------------------------------
+---
 
 Given a customer has purchased the sunroof option, are they more, less, or equally likely to get the heated seats option?  Which probabilities did you use to determine your answer? Does this make practical sense in this context?
 
@@ -402,13 +406,14 @@ Given a customer has purchased the sunroof option, are they more, less, or equal
 
 ----
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 # Independent Events
 
-------------------------------------------------------------------------
+---
 
 Often in statistics we want to investigate questions such as:
 
@@ -420,7 +425,7 @@ Often in statistics we want to investigate questions such as:
 
 ## Definition of Independent Events
 
-------------------------------------------------------------------------
+---
 
 Two events $A$ and $B$ are <span style="color:dodgerblue">**independent**</span> if the occurrence of one has no effect on the occurrence of the other:
 
@@ -430,27 +435,28 @@ $$ P(B) = P(B \ | \ A) \quad \mbox{or} \quad P(A) = P(A \ | \ B).$$
 
 ## Question 6
 
-------------------------------------------------------------------------
+---
 
 Consider the board game picture below. You begin at the start position and flip a fair coin. If the result of the flip is tails, you move forward one space on the board. If the result is heads, you move forward two spaces on the board. Keep flipping a fair coin (with tails moving one space and heads two spaces) until you reach the winner position.
 
 ![Image Credit: Adam Spiegler, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0), via Wikimedia Commons](https://upload.wikimedia.org/wikipedia/commons/d/d9/Simple-boardgame.png){fig-alt="Coin Flipping Board Game."}
 
 
-- What is the probability that you win in each exactly two flips?
-- What is the probability that you win in each exactly three flips?
-- What is the probability that you win in each exactly four flips?
+- What is the probability that you win in exactly two flips?
+- What is the probability that you win in exactly three flips?
+- What is the probability that you win in exactly four flips?
 
 
 ### Solution to Question 6
 
-------------------------------------------------------------------------
+---
 
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 ## Question 7
 
@@ -470,9 +476,10 @@ What is the difference in the practical meaning $P(H \ | \ B)$ and $P(B \ | \  H
 
 ---
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 ### Question 7b
 
@@ -489,14 +496,14 @@ Can you determine whether having health insurance has any affect on the likeliho
 ---
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
 
 
 # Mutually Exclusive Events
 
-------------------------------------------------------------------------
+---
 
 Two events $A$ and $B$ are <span style="color:dodgerblue">**mutually exclusive**</span> (or <span style="color:dodgerblue">**disjoint**</span>) if they cannot occur at the same time, and therefore $P(A \cap B) = 0$.
 
@@ -515,14 +522,14 @@ Give an example of two events that are mutually exclusive, and give an example o
 ---
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
 
 
 # Probability Distributions
 
-------------------------------------------------------------------------
+---
 
 A function $P$ that assigns a real number $P(A)$ to each event $A$ is a <span style="color:dodgerblue">**probability distribution**</span> or a <span style="color:dodgerblue">**probability measure**</span> if it satisfies the following three axioms:
 
@@ -535,11 +542,11 @@ $$P \left( A \cup B \right) = P(A) + P(B).$$
 
 # Appendix: Bayes' Theorem
 
-------------------------------------------------------------------------
+---
 
 ## Partitions of Sample Spaces
 
-------------------------------------------------------------------------
+---
 
 A <span style="color:dodgerblue">**partition**</span> of a space $\Omega$ is a collection of disjoint sets such that $\displaystyle \bigcup_{i=1}^{\infty} A_i = \Omega$.
 
@@ -549,7 +556,7 @@ A <span style="color:dodgerblue">**partition**</span> of a space $\Omega$ is a c
 
 ## Question 9
 
-------------------------------------------------------------------------
+---
 
 Fill in the blank to complete theorem below and explain (in words, pictures, or equations) how you determined your answer.
 
@@ -560,17 +567,17 @@ $$P(B) = \sum_{i=1}^k \_\_\_\_ .$$
 
 ### Solution to Question 9
 
-------------------------------------------------------------------------
+---
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
 
 
 ## Statement of Bayes' Theorem
 
-------------------------------------------------------------------------
+---
 
 Let $A_1$, $A_2$, $\ldots , A_k$ be a partition of $\Omega$ such that $P(A_i)>0$ for each $i$. If $B$ is any event with $P(B)>0$, then for each $i=1, \ldots k$, we have
 
@@ -578,40 +585,42 @@ $$P(A_i \mid B) = \frac{P(A_i \cap B) }{P(B)} = \frac{P(B \mid A_i) P(A_i)}{\sum
 
 ## Question 10
 
-------------------------------------------------------------------------
+---
 
 Suppose that 30% of computers run Mac, 50% use PC, and 20% use Linux. A computer virus is created by hackers, and suppose that 65% of Mac, 82% of PC, and 50% of Linux computers get the virus.
 
 ### Question 10a
 
-------------------------------------------------------------------------
+---
 
 What is the probability that a randomly selected computer has the virus?
 
 #### Solution to Question 10a
 
-------------------------------------------------------------------------
+---
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 ### Question 10b
 
-------------------------------------------------------------------------
+---
 
 What is the probability that a randomly selected computer is PC given that the computer is infected by the virus?
 
 #### Solution to Question 10b
 
-------------------------------------------------------------------------
+---
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 ---

@@ -15,13 +15,13 @@ output:
 #    ipynbdocument::ipynb_document
 ---
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap2/08-Common-Continuous-Distributions.ipynb) <nbsp>
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap2/08-Common-Continuous-Distributions.ipynb){target="_blank"} <nbsp>
 
 # 2.5: Common Continuous Distributions
 
 ---
 
-As we did with [discrete random variables](07-Common-Discrete-RandVar.qmd), in this section we will take a look at several of the most common and useful distributions when working with continuous random variables.
+As we did with [discrete random variables](07-Common-Discrete-RandVar.qmd){target="_blank"}, in this section we will take a look at several of the most common and useful distributions when working with continuous random variables.
 
 # Normal Distributions
 
@@ -29,14 +29,14 @@ As we did with [discrete random variables](07-Common-Discrete-RandVar.qmd), in t
 
 ![Image Credit: Antoine Taveneaux, [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0), via Wikimedia Commons](https://upload.wikimedia.org/wikipedia/commons/2/21/Planche_de_Galton.jpg){fig-align="left" width=30% fig-alt="Normal distribution from a Galton board"} 
 
-There are many situations where data tends to be distributed symmetrically around a central value with no bias to the left or right such as the location of beads on a [Galton board](https://en.wikipedia.org/wiki/Galton_board) or heights of people. For example, if we randomly select an adult from the population:
+There are many situations where data tends to be distributed symmetrically around a central value with no bias to the left or right such as the location of beads on a [Galton board](https://en.wikipedia.org/wiki/Galton_board){target="_blank"} or heights of people. For example, if we randomly select an adult from the population:
 
--   A person is mostly to be about average height.
+-   A person is most likely to be about average height.
 -   Otherwise, the person selected is equally likely to be either shorter or taller than average.
 -   The person is very unlikely to have an extreme height (tall or short). The more extreme, the less likely.
 -   **Therefore the distribution of heights is approximately symmetric and bell shaped.**
 
-<span style="color:dodgerblue">**Normal distributions**</span> arise in many settings: heights of people, size of items produced by machines, and most importantly in statistics data sets resulting from many independent random events. The shape of a normal distribution is determined by two parameters:
+<span style="color:dodgerblue">**Normal distributions**</span> arise in many settings: heights of people, size of items produced by machines, and most importantly in statistics, data sets resulting from many independent random events. The shape of a normal distribution is determined by two parameters:
    
 -   The <span style="color:dodgerblue">**mean**</span>, $\color{dodgerblue}{\mu}$, is the center of the distribution.
 -   The <span style="color:dodgerblue">**standard deviation**</span> $\color{dodgerblue}{\sigma}$, tells us how wide the distribution is.
@@ -190,7 +190,7 @@ How many standard deviations from the mean is a total cholesterol level of 140 m
 <br>  
 
 
-# $z$-Scores and the Standard Normal Distribution
+# $z$-Scores and the Standard Normal Distribution {#sec-zscore}
 
 ---
 
@@ -397,7 +397,7 @@ What proportion of people have an IQ score between 75 and 90?
 What is the 90th percentile for IQ? In other words, find the IQ score such that 90% of the people score less than that score? 
 
 ::: {.callout-tip}
-See [Appendix: Summary of Common Continuous Random Variables] for a summary of key formulas, graphs, shortcuts, and R functions for normal distributions.
+See [Appendix: Normal Distributions](#sec-append-normal) for a summary of key formulas, graphs, shortcuts, and R functions for normal distributions.
 :::
 
 
@@ -465,7 +465,7 @@ Distributions come in all shapes in and sizes. For example:
   -   The distribution is shaped like the graph of an exponential function.
 
 ::: {.callout-note}
-See [Appendix: Summary of Common Continuous Random Variables] for a summary of key formulas, graphs, shortcuts, and R functions for exponential distributions.
+See [Appendix: Exponential Distributions](#sec-append-exp) for a summary of key formulas, graphs, shortcuts, and R functions for exponential distributions.
 :::
 
 ## Question 8
@@ -475,7 +475,7 @@ See [Appendix: Summary of Common Continuous Random Variables] for a summary of k
 At a 911 call center, calls come in at an average rate of one call every two minutes. Let $X$ denote the time that elapses from one call to the next, and assume $X$ has an exponential distribution. 
 
 ::: {.callout-tip}
-See [Appendix: Summary of Common Continuous Random Variables] for useful properties of exponential distributions.
+See [Appendix: Exponential Distributions](#sec-append-exp) for useful properties of exponential distributions.
 :::
 
 
@@ -542,7 +542,9 @@ Find a formula for the inverse of the cdf, $F^{-1}$.
 
 Ninety-percent of all calls occur within how many minutes of the previous call? 
 
-*Hint: Use your previous answer in [Question 8d].*
+::: {.callout-tip}
+Use your previous answer in [Question 8d].
+:::
 
 #### Solution to 8e
 
@@ -558,7 +560,9 @@ Ninety-percent of all calls occur within how many minutes of the previous call?
 
 Suppose that two minutes have elapsed since the last call. Find the probability that the next call will occur within the next minute.
 
-*Hint: This is a conditional probability, so consider using [Bayes' Theorem](04-Overview-of-Probability.qmd).*
+::: {.callout-tip}
+This is a conditional probability, so consider using [Bayes' Theorem](04-Overview-of-Probability.qmd){target="_blank"}.
+:::
 
 #### Solution to 8f
 
@@ -592,8 +596,8 @@ $$f(x; \mu, \sigma) = \dfrac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2} \left( \frac{
    -   <span style="color:mediumseagreen">**One last warning, be sure to use `pnorm()` to compute probabilities not `dnorm()`.**</span>
 - Use `rnorm(n, mu, sigma)` to generate a random sample of size $n$ from population $X \sim N(mu, sigma)$.
 - Use `qnorm(q, mu, sigma)` to find the q^th^ percentile.
-- We have the <span style="color:dodgerblue">**68%-95%-99.5% Empirical Rule**</span>.
-- We can standardize the normal distribution using <span style="color:dodgerblue">**z-scores**</span>:
+- We have the [**68%-95%-99.5% Empirical Rule**](#sec-empirical).
+- We can standardize the normal distribution using [**z-scores**](#sec-zscore):
 $$z = \frac{x - \mu}{\sigma}$$
 
 
