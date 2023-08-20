@@ -411,7 +411,7 @@ Next we simplify $E \left( (aX+bY)^2 \right)$ as follows
 
 $$E \left( (aX+bY)^2 \right) = {\color{tomato}{??}}$$
 
-Since $X$ and $Y$ are independent, we can apply the property that $\color{mediumseagreen}{E(XY) = E(X) E(Y)}$. This gives
+Since $X$ and $Y$ are independent, we can apply the property that ${\color{mediumseagreen}{E(XY) = E(X) E(Y)}}$. This gives
 
 $$\begin{aligned}
 \mbox{Var}(aX+bY) &= E \left( (aX+bY)^2 \right) - \left( E(aX+bY) \right)^2\\
