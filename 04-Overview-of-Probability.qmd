@@ -100,7 +100,7 @@ The data set `Arrests` is in the `carData` package in R which is not installed i
 #install.packages("carData")
 ```
 
-- Next load the package with the library command so we an access the `Arrests` data set.
+- Next load the package with the library command so we can access the `Arrests` data set.
 
 ```{r}
 #| eval: true
@@ -108,7 +108,7 @@ The data set `Arrests` is in the `carData` package in R which is not installed i
 library(carData)
 ```
 
-We can access and explore the data set `Arrests` in `carData`.
+- **We can now access and explore the data set `Arrests` in `carData`.**
 
 ## Question 2
 
@@ -224,15 +224,17 @@ Use the code cell below to compute each of the probabilities (i)-(v).
 
 Summarize results below
 
-i.  The probability that a randomly selected person in the study was not released, $P(N)=??$
+i.  The probability that a randomly selected person in the study was not released is ${\color{dodgerblue}{P(N)=??}}$.
 
-ii. The probability that a randomly selected person in the study was Black, $P(B)=??$
+ii. The probability that a randomly selected person in the study was Black is ${\color{dodgerblue}{P(B)=??}}.$
 
-iii. The probability that a randomly selected person in the study was not released and was Black, $P(R \cap B)=??$
+iii. The probability that a randomly selected person in the study was not released and was Black is ${\color{dodgerblue}{P(N \cap B)=??}}$.
 
-iv. The probability that a randomly selected person in the study was not released or was Black, $P(A \cup D)=??$
+iv. The probability that a randomly selected person in the study was not released or was Black is ${\color{dodgerblue}{P(N \cup B)=??}}$.
 
-v.  Given that a person was Black, what is the probability they were not released, $P(R \ | \ B)$?
+v.  Given that a person was Black, what is the probability they were not released?
+
+ $${\color{dodgerblue}{P(N \ | \ B)=??}}$$
 
 
 ### Question 3d
