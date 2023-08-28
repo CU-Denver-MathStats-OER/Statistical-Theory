@@ -256,7 +256,6 @@ plot(x, pbinom(x, size = n, prob = p),
      main = "Graph of cdf", 
      xlab = "Number of Pop Songs", 
      ylab = "F(x)")
-par(mfrow=c(1, 1))
 ```
 
 
