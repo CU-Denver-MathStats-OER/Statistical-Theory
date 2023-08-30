@@ -37,7 +37,7 @@ Consider three distributions:
 -   Let $Z$ denote the depth (in km) of all earthquakes that have occurred near Fiji since 1964.
 
 
-For each population $X$, $Y$, and $Z$, do you believe the distribution will be approximately symmetric, skewed left, skewed right, or whether you are not sure what to expect. For each population, explain how you determined your answer.
+For each population $X$, $Y$, and $Z$, do you believe the distribution will be approximately symmetric, skewed left, skewed right, or whether you are not sure what to expect? Explain how you determined your answers.
 
 
 ### Solution to Question 1
@@ -397,7 +397,7 @@ library(dplyr)
 
 ----
 
-The first command will run and print the output of the `summary()` function that gives numerical summaries for all variable in the data set `quakes`.  In the second and third lines of code, we use `mean()` and `sd()` functions to compute the mean and standard deviation, respectively, of the all depth values stored in `quakes$depth`. Run the code cells below and note the population mean and standard deviation of the earthquake depths.
+The first command will run and print the output of the `summary()` function that gives numerical summaries for all variables in the data set `quakes`.  In the second and third lines of code, we use `mean()` and `sd()` functions to compute the mean and standard deviation, respectively, of the all depth values stored in `quakes$depth`. Run the code cells below and note the population mean and standard deviation of the earthquake depths.
 
 
 ```{r}
@@ -549,7 +549,7 @@ Let $X_1, X_2, \ldots , X_n$ be independent, identically distributed
 (iid) random variables from a population with mean $\mu_X$ and standard
 deviation $\sigma_X$, then as long as $n$ is large enough
 (informally $\mathbf{n \geq 30}$), the sampling distribution for the
-mean, $\overline{X}$ will:
+mean $\overline{X} = \frac{x_1 + x_2 + \ldots + x_n}{n}$ will:
 
 -   Be (approximately) <span style="color:dodgerblue">**normally distributed**</span>.
 -   Have mean equal to the mean of the population, $\color{dodgerblue}{\mu_{\overline{X}}=\mu_X}$.  

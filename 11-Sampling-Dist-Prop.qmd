@@ -30,7 +30,7 @@ Below are some observations to help guide our investigation in this section:
 
 - The representation could be $8/20 = 0.40$, $9/20 = 0.45$, but not exactly 42%.
   - A goal of perfect representation in all possible ways is impossible to meet.
-  - We should choose are more obtainable goal in this situation.
+  - We should choose a more obtainable goal in this situation.
   - The goal can vary based on factors such as the interests and backgrounds of the researchers.
 - The proportion of Independents varies from jury to jury.
   - We can consider a range of fair values.
@@ -294,7 +294,7 @@ abline(v = 5/20, col = "red", lwd = 2, lty = 2)  # draws vertical line at p-hat
 
 Based on the sampling distribution for the sample proportion of Independents plotted above, answer the following:
 
-- What is significant about the location of blue vertical line plotted at $p=0.42$ relative to the other sample proportions?
+- What is significant about the location of the blue vertical line plotted at $p=0.42$ relative to the other sample proportions?
 - What is significant about the location of red vertical line plotted at $\hat{p}=\frac{5}{20} = 0.25$ relative to the other sample proportions?
 - What is a "fair" amount of representation for Independents on a jury pool of size $n=20$?
 - Based on the values stored in `samp.prop`, what is the probability of randomly selecting a jury pool of $n=20$ that has a sample proportion of Independents that is at most $\hat{p} = 0.25$? 
@@ -354,7 +354,7 @@ Using [properties of the binomial distribution](07-Common-Discrete-RandVar.qmd#s
 ---
 
 Let $\widehat{P} = \frac{X}{n}$ denote the distribution of sample proportions.
-Using formulas from part [Question 3a] and [properties of expected value and variance](06-Expected-Value-and-Variance.qmd#sec-prop-exp), give formulas for $E( \widehat{P} )$ and $\mbox{Var}( \widehat{P} )$. Your formulas should depend on parameters $n$ and $p$.
+Using formulas from [Question 3a] and [properties of expected value and variance](06-Expected-Value-and-Variance.qmd#sec-prop-exp), give formulas for $E( \widehat{P} )$ and $\mbox{Var}( \widehat{P} )$. Your formulas should depend on parameters $n$ and $p$.
 
 #### Solution to Question 3b
 
@@ -864,7 +864,7 @@ Use the CLT for proportions along with a continuity correction to approximate th
 
 ---
 
-Census Bureau data for 2017 shows nearly half (48 percent) of residents in United States five largest cities now speak a language other than English at home^[Karen Zeigler and Steven A. Camarota [*Almost Half Speak a Foreign Language in America's Largest Cities*](https://cis.org/Report/Almost-Half-Speak-Foreign-Language-Americas-Largest-Cities#1). Center for Immigration Studies, 2018 Sep 29.]. If a sample of 150 people are selected at random from the five largest cities in the US, what is the probability that between 44% and 48% of people in the sample speak a language other than English at home?
+Census Bureau data for 2017 shows nearly half (48 percent) of residents in the United States' five largest cities now speak a language other than English at home^[Karen Zeigler and Steven A. Camarota [*Almost Half Speak a Foreign Language in America's Largest Cities*](https://cis.org/Report/Almost-Half-Speak-Foreign-Language-Americas-Largest-Cities#1). Center for Immigration Studies, 2018 Sep 29.]. If a sample of 150 people is selected at random from the five largest cities in the US, what is the probability that between 44% and 48% of people in the sample speak a language other than English at home?
 
 
 ### Question 9a
