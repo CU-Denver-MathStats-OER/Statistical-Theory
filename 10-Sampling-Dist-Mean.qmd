@@ -37,7 +37,7 @@ Consider three distributions:
 -   Let $Z$ denote the depth (in km) of all earthquakes that have occurred near Fiji since 1964.
 
 
-For each population $X$, $Y$, and $Z$, do you believe the distribution will be approximately symmetric, skewed left, skewed right, or whether you are not sure what to expect? Explain how you determined your answers.
+For each population $X$, $Y$, and $Z$, do you believe the distribution will be approximately symmetric, skewed left, skewed right, or are you unsure what shape to expect? Explain how you determined your answers.
 
 
 ### Solution to Question 1
