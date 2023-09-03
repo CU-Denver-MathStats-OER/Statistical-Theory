@@ -16,7 +16,7 @@ output:
 ---
 
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap3/12-Sampling-Dist-Other.ipynb) <nbsp>
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap3/12-Sampling-Dist-Other.ipynb){target="_blank"} <nbsp>
 
 
 We have encountered situations where constructing [sampling distributions for means](10-Sampling-Dist-Mean.qmd) and [proportions](11-Sampling-Dist-Prop.qmd) are helpful. In addition to being useful summaries of data, both means and proportions are linear combinations of independent random variables. 

@@ -15,7 +15,7 @@ output:
 #    ipynbdocument::ipynb_document
 ---
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap3/10-Sampling-Dist-Mean.ipynb) <nbsp>
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap3/10-Sampling-Dist-Mean.ipynb){target="_blank"} <nbsp>
 
 # 3.1: Sampling Distribution of Means
 

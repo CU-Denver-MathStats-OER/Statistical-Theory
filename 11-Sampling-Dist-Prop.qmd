@@ -17,7 +17,7 @@ output:
 ---
 
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap3/11-Sampling-Dist-Prop.ipynb) <nbsp>
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap3/11-Sampling-Dist-Prop.ipynb){target="_blank"} <nbsp>
 
 ![Credit: [Bunch of Random Numbers](https://freesvg.org/bunch-of-random-numbers) in [Public Domain](https://creativecommons.org/licenses/publicdomain/), via freesvg](https://freesvg.org/img/Prismatic-Random-Numbers-Cloud.png){fig-align="left" width=25% fig-alt="ImageBunch of random numbers"} <nbsp>
 
