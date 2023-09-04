@@ -17,14 +17,6 @@ output:
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap2/06-Expected-Value-and-Variance.ipynb){target="_blank"} <nbsp>
 
-```{r}
-#| echo: false
-# Video Idea
-
-#Introduce a raffle with 1/4 that win 10 buck and 3/4 win 0. What is expected value? What is variance?
-
-#Lets make one grand prize ticket worth 10,000. 3/4 win 0, 249/1000 win 10 and 1/1000 win 10,000
-```
 
 **Additional Reference**: See [Introduction to Random Variables](05-Intro-to-Random-Variables.qmd){target="_blank"} where we discovered some important properties for a random variable $X$ that are summarized in the [Appendix](#sec-append).
 

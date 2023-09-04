@@ -22,7 +22,7 @@ output:
 ![Credit: [Bunch of Random Numbers](https://freesvg.org/bunch-of-random-numbers) in [Public Domain](https://creativecommons.org/licenses/publicdomain/), via freesvg](https://freesvg.org/img/Prismatic-Random-Numbers-Cloud.png){fig-align="left" width=25% fig-alt="ImageBunch of random numbers"} <nbsp>
 
 
-We [previously used sampling distributions](10-Sampling-Dist-Mean.qmd) to describe the distribution of means computed from different random samples (each the same size) picked from the same population. The **standard error** (standard deviation of the sampling distribution) measures how much variability to expect due to the uncertainty in the sampling process. In many situations, a mean is not a relevant or helpful statistic, and other sample statistics, such as proportions, may be more applicable to the analysis. For example:
+We [previously used sampling distributions](10-Sampling-Dist-Mean.qmd){target="_blank"} to describe the distribution of means computed from different random samples (each the same size) picked from the same population. The **standard error** (standard deviation of the sampling distribution) measures how much variability to expect due to the uncertainty in the sampling process. In many situations, a mean is not a relevant or helpful statistic, and other sample statistics, such as proportions, may be more applicable to the analysis. For example:
 
 > If a jury pool of 20 people are randomly selected from a population where 42% of eligible jurors indentify their political party as Independent, what is *fair* representation for Independents on the jury pool? 
 
@@ -90,9 +90,10 @@ What is the value of $p$?
 ---
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 ### Question 1b
@@ -106,9 +107,10 @@ What is the value of $\hat{p}$?
 ---
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 ### Question 1c
@@ -122,9 +124,10 @@ Will the value of $\hat{p}$ change when different jury pools are selected? If no
 ---
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 ### Question 1d
@@ -138,9 +141,10 @@ Will the value of $p$ change when different jury pools are selected? If not, exp
 ---
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 ### Question 1e
@@ -155,16 +159,17 @@ Let random variable $X$ denote the number of people in the jury pool that identi
 ---
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 # Simulating a Sampling Distribution of Proportions
 
 ---
 
-Before investigating the theory, we will first walk through a statistical simulation for constructing a sampling distribution for proportions from many randomly selected samples. Hopefully we can see similarities in this process as with our initial construction of [sampling distributions for means](10-Sampling-Dist-Mean.qmd), and these connections will be useful in constructing sampling distributions with statistics. We will compare the results of the simulation with the theory we explore after.
+Before investigating the theory, we will first walk through a statistical simulation for constructing a sampling distribution for proportions from many randomly selected samples. Hopefully we can see similarities in this process as with our initial construction of [sampling distributions for means](10-Sampling-Dist-Mean.qmd){target="_blank"}, and these connections will be useful in constructing sampling distributions with statistics. We will compare the results of the simulation with the theory we explore after.
 
 
 ## Simulating Jury Selection with `sample()`
@@ -305,9 +310,10 @@ Based on the sampling distribution for the sample proportion of Independents plo
 
 ---
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 ```{r}
@@ -315,7 +321,8 @@ Based on the sampling distribution for the sample proportion of Independents plo
 
 ```
 
-\
+<br>  
+
 
 
 # A Theoretical Approach
@@ -335,7 +342,7 @@ Let $X \sim \mbox{Binom}(n,p)$, and consider the distribution of sample proporti
 
 ---
 
-Using [properties of the binomial distribution](07-Common-Discrete-RandVar.qmd#sec-append-binom), what are $E(X)$ and $\mbox{Var}(X)$? Your answers will depend on the parameters $n$ and $p$.
+Using [properties of the binomial distribution](07-Common-Discrete-RandVar.qmd#sec-append-binom){target="_blank"}, what are $E(X)$ and $\mbox{Var}(X)$? Your answers will depend on the parameters $n$ and $p$.
 
 
 
@@ -344,9 +351,10 @@ Using [properties of the binomial distribution](07-Common-Discrete-RandVar.qmd#s
 ---
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 ### Question 3b
@@ -354,15 +362,16 @@ Using [properties of the binomial distribution](07-Common-Discrete-RandVar.qmd#s
 ---
 
 Let $\widehat{P} = \frac{X}{n}$ denote the distribution of sample proportions.
-Using formulas from [Question 3a] and [properties of expected value and variance](06-Expected-Value-and-Variance.qmd#sec-prop-exp), give formulas for $E( \widehat{P} )$ and $\mbox{Var}( \widehat{P} )$. Your formulas should depend on parameters $n$ and $p$.
+Using formulas from [Question 3a] and [properties of expected value and variance](06-Expected-Value-and-Variance.qmd#sec-prop-exp){target="_blank"}, give formulas for $E( \widehat{P} )$ and $\mbox{Var}( \widehat{P} )$. Your formulas should depend on parameters $n$ and $p$.
 
 #### Solution to Question 3b
 
 ---
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 # Central Limit Theorem for Proportions {#sec-clt-prop}
@@ -439,9 +448,10 @@ Compare each of the values you obtained for $P( \hat{P} \leq 0.25)$ in [Question
 
 ---
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 
@@ -566,7 +576,8 @@ Consider the same jury pool example where we randomly select a jury from a popul
 
 ---
 
-\
+<br>  
+
 
 ```{r}
 # use a binomial function to answer question 7
@@ -855,8 +866,8 @@ Use the CLT for proportions along with a continuity correction to approximate th
 ---
 
 
-\
-\
+<br>  
+<br>  
 <br> 
 
 
@@ -877,8 +888,8 @@ Is $n$ large enough to use the CLT? Explain why or why not?
 
 ---
 
-\
-\
+<br>  
+<br>  
 <br> 
 
 
@@ -892,8 +903,8 @@ Using the CLT for a proportion, find the $z$-scores of the proportions $0.44$ an
 
 ---
 
-\
-\
+<br>  
+<br>  
 <br> 
 
 
@@ -907,8 +918,8 @@ Using the $z$-scores from [Question 9b], what is the probability that between 44
 
 ---
 
-\
-\
+<br>  
+<br>  
 <br> 
 
 
@@ -924,9 +935,10 @@ Using the CLT for a proportion **along with a continuity correction**, give upda
 
 ---
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 
@@ -942,9 +954,10 @@ Using the $z$-scores obtained from the continuity correction in [Question 9d], w
 
 ---
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 
@@ -971,9 +984,10 @@ Using a binomial distribution, calculate the exact value of $P( 66 \leq X \leq 7
 ```
 
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 ```{r}
@@ -1028,9 +1042,10 @@ Comment on whether or not the continuity correction improved the approximation o
 
 ---
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 ```{r}
