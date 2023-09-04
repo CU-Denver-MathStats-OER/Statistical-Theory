@@ -19,7 +19,7 @@ output:
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap3/12-Sampling-Dist-Other.ipynb){target="_blank"} <nbsp>
 
 
-We have encountered situations where constructing [sampling distributions for means](10-Sampling-Dist-Mean.qmd) and [proportions](11-Sampling-Dist-Prop.qmd) are helpful. In addition to being useful summaries of data, both means and proportions are linear combinations of independent random variables. 
+We have encountered situations where constructing [sampling distributions for means](10-Sampling-Dist-Mean.qmd){target="_blank"} and [proportions](11-Sampling-Dist-Prop.qmd){target="_blank"} are helpful. In addition to being useful summaries of data, both means and proportions are linear combinations of independent random variables. 
 
 -   If $X_1, X_2, \ldots , X_n$ are independent and identically distributed (i.i.d.) random variables (independently selected from the same population), then the sample mean is a linear combination of random variables,
 
@@ -30,7 +30,7 @@ $$\bar{X} = \frac{X_1 + X_2 + \ldots + X_n}{n}.$$
 $$\widehat{P} = \frac{X}{n}.$$ 
 
 
-Thus for proportions and means, we can derive the Central Limit Theorem (CLT) to describe the mean and standard error (spread) of sampling distributions by applying [properties of expected value and variance of independent random variables](06-Expected-Value-and-Variance.qmd#sec-prop-exp):
+Thus for proportions and means, we can derive the Central Limit Theorem (CLT) to describe the mean and standard error (spread) of sampling distributions by applying [properties of expected value and variance of independent random variables](06-Expected-Value-and-Variance.qmd#sec-prop-exp){target="_blank"}:
 
 $$E(aX + bY) = aE(X) + bE(Y) \qquad \mbox{and} \qquad \mbox{Var}(aX + bY) = a^2\mbox{Var}(X) + b^2 \mbox{Var}(Y).$$
 
@@ -45,14 +45,14 @@ There many other statistics that may be more relevant to study to other situatio
 
 ![Credit: [Light Rail Train Denver](https://pixabay.com/photos/light-rail-train-denver-colorado-4793556/), [Open Content License](https://pixabay.com/service/terms/), by [Lorencosmic22](https://pixabay.com/users/lorencosmic22-12392680/) via pixabay](https://cdn.pixabay.com/photo/2020/01/25/23/12/light-rail-train-4793556_1280.jpg){fig-align="left" width=50% fig-alt="Light Rail Train in Denver"} <nbsp>
 
-We can apply the same method as we used with constructing sampling distributions for [means](10-Sampling-Dist-Mean.qmd) and [proportions](11-Sampling-Dist-Prop.qmd) to create a sampling distribution for any statistic. The general process is as follows:
+We can apply the same method as we used with constructing sampling distributions for [means](10-Sampling-Dist-Mean.qmd){target="_blank"} and [proportions](11-Sampling-Dist-Prop.qmd){target="_blank"} to create a sampling distribution for any statistic. The general process is as follows:
 
 1. Pick a random sample size $n$ from population $X$.
 2. Calculate some statistic(s) of interest from the sample.
 3. Repeat. Generate many random samples (each size $n$) and calculate the statistic(s) of interest from each sample.
 
 
-We [previsouly considered the sampling distribution for the mean wait time between trains](10-Sampling-Dist-Mean.qmd#sec-train). In that example, the wait time between trains was exponentially distributed with a mean of $4$ minutes between trains. Thus, the rate parameter is $\lambda = \frac{1}{4}$. We sample from the population of $Y \sim \mbox{Exp} \left( \frac{1}{4} \right)$ which is skewed to the right.
+We [previsouly considered the sampling distribution for the mean wait time between trains](10-Sampling-Dist-Mean.qmd#sec-train){target="_blank"}. In that example, the wait time between trains was exponentially distributed with a mean of $4$ minutes between trains. Thus, the rate parameter is $\lambda = \frac{1}{4}$. We sample from the population of $Y \sim \mbox{Exp} \left( \frac{1}{4} \right)$ which is skewed to the right.
 
 Run the code cell below to create a sampling distribution for the mean time between trains with samples size $n=50$.
 
@@ -165,9 +165,10 @@ Based on the plot of the sampling distribution for the median plotted above, com
 
 ---
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 ##  Question 3
 
@@ -192,9 +193,9 @@ Create a qq-plot of the sampling distribution and comment on whether shape of th
 
 ```
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
 
 
 ### Question 3b
@@ -218,9 +219,9 @@ Results for the sampling distribution of the mean wait time between trains were 
 
 ```
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
 
 
 ## Simulation for Sampling Distribution for Variance
@@ -381,9 +382,9 @@ corresponding cdf and pdf, respectively, of $X$.
 
 ---
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
 
 ### Summarizing Results for $X_{\rm{max}}$ {#sec-sum-max}
 
@@ -407,7 +408,7 @@ Let $X$ be a random variable with continuous uniform distribution $\mbox{Unif}(0
 
 ---
 
-What are the cdf and pdf, $F(x)$ and $f(x)$ respectively, of $X \sim \mbox{Unif}(0,1)$? *Hint: See [useful properties of continuous uniform distributions](08-Common-Continuous-Distributions.qmd#sec-append-unif).*
+What are the cdf and pdf, $F(x)$ and $f(x)$ respectively, of $X \sim \mbox{Unif}(0,1)$? *Hint: See [useful properties of continuous uniform distributions](08-Common-Continuous-Distributions.qmd#sec-append-unif){target="_blank"}.*
 
 #### Solution to Question 7a
 
@@ -540,7 +541,7 @@ prop <- c(0.23, 0.29, 0.32, 0.14, 0.02)  # vector of population proportions
 ```
 
 
-In the jury example from our exploration with [sampling distributions for a single proportion](11-Sampling-Dist-Prop.qmd), we considered whether people that identify their political party as Independent have fair representation. Political party was a binary variable (Independent or Not). Perhaps a more useful question to explore is whether the jury has a good representation of all political affiliations, not just Independents. When working with a categorical variable that has more than two categories, such as race or political affiliation, we need to consider more than a single proportion. Rather than consider a single proportion, we can conduct a  <span style="color:dodgerblue">**chi-square goodness-of-fit test**</span> to measure how well the random sample resembles the population as far as what proportion of observations are in each category. We assume the categories are mutually exclusive (an observation cannot belong to multiple categories), and thus the sum of all proportions is 1.
+In the jury example from our exploration with [sampling distributions for a single proportion](11-Sampling-Dist-Prop.qmd){target="_blank"}, we considered whether people that identify their political party as Independent have fair representation. Political party was a binary variable (Independent or Not). Perhaps a more useful question to explore is whether the jury has a good representation of all political affiliations, not just Independents. When working with a categorical variable that has more than two categories, such as race or political affiliation, we need to consider more than a single proportion. Rather than consider a single proportion, we can conduct a  <span style="color:dodgerblue">**chi-square goodness-of-fit test**</span> to measure how well the random sample resembles the population as far as what proportion of observations are in each category. We assume the categories are mutually exclusive (an observation cannot belong to multiple categories), and thus the sum of all proportions is 1.
 
 ## Question 10
 

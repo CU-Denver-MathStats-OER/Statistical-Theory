@@ -47,19 +47,19 @@ For each population $X$, $Y$, and $Z$, do you believe the distribution will be a
 - Shape of population $X$:
 
 
-\
+<br>  
 
 
 - Shape of population $Y$:
 
 
-\
+<br>  
 
 - Shape of population $Z$:
 
 
-\
-\
+<br>  
+<br>  
 
 
 # The Population Data for BMI
@@ -175,9 +175,10 @@ Calculate the mean and standard deviation of your sample stored in `my.sample` u
   
 After checking the output of the code cell above, be sure to address the two questions in the bullets above.
   
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 # Sampling Distribution for BMI Means with $n=4$
 
@@ -255,9 +256,10 @@ Sample means from the previous code cell are stored in the vector `n4.bmi.bar`.
 After completing and running the code cell above, comment on how the output compares to the mean and standard deviation of the population $X$.
   
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 # Shape of the Sampling Distribution
@@ -287,7 +289,7 @@ The plot above seems mostly normal in the middle, but the tails are slightly dev
 
 ---
 
-Open the app <https://adamspiegler.shinyapps.io/clt_bmi/> to experiment with changing the sample size $n$ used when constructing a sampling distribution for the mean BMI. In particular, explore the following properties of the sampling distribution for the mean BMI:
+Open the app [https://adamspiegler.shinyapps.io/clt_bmi/](https://adamspiegler.shinyapps.io/clt_bmi/){target="_blank"} to experiment with changing the sample size $n$ used when constructing a sampling distribution for the mean BMI. In particular, explore the following properties of the sampling distribution for the mean BMI:
 
 - What is the shape of the sampling distribution?
 - What is the mean of the sampling distribution?
@@ -300,7 +302,8 @@ Fill in values that describe these properties of the sampling distribution for $
 
 ----
 
-\
+<br>  
+
 
 | Property | Population   | $n=4$ | $n=9$ | $n=16$ | $n=81$ |
 |-----|-----|-----|-----|-----|-----|
@@ -308,8 +311,9 @@ Fill in values that describe these properties of the sampling distribution for $
 | Mean  | 26 |   |   |   |   |
 | Standard Deviation | 4 |   |   |   |   |
 
-\
-\
+<br>  
+<br>  
+
 
 
 # Sampling from a Skewed Distribution {#sec-train}
@@ -347,7 +351,7 @@ Recall that an exponential distribution $Y$ with rate parameter $\lambda = \frac
 
 ----
 
-Open the app <https://adamspiegler.shinyapps.io/clt_wait/> to experiment with changing the sample size $n$ used when constructing a sampling distribution of the sample mean wait time $\overline{Y}$ between successive trains at a train station if we assume the time between successive trains is $Y \sim \mbox{Exp} \left( \frac{1}{4} \right)$. After experimenting with the app, complete the table below to summarize your observations when sample sizes $n=4$, $n=9$, $n=16$, and $n=81$ are used to construct a sampling distribution.
+Open the app [https://adamspiegler.shinyapps.io/clt_wait/](https://adamspiegler.shinyapps.io/clt_wait/){target="_blank"} to experiment with changing the sample size $n$ used when constructing a sampling distribution of the sample mean wait time $\overline{Y}$ between successive trains at a train station if we assume the time between successive trains is $Y \sim \mbox{Exp} \left( \frac{1}{4} \right)$. After experimenting with the app, complete the table below to summarize your observations when sample sizes $n=4$, $n=9$, $n=16$, and $n=81$ are used to construct a sampling distribution.
 
 
 
@@ -355,7 +359,8 @@ Open the app <https://adamspiegler.shinyapps.io/clt_wait/> to experiment with ch
 
 ----
 
-\
+<br>  
+
 
 | Property | Population   | $n=4$ | $n=9$ | $n=16$ | $n=81$ |
 |-----|-----|-----|-----|-----|-----|
@@ -363,8 +368,9 @@ Open the app <https://adamspiegler.shinyapps.io/clt_wait/> to experiment with ch
 | Mean  | 4 |   |   |   |   |
 | Standard Deviation | 2 |   |   |   |   |
 
-\
-\
+<br>  
+<br>  
+
 
 
 # Working with Empirical Data: Earthquake Depth
@@ -438,14 +444,15 @@ abline(v = mean(quakes$depth), col = "red", lwd = 2, lty = 2)
 
 ----
 
-Open the app <https://adamspiegler.shinyapps.io/clt_quake/> to experiment with changing the sample size $n$ used when constructing a sampling distribution of the sample mean earthquake depth $\overline{Z}$ using the observed data in `quakes$depth`.  After experimenting with the app, complete the table below to summarize your observations when sample sizes $n=4$, $n=9$, $n=16$, and $n=81$ are used to construct a sampling distribution.
+Open the app [https://adamspiegler.shinyapps.io/clt_quake/](https://adamspiegler.shinyapps.io/clt_quake/){target="_blank"} to experiment with changing the sample size $n$ used when constructing a sampling distribution of the sample mean earthquake depth $\overline{Z}$ using the observed data in `quakes$depth`.  After experimenting with the app, complete the table below to summarize your observations when sample sizes $n=4$, $n=9$, $n=16$, and $n=81$ are used to construct a sampling distribution.
 
 
 ### Solution to Question 8
 
 ----
 
-\
+<br>  
+
 
 | Property | Population   | $n=4$ | $n=9$ | $n=16$ | $n=81$ |
 |-----|-----|-----|-----|-----|-----|
@@ -453,8 +460,9 @@ Open the app <https://adamspiegler.shinyapps.io/clt_quake/> to experiment with c
 | Mean  | `r round(mean(quakes$depth), 2)` |   |   |   |   |
 | Standard Deviation | `r round(sd(quakes$depth), 2)` |   |   |   |   |
 
-\
-\
+<br>  
+<br>  
+
 
 # Notation for Population, Sample, and Sampling Distribution
 
@@ -500,9 +508,10 @@ For each of the three sampling distributions we examined in [Question 6], [Quest
 
 ----
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
   
   
 ## Question 10
@@ -517,9 +526,10 @@ For each of the three sampling distributions we examined in [Question 6], [Quest
 
 ----
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 
@@ -534,9 +544,10 @@ For each of the three sampling distributions we examined in [Question 6], [Quest
 
 ----
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
   
 
 
@@ -563,7 +574,7 @@ $${\large \color{dodgerblue}{\overline{X} \sim N \left( \mu_{\overline{X}} , \si
 
 ----
 
-Using [properties of the expected value of linear combinations of random variables](06-Expected-Value-and-Variance.qmd#sec-prop-exp) prove the following:
+Using [properties of the expected value of linear combinations of random variables](06-Expected-Value-and-Variance.qmd#sec-prop-exp){target="_blank"} prove the following:
 
 $$\mu_{\overline{X}} = E \left( \overline{X} \right) = E \left( \frac{X_1 + X_2 + \ldots + X_n}{n} \right) = \mu_X.$$
 
@@ -572,9 +583,10 @@ $$\mu_{\overline{X}} = E \left( \overline{X} \right) = E \left( \frac{X_1 + X_2 
 
 ----
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
+
 
 
 
@@ -583,7 +595,7 @@ $$\mu_{\overline{X}} = E \left( \overline{X} \right) = E \left( \frac{X_1 + X_2 
 
 ----
 
-Using [properties of the variance of linear combinations of independent random variables](06-Expected-Value-and-Variance.qmd#sec-prop-var) prove the following:
+Using [properties of the variance of linear combinations of independent random variables](06-Expected-Value-and-Variance.qmd#sec-prop-var){target="_blank"} prove the following:
 
 
 $$ \sigma^2_{\overline{X}} = \mbox{Var} \left( \overline{X} \right) = \mbox{Var} \left( \frac{X_1 + X_2 + \ldots + X_n}{n} \right) = \frac{\sigma^2_X}{n}.$$
@@ -592,9 +604,9 @@ $$ \sigma^2_{\overline{X}} = \mbox{Var} \left( \overline{X} \right) = \mbox{Var}
 
 ---
 
-\
-\
-\
+<br>  
+<br>  
+<br>  
 
 
 ---
