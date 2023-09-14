@@ -18,24 +18,24 @@ book:
 
   chapters:
     - index.qmd
-#    - part: "Chapter 1: Exploring Data"
-#      chapters:
-#       - 01-Intro-to-Inference.qmd
-#       - 02-EDA-Categorical.qmd
-#       - 03-EDA-Quantitative.qmd
-#    - part: "Chapter 2: Probability Essentials"
-#      chapters:
-#       - 04-Overview-of-Probability.qmd
-#       - 05-Intro-to-Random-Variables.qmd
-#       - 06-Expected-Value-and-Variance.qmd
-#       - 07-Common-Discrete-RandVar.qmd
-#       - 08-Common-Continuous-Distributions.qmd
-#       - 09-Joint-Distributions.qmd
-#    - part: "Chapter 3: Sampling Distributions"
-#      chapters:
-#       - 10-Sampling-Dist-Mean.qmd
-#       - 11-Sampling-Dist-Prop.qmd
-#       - 12-Sampling-Dist-Other.qmd
+    - part: "Chapter 1: Exploring Data"
+      chapters:
+       - 01-Intro-to-Inference.qmd
+       - 02-EDA-Categorical.qmd
+       - 03-EDA-Quantitative.qmd
+    - part: "Chapter 2: Probability Essentials"
+      chapters:
+       - 04-Overview-of-Probability.qmd
+       - 05-Intro-to-Random-Variables.qmd
+       - 06-Expected-Value-and-Variance.qmd
+       - 07-Common-Discrete-RandVar.qmd
+       - 08-Common-Continuous-Distributions.qmd
+       - 09-Joint-Distributions.qmd
+    - part: "Chapter 3: Sampling Distributions"
+      chapters:
+       - 10-Sampling-Dist-Mean.qmd
+       - 11-Sampling-Dist-Prop.qmd
+       - 12-Sampling-Dist-Other.qmd
     - part: "Chapter 4: Estimation"
       chapters:
        - 13-Estimation-MLE.qmd
