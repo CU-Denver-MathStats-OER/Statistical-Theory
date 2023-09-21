@@ -81,7 +81,7 @@ format:
 #    cover-image: cover.png
 execute:
   eval: false
-  freeze: true
+  freeze: auto
 
 editor: source
 
