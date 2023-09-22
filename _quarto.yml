@@ -28,9 +28,9 @@ book:
        - 04-Overview-of-Probability.qmd
        - 05-Intro-to-Random-Variables.qmd
        - 06-Expected-Value-and-Variance.qmd
-       - 07-Common-Discrete-Random-Var.qmd
+#       - 07-Common-Discrete-Random-Var.qmd
        - 07-Common-Discrete-RandVar.qmd
-#       - 08-Common-Continuous-Distributions.qmd
+       - 08-Common-Continuous-Distributions.qmd
        - 09-Joint-Distributions.qmd
     - part: "Chapter 3: Sampling Distributions"
       chapters:
