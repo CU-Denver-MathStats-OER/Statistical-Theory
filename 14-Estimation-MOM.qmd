@@ -18,9 +18,9 @@ output:
 ---
 
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap4/14-Estimation-MOM.ipynb) <nbsp>
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap4/14-Estimation-MOM.ipynb){target="_blank"} <nbsp>
 
-Estimation is generally the process of predicting the value(s) of unknown population parameters using data collected from a sample. There are different statistical methods that can be applied to a data set to reach the same ultimate goal, such as finding an accurate estimate for a parameter. We explored the method of [maximum likelihood estimation (MLE)](13-Estimation-MLE.qmd). With MLE estimation, we find the most likely value of a parameter, $\theta$, by identifying the value for $\theta$ that gives the maximimum value of the likelihood function.
+Estimation is generally the process of predicting the value(s) of unknown population parameters using data collected from a sample. There are different statistical methods that can be applied to a data set to reach the same ultimate goal, such as finding an accurate estimate for a parameter. We explored the method of [maximum likelihood estimation (MLE)](13-Estimation-MLE.qmd){target="_blank"}. With MLE estimation, we find the most likely value of a parameter, $\theta$, by identifying the value for $\theta$ that gives the maximimum value of the likelihood function.
 
 We now explore another estimation method called the <span style="color:dodgerblue">**method of moments**</span> (commonly abbreviated as <span style="color:dodgerblue">**MoM**</span>). Both MLE and MoM estimates are used to answer the same question, what is the value of an unknown population parameter, $\theta$? MoM estimates approach the question following a different objective then MLE. We find the values for the population parameters such that certain properties of the population (for example $\mu_X=E(X)$ and $\sigma^2_X = \mbox{Var}(X)$) are equal to the corresponding statistics (such as the sample mean, $\bar{x}$, and sample variance, $s^2$) that we calculate from a randomly selected sample.
 
@@ -166,7 +166,7 @@ Which of the models labeled 1-4 in the plot above do you believe best fits the s
 What type of continuous distribution best matches the graph you selected? Explain why in terms of birth weights of black bear cubs this distribution is reasonable and makes practical sense.
 
 
-- *Hint: See the [appendix of common continuous random variables section](08-Common-Continuous-Distributions.qmd#sec-append) for some options.*
+- *Hint: See the [appendix of common continuous random variables section](08-Common-Continuous-Distributions.qmd#sec-append){target="_blank"} for some options.*
 
 
 #### Solution to Question 1b
@@ -210,7 +210,7 @@ Based on your code above, what are the values of the parameters of the distribut
 
 ---
 
-Let $X$ be a random variable with pdf $f(x; \theta_1, \theta_2, \ \ldots \theta_k)$ that depends on parameters $\theta_1, \theta_2, \ldots , \theta_k$.  If we independently pick a random variables $X_1, X_2, \ldots X_n$ from population $X$, we can determine the values of $\theta_1, \theta_2, \ldots , \theta_k$ that best fit the data in the following sense:
+Let $X$ be a random variable with pdf $f(x; \theta_1, \theta_2, \ \ldots \theta_k)$ that depends on parameters $\theta_1, \theta_2, \ldots , \theta_k$.  If we independently pick random variables $X_1, X_2, \ldots X_n$ from population $X$, we can determine the values of $\theta_1, \theta_2, \ldots , \theta_k$ that best fit the data in the following sense:
 
 - The mean $\mu_X = E(X)$ of the population $X$ equals the sample mean, $\bar{x}$.
 - The variance $\sigma^2_X = \mbox{Var}(X)$ of the population equals the variance of the sample, $s^2$.

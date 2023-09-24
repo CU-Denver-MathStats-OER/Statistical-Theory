@@ -18,12 +18,12 @@ output:
 ---
 
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap4/15-Properties-Estimators.ipynb) <nbsp>
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap4/15-Properties-Estimators.ipynb){target="_blank"} <nbsp>
 
 ![Credit: Linnaea Mallette, ["Two Paths Background"](https://www.publicdomainpictures.net/en/view-image.php?image=107495&picture=two-paths-background), [CC-0-1.0](https://creativecommons.org/publicdomain/zero/1.0/)](https://www.publicdomainpictures.net/pictures/110000/velka/two-paths-background.jpg){fig-align="left" width=50% fig-alt="Two Paths"} <nbsp>
 
 
-In this section, we continue our study of estimators of population parameters. An <span style="color:dodgerblue">**estimator**</span>, denoted $\color{dodgerblue}{\hat{\theta}}$, is a formula or rule that we use to estimate the value of an unknown population parameter $\theta$. For a single parameter $\theta$, there are many (possibly infinite) different estimators $\hat{\theta}$ from which to choose from. We have more deeply investigated two particularly useful methods: [maximum likelihood estimates (MLE)](13-Estimation-MLE.qmd) and [method of moments](14-Estimation-MOM.qmd) estimation. 
+In this section, we continue our study of estimators of population parameters. An <span style="color:dodgerblue">**estimator**</span>, denoted $\color{dodgerblue}{\hat{\theta}}$, is a formula or rule that we use to estimate the value of an unknown population parameter $\theta$. For a single parameter $\theta$, there are many (possibly infinite) different estimators $\hat{\theta}$ from which to choose from. We have more deeply investigated two particularly useful methods: [maximum likelihood estimates (MLE)](13-Estimation-MLE.qmd){target="_blank"} and [method of moments](14-Estimation-MOM.qmd){target="_blank"} estimation. 
 
 We can think of different estimators, $\hat{\theta}$, as different paths attempting to arrive at the same destination, the value of $\theta$. Different statisticians might prefer different paths, which path is optimal? Sometimes different methods lead to the same result, and sometimes they differ. When they differ, how do we decide which estimate is best? 
 
@@ -299,7 +299,7 @@ There are many properties of estimators worth considering when deciding between 
 
 ---
 
-Let $X$ denote the diastolic blood pressure (in mm Hg) of a randomly selected woman from the Pima Indian Community. The [Pima Indian Community](https://itcaonline.com/member-tribes/salt-river-pima-maricopa-indian-community/) is mostly located outside of Phoenix, Arizona. The data^[Smith, J. W., Everhart, J. E., Dickson, W. C., Knowler, W. C. and Johannes, R. S. (1988) "Using the ADAP learning algorithm to forecast the onset of diabetes mellitus". In *Proceedings of the Symposium on Computer Applications in Medical Care *(Washington, 1988), ed. R. A. Greenes, pp. 261–265. Los Alamitos, CA: IEEE Computer Society Press.] used in this example is from the data frame `Pima.tr` in the `MASS` package.
+Let $X$ denote the diastolic blood pressure (in mm Hg) of a randomly selected woman from the Pima Indian Community. The [Pima Indian Community](https://itcaonline.com/member-tribes/salt-river-pima-maricopa-indian-community/){target="_blank"} is mostly located outside of Phoenix, Arizona. The data^[Smith, J. W., Everhart, J. E., Dickson, W. C., Knowler, W. C. and Johannes, R. S. (1988) "Using the ADAP learning algorithm to forecast the onset of diabetes mellitus". In *Proceedings of the Symposium on Computer Applications in Medical Care *(Washington, 1988), ed. R. A. Greenes, pp. 261–265. Los Alamitos, CA: IEEE Computer Society Press.] used in this example is from the data frame `Pima.tr` in the `MASS` package.
 
 If we suppose blood pressure is normally distributed, then we have $X \sim N(\mu, \sigma)$. We would like to decide which estimator is best for the population mean $\mu$. We pick a random sample of $n=20$ women in the code cell below.
 
@@ -387,7 +387,7 @@ Which estimator (mean, median, mid-range, or trimmed mean) do you believe is bes
 
 ---
 
-To help decide which estimator performs best, we can consider the sampling distribution of estimates obtained from many different random samples (each of size $n=20$) chosen independently from the same population. Based on the sampling distributions for $\hat{\mu}_1$, $\hat{\mu}_2$, $\hat{\mu}_3$, and $\hat{\mu}_4$  (mean, median, mid-range, and trimmed mean, respectively) in @fig-bpnormal, rank the four estimators from least to most bias and from most to least precise. Explain your reasoning.
+To help decide which estimator performs best, we can consider the sampling distribution of estimates obtained from many different random samples (each of size $n=20$) chosen independently from the same population. Based on the sampling distributions for $\hat{\mu}_1$, $\hat{\mu}_2$, $\hat{\mu}_3$, and $\hat{\mu}_4$  (mean, median, mid-range, and trimmed mean, respectively) in @fig-bpnormal, rank the four estimators from least to most bias and from most to least precise. <span style="color:dodgerblue">The blue vertical line represents the actual value of $\mu$.</span> <span style="color:tomato">The red vertical line marks the expected value of the estimator.</span> Explain your reasoning.
 
 
 ```{r}
@@ -482,7 +482,7 @@ abline(v = mean(hat4), col = "tomato", lwd = 2)  # expected value of estimator
 We still let $X$ denote the diastolic blood pressure (in mm Hg) of a randomly selected woman from the Pima Indian Community. However, now we suppose blood pressure is **uniformly distributed** over the interval $\lbrack 41.26, 101.26 \rbrack$. Although a uniform distribution would not make practical sense for blood pressure, we make this assumption in order to investigate how the shape of the population may affect which estimator works best.
 
 
-Consider the sampling distribution of estimates obtained from many different random samples (each of size $n=20$) chosen independently from a  **uniformly distributed population**. Based on the sampling distributions for $\hat{\mu}_1$, $\hat{\mu}_2$, $\hat{\mu}_3$, and $\hat{\mu}_4$  (mean, median, mid-range, and trimmed mean, respectively) in @fig-bpunif, rank the four estimators again from least to most bias and from most to least precise. **Compare your updated rankings to those from [Question 2b]. Did your rankings change?**
+Consider the sampling distribution of estimates obtained from many different random samples (each of size $n=20$) chosen independently from a  **uniformly distributed population**. Based on the sampling distributions for $\hat{\mu}_1$, $\hat{\mu}_2$, $\hat{\mu}_3$, and $\hat{\mu}_4$  (mean, median, mid-range, and trimmed mean, respectively) in @fig-bpunif, rank the four estimators again from least to most bias and from most to least precise. <span style="color:dodgerblue">The blue vertical line represents the actual value of $\mu$.</span> <span style="color:tomato">The red vertical line marks the expected value of the estimator.</span> **Compare your updated rankings to those from [Question 2b]. Did your rankings change?**
 
 
 
@@ -602,7 +602,7 @@ Let $X \sim \mbox{Binom}(n,p)$ with $n$ known and parameter $p$ unknown. Conside
 
 
 ::: {.callout-tip}
-Use [properties of expected value](06-Expected-Value-and-Variance.qmd#sec-prop-exp) and recall these useful formulas for $X \sim \mbox{Binom}(n,p)$,
+Use [properties of expected value](06-Expected-Value-and-Variance.qmd#sec-prop-exp){target="_blank"} and recall these useful formulas for $X \sim \mbox{Binom}(n,p)$,
 
 $$E(X) = np \quad \mbox{and} \quad \mbox{Var}(X) = np(1-p).$$
 
@@ -821,7 +821,7 @@ Calculate $\mbox{Var}( \hat{\mu}_1)$ and $\mbox{Var}( \hat{\mu}_2)$, the varianc
 
 
 ::: {.callout-tip}
-Recall properties we can apply when finding the [variance of a linear combination of independent random variables](06-Expected-Value-and-Variance.qmd#sec-prop-var), and note **the variances will depend on the unknown value of the population variance,** $\mathbf{\sigma^2}$.
+Recall properties we can apply when finding the [variance of a linear combination of independent random variables](06-Expected-Value-and-Variance.qmd#sec-prop-var){target="_blank"}, and note **the variances will depend on the unknown value of the population variance,** $\mathbf{\sigma^2}$.
 :::
 
 #### Solution to Question 5b
@@ -855,7 +855,7 @@ Recall in [Question 3] we determined $\hat{p}$ is an unbiased estimator for $p$ 
 
 
 ::: {.callout-tip}
-Use [properties of variance](06-Expected-Value-and-Variance.qmd#sec-prop-var) and recall these useful formulas for $X \sim \mbox{Binom}(n,p)$,
+Use [properties of variance](06-Expected-Value-and-Variance.qmd#sec-prop-var){target="_blank"} and recall these useful formulas for $X \sim \mbox{Binom}(n,p)$,
 
 $$E(X) = np \quad \mbox{and} \quad \mbox{Var}(X) = np(1-p).$$
 
