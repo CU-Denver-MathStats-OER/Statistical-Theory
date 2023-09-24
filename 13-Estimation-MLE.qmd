@@ -18,14 +18,14 @@ output:
 ---
 
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap4/13-Estimation-MLE.ipynb) <nbsp>
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap4/13-Estimation-MLE.ipynb){target="_blank"} <nbsp>
 
 ![Credit: [Arrows in the target](https://creazilla.com/nodes/60165-arrows-in-the-target-clipart), Public Domain](https://creazilla-store.fra1.digitaloceanspaces.com/cliparts/60165/arrows-in-the-target-clipart-md.png){fig-align="left" width=30% fig-alt="Arrows Hitting a Target"} <nbsp>
 
 In Chapter 3, we explored properties of sample statistics picked from a population with a known distribution.
 
-  - We analyzed the [distribution of sample means](10-Sampling-Dist-Mean.qmd) picked from normal and exponential distributions.
-  - We analyzed the [distribution of sample proportions](11-Sampling-Dist-Prop.qmd) independently pick from a binomial population.
+  - We analyzed the [distribution of sample means](10-Sampling-Dist-Mean.qmd){target="_blank"} picked from normal and exponential distributions.
+  - We analyzed the [distribution of sample proportions](11-Sampling-Dist-Prop.qmd){target="_blank"} independently picked from a binomial population.
   - Sampling distributions allowed us to predict how likely we are to pick certain sample statistics when the population is fixed and known.
 
 However, statistical inference is applied in situations where <span style="color:dodgerblue">**properties of the populations are unknown**</span>. A typical workflow for statistical inference is:
@@ -43,7 +43,7 @@ In this chapter, we explore two powerful estimation techniques, maximum likeliho
 ![Credit: [Casino Game Room Slot Machines](https://pixabay.com/photos/casino-game-room-slot-machines-3491252/) by [Bru-nO](https://pixabay.com/users/bru-no-1161770/), Open License](https://cdn.pixabay.com/photo/2018/06/22/17/54/casino-3491252_1280.jpg){fig-align="left" width=50% fig-alt="Slot Machines"} <nbsp>
 
 
-A strategic gambler believes they have identified a faulty slot machine which pays out significantly more money than the other slot machines. She and her friends watch the machine 24 hours a day for 7 days and observed the slot machine paid out the \$$1,\!000,\!000$ jackpot prize 10 times during the week. How can she figure out whether the machine is faulty or whether the number of jackpot prizes are within reason?
+A strategic gambler believes they have identified a faulty slot machine which pays out significantly more money than the other slot machines. She and her friends watched the machine 24 hours a day for 7 days and observed the slot machine paid out the \$$1,\!000,\!000$ jackpot prize 10 times during the week. How can she figure out whether the machine is faulty or whether the number of jackpot prizes are within reason?
 
 
 ## Question 1
@@ -53,7 +53,7 @@ A strategic gambler believes they have identified a faulty slot machine which pa
 They decide to compare the performance of the suspect slot machine to other slot machines. They pick a random sample of $n=4$ other slot machines and record how many jackpot prizes each machine pays over a one week time frame. Let random variable $X$ denote the number of jackpots a randomly selected slot machine pays out in week. What distribution do you think best models $X$? Give a corresponding formula for the probability mass function of $X$.
 
 - *Hint: Should we use a discrete or continuous random variable?*
-- *Hint: See either [appendix of common discrete random variables](07-Common-Discrete-RandVar.qmd#sec-append) or [appendix of common continuous random variables](08-Common-Continuous-Distributions.qmd#sec-append) for additional help.*
+- *Hint: See either [appendix of common discrete random variables](07-Common-Discrete-RandVar.qmd#sec-append){target="_blank"} or [appendix of common continuous random variables](08-Common-Continuous-Distributions.qmd#sec-append){target="_blank"} for additional help.*
 
 
 ### Solution to Question 1
@@ -85,7 +85,7 @@ true.mean <- sample(3:8, size=1)
 ```
 
 
-Next, we generate a sample size $n=4$.
+Next, we generate a sample of size $n=4$.
 
 - Run the code cell below to generate your random sample.
 - Each observation $x_i$ in the vector `x` corresponds to the number of jackpots a randomly selected slot machine paid out in one week.
@@ -274,18 +274,21 @@ like(7)
 
 ---
 
-If we have a sample size $n=100$ instead of $n=4$, we would not want to code the likelihood as we did in the previous code cell. We can streamline the process using a for loop that utilizes the structure of likelihood functions:
+If we have a sample size $n=100$ instead of $n=4$, we would not want to code the likelihood as we did in the previous code cell. We can streamline the code using vectorized functions. In the slot machine example, we have $X \sim \mbox{Pois}(\lambda)$ and a sample $x_1=9$, $x_2=8$ , $x_3=6$, and $x_4=5$. 
 
-- Each term in the product uses the same formula for the pmf.
-- The likelihood function is a product of all the pmf's.
+- In a previous code cell, we stored the sample in the vector `x` $= (9, 8, 6, 5)$.
+- We create the vector `pmf` as follows:
+  - `lam^x` is the vector $\left( \lambda^9, \lambda^8 , \lambda^6 , \lambda^5 \right)$.
+  - `exp(-lam)/factorial(x)` is the vector $\left( \frac{e^{-\lambda}}{9!}, \frac{e^{-\lambda}}{8!}, \frac{e^{-\lambda}}{6!}, \frac{e^{-\lambda}}{5!} \right)$.
+  - The product of these two vectors in R results in the vector `pmf`, 
+  
+$$\mbox{pmf} = \left( \lambda^9 \cdot \frac{e^{-\lambda}}{9!},  \lambda^8 \cdot \frac{e^{-\lambda}}{8!}, \lambda^6 \cdot \frac{e^{-\lambda}}{6!}, \lambda^5 \cdot \frac{e^{-\lambda}}{5!} \right).$$
 
-In the slot machine example, we have $X \sim \mbox{Pois}(\lambda)$ and a sample $x_1=9$, $x_2=8$ , $x_3=6$, and $x_4=5$. The vectors `x` and `pmf` are therefore
+- The function `prod(pmf)` will take the product of all entries in the vector `pmf`,
 
-$$ x = (9, 8, 6, 5) \quad \mbox{and} \quad \mbox{pmf} = \left( \frac{\lambda^{9} e^{-\lambda}}{9!} , \frac{\lambda^{8} e^{-\lambda}}{8!} , \frac{\lambda^{6} e^{-\lambda}}{6!} , \frac{\lambda^{5} e^{-\lambda}}{5!} \right).$$ 
+$$\mbox{like(lam)} =  \left( \frac{\lambda^9 e^{-\lambda}}{9!} \right) \cdot \left( \frac{\lambda^8 e^{-\lambda}}{8!} \right) \cdot \left( \frac{\lambda^6 e^{-\lambda}}{6!} \right) \cdot \left( \frac{\lambda^5 e^{-\lambda}}{5!} \right). $$
 
-The likelihood function `like` is the product of the entries in the vector `pmf`. We can substitute different values for the parameter $\lambda$ into the function `like` and compute different values of the likelihood function.
-
-- Run the code cell below to compute the likelihood that $\lambda = 7$ given the sample  `x`.
+Once we define the function `like`, we can substitute different values for the parameter $\lambda$ into the function `like` and compute values of the likelihood function. **Run the code cell below to compute the likelihood that $\lambda = 7$ given the sample  `x`.**
 
 ```{r}
 #| eval: true
@@ -941,8 +944,8 @@ Based on the distribution of MLE's in [Question 14b], do you believe the estimat
 For **normal distributions** $X \sim N(\mu, \sigma)$,  the maximum likelihood estimates of $\mu$ and $\theta$ are
 $$\hat{\mu}_{\rm{MLE}} = \frac{1}{n} \sum_{i=1}^n x_i = \bar{x} \quad \mbox{ and } \quad \hat{\sigma}_{\rm{MLE}} = \sqrt{\frac{1}{n} \sum_{i=1}^n (x_i - \bar{x})^2}.$$
 
-- See [this post](https://towardsdatascience.com/maximum-likelihood-estimation-explained-normal-distribution-6207b322e47f) for a derivation of the MLE formulas for $\hat{\mu}_{\rm{MLE}}$ and $\hat{\sigma}_{\rm{MLE}}$.
-- [These materials from Penn State](https://online.stat.psu.edu/stat415/lesson/1/1.2) also explain how to derive the MLE formulas for $\hat{\mu}_{\rm{MLE}}$ and $\hat{\sigma}_{\rm{MLE}}$.
+- See [this post](https://towardsdatascience.com/maximum-likelihood-estimation-explained-normal-distribution-6207b322e47f){target="_blank"} for a derivation of the MLE formulas for $\hat{\mu}_{\rm{MLE}}$ and $\hat{\sigma}_{\rm{MLE}}$.
+- [These materials from Penn State](https://online.stat.psu.edu/stat415/lesson/1/1.2){target="_blank"} also explain how to derive the MLE formulas for $\hat{\mu}_{\rm{MLE}}$ and $\hat{\sigma}_{\rm{MLE}}$.
 
 # Recap of Maximum Likelihood Estimates
 
