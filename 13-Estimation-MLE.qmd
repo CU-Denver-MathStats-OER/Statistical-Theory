@@ -695,7 +695,7 @@ abline(v = 0.75, col = "tomato", lwd = 2, lty = 2)  # marking MLE estimate
 
 Consider the likelihood function from [Question 7],
 
-$$L({\color{tomato}\lambda}) = {\color{\tomato}\lambda}^n e^{- {\color{tomato}\lambda} \sum_i x_i}.$$
+$$L({\color{tomato}\lambda}) = {\color{tomato}\lambda}^n e^{- {\color{tomato}\lambda} \sum_i x_i}.$$
 To find the critical values, we first need to find an expression for the derivative $\frac{d L}{d \lambda}$. 
 
 - We need to apply the product rule.
@@ -727,7 +727,7 @@ Likelihood functions are by definition a product of functions and often involve 
 
 Give a simplified expression for the log-likelihood function corresponding to the likelihood function from the exponential distribution in [Question 7],
 
-$$L({\color{tomato}\lambda}) = {\color{\tomato}\lambda}^n e^{- {\color{tomato}\lambda} \sum_i x_i}.$$
+$$L({\color{tomato}\lambda}) = {\color{tomato}\lambda}^n e^{- {\color{tomato}\lambda} \sum_i x_i}.$$
 
 
 ### Solution to Question 10

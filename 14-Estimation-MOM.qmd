@@ -329,7 +329,7 @@ For a sample $X_1=x_1, X_2=x_2, \ldots , X_n=x_n$, we can calculate the correspo
 
 - The first sample moment is   $\displaystyle M_1 = \frac{1}{n} \sum_{i=1}^n x_i$.
 
-- The second sample moment is   $\displaystyle M_2 = \frac{1}{n} \sum_{i=1}^n x_i^2 $.
+- The second sample moment is   $\displaystyle M_2 = \frac{1}{n} \sum_{i=1}^n x_i^2$.
 
 - The <span style="color:dodgerblue">**k^th^ sample  moment**</span> is   $\color{dodgerblue}{\displaystyle M_k = \frac{1}{n} \sum_{i=1}^n x_i^k }$.
 
