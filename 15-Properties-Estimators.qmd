@@ -1019,7 +1019,7 @@ legend(0.37, 0.005,
 
 ---
 
-Using the plots of ${\color{\tomato}{\mbox{MSE}(\hat{p})}}$ and ${\color{dodgerblue}{\mbox{MSE}(\tilde{p})}}$ in @fig-mse, identify the interval of $p$ values where the MSE of $\tilde{p}$ is less than the MSE of $\hat{p}$.
+Using the plots of ${\color{tomato}{\mbox{MSE}(\hat{p})}}$ and ${\color{dodgerblue}{\mbox{MSE}(\tilde{p})}}$ in @fig-mse, identify the interval of $p$ values where the MSE of $\tilde{p}$ is less than the MSE of $\hat{p}$.
 
 
 ### Solution to Question 8
