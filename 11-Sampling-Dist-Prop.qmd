@@ -266,7 +266,7 @@ for (i in 1:10000)
 
 The previous code cell generated many (10,000) random samples. We did not ensure that *all* possible samples are selected exactly once. Generating all possible random samples requires more intricate code that is time consuming to run. 
 
-- For example, if the population of eligible voters is only 100 people, then there would be $\begin{pmatrix} 100 \\ 10 \end{pmatrix} = 5.4 \times 10^{20}$ distinct jury pools that could be selected! 
+- For example, if the population of eligible voters is only 100 people, then there would be $\begin{pmatrix} 100 \\ 20 \end{pmatrix} = 5.4 \times 10^{20}$ distinct jury pools that could be selected! 
 
 :::{.callout-tip}  
 By relaxing the condition to generate every possible sample exactly once, we can get a very good approximation of the sampling distribution with much simpler code that is easier to read, modify, and run!
