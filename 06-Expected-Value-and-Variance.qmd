@@ -245,7 +245,7 @@ $$E(X) = \mu_X = \int_{-\infty}^{\infty} x \cdot f(x) \, dx.$$
 
 -   The <span style="color:dodgerblue">**variance**</span> is 
 
-$$\mbox{Var}(X) = E(X-\mu_X)^2 = E(X^2) - \mu_X^2.$$
+$$\mbox{Var}(X) = E\big[ (X-\mu_X)^2 \big] = E(X^2) - \mu_X^2.$$
 
 -   The <span style="color:dodgerblue">**median**</span> is the value $x$ such that $P(X < x) = 0.5$. Thus, to find the median we solve the equations below for $x$,
 
