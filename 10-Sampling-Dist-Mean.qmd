@@ -343,8 +343,8 @@ plot(wait,  # wait times plotted on x-axis
 Recall that an exponential distribution $Y$ with rate parameter $\lambda = \frac{1}{4}$ has:
 
 - Mean $\mu_Y = \frac{1}{\lambda} = 4$ minutes. 
-- Variance $\sigma_Y^2 = \frac{1}{\lambda} = 4$.
-- Standard deviation $\sigma_Y = \sqrt{4}=2$ minutes.
+- Variance $\sigma_Y^2 = \frac{1}{\lambda^2} = 16$.
+- Standard deviation $\sigma_Y = \sqrt{16}=4$ minutes.
 :::
 
 ## Question 7
@@ -366,7 +366,7 @@ Open the app [https://adamspiegler.shinyapps.io/clt_wait/](https://adamspiegler.
 |-----|-----|-----|-----|-----|-----|
 | Shape | Skewed Right |   |   |   |   |
 | Mean  | 4 |   |   |   |   |
-| Standard Deviation | 2 |   |   |   |   |
+| Standard Deviation | 4 |   |   |   |   |
 
 <br>  
 <br>  
