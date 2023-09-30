@@ -60,7 +60,7 @@ From the code cell above, we have generated the following sample of cub birth we
 
 $$x = (9.71, 7.77, 8.47, 7.35, 7.83, 9.06, 8.66, 8.74, 10.82, 8.27 ).$$
 
-Our goal is to find the "best" description of the distribution ofOur goal is to find the “best” description of the distribution of all black bear cub birth weights. The interpretation of "best" depends on the context of the question and can mean different things to different statisticians. 
+Our goal is to find the "best" description of the distribution of all black bear cub birth weights. The interpretation of "best" depends on the context of the question and can mean different things to different statisticians. 
 
 
 ## Question 1
@@ -179,6 +179,8 @@ What type of continuous distribution best matches the graph you selected? Explai
 
 
 ### Question 1c
+
+---
 
 Using the sample of birth weights `cub$wt`, give estimates for each of the parameter(s) in the  distribution you identified in [Question 1b].
 
@@ -483,7 +485,7 @@ Let $X_1=1, X_2=3, X_3=7, X_4=10$ be four numbers picked at random from a contin
 :::{.callout-tip}
 You do not need to evaluate any integrals to find expressions for $\mu_1$ and $\mu_2$. Recall if $X$ is a continuous uniform distribtion, we have
 
-$$E(X) = \frac{\alpha + \beta}{2}  \qquad \mbox{and} \qquad \mbox{Var}(X) = \frac{\beta- \alpha}{12}.$$
+$$E(X) = \frac{\alpha + \beta}{2}  \qquad \mbox{and} \qquad \mbox{Var}(X) = \frac{(\beta- \alpha)^2}{12}.$$
 :::
 
 
