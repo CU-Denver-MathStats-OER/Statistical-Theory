@@ -907,7 +907,7 @@ hist(mle.geom,
      xlab = "MLE",
      main = "Dist. of MLE's")
 abline(v = true.p, col = "dodgerblue", lwd = 2)  # actual value of p
-abline(v = true.p, col = "tomato", lwd = 2)  # expected value of MLE
+abline(v = mean(mle.geom), col = "tomato", lwd = 2)  # expected value of MLE
 ```
 
 
