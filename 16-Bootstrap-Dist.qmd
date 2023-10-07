@@ -18,7 +18,7 @@ output:
 ---
 
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap5/16-Bootstrap-Dist.ipynb) &nbsp;
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap5/16-Bootstrap-Dist.ipynb){target="_blank"} &nbsp;
 
 ![Credit: Lévy et Neurdein réunis, Public domain, via [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:La_Roulette_de_Monte-Carlo_R%C3%A8gle_du_Jeu.jpg)](https://upload.wikimedia.org/wikipedia/commons/e/e5/La_Roulette_de_Monte-Carlo_R%C3%A8gle_du_Jeu.jpg){fig-align="left" width=65% fig-alt="Monte"}
 
@@ -65,7 +65,7 @@ Left: Golden Jackal (Canis aureus) Right: Mandible bones of wolf and jackal
 :::
 
 
-A zoologist would like to answer the following question?
+A zoologist would like to answer the following question:
 
 > What is the average mandible (jaw) length of all golden jackals (Canis aureus)?
 

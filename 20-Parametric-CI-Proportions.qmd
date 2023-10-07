@@ -18,7 +18,7 @@ output:
 ---
 
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap5/20-Parametric-CI-Proportions.ipynb) <nbsp> 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap5/20-Parametric-CI-Proportions.ipynb){target="_blank"} &nbsp;
 
 
 
@@ -26,7 +26,7 @@ output:
 
 ---
 
-Confidence intervals are frequently used when polling public opinion. Rather than give a point estimate alone, poll results are typically given along with a  <span style="color:dodgerblue">**margin of error**</span> corresponding to a specified <span style="color:dodgerblue">**confidence level**</span>, which is typically 95%. For example, summarized in the bar plot and table below are the results of a PBS NewsHour/NPR/Marist poll^["Politics still drives how Americans fell about COVID response, one year in", [PBS/News Hour](https://www.pbs.org/newshour/politics/politics-still-drives-how-americans-feel-about-covid-response-one-year-in), March 11, 2021] that surveyed ${\color{tomato}{n=1,\!227}}$ randomly selected adults in the US and gauged their opinions on how the US is handling the COVID pandemic approximately one year after the initial outbreak in the United States.
+Confidence intervals are frequently used when polling public opinion. Rather than give a point estimate alone, poll results are typically given along with a  <span style="color:dodgerblue">**margin of error**</span> corresponding to a specified <span style="color:dodgerblue">**confidence level**</span>, which is typically 95%. For example, summarized in the bar plot and table below are the results of a PBS NewsHour/NPR/Marist poll^["Politics still drives how Americans fell about COVID response, one year in", [PBS/News Hour](https://www.pbs.org/newshour/politics/politics-still-drives-how-americans-feel-about-covid-response-one-year-in){target="_blank"}, March 11, 2021] that surveyed ${\color{tomato}{n=1,\!227}}$ randomly selected adults in the US and gauged their opinions on how the US is handling the COVID pandemic approximately one year after the initial outbreak in the United States.
 
 
 ![A stacked bar plot summary of poll results.](https://raw.githubusercontent.com/CU-Denver-MathStats-OER/Statistical-Theory/main/Images/20fig-vaccination-poll1.png){width="70%"}
@@ -234,7 +234,7 @@ $${\large \boxed{ \mbox{Wald:} \qquad {\color{tomato}{\hat{p}}} - z_{\alpha/2} \
 We use the **plug-in principle** and <span style="color:tomato">use $\hat{p}$ for the unknown value of $p$</span> when calculating the standard error.
 
 -   The advantage of this estimate is we can do it by hand.
--   The downside is that when we use $\hat{p}$ in place of $p$ we lose quite a bit of accuracy.
+-   The downside is we have introduced additional uncertainty using $\hat{p}$ in place of $p$ when estimating the standard error.
 
 # Agresti-Coull Confidence Interval for a Proportion
 

@@ -18,7 +18,7 @@ output:
 ---
 
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap5/17-Bootstrap-Confidence-Int.ipynb) &nbsp;
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap5/17-Bootstrap-Confidence-Int.ipynb){target="_blank"} &nbsp;
 
 
 In our [work with bootstrap distributions](16-Bootstrap-Dist.qmd), we explored how we can used data from one random sample picked from a population with unknown parameters to construct an approximation for a sampling distribution. From a bootstrap distribution, we can define a new estimator:
@@ -546,7 +546,7 @@ Replace each `??` in the code cell below with appropriate code.
 
 We would expect the actual value of the unknown population parameter to equal the corresponding statistic calculated from one of the 100,000 bootstrap resamples in our distribution. Since 95% of the bootstrap statistics are inside the confidence interval:
 
-> **A 95% bootstrap percentile confidence interval has about a 95% chance of containing the actual value of the population parameter.**
+> **There is about a 95% chance the bootstrap percentile confidence interval contains the actual value of the population paramter.**
 
 The <span style="color:dodgerblue">**confidence level**</span> is the success rate of success of the interval estimate. We can choose differenet confidence levels for an interval estimate:
 
