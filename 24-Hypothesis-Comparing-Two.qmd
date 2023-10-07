@@ -17,7 +17,7 @@ output:
 #    ipynbdocument::ipynb_document
 ---
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap6/24-Hypothesis-Comparing-Two.ipynb) <nbsp> 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap6/24-Hypothesis-Comparing-Two.ipynb) {target="_blank"} &nbsp; 
 
 ![Map of North Atlantic Storms](https://raw.githubusercontent.com/CU-Denver-MathStats-OER/Statistical-Theory/main/Images/24fig-storms.png){fig-align="left" width=60% fig-alt="Map of North Atlantic Storms"}
 
@@ -226,7 +226,7 @@ Is there enough evidence to support the claim that women who have recently compl
 
 
 ::: {.callout-note}
-The statistical question in this example as well as the data are motivated by an analysis of students that earned a bachelor's degree in the US in 2021 by the [National Association of Colleges and Employers (NACE)](https://www.naceweb.org/job-market/graduate-outcomes/first-destination/).
+The statistical question in this example as well as the data are motivated by an analysis of students that earned a bachelor's degree in the US in 2021 by the [National Association of Colleges and Employers (NACE)](https://www.naceweb.org/job-market/graduate-outcomes/first-destination/){target="_blank"}.
 :::
 
 ### Solution to Question 3
@@ -314,7 +314,7 @@ If the `categorical` variable has exactly two levels, then the command `t.test(q
 
 ---
 
-We use the `storms` data set from the [NOAA Hurricane Best Track Data](https://www.nhc.noaa.gov/data/#hurdat) in the `dplyr` package to test if the storm pressure is different, on average, for storms in the North Atlantic above the Tropic of Cancer compared to those below the Tropic of Cancer.
+We use the `storms` data set from the [NOAA Hurricane Best Track Data](https://www.nhc.noaa.gov/data/#hurdat){target="_blank"} in the `dplyr` package to test if the storm pressure is different, on average, for storms in the North Atlantic above the Tropic of Cancer compared to those below the Tropic of Cancer.
 
 - Run the code cell below to load the `dplyr` package (which should already be installed).
 
@@ -356,7 +356,7 @@ The Tropic of Cancer is the most northerly circle of latitude on Earth at which 
 
 ---
 
-The code cell use the [`mutate()` function](https://www.r-bloggers.com/2022/07/how-to-use-mutate-function-in-r/) that is in the `dplyr` package to create and add a new categorical variable, we name `tropic`, consisting of two levels (`above` and `below`) depending on whether the storm's location is above or below the Tropic of Cancer.  Then the `tapply()` function is used to calculate separate means for the sample of storms above and below the Tropic of Cancer.
+The code cell use the [`mutate()` function](https://www.r-bloggers.com/2022/07/how-to-use-mutate-function-in-r/){target="_blank"} that is in the `dplyr` package to create and add a new categorical variable, we name `tropic`, consisting of two levels (`above` and `below`) depending on whether the storm's location is above or below the Tropic of Cancer.  Then the `tapply()` function is used to calculate separate means for the sample of storms above and below the Tropic of Cancer.
 
 
 ::: {.callout-note}
@@ -495,7 +495,7 @@ When doing a hypothesis test on a difference of two proportions, we use a normal
 ![Credit: Nick Youngson [CC BY-SA 3.0](http://creativecommons.org/licenses/by-sa/3.0/) via [Pix4free.org](https://pix4free.org/)](https://pix4free.org/assets/library/2021-03-25/originals/ear_infection.jpg){fig-align="left" width=50% fig-alt="Ear Infection Research"}
 
 
-It is believed that a sweetener called xylitol helps prevent ear infections. In a randomized experiment^[This example is based on research by [University of Toronto Faculty of Dentistry](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8485974/). The data provided in this question has been modified from the original research.] $n_1 = 165$ children took a placebo and $68$ of them got ear infections. Another $n_2 = 159$ children took xylitol and $46$ of them got ear infections. We believe that the proportion of ear infections in the placebo group will be greater than the xylitol group. Test this claim using $\alpha=0.01$.
+It is believed that a sweetener called xylitol helps prevent ear infections. In a randomized experiment^[This example is based on research by [University of Toronto Faculty of Dentistry](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8485974/){target="_blank"}. The data provided in this question has been modified from the original research.] $n_1 = 165$ children took a placebo and $68$ of them got ear infections. Another $n_2 = 159$ children took xylitol and $46$ of them got ear infections. We believe that the proportion of ear infections in the placebo group will be greater than the xylitol group. Test this claim using $\alpha=0.01$.
 
 ### Solution to Question 6
 
