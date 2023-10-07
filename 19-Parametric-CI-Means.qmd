@@ -18,7 +18,7 @@ output:
 ---
 
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap5/19-Parametric-CI-Means.ipynb) <nbsp> 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap5/19-Parametric-CI-Means.ipynb){target="_blank"} &nbsp;
 
 
 # Parametric and Non-Parametric Methods
@@ -27,9 +27,8 @@ output:
 
 We have been investigating [resampling methods](16-Bootstrap-Dist.qmd) as a tool to estimate the variability in sample statistics.  Statistics such as means and proportions are linear combinations of random variables, and using [theory from probability](06-Expected-Value-and-Variance.qmd#sec-prop-exp), we are able the derive the [Central Limit Theorem (CLT) formulas](10-Sampling-Dist-Mean.qmd#sec-cltmeans) to model sampling distributions for means and proportions. In this section we will construct confidence intervals by applying a *parametric* approach that uses formulas from the CLT to measure the uncertainty (standard error) in our estimate.
 
-- With <span style="color:dodgerblue">**parametric methods**</span>, we perform inference using formulas derived from theory.
-- Monte Carlo methods such as bootstrap resampling are non-parametric.
-
+- With <span style="color:dodgerblue">**parametric methods**</span>, we perform inference using formulas derived from theory to model the shape, center and spread of sampling distributions.
+- Monte Carlo methods such as bootstrap resampling are non-parametric since they use simulations to estimate sampling distributions.
 
 ::: {.callout-note}
 For statistics that are not linear combinations of independent random variables (such as medians, variances, and ratios of means) deriving formulas to model the sampling distribution is more complicated or not even possible. We can try [bootstrapping in these situations](18-Bootstrap-Other-Stats.qmd) instead!
@@ -50,7 +49,7 @@ Suppose a climatologist has contacted us for help estimating the average wind sp
 
 ---
 
-When practicing [exploratory data analysis earlier](03-EDA-Quantitative.qmd#sec-storms), we accessed the `dplyr` package that contains a data set from the [NOAA Hurricane Best Track Data](https://www.nhc.noaa.gov/data/#hurdat), called `storms`, with data on many different storm attributes. We will begin analyzing the variable `wind` that gives the wind speed in knots. Run the code cell below to: 
+When practicing [exploratory data analysis earlier](03-EDA-Quantitative.qmd#sec-storms), we accessed the `dplyr` package that contains a data set from the [NOAA Hurricane Best Track Data](https://www.nhc.noaa.gov/data/#hurdat){target="_blank"}, called `storms`, with data on many different storm attributes. We will begin analyzing the variable `wind` that gives the wind speed in knots. Run the code cell below to: 
 
 - Load the `dplyr` package (which should already be installed), and 
 - Store the wind speeds to a new vector called `population`.
@@ -326,7 +325,7 @@ $$\begin{aligned}
 0.95 &= P \left( -1.96 < Z < 1.96 \right) & \mbox{from Question 3d}\\
 0.95   &= P \left( -1.96 < \frac{\overline{X} - \mu_{\overline{X}}}{\sigma_{\overline{X}}} < 1.96 \right) & \mbox{Explanation 1}\\
 0.95   &=  P \left( -1.96 < \frac{\overline{X} - \mu}{\frac{\sigma}{\sqrt{n}}} < 1.96 \right) & \mbox{Explanation 2}\\
-0.95   &= P \left( -1.96 \cdot \frac{\sigma}{\sqrt{n}} < - \mu <  1.96 \cdot \frac{\sigma}{\sqrt{n}} \right) & \mbox{Explanation 3} \\
+0.95   &= P \left( -1.96 \cdot \frac{\sigma}{\sqrt{n}} < \overline{X}- \mu <  1.96 \cdot \frac{\sigma}{\sqrt{n}} \right) & \mbox{Explanation 3} \\
 0.95   &= P \left( - \overline{X} -1.96 \cdot \frac{\sigma}{\sqrt{n}} < - \mu <  - \overline{X} + 1.96 \cdot \frac{\sigma}{\sqrt{n}} \right) & \mbox{Explanation 4} \\
 0.95   &= P \left( \overline{X} - 1.96 \cdot \frac{\sigma}{\sqrt{n}} < \mu < \overline{X}+1.96 \cdot \frac{\sigma}{\sqrt{n}} \right) & \mbox{Explanation 5}\\
 \end{aligned}$$
@@ -491,7 +490,7 @@ Pick their random sample (without replacement) of $n=36$ wind speeds from the `p
 
 ```{r}
 # pick another random sample of 36 wind speeds without replacement
-their.sample(??, size = ??, replace = ??)
+their.sample <- sample(??, size = ??, replace = ??)
 ```
 
 <br>  
@@ -590,7 +589,7 @@ It can be easy to confuse the terms *uncertain* and *unknown*. In a less formal 
 
 ---
 
-A researcher collects a random sample size $n=36$ of wind speeds for storms in the North Atlantic and calculates a 95% confidence
+A researcher collects a random sample of size $n=36$ of wind speeds for storms in the North Atlantic and calculates a 95% confidence
 interval for the mean wind speed that is from $48.75$ knots to $65.41$ knots. **For each statement, determine whether the interpretation is correct or not. If not, explain why not.**
 
 ### Question 6a
@@ -766,7 +765,7 @@ Based on your sample data in `my.sample`, give a **90% confidence interval** for
 
 ```{r}
 new.z <- ??  # Enter a command to calculate z value for 90% Conf Level
-wind.lowe90 <- ??   # Enter a command to calculate the lower limit
+wind.lower90 <- ??   # Enter a command to calculate the lower limit
 wind.upper90 <- ??   # Enter a command to calculate the upper limit
 
 # Print your answers
@@ -1185,7 +1184,7 @@ There are different statistics for assessing "greatest wind speed". From the box
 Side-by-side box plots give a nice graphical summary of the distribution of winds speeds by month. As we might suspect, from this first plot we rule out some months from this analysis. Some months appear to have very similar distributions upon inspection of box plots. We dig a little into the sample data to determine which months have the greatest sample mean wind speeds. 
 
 - We use the `tapply()` function below to calculate and compare sample mean wind speeds by month.
-- Here is a [nice introduction](https://www.statology.org/tapply-r/) to the `tapply()` function.
+- Here is a [nice introduction](https://www.statology.org/tapply-r/){target="_blank"} to the `tapply()` function.
 
 ```{r}
 #| eval: true

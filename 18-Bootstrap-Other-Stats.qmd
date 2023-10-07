@@ -1,5 +1,5 @@
 ---
-title: '5.3: Bootstrapping Comparitive Statistics'
+title: '5.3: Bootstrapping Comparative Statistics'
 #author: 'Adam Spiegler, University of Colorado Denver'
 execute:
   eval: false
@@ -17,7 +17,7 @@ output:
 #    ipynbdocument::ipynb_document
 ---
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap5/18-Bootstrap-Other-Stats.ipynb) <nbsp> 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap5/18-Bootstrap-Other-Stats.ipynb){target="_blank"} &nbsp; 
 
 ![Credit: Openclipart, CC0, via [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:18fig-match.png)](https://upload.wikimedia.org/wikipedia/commons/5/50/18fig-match.png){fig-align="left" width=25% fig-alt="Matched Pair Bubble People"}
 
@@ -91,7 +91,7 @@ below.
 
 ---
 
-Using the data from this study, give a possible sample statistic that can be used to determine if smoking is associated with lower birth weight? 
+Using the data from this study, give a possible sample statistic that can be used to determine if smoking is associated with lower birth weight. 
 
 
 ### Solution to Question 2
@@ -149,7 +149,7 @@ Let's recap and compare data sets from two different studies investigating poten
 ---
 
 
-**When we bootstrap matched pairs, we do not want to randomness to affect the natural pairing between the two samples!**  Below is an algorithm for bootstrapping matched pairs. In order to preserve the pairing of the smoking and non-smoking birth weights, we do a single resample from the original sample of differences as opposed to two resamples from two independent samples.  
+**When we bootstrap matched pairs, we do not want randomness to affect the natural pairing between the two samples!**  Below is an algorithm for bootstrapping matched pairs. In order to preserve the pairing of the smoking and non-smoking birth weights, we do a single resample from the original sample of differences as opposed to two resamples from two independent samples.  
 
 Given a <span style="color:dodgerblue">**matched pairs sample**</span> of size $n$:
 
@@ -396,7 +396,7 @@ When investigating the possible effect of smoking during pregnancy on birth weig
 - Since $0$ is not inside the interval estimate, it is not plausible that $\mu_{\rm{non}} - \mu_{s} =0$ g.
 - We can conclude that there is a difference in the mean birth weights of babies of smokers and non-smokers.
 
-Another comparative analysis we can do is compare the <span style="color:dodgerblue">**ratio of means (RoM)**</span> instead of the difference of means. Let $R = \dfrac{\mu_{\rm{non}}}{\mu_{\rm{s}}}$ denote the ratio of population means. $R$ is unknown population parameter that we can analyze as follows:
+Another comparative analysis we can do is compare the <span style="color:dodgerblue">**ratio of means (RoM)**</span> instead of the difference of means. Let $R = \dfrac{\mu_{\rm{non}}}{\mu_{\rm{s}}}$ denote the ratio of population means. $R$ is an unknown population parameter that we can analyze as follows:
 
 - If $R = \dfrac{\mu_{\rm{non}}}{\mu_{\rm{s}}} > 1$, then $\mu_{\rm{non}} > \mu_{\rm{s}}$.
 - If $R = \dfrac{\mu_{\rm{non}}}{\mu_{\rm{s}}} < 1$, then $\mu_{\rm{non}} < \mu_{\rm{s}}$.
@@ -883,7 +883,7 @@ $${\color{dodgerblue}{\frac{\mbox{Bootstrap Bias}}{\mbox{Bootstrap SE}}  > 0.02 
 
 ---
 
-Determine whether the jackal mandible bootstrap distribution in [Question 8], the ozone concentration bootstrap distribution for sample proportion in [Question 9], or the bootstrap distribution for the difference in mean birth weights [Question 10] exceed the 0.02 rule of thumb? Relatively speaking, which of the three biases is most extreme?
+Determine whether the jackal mandible bootstrap distribution in [Question 8], the ozone concentration bootstrap distribution for sample proportion in [Question 9], or the bootstrap distribution for the difference in mean birth weights [Question 10] exceed the 0.02 rule of thumb. Relatively speaking, which of the three biases is most extreme?
 
 
 
