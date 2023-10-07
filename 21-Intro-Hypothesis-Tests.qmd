@@ -17,7 +17,7 @@ output:
 #    ipynbdocument::ipynb_document
 ---
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap6/21-Intro-Hypothesis-Tests.ipynb) <nbsp> 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap6/21-Intro-Hypothesis-Tests.ipynb){target="_blank"} &nbsp;
 
 
 ![Credit: neotam, via Pixabay](https://cdn.pixabay.com/photo/2019/09/07/17/22/yes-4459344_1280.jpg){fig-align="left" width=50% fig-alt="Balancing Yes and No"}
@@ -117,7 +117,7 @@ State your answer in terms of the value of the sample proportion $\hat{p}$.
 
 ---
 
-The general process form performing a hypothesis test is informally:
+The general process for performing a hypothesis test is informally:
 
 1. State the null and alternative hypotheses in terms of population parameter(s).
 2. Collect data from a sample and calculate test statistic(s).
@@ -250,10 +250,10 @@ We do not want different researchers subjectively choosing what "beyond a reason
 ![Credit: Benreis, [CC BY 3.0](https://creativecommons.org/licenses/by/3.0), via Wikimedia Commons](https://upload.wikimedia.org/wikipedia/commons/3/36/Pay_the_bill.JPG){fig-align="left" width=45% fig-alt="Paying the Bill"}
 
 
-An article^[Gneezy, U., E. Haruvy, and H. Yafe (2004), ["The Inefficiency of Splitting the Bill"](https://rady.ucsd.edu/_files/faculty-research/uri-gneezy/splitting-bill.pdf), *The Economic Journal* 114] from *The Economic Journal* studied the so called **unscrupulous diner's dilemma**.
+An article^[Gneezy, U., E. Haruvy, and H. Yafe (2004), ["The Inefficiency of Splitting the Bill"](https://rady.ucsd.edu/_files/faculty-research/uri-gneezy/splitting-bill.pdf){target="_blank"}, *The Economic Journal* 114] from *The Economic Journal* studied the so called **unscrupulous diner's dilemma**.
 
 
-> The unscrupulous diner's dilemma is a problem faced frequently in social settings. When a group of diners jointly enjoys a meal at a restaurant, often an unspoken agreement exists to divide the check equally. A selfish diner could thereby enjoy exceptional dinners at bargain prices. This dilemma typifies a class of serious social problems^[Glance, N., and B. Huberman, ["The Dynamics of Social Dilemmas"](http://www.uvm.edu/~pdodds/files/papers/others/1994/glance1994a.pdf), *Scientific American*] from environmental protection and resource conservation to eliciting charity donations and slowing arms races.
+> The unscrupulous diner's dilemma is a problem faced frequently in social settings. When a group of diners jointly enjoys a meal at a restaurant, often an unspoken agreement exists to divide the check equally. A selfish diner could thereby enjoy exceptional dinners at bargain prices. This dilemma typifies a class of serious social problems^[Glance, N., and B. Huberman, ["The Dynamics of Social Dilemmas"](http://www.uvm.edu/~pdodds/files/papers/others/1994/glance1994a.pdf){target="_blank"}, *Scientific American*] from environmental protection and resource conservation to eliciting charity donations and slowing arms races.
 
 
 Researchers wanted to test whether people order more food and beverages when they know the bill is going to split evenly, or do they order the same amount regardless of whether they are splitting the bill or paying individually.
@@ -346,7 +346,7 @@ Based on the test statistic, what do you think we can conclude about the two com
 
 ---
 
-A 2008 experiment^[Gerber, A., D. Green, and C. Larimer, ["Social Pressure and Voter Turnout: Evidence from a Largescale Field Experiment"](http://isps.yale.edu/sites/default/files/publication/2012/12/ISPS08-001.pdf), American Political Science Review, Feb 2008] at Yale aimed to determine whether positive or negative pressure is more effective at improving voter turnout.
+A 2008 experiment^[Gerber, A., D. Green, and C. Larimer, ["Social Pressure and Voter Turnout: Evidence from a Largescale Field Experiment"](http://isps.yale.edu/sites/default/files/publication/2012/12/ISPS08-001.pdf){target="_blank"}, American Political Science Review, Feb 2008] at Yale aimed to determine whether positive or negative pressure is more effective at improving voter turnout.
 
 > Voter turnout theories based on rational self-interested behavior generally fail to predict significant turnout unless they account for the utility that citizens receive from performing their civic duty. We distinguish between two aspects of this type of utility,
 
@@ -378,7 +378,7 @@ State the null and alternative hypotheses the researches can use to test whether
 
 ---
 
-What is a possible test statistic the researchers could use to assess the competing claims in your previous answer? *There is not specific value to give. Rather, explain how you could use sample data to compute a test statistic.*
+What is a possible test statistic the researchers could use to assess the competing claims in your previous answer? *There is not a specific value to give. Rather, explain how you could use sample data to compute a test statistic.*
 
 #### Solution to Question 5b
 

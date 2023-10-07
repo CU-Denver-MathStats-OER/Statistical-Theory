@@ -18,7 +18,7 @@ output:
 ---
 
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap6/23-Hypothesis-Single-Population.ipynb) <nbsp> 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap6/23-Hypothesis-Single-Population.ipynb){target="_blank"} &nbsp; 
 
 
 # 6.3: Parametric Hypothesis Tests
@@ -104,7 +104,7 @@ Pressure is a common measurement used to characterize the strength of a storm. T
 - $H_0$: $\mu = 950$. The mean pressure of all storms in the North Atlantic is 950 millibars.
 - $H_a$: $\mu \ne 950$. The mean pressure of all storms in the North Atlantic is not 950 millibars.
 
-We collect a random sample of $n$ storm pressure observation. We find the sample mean pressure $\bar{x} = 992$ millibars has a p-value $= 0.012$.
+We collect a random sample of $n$ storm pressure observations with a sample mean larger than 950 millibars that has a p-value equal to $0.012$.
 
 ### Question 1a 
 
@@ -157,12 +157,12 @@ Summarize the results if we perform the hypothesis test using a 1% significance 
 
 ---
 
-Suppose we instead we want to show the mean storm pressure is greater than 950 millibars.
+Suppose we instead we want to show the mean storm pressure is **greater than** 950 millibars.
 
 - $H_0$: $\mu = 950$. The mean pressure of all storms in the North Atlantic is 950 millibars.
 - $H_a$: $\mu > 950$. The mean pressure of all storms in the North Atlantic is greater than 950 millibars.
 
-We still have the sample of the same size $n$ and sample mean $\bar{x} = 992$ millibars as in [Question 1](#23q1). For the two-tailed test, this sample has a p-value $= 0.012$.
+Assume we still have the same sample of size $n$ with the same sample mean (which is greater than 950 millibars) as in [Question 1](#23q1). Recall this sample has a p-value equal to $0.012$ for a two-tailed test. Using the same sample, we now test the one-tailed hypotheses instead.
 
 - What would be the p-value for this same sample be if we use this one-tailed test instead?
 - Summarize the result of the one-tailed test in practical terms if we use a significance level of 5%.
@@ -190,7 +190,7 @@ We still have the sample of the same size $n$ and sample mean $\bar{x} = 992$ mi
 
 ![Credit: Mbz1, [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/), via Wikimedia Commons](https://upload.wikimedia.org/wikipedia/commons/8/8c/Paul_the_Octopus.jpg){fig-align="left" width=40% fig-alt="Paul the Oracle Octopus"}
 
-In the 2010 World Cup in Germany, Paul the octopus (aka the Oracle Octopus) correctly predicted the correct outcome in all 8 of the matches he predicted. Paul beat out his rival Mani, Singapore's psychic parakeet, who predicted six matches in a row before missing a prediction. Below is an excerpt from a recent article^["The 'psychic' animals predicting who will win the World Cup", [ABC News](https://abcnews.go.com/International/psychic-animals-predicting-win-world-cup/story?id=93915441), accessed July 13, 2023.] about animal clairvoyance and the World Cup.
+In the 2010 World Cup in Germany, Paul the octopus (aka the Oracle Octopus) correctly predicted the correct outcome in all 8 of the matches he predicted. Paul beat out his rival Mani, Singapore's psychic parakeet, who predicted six matches in a row before missing a prediction. Below is an excerpt from a recent article^["The 'psychic' animals predicting who will win the World Cup", [ABC News](https://abcnews.go.com/International/psychic-animals-predicting-win-world-cup/story?id=93915441){target="_blank"}, accessed July 13, 2023.] about animal clairvoyance and the World Cup.
 
 
 > No FIFA World Cup would be complete without "psychic" animals predicting the winners, and Qatar 2022 has been no exception. From "clairvoyant" camels to "mystic" elephants and "cryptic" rats, a range of animals -- big and small -- have tried their paws, hooves and tentacles at predicting the score line. <br>  <br>  It all started with Paul, the "psychic" octopus. The eight-tentacled icon put TV pundits to shame with an incredible string of correct World Cup winner predictions from his glass tank at the Aquarium Sea Life Centre in Oberhausen, Germany. The tentacled tipster had an incredible success rate: he correctly predicted eight world cup matches at South Africa's tournament in 2010, including Spain beating the Netherlands in the World Cup final.
@@ -257,7 +257,7 @@ Let $X$ be a binomial random variable and let <span style="color:tomato">$p_0$ d
 
 ---
 
-The mean height of all adult males in the United Kingdom is claimed^[["Height, Weight, and Body Mass of the British Population Since 1820"](https://www.nber.org/system/files/working_papers/h0108/h0108.pdf) by Roderick Floud, National Bureau of of Economic Research, October 1998.] to be the $68.5$ inches ($5$ foot $8.5$ inches or $173.9$ cm) with a standard deviation of $2.5$ inches (or $6.35$ cm). A physician suspects males in her town seem to be taller than average when compared to the population of all adult males in the UK. She collects data from a random sample of $n=25$ adult males from the town and calculates the mean height of the sample is $69.25$ inches.
+The mean height of all adult males in the United Kingdom is claimed^[["Height, Weight, and Body Mass of the British Population Since 1820"](https://www.nber.org/system/files/working_papers/h0108/h0108.pdf){target="_blank"} by Roderick Floud, National Bureau of of Economic Research, October 1998.] to be $68.5$ inches ($5$ foot $8.5$ inches or $173.9$ cm) with a standard deviation of $2.5$ inches (or $6.35$ cm). A physician suspects males in her town seem to be taller than average when compared to the population of all adult males in the UK. She collects data from a random sample of $n=25$ adult males from the town and calculates the mean height of the sample is $69.25$ inches.
 
 
 
@@ -380,7 +380,7 @@ As with confidence intervals, when estimating an unknown population mean, we oft
 
 --- 
 
-The `storms` data set is from the [NOAA Hurricane Best Track Data](https://www.nhc.noaa.gov/data/#hurdat). We will perform a hypothesis test to test claims about the mean storm pressure, so we will need to analyze the variable `pressure`. 
+The `storms` data set is from the [NOAA Hurricane Best Track Data](https://www.nhc.noaa.gov/data/#hurdat){target="_blank"}. We will perform a hypothesis test to test claims about the mean storm pressure, so we will need to analyze the variable `pressure`. 
 
 - Run the code cell below to load the `dplyr` package (which should already be installed).
 
@@ -405,7 +405,7 @@ my.sample <- sample(storms$pressure, size=32, replace=FALSE)
 
 ---
 
-It is claimed^[[The University of Arizona Hydrology and Atmospheric Sciences](http://www.atmo.arizona.edu/students/courselinks/fall10/atmo336/lectures/sec2/hurricanes.html), accessed July 13, 2023.] that the average pressure of all North Atlantic storms is 950 millibars. You believe this claim is inaccurate and would like to show the average pressure of all storms is not 950 millibars.
+It is claimed^[[The University of Arizona Hydrology and Atmospheric Sciences](http://www.atmo.arizona.edu/students/courselinks/fall10/atmo336/lectures/sec2/hurricanes.html){target="_blank"}, accessed July 13, 2023.] that the average pressure of all North Atlantic storms is 950 millibars. You believe this claim is inaccurate and would like to show the average pressure of all storms is not 950 millibars.
 
 
 ### Question 4a
@@ -517,9 +517,9 @@ In R, we can use the command `t.test(x, mu = [null], alt = [direction])`.
 - Sample data is stored in the vector `x`.
 - Set the option `mu` equal to the value, $\mu_0$, claimed in $H_0$.
 - Set the option `alt` based on the inequality used in $H_a$.
-  - Use `"greater"` for right-tail test.
-  - Use `"less"` for left-tail test.
-  - Use `"two.sided"` for a two-tail test.
+  - Use `"greater"` for right-tailed test.
+  - Use `"less"` for left-tailed test.
+  - Use `"two.sided"` for a two-tailed test.
   - If you do not indicate any `alt` option, the default is a two-tailed test.
 
 ## Question 5
@@ -680,31 +680,35 @@ To illustrate the p-value for a two-tailed test:
 ################################################
 # for a two-tailed test run the code cell below
 ################################################
-x.test <- abs(test.stat)
-xmax <- max(null.mean + 4*null.se, x.test)
-xmin <- -1*xmax
+x.diff <- abs(null.mean - test.stat)
+lower.x <- null.mean - x.diff
+upper.x <- null.mean + x.diff
+
+end.diff <- max(x.diff, 4*null.se)
+xmax <- null.mean + end.diff
+xmin <- null.mean - end.diff
 
 
-ggplot(NULL, aes(c(-xmin, xmax))) + 
-  geom_area(stat = "function",   fun = dnorm, 
+ggplot(NULL, aes(c(xmin, xmax))) +
+  geom_area(stat = "function",   fun = dnorm,
             args = list(mean = null.mean, sd = null.se),
-            color = "black", fill = NA, 
-            xlim = c(-x.test, x.test)) +
-  geom_area(stat = "function",   fun = dnorm, 
+            color = "black", fill = NA,
+            xlim = c(lower.x, upper.x)) +
+  geom_area(stat = "function",   fun = dnorm,
             args = list(mean = null.mean, sd = null.se),
-            color = "black", fill = "firebrick2", 
-            xlim = c(xmin, -x.test)) +
-  geom_area(stat = "function",   fun = dnorm, 
+            color = "black", fill = "firebrick2",
+            xlim = c(xmin, lower.x)) +
+  geom_area(stat = "function",   fun = dnorm,
             args = list(mean = null.mean, sd = null.se),
-            color = "black", fill = "firebrick2", 
-            xlim = c(x.test, xmax)) +
-  geom_vline(xintercept = c(-x.test, x.test), linetype="dashed", 
-                color = "firebrick2", linewidth = 1) + 
+            color = "black", fill = "firebrick2",
+            xlim = c(upper.x, xmax)) +
+  geom_vline(xintercept = c(lower.x, upper.x), linetype="dashed",
+                color = "firebrick2", linewidth = 1) +
   labs(x = "test statistic", y = "") +
   scale_y_continuous(breaks = NULL) +
-  scale_x_continuous(breaks=c(-x.test,  x.test)) + 
-  geom_hline(yintercept=0) + 
-  theme_bw() + 
+  scale_x_continuous(breaks=c(lower.x,  upper.x)) +
+  geom_hline(yintercept=0) +
+  theme_bw() +
   theme(axis.text.x=element_text(size=15, color = "firebrick2"))
 ```
 
@@ -722,26 +726,26 @@ To illustrate the p-value for a left-tailed test:
 ################################################
 # for a left-tailed test run the code cell below
 ################################################
-x.test <- abs(test.stat)
-xmax <- max(null.mean + 4*null.se, x.test)
-xmin <- -1*xmax
+xmin <- min(null.mean - 4*null.se, test.stat)
+xmax <- null.mean + 4*null.se
 
-ggplot(NULL, aes(c(-xmin, xmax))) + 
-  geom_area(stat = "function",   fun = dnorm, 
+
+ggplot(NULL, aes(c(xmin, xmax))) +
+  geom_area(stat = "function",   fun = dnorm,
             args = list(mean = null.mean, sd = null.se),
-            color = "black", fill = NA, 
-            xlim = c(-x.test, xmax)) +
-  geom_area(stat = "function",   fun = dnorm, 
+            color = "black", fill = NA,
+            xlim = c(test.stat, xmax)) +
+  geom_area(stat = "function",   fun = dnorm,
             args = list(mean = null.mean, sd = null.se),
-            color = "black", fill = "firebrick2", 
-            xlim = c(xmin, -x.test)) +
-  geom_vline(xintercept = -x.test, linetype="dashed", 
-                color = "firebrick2", linewidth = 1) + 
+            color = "black", fill = "firebrick2",
+            xlim = c(xmin, test.stat)) +
+  geom_vline(xintercept = test.stat, linetype="dashed",
+                color = "firebrick2", linewidth = 1) +
   labs(x = "test statistic", y = "") +
   scale_y_continuous(breaks = NULL) +
-  scale_x_continuous(breaks=-x.test) + 
-  geom_hline(yintercept=0) + 
-  theme_bw() + 
+  scale_x_continuous(breaks=test.stat) +
+  geom_hline(yintercept=0) +
+  theme_bw() +
   theme(axis.text.x=element_text(size=15, color = "firebrick2"))
 ```
 
@@ -759,26 +763,26 @@ To illustrate the p-value for a right-tailed test:
 ################################################
 # for a right-tailed test run the code cell below
 ################################################
-x.test <- abs(test.stat)
-xmax <- max(null.mean + 4*null.se, x.test)
-xmin <- -1*xmax
+xmax <- max(null.mean + 4*null.se, test.stat)
+xmin <- null.mean - 4*null.se
 
-ggplot(NULL, aes(c(-xmin, xmax))) + 
-  geom_area(stat = "function",   fun = dnorm, 
+
+ggplot(NULL, aes(c(xmin, xmax))) +
+  geom_area(stat = "function",   fun = dnorm,
             args = list(mean = null.mean, sd = null.se),
-            color = "black", fill = NA, 
-            xlim = c(xmin, x.test)) +
-  geom_area(stat = "function",   fun = dnorm, 
+            color = "black", fill = NA,
+            xlim = c(xmin, test.stat)) +
+  geom_area(stat = "function",   fun = dnorm,
             args = list(mean = null.mean, sd = null.se),
-            color = "black", fill = "firebrick2", 
-            xlim = c(x.test, xmax)) +
-  geom_vline(xintercept = x.test, linetype="dashed", 
-                color = "firebrick2", linewidth = 1) + 
+            color = "black", fill = "firebrick2",
+            xlim = c(test.stat, xmax)) +
+  geom_vline(xintercept = test.stat, linetype="dashed",
+                color = "firebrick2", linewidth = 1) +
   labs(x = "test statistic", y = "") +
   scale_y_continuous(breaks = NULL) +
-  scale_x_continuous(breaks=x.test) + 
-  geom_hline(yintercept=0) + 
-  theme_bw() + 
+  scale_x_continuous(breaks=test.stat) +
+  geom_hline(yintercept=0) +
+  theme_bw() +
   theme(axis.text.x=element_text(size=15, color = "firebrick2"))
 ```
 
@@ -811,32 +815,33 @@ To illustrate the p-value for a two-tailed test:
 ################################################
 # for a two-tailed test run the code cell below
 ################################################
-x.test <- abs(test.stat)
-xmax <- max(4, x.test)
-xmin <- -1*xmax
 v <- deg.free
+end.t <- qt(0.9997, v)
+test.stat <- abs(test.stat)
+xmax <- max(end.t, test.stat)
+xmin <- -xmax
 
 
-ggplot(NULL, aes(c(-xmin, xmax))) + 
-  geom_area(stat = "function",   fun = dt, 
+ggplot(NULL, aes(c(xmin, xmax))) +
+  geom_area(stat = "function",   fun = dt,
             args = list(df = v),
-            color = "black", fill = NA, 
-            xlim = c(-x.test, x.test)) +
-  geom_area(stat = "function",   fun = dt, 
+            color = "black", fill = NA,
+            xlim = c(-test.stat, test.stat)) +
+  geom_area(stat = "function",   fun = dt,
             args = list(df = v),
-            color = "black", fill = "firebrick2", 
-            xlim = c(xmin, -x.test)) +
-  geom_area(stat = "function",   fun = dt, 
+            color = "black", fill = "firebrick2",
+            xlim = c(xmin, -test.stat)) +
+  geom_area(stat = "function",   fun = dt,
             args = list(df = v),
-            color = "black", fill = "firebrick2", 
-            xlim = c(x.test, xmax)) +
-  geom_vline(xintercept = c(-x.test, x.test), linetype="dashed", 
-                color = "firebrick2", linewidth = 1) + 
+            color = "black", fill = "firebrick2",
+            xlim = c(test.stat, xmax)) +
+  geom_vline(xintercept = c(-test.stat, test.stat), linetype="dashed",
+                color = "firebrick2", linewidth = 1) +
   labs(x = "test statistic", y = "") +
   scale_y_continuous(breaks = NULL) +
-  scale_x_continuous(breaks=c(-x.test,  x.test)) + 
-  geom_hline(yintercept=0) + 
-  theme_bw() + 
+  scale_x_continuous(breaks=c(-test.stat,  test.stat)) +
+  geom_hline(yintercept=0) +
+  theme_bw() +
   theme(axis.text.x=element_text(size=15, color = "firebrick2"))
 ```
 
@@ -854,28 +859,28 @@ To illustrate the p-value for a left-tailed test:
 ################################################
 # for a left-tailed test run the code cell below
 ################################################
-x.test <- abs(test.stat)
-xmax <- max(4, x.test)
-xmin <- -1*xmax
 v <- deg.free
+end.t <- qt(0.9997, v)
+xmin <- min(-end.t, test.stat)
+xmax <- end.t
 
 
-ggplot(NULL, aes(c(-xmin, xmax))) + 
-  geom_area(stat = "function",   fun = dt, 
+ggplot(NULL, aes(c(xmin, xmax))) +
+  geom_area(stat = "function",   fun = dt,
             args = list(df = v),
-            color = "black", fill = NA, 
-            xlim = c(-x.test, xmax)) +
-  geom_area(stat = "function",   fun = dt, 
+            color = "black", fill = NA,
+            xlim = c(test.stat, xmax)) +
+  geom_area(stat = "function",   fun = dt,
             args = list(df = v),
-            color = "black", fill = "firebrick2", 
-            xlim = c(xmin, -x.test)) +
-  geom_vline(xintercept = -x.test, linetype="dashed", 
-                color = "firebrick2", linewidth = 1) + 
+            color = "black", fill = "firebrick2",
+            xlim = c(xmin, test.stat)) +
+  geom_vline(xintercept = test.stat, linetype="dashed",
+                color = "firebrick2", linewidth = 1) +
   labs(x = "test statistic", y = "") +
   scale_y_continuous(breaks = NULL) +
-  scale_x_continuous(breaks=-x.test) + 
-  geom_hline(yintercept=0) + 
-  theme_bw() + 
+  scale_x_continuous(breaks=test.stat) +
+  geom_hline(yintercept=0) +
+  theme_bw() +
   theme(axis.text.x=element_text(size=15, color = "firebrick2"))
 ```
 
@@ -893,28 +898,27 @@ To illustrate the p-value for a right-tailed test:
 ################################################
 # for a right-tailed test run the code cell below
 ################################################
-x.test <- abs(test.stat)
-xmax <- max(4, x.test)
-xmin <- -1*xmax
 v <- deg.free
+end.t <- qt(0.9997, v)
+xmax <- max(end.t, test.stat)
+xmin <- -end.t
 
-
-ggplot(NULL, aes(c(-xmin, xmax))) + 
-  geom_area(stat = "function",   fun = dt, 
+ggplot(NULL, aes(c(xmin, xmax))) +
+  geom_area(stat = "function",   fun = dt,
             args = list(df = v),
-            color = "black", fill = NA, 
-            xlim = c(xmin, x.test)) +
-  geom_area(stat = "function",   fun = dt, 
+            color = "black", fill = NA,
+            xlim = c(xmin, test.stat)) +
+  geom_area(stat = "function",   fun = dt,
             args = list(df = v),
-            color = "black", fill = "firebrick2", 
-            xlim = c(x.test, xmax)) +
-  geom_vline(xintercept = x.test, linetype="dashed", 
-                color = "firebrick2", linewidth = 1) + 
+            color = "black", fill = "firebrick2",
+            xlim = c(test.stat, xmax)) +
+  geom_vline(xintercept = test.stat, linetype="dashed",
+                color = "firebrick2", linewidth = 1) +
   labs(x = "test statistic", y = "") +
   scale_y_continuous(breaks = NULL) +
-  scale_x_continuous(breaks=x.test) + 
-  geom_hline(yintercept=0) + 
-  theme_bw() + 
+  scale_x_continuous(breaks=test.stat) +
+  geom_hline(yintercept=0) +
+  theme_bw() +
   theme(axis.text.x=element_text(size=15, color = "firebrick2"))
 ```
 

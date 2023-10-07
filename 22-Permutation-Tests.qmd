@@ -18,7 +18,7 @@ output:
 ---
 
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap6/22-Permutation-Tests.ipynb) <nbsp> 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap6/22-Permutation-Tests.ipynb){target="_blank"} &nbsp;
 
 
 ![Credit: Torsten Mütze, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0), via Wikimedia Commons](https://upload.wikimedia.org/wikipedia/commons/b/b3/Permutation_generation_algorithms.svg){fig-align="left" width=55% fig-alt="Permutation Illustration"}
@@ -57,10 +57,10 @@ $${\large {\color{dodgerblue}{p\mbox{-value} = P( \mbox{test statistic as or mor
 
 ---
 
-We previously considered the [unscrupulous diner's dilemma](21-Intro-Hypothesis-Tests.qmd#sec-diner)^[Gneezy, U., E. Haruvy, and H. Yafe (2004), ["The Inefficiency of Splitting the Bill"](https://rady.ucsd.edu/_files/faculty-research/uri-gneezy/splitting-bill.pdf), *The Economic Journal* 114.].
+We previously considered the [unscrupulous diner's dilemma](21-Intro-Hypothesis-Tests.qmd#sec-diner)^[Gneezy, U., E. Haruvy, and H. Yafe (2004), ["The Inefficiency of Splitting the Bill"](https://rady.ucsd.edu/_files/faculty-research/uri-gneezy/splitting-bill.pdf){target="_blank"}, *The Economic Journal* 114.].
 
 
-> The unscrupulous diner's dilemma is a problem faced frequently in social settings. When a group of diners jointly enjoys a meal at a restaurant, often an unspoken agreement exists to divide the check equally. A selfish diner could thereby enjoy exceptional dinners at bargain prices. This dilemma typifies a class of serious social problems^[Glance, N., and B. Huberman, ["The Dynamics of Social Dilemmas"](http://www.uvm.edu/~pdodds/files/papers/others/1994/glance1994a.pdf), *Scientific American*] from environmental protection and resource conservation to eliciting charity donations and slowing arms races.
+> The unscrupulous diner's dilemma is a problem faced frequently in social settings. When a group of diners jointly enjoys a meal at a restaurant, often an unspoken agreement exists to divide the check equally. A selfish diner could thereby enjoy exceptional dinners at bargain prices. This dilemma typifies a class of serious social problems^[Glance, N., and B. Huberman, ["The Dynamics of Social Dilemmas"](http://www.uvm.edu/~pdodds/files/papers/others/1994/glance1994a.pdf){target="_blank"}, *Scientific American*] from environmental protection and resource conservation to eliciting charity donations and slowing arms races.
 
 
 Researchers wanted to test whether people order more food and beverages when they know the bill is going to be split evenly compared to when each person only pays for what they ordered.
@@ -180,7 +180,7 @@ To perform a <span style="color:dodgerblue">**two-sample permutation test**</spa
 ![Credit: Braga, Macedo, Pinto, et. al., [CC BY 4.0](https://creativecommons.org/licenses/by/4.0), via Wikimedia Commons](https://upload.wikimedia.org/wikipedia/commons/d/d0/Superficial_spreading_melanoma_in_situ_on_dermoscopy%2C_reflectance_confocal_microscopy_and_histopathology_2.jpg){fig-align="left" width=55% fig-alt="Superficial spreading melanoma"}
 
 
-Skin is the largest organ in the human body. In the United States, skin cancer is the most common cancer. Current estimates are that one in five Americans will develop skin cancer in their lifetime^[American Academy of Dermatology, <https://www.aad.org/media/stats-skin-cancer>.]. There are different types of skin cancers, and melanoma is one form of skin cancer that is particularly dangerous if not detected early. However, if a skin lesion is detected early, it can be surgically removed before it spreads, and a patient generally has good long-term outcomes.
+Skin is the largest organ in the human body. In the United States, skin cancer is the most common cancer. Current estimates are that one in five Americans will develop skin cancer in their lifetime^[American Academy of Dermatology, [Skin Cancer Stats](https://www.aad.org/media/stats-skin-cancer){target="_blank"}.]. There are different types of skin cancers, and melanoma is one form of skin cancer that is particularly dangerous if not detected early. However, if a skin lesion is detected early, it can be surgically removed before it spreads, and a patient generally has good long-term outcomes.
 
 The data set `melanoma` in the `boot` package contains measurements from a random sample of $205$ patients with malignant melanoma at the University Hospital of Odense in Denmark. Each patient had a skin lesion (or tumor) surgically removed and various attributes of the patient and tumors are recorded. Run the code cell below to load the `boot` package and summarize the variables in the `melanoma` data set.
 
@@ -242,7 +242,7 @@ melanoma$ulcer <- factor(melanoma$ulcer)
 
 ---
 
-One possible question we could ask: *"Is the mean tumor thickness greater for all people with fatal melanoma compared to the mean tumor thickness for all people that survive melanoma?"* The two variables of interest are `status` and `thickness`.
+Suppose we want to answer the following question: *"Is the mean tumor thickness greater for all people with fatal melanoma compared to the mean tumor thickness for all people that survive melanoma?"* The two variables of interest are `status` and `thickness`.
 
 - `status`: The patients status at the end of the study. `1` indicates that they had died from melanoma, `2` indicates that they were still alive and `3` indicates that they had died from causes unrelated to their melanoma.
 - `thickness`: Tumor thickness in millimeters (mm).
@@ -254,21 +254,21 @@ For our study, we are comparing two independent populations:
 - The people in `status` group `3` we exclude from this analysis.
 
 
-## Question 3
+## Question 4
 
 ---
 
-Answer the questions below to state our hypotheses, organize our data, and calculate a test statistic to help determine whether the mean tumor thickness is greater for all people with fatal melanoma compared to the mean tumor thickness for all people that survive melanoma?
+Answer the questions below to state our hypotheses, organize our data, and calculate a test statistic to help determine whether the mean tumor thickness is greater for all people with fatal melanoma compared to the mean tumor thickness for all people that survive melanoma.
 
 
-### Question 3a
+### Question 4a
 
 ---
 
 Create side-by-side box plots to display the distribution of tumor thickness for each of the three `status` groups `1` (died from melanoma), `2` (survived), and `3` (died from other causes).
 
 
-#### Solution to Question 3a
+#### Solution to Question 4a
 
 ---
 
@@ -284,7 +284,7 @@ boxplot(??)
 
 
 
-### Question 3b
+### Question 4b
 
 ---
 
@@ -302,7 +302,7 @@ Interpret the output from the code cell below.
 tapply(melanoma$thickness, melanoma$status, length)  # nothing to edit
 ```
 
-#### Solution to Question 3b
+#### Solution to Question 4b
 
 ---
 
@@ -313,14 +313,14 @@ tapply(melanoma$thickness, melanoma$status, length)  # nothing to edit
 
 
 
-### Question 3c
+### Question 4c
 
 ---
 
-We would like to use the data in `melanoma` to test the if the mean tumor thickness is greater for all people with fatal melanoma compared to the mean tumor thickness for all people that survive melanoma? State the corresponding null and alternative hypotheses for this test. Be sure to state each hypothesis both in words and using mathematical notation.
+We would like to use the data in `melanoma` to test the if the mean tumor thickness is greater for all people with fatal melanoma compared to the mean tumor thickness for all people that survive melanoma. State the corresponding null and alternative hypotheses for this test. Be sure to state each hypothesis both in words and using mathematical notation.
 
 
-#### Solution to Question 3c
+#### Solution to Question 4c
 
 ---
 
@@ -331,7 +331,7 @@ We would like to use the data in `melanoma` to test the if the mean tumor thickn
 <br>  
 <br>  
 
-### Question 3d
+### Question 4d
 
 ---
 
@@ -355,7 +355,7 @@ The output of the code cell below are vectors, so we do not use the `$var_name` 
 :::
 
 
-#### Solution to Question 3d
+#### Solution to Question 4d
 
 ---
 
@@ -380,15 +380,15 @@ pooled <- subset(melanoma, select = thickness, status != "3", drop = TRUE)
 ```
 
 
-### Question 3e
+### Question 4e
 
 ---
 
 
-Using the vectors `died`, `survived`, and `pooled` from [Question 3d], calculate the sample size and the sample mean for each of the samples `died`, `survived`, and `pooled`. 
+Using the vectors `died`, `survived`, and `pooled` from [Question 4d], calculate the sample size and the sample mean for each of the samples `died`, `survived`, and `pooled`. 
 
 
-#### Solution to Question 3e
+#### Solution to Question 4e
 
 ---
 
@@ -412,13 +412,13 @@ xbar.pooled
 <br>  
 <br>  
 
-### Question 3f
+### Question 4f
 
 ---
 
-Based on the output in [Question 3e], calculate, store, and print the test statistic for this test to the screen.
+Based on the output in [Question 4e], calculate, store, and print the test statistic for this test to the screen.
 
-#### Solution to Question 3f
+#### Solution to Question 4f
 
 ---
 
@@ -441,14 +441,14 @@ test.stat  # print test statistic to screen
 
 ---
 
-See the code used to create `pooled` in [Question 3d].
+See the code used to create `pooled` in [Question 4d].
 
 
 ## Step 2: Create Resamples for Each Treatment Group
 
 ---
 
-For this step, it is important to note the size of each original sample. From [Question 3e] we know
+For this step, it is important to note the size of each original sample. From [Question 4e] we know
 
 - The sample `died` consists of 57 observations.
 - The sample `survived` consists of 134 observations.
@@ -542,11 +542,11 @@ perm.stat
 
 
 
-## Question 4
+## Question 5
 
 ---
 
-Complete the first code cell below to create a permutation distribution for the difference in sample mean tumor thickness. Be sure you have already created the vector `pooled` in [Question 3d] and stored `test.stat` in [Question 3f].
+Complete the first code cell below to create a permutation distribution for the difference in sample mean tumor thickness. Be sure you have already created the vector `pooled` in [Question 4d] and stored `test.stat` in [Question 4f].
 
 After generating a permutation distribution, run the second code cell below to create a histogram to display the distribution of resample statistics along with a red vertical line through the observed test statistic. There is nothing to edit in the second code cell.
 
@@ -585,7 +585,7 @@ for (i in 1:N)
 ```
 
 
-### Solution to Question 4
+### Solution to Question 5
 
 ---
 
@@ -627,7 +627,7 @@ abline(v = test.stat, col = "red")
 
 We use the permutation distribution as an estimate for the null distribution. The p-value is the proportion of all resampled test statistics that are as or more extreme than the observed test statistic. We can use a logical test to help compute this proportion.
 
-## Question 5
+## Question 6
 
 ---
 
@@ -638,7 +638,7 @@ p.value <- sum(perm.stat >= test.stat)/N
 p.value
 ```
 
-### Solution to Question 5
+### Solution to Question 6
 
 ---
 
@@ -649,36 +649,36 @@ Interpret the code cell above.
 <br>  
 
 
-## Question 6
+## Question 7
 
 ---
 
-The calculation from [Question 5] used the $N=10^5-1=99,\!999$ permutation resamples, but recall we want to be sure to include the original, observed sample when computing the p-value. Explain how the code cell below accomplishes this goal.
+The calculation from [Question 6] used the $N=10^5-1=99,\!999$ permutation resamples, but recall we want to be sure to include the original, observed sample when computing the p-value. Explain how the code cell below accomplishes this goal.
 
 ```{r}
 p.value <- (sum(perm.stat >= test.stat) + 1) / (N + 1)
 p.value
 ```
 
-### Solution to Question 6
-
----
-
-
-<br>  
-<br>  
-<br>  
-
-
-
-
-## Question 7
-
----
-
-Interpret the practical meaning of the p-value from [Question 6] to a person who is not very familiar with statistics.
-
 ### Solution to Question 7
+
+---
+
+
+<br>  
+<br>  
+<br>  
+
+
+
+
+## Question 8
+
+---
+
+Interpret the practical meaning of the p-value from [Question 7] to a person who is not very familiar with statistics.
+
+### Solution to Question 8
 
 ---
 
@@ -691,7 +691,7 @@ Interpret the practical meaning of the p-value from [Question 6] to a person who
 
 ---
 
-## Question 8
+## Question 9
 
 ---
 
@@ -701,13 +701,13 @@ Ulceration is a breakdown of the skin over the melanoma tumor. Using the data se
 The variable `ulcer` indicates whether the removed tumor was ulcerated (`ulcer` group `1`) or not ulcerated (`ulcer` group `0`).
 :::
 
-### Question 8a
+### Question 9a
 
 ---
 
 Write out the null and alternative hypotheses using appropriate notation.
 
-#### Solution to Question 8a
+#### Solution to Question 9a
 
 ---
 
@@ -720,13 +720,13 @@ Write out the null and alternative hypotheses using appropriate notation.
 <br>  
 
 
-### Question 8b
+### Question 9b
 
 ---
 
 What can we use as the test statistic? What is the value of the observed test statistic?
 
-#### Solution to Question 8b
+#### Solution to Question 9b
 
 ---
 
@@ -738,13 +738,13 @@ test.stat2  # print output to screen
 <br>  
 <br>  
 
-### Question 8c
+### Question 9c
 
 ---
 
 Create a permutation distribution for the difference in sample variances.
 
-#### Solution to Question 8c
+#### Solution to Question 9c
 
 ---
 
@@ -775,13 +775,13 @@ abline(v = c(-test.stat2, test.stat2), col = c("blue", "red"))
 <br>  
 <br>  
 
-### Question 8d
+### Question 9d
 
 ---
 
 Calculate the p-value of the observed test statistic and interpret its meaning in practical terms.
 
-#### Solution to Question 8d
+#### Solution to Question 9d
 
 ---
 
@@ -800,19 +800,19 @@ Calculate the p-value of the observed test statistic and interpret its meaning i
 ---
 
 
-## Question 9
+## Question 10
 
 ---
 
 Is the proportion of females with ulcerated tumors less than the proportion of males with ulcerated tumors?
 
-### Question 9a
+### Question 10a
 
 ---
 
 Write out the null and alternative hypotheses using appropriate notation.
 
-#### Solution to Question 9a
+#### Solution to Question 10a
 
 ---
 
@@ -825,14 +825,14 @@ Write out the null and alternative hypotheses using appropriate notation.
 <br>  
 
 
-### Question 9b
+### Question 10b
 
 ---
 
 What can we use as the test statistic? What is the value of the observed test statistic?
 
 
-#### Solution to Question 9b
+#### Solution to Question 10b
 
 ---
 
@@ -855,13 +855,13 @@ test.diff.prop <- ??
 <br>  
 <br>  
 
-### Question 9c
+### Question 10c
 
 ---
 
 Create a permutation distribution for the difference in sample proportions.
 
-#### Solution to Question 9c
+#### Solution to Question 10c
 
 ---
 
@@ -885,13 +885,13 @@ abline(v = test.diff.prop, col = "red")
 <br>  
 <br>  
 
-### Question 9d
+### Question 10d
 
 ---
 
 Calculate the p-value of the observed test statistic and interpret its meaning in practical terms.
 
-#### Solution to Question 9d
+#### Solution to Question 10d
 
 ---
 
@@ -909,7 +909,7 @@ Calculate the p-value of the observed test statistic and interpret its meaning i
 
 ---
 
-## Question 10
+## Question 11
 
 ---
 
@@ -923,7 +923,7 @@ In this example, we use data collected from a matched pair designed study to det
 
 
 
-### Question 10a
+### Question 11a
 
 ---
 
@@ -931,7 +931,7 @@ Researchers are testing to see if the birth weight of babies born to a parent th
 
 
 
-#### Solution to Question 10a
+#### Solution to Question 11a
 
 ---
 
@@ -945,13 +945,13 @@ Researchers are testing to see if the birth weight of babies born to a parent th
 
 
 
-### Question 10b
+### Question 11b
 
 ---
 
 What can we use as the test statistic? What is the value of the observed test statistic?
 
-#### Solution to Question 10b
+#### Solution to Question 11b
 
 ---
 
@@ -967,13 +967,13 @@ smoker <- c(1790, 2381, 3940, 3317, 2125,
 diff <- no - smoker  # differences between matched pairs
 
 # Calculate the observed test statistic
-
+test.match.diff <- ??
 ```
 
 <br>  
 <br>  
 
-### Question 10c
+### Question 11c
 
 ---
 
@@ -1004,7 +1004,7 @@ To create a permutation distribution for the sample mean difference between matc
 
 
 
-#### Solution to Question 10c
+#### Solution to Question 11c
 
 ---
 
@@ -1031,19 +1031,19 @@ There is nothing to edit in the code cell below. Run the code cell below to plot
 # and add a vertical line at the observed test statistic
 hist(perm.match,  xlab = "xbar-diff",
      main = "Permutation Distribution")
-abline(v = test.match, col ="red")
+abline(v = test.match.diff, col ="red")
 ```
 
 <br>  
 <br>  
 
-### Question 10d
+### Question 11d
 
 ---
 
 Calculate the p-value of the observed test statistic and interpret its meaning in practical terms.
 
-#### Solution to Question 10d
+#### Solution to Question 11d
 
 ---
 
@@ -1058,7 +1058,7 @@ Calculate the p-value of the observed test statistic and interpret its meaning i
 
 
 
-## Question 11
+## Question 12
 
 ---
 
@@ -1111,7 +1111,7 @@ d.  Calculate the p-value.
 
 e.  Interpret the meaning of the p-value.
 
-### Solution to Question 11
+### Solution to Question 12
 
 ---
 

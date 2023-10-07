@@ -17,7 +17,7 @@ output:
 #    ipynbdocument::ipynb_document
 ---
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap6/25-Error-Types-and-Power-of-Tests.ipynb) <nbsp> 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap6/25-Error-Types-and-Power-of-Tests.ipynb){target="_blank"} &nbsp; 
 
 
 # Potential Errors with Hypothesis Tests
@@ -69,8 +69,9 @@ For example, when a jury is deciding a case in court, the hypotheses would be:
 
 A jury can make two possible errors:
 
-- A <span style="color:dodgerblue">type I error</span> occurs when a jury falsely convicts an innocent person.
-- A <span style="color:tomato">type II error</span> occurs when a jury fails to convict a guilty person.
+- If they falsely convict an innocent person, they have made a <span style="color:dodgerblue">type I error</span>. 
+- If they do not convict a guilty person, they have made a <span style="color:tomato">type II error</span>.
+
 
 ## Question 1
 
