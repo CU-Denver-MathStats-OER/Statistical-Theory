@@ -903,7 +903,7 @@ obs.diff  # print observed difference to screen
 
 ---
 
-Based on your answer to [Quesiton 8b], given an estimate for the difference in the mean birth weights of all children born to a non-smoking parent compared to the mean birth weight of all children born to a parent that did smoke while pregnant. *Include units in your answer.*
+Based on your answer to [Question 8b], given an estimate for the difference in the mean birth weights of all children born to a non-smoking parent compared to the mean birth weight of all children born to a parent that did smoke while pregnant. *Include units in your answer.*
 
 #### Solution to Question 8c
 
