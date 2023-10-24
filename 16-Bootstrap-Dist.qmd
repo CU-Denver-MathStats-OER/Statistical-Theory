@@ -463,7 +463,7 @@ What are the mean and standard error of the bootstrap distribution? Use the code
 
 Recall if ${\color{tomato}{\widehat{\theta}}}$ is an <span style="color:tomato">estimator</span> for the <span style="color:mediumseagreen">parameter</span> ${\color{mediumseagreen}{\theta}}$, then we define the <span style="color:dodgerblue">**bias**</span> of an estimator as
 
-$${\large \color{dodgerblue}{ \boxed{\mbox{Bias}(\widehat{\theta}) = {\color{tomato}{\widehat{\theta}}} - {\color{mediumseagreen}{\theta}}}.}}$$
+$${\large \color{dodgerblue}{ \boxed{\mbox{Bias}(\widehat{\theta}) = {\color{tomato}{E \left( \widehat{\theta} \right)}} - {\color{mediumseagreen}{\theta}}}.}}$$
 
 **In the case of bootstrapping:**
 
@@ -792,8 +792,8 @@ boot.se  # standard error (spread) of bootstrap dist
 ```{r}
 # compare bootstrap dist to normal dist
 # run to create a qq-plot
-qqnorm(boot.dist)
-qqline(boot.dist)
+qqnorm(boot.arsenic)
+qqline(boot.arsenic)
 ```
 
 
