@@ -16,7 +16,7 @@ Students are not required to have any previous course work in statistics, probab
 
 ---
 
-An html version of the text can be accessed at <https://aspiegler.github.io/Statistical-Theory/>. Since the html version is not dynamic, students will not be able edit the text or run code in the html version. However, each section of the text has a link to interactive Jupyter notebook version of the materials that will open in Google Colaboratory.
+An html version of the text can be accessed at <https://aspiegler.github.io/Statistical-Theory/>. Since the html version is not dynamic, students will not be able edit the text or run code in the html version. However, each section of the text has a link to an interactive Jupyter notebook version of the materials that will open in Google Colaboratory.
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap1/01-Intro-to-Inference.ipynb)  
 
