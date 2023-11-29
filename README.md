@@ -97,9 +97,6 @@ If you have any questions, comments, or suggestions about these materials, pleas
 
 <img src="https://cdhe.colorado.gov/sites/highered/files/logo.svg" alt="Colorado Department of Higher Education" width="30%"/>
 
-![Colorado Department of Higher Education](https://cdhe.colorado.gov/sites/highered/files/logo.svg){width=30% height=30%}
-fig-align="left" width=30% fig-alt="Colorado Department of Higher Education"}
-
 This project was supported by the [Colorado Department of Higher Education (CDHE)](https://cdhe.colorado.gov/) OER Grant Program. A big thank you to Megan Patnott for reviewing the materials and providing many great corrections and suggestions to improve the materials!
 
 
