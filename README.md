@@ -12,6 +12,23 @@ The prerequisite for the course at CU Denver is multivariable calculus; however,
 
 Students are not required to have any previous course work in statistics, probability, or coding in R (or any other language). The "essentials" of probability are covered in Chapter 2 with a focus on how we apply theory from probability to do statistics. These materials do not include a comprehensive treatment of probability. 
 
+## How to Access, Edit and Save Notebooks
+
+---
+
+An html version of the text can be accessed at <https://aspiegler.github.io/Statistical-Theory/>. Since the html version is not dynamic, students will not be able edit the text or run code in the html version. However, each section of the text has a link to interactive Jupyter notebook version of the materials that will open in Google Colaboratory.
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap1/01-Intro-to-Inference.ipynb)  
+
+- At the top of each notebook is a "button" such as the one above.
+- Click the button to open an interactive Jupyter notebook version initialized to run R code in [Google Colaboratory](https://colab.research.google.com/) (or Colab).
+- You can begin working with the notebook right away in Colab! There is no software to install (or purchase!).
+- You can also access the materials directly on GitHub at <https://github.com/CU-Denver-MathStats-OER/Statistical-Theory.git>.
+
+
+Each Jupyter notebook contains both narrative text (in Markdown cells) and R code cells that you can create, modify, and run. Although you do not need a Google account to interact with the notebooks, the Colab notebooks are "shared", meaning you cannot save any changes to the initial shared document that opens. **If you would like to save your changes, you first need to save a copy to your Google Drive.** Then you can edit and save changes to your own version.
+
+
 
 ## A Virtual Lab for Exploring Statistics
 
@@ -30,24 +47,6 @@ The intent of introducing R is not to avoid a deep and rigorous understanding of
 - Confirm analytically derived results.
 - Gain further insight and intuition.
 - <font color="dodgerblue">**Bridge the divide between theory and practice.**</font>
-
-
-## How to Access, Edit and Save Notebooks
-
----
-
-This [html version](https://aspiegler.github.io/Statistical-Theory/) of the materials is not dynamic. You cannot edit the text or run code with the html version.
-
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap1/01-Intro-to-Inference.ipynb) <nbsp>
-
-- At the top of each notebook is a "button" such as the one above.
-- Click the button to open an interactive Jupyter notebook version initialized to run R code in [Google Colaboratory](https://colab.research.google.com/) (or Colab).
-- You can begin working with the notebook right away in Colab! There is no software to install (or purchase!).
-- You can also access the materials directly on GitHub at <https://github.com/CU-Denver-MathStats-OER/Statistical-Theory.git>.
-
-
-Each Jupyter notebook contains both narrative text (in Markdown cells) and R code cells that you can create, modify, and run. Although you do not need a Google account to interact with the notebooks, the Colab notebooks are "shared", meaning you cannot save any changes to the initial shared document that opens. **If you would like to save your changes, you first need to save a copy to your Google Drive.** Then you can edit and save changes to your own version.
-
 
 
 ## What Programming Background is Required?
@@ -105,7 +104,7 @@ This project was supported by the [Colorado Department of Higher Education (CDHE
 
 ---
 
-![Creative Commons License](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png) <nbsp>
+![Creative Commons License](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)  
 
 *Statistical Methods: Exploring the Uncertain* by [Adam Spiegler (University of Colorado Denver)](https://github.com/CU-Denver-MathStats-OER/Statistical-Theory) is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/). This work is funded by an [Institutional OER Grant from the Colorado Department of Higher Education (CDHE)](https://cdhe.colorado.gov/educators/administration/institutional-groups/open-educational-resources-in-colorado).
 
