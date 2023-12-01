@@ -655,13 +655,6 @@ Using [properties of expected value](06-Expected-Value-and-Variance.qmd#sec-prop
 $$E \left( \widehat{P}_1 - \widehat{P}_2 \right) = E \left( \widehat{P}_1 \right) - E \left( \widehat{P}_2 \right) = p_1 - p_2.$$
 
 
-Since $X_1 \sim \mbox{Binom}(n_1,p_1)$ and $X_2 \sim \mbox{Binom}(n_2,p_2)$, we know ${\color{dodgerblue}{E(X_1) = n_1p_1}}$ and ${\color{tomato}{E(X_2) = n_2p_2}}$. Thus we have
-
-$$E (\widehat{P_1}-\widehat{P_2}) = \frac{1}{n_1} {\color{dodgerblue}{n_1p_1}} - \frac{1}{n_2} {\color{tomato}{n_2p_2}}=p_1-p_2.$$
-
-This concludes the proof that $E (\widehat{P_1}-\widehat{P_2}) =p_1-p_2$.
-
-
 #### Standard Error of Sampling Distribution for $\widehat{P}_1 - \widehat{P}_2$
 
 ---
