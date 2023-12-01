@@ -236,6 +236,8 @@ We use the **plug-in principle** and <span style="color:tomato">use $\hat{p}$ fo
 -   The advantage of this estimate is we can do it by hand.
 -   The downside is we have introduced additional uncertainty using $\hat{p}$ in place of $p$ when estimating the standard error.
 
+We <span style="color:mediumseagreen">**use the standard normal distribution**</span> to identify  ${\color{mediumseagreen}{z_{\alpha/2}}}$ when finding the margin of error since we are using a <span style="color:mediumseagreen">continuous distribution</span> (proportions) to approximate a <span style="color:mediumseagreen">binomial distribution</span> (counts).
+
 # Agresti-Coull Confidence Interval for a Proportion
 
 ---
@@ -244,10 +246,8 @@ When constructing a Wald confidence interval for a proportion, we use the sample
 
 When studying properties of estimators, we [considered another estimator for the parameter $p$](15-Properties-Estimators.qmd#sec-compare-prop), namely ${\color{tomato}{\tilde{p} = \frac{X+2}{n+4}}}$, where $X$ denotes the number of "successes". Comparing estimators $\hat{p}$ and $\tilde{p}$, we discovered that:
 
-- The sample proportion $\hat{p}$ is unbiased but less precise.
-- The modified sample proportion ${\color{tomato}{\tilde{p}}}$ is **slightly biased but more precise**.
-- The confidence interval using ${\color{tomato}{\tilde{p}}}$ will usually have a **smaller margin of error** than using $\hat{p}$.
-
+-   The modified sample proportion ${\color{tomato}{\tilde{p}}}$ is   **slightly biased but more precise** than $\hat{p}$ as long as $p$ is not close to either $0$ or $1$.
+-   Thus, the confidence interval using ${\color{tomato}{\tilde{p}}}$ will have a **smaller margin of error** than using $\hat{p}$ when $p$ is not close to either $0$ or $1$.
 
 The <span style="color:dodgerblue">**Agresti-Coull confidence interval for a proportion**</span> is
 
@@ -450,16 +450,25 @@ We can modify the <span style="color:dodgerblue">**Wald confidence interval**</s
 
 $$\mbox{SE} \left( \widehat{P}_1 - \widehat{P}_2 \right) = \sqrt{ \frac{p_1(1-p_1)}{n_1} + \frac{p_2(1-p_2)}{n_2}} \approx \sqrt{ \frac{{\color{mediumseagreen}{\hat{p}_1}}(1-{\color{mediumseagreen}{\hat{p}_1}})}{n_1} + \frac{{\color{mediumseagreen}{\hat{p}_2}}(1-{\color{mediumseagreen}{\hat{p}_2}})}{n_2}}$$
 
-- We **use the standard normal distribution** to identify $z_{\alpha/2}$ to find the <span style="color:tomato">margin of error</span>.
+- Since we are using a continuous distribution (proportions) to approximate a binomial distribution (counts), we **use the standard normal distribution** to identify $z_{\alpha/2}$ to find the <span style="color:tomato">margin of error</span>.
+  - Note: A normal distribution is an accurate model assuming <span style="color:tomato">**all four**</span> of the conditions are true: <span style="color:tomato">$n_1 p_1 \geq 10$, $n_1(1-p_1) \geq 10$, $n_2 p_2 \geq 10$, and $n_2(1-p_2) \geq 10$</span>.
 
-$$({\color{dodgerblue}{\hat{p}_1 - \hat{p}_2}}) - {\color{tomato}{z_{\alpha/2} \cdot \sqrt{ \dfrac{\hat{p}_1(1-\hat{p}_1)}{n_1} + \dfrac{\hat{p}_2 (1-\hat{p}_2) }{n_2}}}}  < p_1-p_2 < ({\color{dodgerblue}{\hat{p}_1 - \hat{p}_2}}) + {\color{tomato}{z_{\alpha/2} \cdot \sqrt{ \dfrac{\hat{p}_1(1-\hat{p}_1)}{n_1} + \dfrac{\hat{p}_2 (1-\hat{p}_2) }{n_2}}}}.$$
+- Thus, we have a <span style="color:dodgerblue">**Wald confidence interval for a difference in proportions**</span>.
 
-We use Wald confidence intervals for a difference in two proportions, but be aware there are other variations of confidence intervals for a difference in two proportions, similar to the Agresti-Coull and score confidence intervals.  In R, the command 
+$$({\color{dodgerblue}{\hat{p}_1 - \hat{p}_2}}) - {\color{tomato}{z_{\alpha/2} \cdot \sqrt{ \dfrac{\hat{p}_1(1-\hat{p}_1)}{n_1} + \dfrac{\hat{p}_2 (1-\hat{p}_2) }{n_2}}}}  < p_1-p_2 < ({\color{dodgerblue}{\hat{p}_1 - \hat{p}_2}}) + {\color{tomato}{z_{\alpha/2} \cdot \sqrt{ \dfrac{\hat{p}_1(1-\hat{p}_1)}{n_1} + \dfrac{\hat{p}_2 (1-\hat{p}_2) }{n_2}}}}$$
 
-<center>`prop.test(c(x1, x2), c(n1, n2), conf.level = CL, correct = TRUE)$conf.int` </center>
+### A Wald Confidence Interval for $p_1 - p_2$ Using `prop.test()`
+
+---
+
+The formulas above give a Wald confidence intervals for a difference in two proportions. Be aware there are other variations of confidence intervals for a difference in two proportions similar to the Agresti-Coull and score confidence intervals.
+
+In R, the command
+
+<center>`prop.test(c(x1, x2), c(n1, n2), conf.level = CL, correct = FALSE)$conf.int` </center>
 
 <br> 
-computes a **Wald confidence interval** for a difference in two proportions with a continuity correction applied.
+computes a **Wald confidence interval** for a difference in two proportions without a continuity correction applied. If we want to apply a continuity correction^[See [Colab Notebook](https://colab.research.google.com/drive/1su7go-u4AAUtPS_CLeCIVSJjYx1gaqbY?usp=sharing){target="_blank"} for an explanation of how a continuity correction is applied to a difference in proportions with `prop.test()` in R.], we use the option `correct = TRUE`.
 
 
 ::: {.callout-note}
@@ -592,7 +601,7 @@ $$\big( \hat{p} - {\color{tomato}{p}} \big)^2 = (-z_{\alpha/2})^2 \left( \frac{{
 The resulting equation is the same as with the first case we solved. Thus, solving the equation above gives the same expressions for $U$ and $L$.
 
 
-## Applying a Continuity Correction {#sec-score-corr}
+## Applying a Continuity Correction to a Score Confidence Interval {#sec-score-corr}
 
 ---
 
@@ -630,16 +639,21 @@ $${\color{dodgerblue}{\boxed{ \widehat{P}_1 - \widehat{P}_2  \sim N \left( \mu_{
 
 ---
 
-Below we prove both $E(\widehat{P_1}-\widehat{P_2}) = \mu_{\widehat{P}_1 - \widehat{P}_2} =p_1 - p_2$ and $\mbox{SE}(\widehat{P}_1 - \widehat{P}_2) =  \sqrt{\frac{p_1(1-p_1)}{n_1} + \frac{p_2(1-p_2)}{n_2}}$. 
+Below we prove both $E(\widehat{P_1}-\widehat{P_2}) = \mu_{\widehat{P}_1 - \widehat{P}_2} =p_1 - p_2$ and $\mbox{SE}(\widehat{P}_1 - \widehat{P}_2) = \sqrt{\frac{p_1(1-p_1)}{n_1} + \frac{p_2(1-p_2)}{n_2}}$.
 
 
-#### Mean of Sampling Distribution for $\widehat{P}_1 - \widehat{P}_2$
+In proving the claims about a difference in proportions, we use the results of the Central Limit Theorem for a single proportion. If $X \sim \mbox{Binom}(n,p)$ and $\widehat{P} = \frac{X}{n}$, then
+
+$$E \left( \widehat{P} \right) = p \qquad \mbox{and} \qquad \mbox{Var} \left( \widehat{P} \right) = \sqrt{\frac{p(1-p)}{n}}.$$
+
+#### Expected Value of Sampling Distribution for $\widehat{P}_1 - \widehat{P}_2$
 
 ---
 
-We have $E (\widehat{P_1}-\widehat{P_2}) = E \left( \frac{X_1}{n_1} -\frac{X_2}{n_2} \right)$. Using [properties of expected value](06-Expected-Value-and-Variance.qmd#sec-prop-exp), we have
+Using [properties of expected value](06-Expected-Value-and-Variance.qmd#sec-prop-exp), we have
 
-$$E (\widehat{P_1}-\widehat{P_2}) = E \left( \frac{X_1}{n_1} -\frac{X_2}{n_2} \right) = \frac{1}{n_1} E(X_1) - \frac{1}{n_2} E(X_2).$$
+$$E \left( \widehat{P}_1 - \widehat{P}_2 \right) = E \left( \widehat{P}_1 \right) - E \left( \widehat{P}_2 \right) = p_1 - p_2.$$
+
 
 Since $X_1 \sim \mbox{Binom}(n_1,p_1)$ and $X_2 \sim \mbox{Binom}(n_2,p_2)$, we know ${\color{dodgerblue}{E(X_1) = n_1p_1}}$ and ${\color{tomato}{E(X_2) = n_2p_2}}$. Thus we have
 
@@ -652,17 +666,13 @@ This concludes the proof that $E (\widehat{P_1}-\widehat{P_2}) =p_1-p_2$.
 
 ---
 
-We have $\mbox{Var} (\widehat{P_1}-\widehat{P_2}) = \mbox{Var} \left( \frac{X_1}{n_1} -\frac{X_2}{n_2} \right)$. $X_1$ and $X_2$ are independent random variables, so we can use [properties of variance](06-Expected-Value-and-Variance.qmd#sec-prop-var):
+Using [properties of variance](06-Expected-Value-and-Variance.qmd#sec-prop-var), we have
 
-$$\mbox{Var} \left( \frac{X_1}{n_1} -\frac{X_2}{n_2} \right) = \left(\frac{1}{n_1}\right)^2 \mbox{Var}(X_1) + \left(- \frac{1}{n_2} \right)^2 \mbox{Var}(X_2) = \frac{1}{n_1^2}\mbox{Var}(X_1) + \frac{1}{n_2^2}\mbox{Var}(X_2).$$
+$$\mbox{Var} \left( \widehat{P}_1 - \widehat{P}_2 \right) = \mbox{Var} \left( \widehat{P}_1 \right) + (-1)^2 \cdot \mbox{Var} \left( \widehat{P}_2 \right) = \frac{p_1(1-p_1)}{n_1} + \frac{p_2(1-p_2)}{n_2}.$$
 
-Since $X_1 \sim \mbox{Binom}(n_1,p_1)$ and $X_2 \sim \mbox{Binom}(n_2,p_2)$, we know ${\color{dodgerblue}{\mbox{Var}(X_1) = n_1p_1(1-p_1)}}$ and ${\color{tomato}{\mbox{Var}(X_2) = n_2p_2(1-p_2)}}$. Thus we have
+Therefore, the standard error for the sampling distribution of the difference in sample proportions is
 
-$$\mbox{Var} (\widehat{P_1}-\widehat{P_2}) = \frac{1}{n_1^2} {\color{dodgerblue}{n_1p_1(1-p_1)}} - \frac{1}{n_2^2} {\color{tomato}{n_2p_2(1-p_2)}}= \frac{p_1(1-p_1)}{n_1} + \frac{p_2(1-p_2)}{n_2}.$$
-
-The standard error of the sampling distribution is the square root of the variance, thus we have
-
-$$\mbox{SE} (\widehat{P_1}-\widehat{P_2}) = \sqrt{\frac{p_1(1-p_1)}{n_1} + \frac{p_2(1-p_2)}{n_2}}.$$
+$$\mbox{SE}\left( \widehat{P}_1 - \widehat{P}_2 \right) = \sqrt{ \frac{p_1(1-p_1)}{n_1} + \frac{p_2(1-p_2)}{n_2}}.$$
 
 ---
 
