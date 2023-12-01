@@ -17,7 +17,7 @@ output:
 #    ipynbdocument::ipynb_document
 ---
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap6/24-Hypothesis-Comparing-Two.ipynb) {target="_blank"} &nbsp; 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap6/24-Hypothesis-Comparing-Two.ipynb){target="_blank"} &nbsp; 
 
 ![Map of North Atlantic Storms](https://raw.githubusercontent.com/CU-Denver-MathStats-OER/Statistical-Theory/main/Images/24fig-storms.png){fig-align="left" width=60% fig-alt="Map of North Atlantic Storms"}
 
