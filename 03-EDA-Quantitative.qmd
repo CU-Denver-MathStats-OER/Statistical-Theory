@@ -15,8 +15,13 @@ output:
 #    ipynbdocument::ipynb_document
 ---
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap1/03-EDA-Quantitative.ipynb){target="_blank"} <nbsp>
+Click [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap1/03-EDA-Quantitative.ipynb){target="_blank"} to open an interactive version of the full text section.
 
+For a shorter [in-class lab version of the section, part 1, click here.](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Labs/03-LabA-EDA-Quantitative.ipynb){target="_blank"}
+
+For a shorter [in-class lab version of the section, part 2, click here.](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Labs/03-LabB-EDA-Quantitative.ipynb){target="_blank"}
+
+---
 
 Additional Reading:
 
