@@ -17,9 +17,6 @@ output:
 
 Click [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap1/02-EDA-Categorical.ipynb){target="_blank"} to open an interactive version of the full text section.
 
-For a shorter [in-class lab version of the section click here.](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Labs/02-Lab-EDA-Categorical.ipynb){target="_blank"}
-
-
 --- 
 
 Additional Reading:
