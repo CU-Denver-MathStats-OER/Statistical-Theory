@@ -556,8 +556,8 @@ When constructing a sampling distribution of sample proportions, we approximate 
 
 -   In the jury example, we have $n=20$ and $X = \left\{ 0, 1, \ldots , 19, 20 \right\}$.
 -   Thus, the possible sample proportions are $\hat{p} = \left\{ 0, 0.05, 0.10, \ldots , 0.95, 1 \right\}$.
--   However, in [Question 5] we approximate $\hat{P} \sim \mbox{Binom} N( 0.42, 0.1104)$ with a continuous, normal distribution.
-- *Note: We could equivalently us $N \big( 0.42, \sqrt{(20)(0.42)(0.58) \big)}$ to approximate $X \sim (20, 0.42)$ and have the same issue.*
+-   However, in [Question 5] we approximate $\hat{P} \sim N( 0.42, 0.1104)$ with a continuous, normal distribution.
+- *Note: We could equivalently use $N \big( 0.42, \sqrt{(20)(0.42)(0.58) \big)}$ to approximate $X \sim (20, 0.42)$ and have the same issue.*
 -   We can see this discrepancy between discrete data and continuous approximation in the step-like pattern in the previous qq-plots.
 
 :::{.callout-warning}
