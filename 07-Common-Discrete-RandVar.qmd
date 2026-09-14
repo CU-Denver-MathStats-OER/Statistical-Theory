@@ -30,7 +30,8 @@ We will take a look at several of the most common and useful distributions when 
 
 ---
 
-![Illustration by Eric Molinsky from the [CALI](http://www.cali.org/) Lesson "Trial Practice, Bringing it to the Jury and Beyond." [CC BY-NC-SA 2.0](https://creativecommons.org/licenses/by-nc-sa/2.0/)](https://thecrimereport.org/wp-content/uploads/2020/08/jury-by-eric-molinsky-computer-assisted-legal-instruction-771x498.jpg)
+![Illustration by Eric Molinsky from the [CALI](http://www.cali.org/) Lesson "Trial Practice, Bringing it to the Jury and Beyond." [CC BY-NC-SA 2.0](https://creativecommons.org/licenses/by-nc-sa/2.0/)](https://live.staticflickr.com/7066/6882839119_0bbfbe8773_w.jpg)
+
 
 
 The jury plays the most crucial role in a trial. They determine how cases are ultimately resolved! The jury serves as an impartial reviewer of the facts presented in criminal and civil cases.  The goal of randomly selecting the jury is to remove the bias in the jury selection process. 
@@ -52,9 +53,9 @@ The federal judicial branch in the United States decides the constitutionality o
 
 ---
 
-Consider the selection of a jury of 5 people. We want to see whether the jury is representative in terms of political party. Note we initially choose a jury of 5 people to more quickly recognize a pattern. After identifying a pattern, we can extend our results to juries of 12 people. Let $Y$ denote a jury member who identifies as an independent voter. Let $N$ denote a jury member who is not independent (identify as Democrat, Republican, or with another political party).
+Consider the selection of a jury of 5 people. We want to see whether the jury is representative in terms of political party. Note we initially choose a jury of 5 people to more quickly recognize a pattern. After identifying a pattern, we can extend our results to juries of 12 people. Let $Y$ denote a jury member who identifies as an unaffiliated voter. Let $N$ denote a jury member who is not unaffiliated (identify as Democrat, Republican, or with another political party).
 
-- There is one possible outcome in the event: 0 people on the jury identify an Independent. 
+- There is one possible outcome in the event: 0 people on the jury identify an unaffiliated. 
 - We can represent that outcome as NNNNN.
 
 
@@ -62,7 +63,7 @@ Consider the selection of a jury of 5 people. We want to see whether the jury is
 
 ---
 
-List all possible outcomes in the event: Exactly 1 out of 5 jurors is independent.
+List all possible outcomes in the event: Exactly 1 out of 5 jurors is unaffiliated.
 
 #### Solution to Question 1a
 
@@ -78,7 +79,7 @@ List all possible outcomes in the event: Exactly 1 out of 5 jurors is independen
 
 ---
 
-List all possible outcomes in the event: Exactly 2 out of 5 jurors are independent.
+List all possible outcomes in the event: Exactly 2 out of 5 jurors are unaffiliated.
 
 #### Solution to Question 1b
 
@@ -137,7 +138,7 @@ See the [Appendix: Why Divide By $k!$](#sec-append-why) if you are curious why w
 ---
 
 
-Use R to calculate the total number of outcomes in the event: Exactly 2 out of 5 jurors are independent voters.
+Use R to calculate the total number of outcomes in the event: Exactly 2 out of 5 jurors are unaffiliated voters.
 
 ::: {.callout-tip}
 The function `factorial(x)` calculates $x!$ for a non-negative integer $x$.
@@ -174,7 +175,7 @@ An Even Better Tip: The function `choose(n, k)` calculates $\begin{pmatrix} n \\
 
 ---
 
-Recall random variables map outcomes in a sample space to a subset of the real numbers. In this example, an outcome is 5 randomly selected people for the jury.  We define random variable $X$ to be the number of independent voters on a randomly selected jury of 5 people. For example, we have:
+Recall random variables map outcomes in a sample space to a subset of the real numbers. In this example, an outcome is 5 randomly selected people for the jury.  We define random variable $X$ to be the number of unaffiliated voters on a randomly selected jury of 5 people. For example, we have:
 
 - The outcome NNNNN is mapped to $X=0$.
 - The outcome YNNNN is mapped to $X=1$.
@@ -188,17 +189,18 @@ We map each outcome to an integer $X$, and then we can compute values of the cor
 
 ---
 
-According to a recent article ["Why Independent Voters Are Key To Winning Colorado", PBS News. Oct 3, 2020](https://www.pbs.org/newshour/show/why-independent-voters-are-key-to-winning-colorado){target="_blank"}, approximately 42% of Colorado's voters identify as independent.
+According to a recent article [“Half of Colorado's registered voters don't belong to a political party”, Axios Sep 1, 2025](https://www.axios.com/local/denver/2025/09/17/colorado-registered-voter-unaffiliated-democrat-republican),
+approximately 51% of Colorado’s voters are unaffiliated with any political party.
 
 
-In solving [Question 2], there is a general pattern we can model to compute the probability of choose exactly $x$ jurors that identify as an independent voters in a jury of 5 people. In this question, we generalize the pattern to answer questions about a jury of 12 people.
+In solving [Question 2], there is a general pattern we can model to compute the probability of choose exactly $x$ jurors that identify as an unaffiliated voters in a jury of 5 people. In this question, we generalize the pattern to answer questions about a jury of 12 people.
 
 
 ### Question 3a
 
 ---
 
-What is the probability of randomly selecting a jury of 12 people with exactly 0 jurors that identify as an independent voter?
+What is the probability of randomly selecting a jury of 12 people with exactly 0 jurors that identify as an unaffiliated voter?
 
 
 #### Solution to Question 3a
@@ -219,7 +221,7 @@ What is the probability of randomly selecting a jury of 12 people with exactly 0
 
 ---
 
-What is the probability of randomly selecting a jury of 12 people with exactly 1 juror that identify as an independent voter?
+What is the probability of randomly selecting a jury of 12 people with exactly 1 juror that identify as an unaffiliated voter?
 
 
 #### Solution to Question 3b
@@ -240,7 +242,7 @@ What is the probability of randomly selecting a jury of 12 people with exactly 1
 
 ---
 
-What is the probability of randomly selecting a jury of 12 people with exactly 2 jurors that identify as independent voters?
+What is the probability of randomly selecting a jury of 12 people with exactly 2 jurors that identify as unaffiliated voters?
 
 
 #### Solution to Question 3c
@@ -261,7 +263,7 @@ What is the probability of randomly selecting a jury of 12 people with exactly 2
 
 ---
 
-What is the probability of randomly selecting a jury of 12 people with at most 2 jurors that identify as independent voters?
+What is the probability of randomly selecting a jury of 12 people with at most 2 jurors that identify as unaffiliated voters?
 
 
 #### Solution to Question 3d
@@ -282,7 +284,7 @@ What is the probability of randomly selecting a jury of 12 people with at most 2
 
 ---
 
-What is the probability of randomly selecting a jury of 12 people with at least 2 jurors that identify as independent voters?
+What is the probability of randomly selecting a jury of 12 people with at least 2 jurors that identify as unaffiliated voters?
 
 
 #### Solution to Question 3e
@@ -305,7 +307,7 @@ What is the probability of randomly selecting a jury of 12 people with at least 
 
 ---
  
-A jury of 12 people is randomly selected from a population that is 42% independent voters. Let random variable $X$ denote the number of jurors that identify as an independent voter.
+A jury of 12 people is randomly selected from a population that is 51% unaffiliated voters. Let random variable $X$ denote the number of jurors that identify as an unaffiliated voter.
 
 
 ### Question 4a
@@ -345,7 +347,7 @@ Give a possible formula for the pmf of $X$, $p(x)=P(X=x)$.
 
 A formula has been partially completed. Fill in the missing parts.
 
-$$P(X=x) = \begin{pmatrix} ?? \\ ?? \end{pmatrix} (0.42)^{??} (1-0.42)^{??}$$
+$$P(X=x) = \begin{pmatrix} ?? \\ ?? \end{pmatrix} (0.51)^{??} (1-0.51)^{??}$$
 
 <br>  
 <br>  
