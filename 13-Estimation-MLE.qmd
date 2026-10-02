@@ -879,10 +879,48 @@ optimize(??, ??, maximum = TRUE)  # replace both ??
 
 ---
 
+Recall for $X \sim \text{Geom}(p)$, if we know the value of $p$, then we can find the population mean $\mu$ using the formula
+
+$$E(X) = \mu = \frac{q}{p} = \frac{1-p}{p}.$$
+
+Conversely, if we know the population mean $\mu$, then we can find the value of the parameter $p$ by inverting the relation:
+
+$$\begin{align}
+\mu &= \frac{1-p}{p} \\
+\mu p &= 1-p \\
+ p + \mu p &= 1 \\
+p ( 1 + \mu) &= 1 \\
+p &= \frac{1}{1 + \mu}.
+\end{align}$$
+
+Thus, if we pick a random sample such as the one stored in `x.geom` above, a reasonable estimate for $p$ is obtained by using the sample mean $\bar{x}$ in place of $\mu$. Denote this estimator by $\widehat{p}_2$:
+
+$$\widehat{p}_{2} = \frac{1}{1 + \bar{x}}.$$
+
+In the code cell below, compute the estimator $\widehat{p}_2$ given the sample `x.geom` and compare the result to the MLE estimate $\widehat{p}_{\rm MLE}$ obtained from the sample `x.geom` in [Question 14a].
+
+#### Solution to Question 14b
+
+---
+
+<br>
+<br>
+<br>
+
+```{r}
+p.hat2 <- ??
+p.hat2
+```
+
+
+### Question 14c
+
+---
+
 Complete the partially completed code cell below to generate a plot of a distribution of MLEs for $\hat{p}_{\rm{MLE}}$ based on 10,000 randomly selected samples from $X \sim \mbox{Geom}(p)$.
 
 
-#### Solution to Question 14b
+#### Solution to Question 14c
 
 ---
 
@@ -911,14 +949,14 @@ abline(v = mean(mle.geom), col = "tomato", lwd = 2)  # expected value of MLE
 ```
 
 
-### Question 14c
+### Question 14d
 
 ---
 
-Based on the distribution of MLEs in [Question 14b], do you believe the estimator $\hat{p}_{\rm{MLE}}$ is unbiased or biased? Explain why or why not.
+Based on the distribution of MLEs in [Question 14c], do you believe the estimator $\hat{p}_{\rm{MLE}}$ is unbiased or biased? Explain why or why not.
 
 
-### Solution to Question 14c
+### Solution to Question 14d
 
 ---
 
