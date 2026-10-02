@@ -982,9 +982,6 @@ Based on the distribution of MLEs in [Question 14c], do you believe the estimato
 For **normal distributions** $X \sim N(\mu, \sigma)$,  the maximum likelihood estimates of $\mu$ and $\sigma$ are
 $$\hat{\mu}_{\rm{MLE}} = \frac{1}{n} \sum_{i=1}^n x_i = \bar{x} \quad \mbox{ and } \quad \hat{\sigma}_{\rm{MLE}} = \sqrt{\frac{1}{n} \sum_{i=1}^n (x_i - \bar{x})^2}.$$
 
-- See [this post](https://towardsdatascience.com/maximum-likelihood-estimation-explained-normal-distribution-6207b322e47f){target="_blank"} for a derivation of the MLE formulas for $\hat{\mu}_{\rm{MLE}}$ and $\hat{\sigma}_{\rm{MLE}}$.
-- [These materials from Penn State](https://online.stat.psu.edu/stat415/lesson/1/1.2){target="_blank"} also explain how to derive the MLE formulas for $\hat{\mu}_{\rm{MLE}}$ and $\hat{\sigma}_{\rm{MLE}}$.
-
 # Recap of Maximum Likelihood Estimates
 
 ---
