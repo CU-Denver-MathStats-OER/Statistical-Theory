@@ -997,6 +997,244 @@ $$\hat{\mu}_{\rm{MLE}} = \frac{1}{n} \sum_{i=1}^n x_i = \bar{x} \quad \mbox{ and
 -  <span style="color:tomato">**The downside is finding MLEs are not always easy (or possible).**</span>
 
 
+## Appendix: Deriving the MLEs for a Normal Distribution
+
+--- 
+
+> **Optional enrichment.** This derivation uses partial derivatives from multivariable calculus. You do not need this derivation for the main course material. If you have taken multivariable calculus, you should be able to follow the main steps.
+
+Suppose
+
+$$
+X_1, X_2, \ldots, X_n \overset{\text{iid}}{\sim} N(\mu,\sigma),
+$$
+
+where both the population mean $\mu$ and population standard deviation $\sigma$ are unknown.
+
+The the pdf for a normal distribution is
+
+$$
+f(x;\mu,\sigma)
+=
+\frac{1}{\sigma\sqrt{2\pi}}
+\exp\left(
+-\frac{(x-\mu)^2}{2\sigma^2}
+\right),
+\qquad \sigma>0.
+$$
+
+Our goal is to find the values of $\mu$ and $\sigma$ that maximize the likelihood of the observed sample.
+
+### Step 1: Write the likelihood function
+
+---
+
+For an observed random sample $x_1,x_2,\ldots,x_n$,
+
+$$
+\begin{aligned}
+L(\mu,\sigma)
+&=
+\prod_{i=1}^n
+\frac{1}{\sigma\sqrt{2\pi}}
+\exp\left(
+-\frac{(x_i-\mu)^2}{2\sigma^2}
+\right) \\
+&=
+\frac{1}{(2\pi)^{n/2}\sigma^n}
+\exp\left(
+-\frac{1}{2\sigma^2}
+\sum_{i=1}^n (x_i-\mu)^2
+\right).
+\end{aligned}
+$$
+
+Because this likelihood involves products and an exponential function, it is easier to maximize the log-likelihood.
+
+### Step 2: Take the log-likelihood
+
+---
+
+Let
+
+$$
+\ell(\mu,\sigma)=\ln L(\mu,\sigma).
+$$
+
+Then
+
+$$
+\ell(\mu,\sigma)
+=
+-\frac{n}{2}\ln(2\pi)
+-n\ln(\sigma)
+-\frac{1}{2\sigma^2}
+\sum_{i=1}^n (x_i-\mu)^2.
+$$
+
+Since there are two unknown parameters, we maximize $\ell(\mu,\sigma)$ with respect to both $\mu$ and $\sigma$.
+
+### Step 3: Maximize with respect to $\mu$
+
+---
+
+Using a partial derivative with respect to $\mu$,
+
+$$
+\frac{\partial \ell}{\partial \mu}
+=
+\frac{1}{\sigma^2}
+\sum_{i=1}^n (x_i-\mu).
+$$
+
+Set the derivative equal to zero:
+
+$$
+\sum_{i=1}^n (x_i-\mu)=0.
+$$
+
+Therefore,
+
+$$
+\sum_{i=1}^n x_i-n\mu=0,
+$$
+
+which gives
+
+$$
+\boxed{
+\widehat{\mu}_{\rm MLE}=\bar{x}
+}.
+$$
+
+This result also makes intuitive sense. For a fixed value of $\sigma$, maximizing the likelihood is equivalent to minimizing
+
+$$
+\sum_{i=1}^n (x_i-\mu)^2,
+$$
+
+and the value of $\mu$ that minimizes the sum of squared deviations is the sample mean $\bar{x}$.
+
+### Step 4: Maximize with respect to $\sigma$
+
+---
+
+Next, take the partial derivative with respect to $\sigma$:
+
+$$
+\frac{\partial \ell}{\partial \sigma}
+=
+-\frac{n}{\sigma}
++
+\frac{1}{\sigma^3}
+\sum_{i=1}^n (x_i-\mu)^2.
+$$
+
+Set this equal to zero:
+
+$$
+-\frac{n}{\sigma}
++
+\frac{1}{\sigma^3}
+\sum_{i=1}^n (x_i-\mu)^2
+=0.
+$$
+
+Multiplying by $\sigma^3$ gives
+
+$$
+-n\sigma^2
++
+\sum_{i=1}^n (x_i-\mu)^2
+=0.
+$$
+
+Thus,
+
+$$
+\sigma^2
+=
+\frac{1}{n}
+\sum_{i=1}^n (x_i-\mu)^2.
+$$
+
+Using the MLE $\widehat{\mu}_{\rm MLE}=\bar{x}$,
+
+$$
+\boxed{
+\widehat{\sigma}^2_{\rm MLE}
+=
+\frac{1}{n}
+\sum_{i=1}^n (x_i-\bar{x})^2
+}.
+$$
+
+Therefore,
+
+$$
+\boxed{
+\widehat{\sigma}_{\rm MLE}
+=
+\sqrt{
+\frac{1}{n}
+\sum_{i=1}^n (x_i-\bar{x})^2
+}
+}.
+$$
+
+### Summary
+
+---
+
+For a random sample from
+
+$$
+X\sim N(\mu,\sigma),
+$$
+
+the maximum likelihood estimators are
+
+$$
+\boxed{
+\widehat{\mu}_{\rm MLE}=\bar{x}
+}
+$$
+
+and
+
+$$
+\boxed{
+\widehat{\sigma}_{\rm MLE}
+=
+\sqrt{
+\frac{1}{n}
+\sum_{i=1}^n (x_i-\bar{x})^2
+}
+}.
+$$
+
+One interesting feature is that the MLE for the population variance is
+
+$$
+\widehat{\sigma}^2_{\rm MLE}
+=
+\frac{1}{n}
+\sum_{i=1}^n (x_i-\bar{x})^2,
+$$
+
+which uses $n$ in the denominator rather than $n-1$.
+
+The usual sample variance
+
+$$
+s^2
+=
+\frac{1}{n-1}
+\sum_{i=1}^n (x_i-\bar{x})^2
+$$
+
+is an unbiased estimator of $\sigma^2$, while the MLE above is biased for finite samples. **This gives an important example of the fact that not all MLEs are unbiased.**
+
 ---
 
 ![Creative Commons License](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png) <nbsp>
