@@ -459,7 +459,7 @@ Compare each of the values you obtained for $P( \hat{P} \leq 0.25)$ in [Question
 
 ---
 
-In the jury pool example, we have $n=20$, $p=0.42$, and thus $np = 8.4 < 10$. Our sample is *not* seemingly large enough for the CLT according to the conditions stated for proportions above. However, the $np \geq 10$ and $n(1-p) \leq 10$ conditions are more like *general guidelines*. We can check how consistent the results of the sampling distribution simulation (results of for loop stored in `samp.prop`) are with the CLT:
+In the jury pool example, we have $n=20$, $p=0.42$, and thus $np = 8.4 < 10$. Our sample is *not* seemingly large enough for the CLT according to the conditions stated for proportions above. However, the $np \geq 10$ and $n(1-p) \geq 10$ conditions are more like *general guidelines*. We can check how consistent the results of the sampling distribution simulation (results of for loop stored in `samp.prop`) are with the CLT:
 
 - The code cell below checks how closely our simulation matches the result $\mu_{\widehat{P}} = E(\widehat{P}) = p=0.42$.
 
