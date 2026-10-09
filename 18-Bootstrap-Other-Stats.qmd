@@ -586,17 +586,18 @@ qqline(??)
 ---
 
 
-Recall if $\widehat{\theta}$ is an estimator for a parameter $\theta$, then we define the **bias** of the estimator as
+Recall if $\widehat{\theta}$ is an estimator for a parameter $\theta$,
+then we define the **bias** of the estimator as
 
-$$\mbox{Bias}(\widehat{\theta}) = (\mbox{Estimated Value}) - (\mbox{Actual Value}) = \widehat{\theta} - \theta.$$
+$$\mbox{Bias}(\widehat{\theta}) = (\mbox{Expected Value}) - (\mbox{Population Parameter}) = E \left( \widehat{\theta} \right) - \theta.$$
 
 **In the case of bootstrapping, we used the following estimate:**
 
-- We use the <span style="color:dodgerblue">center of the bootstrap distribution</span>, ${\color{dodgerblue}{\hat{\theta}_{\rm{boot}}}}$, as the <span style="color:dodgerblue">bootstrap estimator</span>.
-- We plug-in the <span style="color:tomato">statistic from the original sample</span> in place of the <span style="color:tomato">unknown parameter $\theta$</span>.
-- The <span style="color:dodgerblue">**bootstrap estimate of bias**</span> is
+-  We denote the <span style="color:dodgerblue">mean of the bootstrap distribution</span> by ${\color{dodgerblue}{\overline{\theta^*}}}$.
+-   We plug-in the <span style="color:tomato">statistic from the original sample</span> in place of the <span style="color:tomato">unknown parameter $\theta$</span>.
+-   The <span style="color:dodgerblue">**bootstrap estimate of bias**</span> is
 
-$$\mbox{Bias}_{\rm{boot}} \big( \hat{\theta}_{\rm{boot}} \big) = {\color{dodgerblue}{\hat{\theta}_{\rm{boot}}}} - {\color{tomato}{(\mbox{observed statistic})}}.$$
+$$\widehat{\text{Bias}}_{\rm boot} (\widehat{\theta} ) = {\color{dodgerblue}{\overline{\theta^*}}} - {\color{tomato}{\widehat{\theta}}}.$$
 
 
 ## Question 8
@@ -610,7 +611,7 @@ The code cell below constructs a bootstrap distribution for the sample mean from
 - In the code cell provided in the solution space, calculate the bootstrap estimate of bias.
 
 ::: {.callout-tip}
-In the case of bootstrap estimate for a mean, we have ${\displaystyle \mbox{Bias}_{\rm{boot}} \big( \hat{\mu}_{\rm{boot}} \big) = {\color{dodgerblue}{\hat{\mu}_{\rm{boot}}}} - {\color{tomato}{\bar{x}}}}$. Use the output from the code below to identify the values of ${\color{dodgerblue}{\hat{\mu}_{\rm{boot}}}}$ and ${\color{tomato}{\bar{x}}}$.
+In the case of bootstrap estimate for a mean, we have ${\displaystyle \widehat{\mbox{Bias}}_{\rm boot} \big( \bar{X} \big) = {\color{dodgerblue}{\overline{x^*}}} - {\color{tomato}{\bar{x}}}}$. Use the output from the code below to identify the values of ${\color{dodgerblue}{\overline{x^*}}}$ <span style="color:dodgerblue">(the mean of the bootstrap distribution)</span> and ${\color{tomato}{\bar{x}}}$ <span style="color:tomato">(the mean of the observed sample)</span>.
 :::
 
 
@@ -696,7 +697,8 @@ The code cell below constructs a bootstrap distribution for the sample proportio
 - In the code cell provided in the solution space, calculate the bootstrap estimate of bias.
 
 ::: {.callout-tip}
-In the case of bootstrap estimate for a proportion, we have ${\displaystyle\mbox{Bias}_{\rm{boot}} \big( \hat{p}_{\rm{boot}} \big) = {\color{dodgerblue}{\hat{p}_{\rm{boot}}}} - {\color{tomato}{\hat{p}}}}$.
+*In the case of bootstrap estimate for a proportion, we have
+${\displaystyle \widehat{\mbox{Bias}}_{\rm boot} \big( \hat{P} \big) = {\color{dodgerblue}{\overline{p^*}}} - {\color{tomato}{\hat{p}}}}$.*
 :::
 
 
@@ -875,15 +877,15 @@ $${\color{dodgerblue}{\boxed{ \mbox{Relative Bootstrap Bias} = \dfrac{\mbox{Boot
 
 <span style="color:dodgerblue">If either </span>
 
-$${\color{dodgerblue}{\frac{\mbox{Bootstrap Bias}}{\mbox{Bootstrap SE}}  > 0.02 \qquad \mbox{or} \qquad \frac{\mbox{Bootstrap Bias}}{\mbox{Bootstrap SE}}  < -0.02,}}$$
+$${\color{dodgerblue}{\frac{\mbox{Bootstrap Bias}}{\mbox{Bootstrap SE}}  > 0.25 \qquad \mbox{or} \qquad \frac{\mbox{Bootstrap Bias}}{\mbox{Bootstrap SE}}  < -0.25,}}$$
 
-<span style="color:dodgerblue">then the bias is large enough to have a substantial effect on the accuracy of the estimate.</span> 
+<span style="color:dodgerblue">then the bias may be large enough to affect the accuracy of the estimate and warrants further investigation.</span> 
 
 ## Question 12
 
 ---
 
-Determine whether the jackal mandible bootstrap distribution in [Question 8], the ozone concentration bootstrap distribution for sample proportion in [Question 9], or the bootstrap distribution for the difference in mean birth weights [Question 10] exceed the 0.02 rule of thumb. Relatively speaking, which of the three biases is most extreme?
+Determine whether the jackal mandible bootstrap distribution in [Question 8], the ozone concentration bootstrap distribution for sample proportion in [Question 9], or the bootstrap distribution for the difference in mean birth weights [Question 10] exceed the 0.25 rule of thumb. Relatively speaking, which of the three biases is most extreme?
 
 
 
