@@ -467,26 +467,24 @@ $${\large \color{dodgerblue}{ \boxed{\mbox{Bias}(\widehat{\theta}) = {\color{tom
 
 **In the case of bootstrapping:**
 
--   We use the <span style="color:tomato">center of the bootstrap distribution</span>, ${\color{tomato}{\hat{\mu}_{\rm{boot}}}}$, as the <span style="color:tomato">bootstrap estimator</span>.
--   We use the <span style="color:mediumseagreen">mean from the original sample</span>, ${\color{mediumseagreen}{\bar{x}}}$, in place of the <span style="color:mediumseagreen">parameter $\theta$</span>.
-- We define the <span style="color:dodgerblue">**bootstrap estimate of bias**</span> as
+- We use the <span style="color:tomato">mean of the bootstrap distribution</span>, ${\color{tomato}{\overline{\theta^*}}}$, to approximate the expected value $E(\hat{\theta})$.
+- We use the <span style="color:mediumseagreen">statistic computed from the original sample</span>, ${\color{mediumseagreen}{\hat{\theta}}}$, in place of the unknown population parameter $\theta$.
+- We define the <span style="color:dodgerblue">**bootstrap estimate of bias**</span> as:
 
-$${\large \color{dodgerblue}{ \boxed{\mbox{Bias}_{\rm{boot}} \big( \hat{\mu}_{\rm{boot}} \big) = {\color{tomato}{\hat{\mu}_{\rm{boot}}}} - {\color{mediumseagreen}{\bar{x}}}.}}}$$
+$${\large \boxed{ {\color{dodgerblue}{ \widehat{\text{Bias}}_{\rm boot} ( \widehat{\theta} )}} = {\color{tomato}{\overline{\theta^{\ast}}}} - {\color{mediumseagreen}{\widehat{\theta}.}}}}$$
 
-::: {.callout-caution}
-When estimating a population mean, we use the <span style="color:tomato">center of the bootstrap distribution</span>, ${\color{tomato}{\hat{\mu}_{\rm{boot}}}}$ as the estimator for the population mean.
+**For example, when estimating a population mean $\mu$, we use the original sample mean $\bar{x}$ as our point estimate.** The bootstrap estimate of bias is
 
-- Do not use the mean of the original sample, $\bar{x}$, as the estimator.
-- The values of $\hat{\mu}_{\rm{boot}}$ and $\bar{x}$ are usually very close, but not equal.
-- The difference $\hat{\mu}_{\rm{boot}} - \bar{x}$ is used to estimate the bias of $\hat{\mu}_{\rm{boot}}$.
-:::
+$$\boxed{\widehat{\operatorname{Bias}}_{\mathrm{boot}}(\bar{X})=\overline{x^*}-\bar{x}.}$$
+
+The mean of the bootstrap distribution and the original sample statistic are often close, but they need not be equal. Their difference provides an estimate of the bias of the original estimator.
 
 
 ## Question 7
 
 ---
 
-Compute the bootstrap estimate of bias if we use the mean of the bootstrap distribution from [Question 6] as our estimate for the mean mandible length of all adult golden jackals.
+Compute the bootstrap estimate of bias if we use the mean of the original sample in [Question 2] as our estimate for the mean mandible length of all adult golden jackals.
 
 
 ### Solution to Question 7
@@ -613,7 +611,7 @@ boot.se <- sd(my.boot)
 +----------------------------------------------+--------------------------------------+----------------------------------------------------------+
 | Sample ($n=50$)                              | $\bar{x} = 22.69$                    | $s = 6.15$                                               |
 +----------------------------------------------+--------------------------------------+----------------------------------------------------------+
-| Bootstrap distribution                       | $\hat{\mu}_{\rm{boot}}      = 22.88$ | $\mbox{SE}_{\rm{boot}}(\overline{X}) = 0.938$            |
+| Bootstrap distribution                       | $\overline{x^*}      = 22.88$ | $\mbox{SE}_{\rm{boot}}(\overline{X}) = 0.938$            |
 +----------------------------------------------+--------------------------------------+----------------------------------------------------------+
 
 ## Question 10
@@ -656,9 +654,9 @@ Each bootstrap resample is picked from the same "population", the original sampl
 ---
 
 - The goal of a bootstrap distribution is to estimate a sampling distribution for some statistic.
-- Bootstrap distributions are <span style="color:tomato">**biased estimators for a population mean**</span> since they are centered near $\bar{x}$ not necessarily $\mu$.
-  - Thus, the mean of a bootstrap distribution is not useful alone.
-  - But bootstrapping is useful at quantifying the behavior of a parameter estimate.
+- Bootstrap distributions approximate sampling distributions, but their centers need not equal the unknown population parameter.
+  - The mean of a bootstrap distribution is not generally used as the point estimate of the population parameter.
+  - Instead, bootstrap distributions help us estimate the variability and bias of the original estimator.
 - For most common statistics, bootstrap distributions provide good estimates for the true <span style="color:dodgerblue">**spread**</span>, <span style="color:dodgerblue">**shape**</span>, and <span style="color:dodgerblue">**bias**</span> of a sampling distribution for the statistic of interest.
 
 ## Question 11: Arsenic Case Study
@@ -783,7 +781,7 @@ abline(v = ??, col = "blue", lwd = 2, lty = 2)
 
 
 ```{r}
-# print bootstrap estimate and standard error to screen
+# print mean and standard error of bootstrap distribution
 boot.mean  # mean (center) of bootstrap dist
 boot.se  # standard error (spread) of bootstrap dist
 ```

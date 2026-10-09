@@ -21,14 +21,15 @@ output:
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://githubtocolab.com/CU-Denver-MathStats-OER/Statistical-Theory/blob/main/Chap5/17-Bootstrap-Confidence-Int.ipynb){target="_blank"} &nbsp;
 
 
-In our [work with bootstrap distributions](16-Bootstrap-Dist.qmd), we explored how we can used data from one random sample picked from a population with unknown parameters to construct an approximation for a sampling distribution. From a bootstrap distribution, we can define a new estimator:
+In our [work with bootstrap distributions](16-Bootstrap-Dist.qmd), we explored how we can use data from one random sample that is picked from a population with unknown parameters to construct an approximation for a sampling distribution. Bootstrapping approximates the sampling distribution of the original estimator and provides a method for accounting for variability in our estimate.
 
-- We defined the <span style="color:dodgerblue">estimator $\hat{\theta}_{\rm{boot}}$</span> as the mean (expected) value of the bootstrap distribution.
-- We use the <span style="color:dodgerblue">bootstrap standard error</span> to estimate the variability or uncertainty in estimates due to the randomness of sampling.
-- We defined the <span style="color:dodgerblue">bootstrap estimate of bias</span> as $\mbox{Bias}_{\rm{boot}} \big( \hat{\theta}_{\rm{boot}} \big) = \hat{\theta}_{\rm{boot}} - \left( \mbox{observed sample statististic} \right)$.
-  - For example, in the case of estimating a population mean $\mu$, we have ${\color{dodgerblue}{\mbox{Bias}_{\rm{boot}} \big( \hat{\mu}_{\rm{boot}} \big) = \hat{\mu}_{\rm{boot}} - \bar{x}}}$.
+-  We denote the <span style="color:dodgerblue">mean of the bootstrap distribution</span> by ${\color{dodgerblue}{\overline{\theta^*}}}$.
+-   We use the <span style="color:dodgerblue">bootstrap standard error, $\mbox{SE}_{\rm{boot}} (\widehat{\theta})$,</span> to estimate the variability in sample statistics.
+-   We defined the <span style="color:dodgerblue">bootstrap estimate of bias</span> as
 
-In this section we will discuss how we can use the bootstrap standard error to account for the uncertainty in our estimate and to incorporate that uncertainty in our final estimate.
+$${\color{dodgerblue}{\widehat{\text{Bias}}_{\rm boot} (\widehat{\theta} ) = \overline{\theta^*} - \widehat{\theta}}}.$$
+
+In this section, we will bootstrap a sample proportion and a difference of two means. Then we will use bootstrap distributions to construct confidence intervals that account for sampling variability.
 
 
 # Case Study: Ozone Concentration in New York City
@@ -290,11 +291,11 @@ The two methods, bootstrap distribution and the estimate from using the CLT, giv
 
 Usually when estimating an unknown population parameter, we give an <span style="color:dodgerblue">**interval estimate**</span> that gives range of plausible values for the parameter by accounting for the uncertainty due to the variability in sampling.
 
--   For example, using both mean and standard error from the bootstrap distribution in [Question 2c], we could say
+- Using the original sample proportion and the bootstrap standard error from [Question 2c], one possible interval estimate is
 
-$$ p_{\rm over} \approx \hat{p}_{\rm boot} \color{dodgerblue}{\pm \mbox{SE}_{\rm boot} \left( \widehat{P} \right)} = 0.216 \color{dodgerblue}{\pm 0.039}.$$
+$$ p_{\rm over} \approx \hat{p} \ \color{dodgerblue}{\pm \mbox{SE}_{\rm boot} \left( \widehat{P} \right)} = 0.2162 \color{dodgerblue}{\pm 0.039}.$$
 
-  -    An interval of plausible values for $p$ is from $0.177$ to $0.255$.  
+  -    An interval of plausible values for $p$ is from $0.1772$ to $0.2552$.  
 
 -   An estimate for a parameter with a single value is called a <span style="color:dodgerblue">**point estimate**</span>.
 
@@ -407,7 +408,7 @@ for (i in 1:N)
   boot.prop[i] <- mean(x > 70)  # compute bootstrap sample proportion
 }
 
-boot.prop.est <- mean(boot.prop)
+boot.prop.mean <- mean(boot.prop)
 boot.prop.se <- sd(boot.prop)
 samp.prop <- mean(nyc.oz > 70)
 ```
